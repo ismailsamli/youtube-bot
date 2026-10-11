@@ -18,7 +18,9 @@ class VisualFinder:
         self.cfg = cfg
         self.out_dir = out_dir
         out_dir.mkdir(parents=True, exist_ok=True)
-        self.pexels_key = env("PEXELS_API_KEY")
+        self.pexels_key = env("PEXELS_API_KEY", required=False)
+        if not self.pexels_key:
+            log("  Pexels anahtarı yok: tüm sahneler ücretsiz yapay zeka görseliyle üretilecek.")
         self.gemini_key = env("GEMINI_API_KEY", required=False)
         self.used_ids = set()
         self._gemini = None
@@ -145,7 +147,9 @@ class VisualFinder:
             return img, "image"
 
         jpg = self.out_dir / f"visual_{idx:03d}.jpg"
-        if scene["visual"] == "ai":
+        if not self.pexels_key:
+            order = [("ai", img), ("ai", img)]  # stok yok: yapay zeka görselini bir kez daha dene
+        elif scene["visual"] == "ai":
             order = [("ai", img), ("video", vid), ("photo", jpg)]
         else:
             order = [("video", vid), ("photo", jpg), ("ai", img)]

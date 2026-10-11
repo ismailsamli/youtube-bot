@@ -19,7 +19,7 @@ Kurulumdaki tüm adımları GitHub mobil uygulamasında değil, **tarayıcıda**
 | Anahtar | Nereden |
 |---|---|
 | Gemini | aistudio.google.com/apikey → **Create API key** |
-| Pexels | pexels.com/api → ücretsiz hesap aç → **Your API Key** |
+| Pexels (isteğe bağlı) | pexels.com/api → **Your API Key**. Yeni anahtar verilmiyorsa atla; bot tüm sahneleri ücretsiz yapay zeka görselleriyle üretir. |
 
 ### 2. YouTube için Google Cloud projesi
 
@@ -34,12 +34,12 @@ Kurulumdaki tüm adımları GitHub mobil uygulamasında değil, **tarayıcıda**
 
 ### 3. Anahtarları GitHub'a kaydet
 
-Repo sayfasında **Settings → Secrets and variables → Actions → New repository secret** yolunu izle. Şu üç secret'ı ekle:
+Repo sayfasında **Settings → Secrets and variables → Actions → New repository secret** yolunu izle. Şu secret'ları ekle:
 
 | Name | Value |
 |---|---|
 | `GEMINI_API_KEY` | Gemini anahtarı |
-| `PEXELS_API_KEY` | Pexels anahtarı |
+| `PEXELS_API_KEY` | Pexels anahtarı (varsa; yoksa ekleme) |
 | `YOUTUBE_CLIENT_SECRET` | İndirdiğin JSON dosyasının **tüm içeriği** |
 
 ### 4. YouTube izni (tek seferlik)
