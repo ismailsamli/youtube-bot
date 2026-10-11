@@ -32,6 +32,11 @@ jobs:
           python-version: "3.12"
           cache: pip
 
+      - name: FFmpeg kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+
       - name: Python paketlerini kur
         run: pip install -q -r requirements.txt
 
