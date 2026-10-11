@@ -64,7 +64,8 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
 
     log("Görseller hazırlanıyor...")
     finder = VisualFinder(cfg, folder / "visuals")
-    finder.topic = ((script.get("topic") or {}).get("topic") or "")[:60]
+    t = script.get("topic") or {}
+    finder.topic = (t.get("search_en") or t.get("topic") or "")[:60]
     visuals = []
     for i, (scene, audio) in enumerate(zip(script["scenes"], audios)):
         visuals.append(finder.get(scene, i, media_duration(audio)))

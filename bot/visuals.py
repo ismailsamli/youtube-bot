@@ -9,7 +9,9 @@ import html
 import re
 
 import requests
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+import random
+
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
 from .utils import env, log
 
@@ -35,6 +37,7 @@ class VisualFinder:
         self.credits = []          # açıklamaya eklenecek görsel kaynakları
         self.dead = set()          # bu çalışmada kapalı olduğu anlaşılan servisler
         self.topic = ""
+        self.found = []            # bulunan görseller (son çarede farklı kadrajla yeniden kullanılır)
 
     # ---------------- Pexels ----------------
     def _pexels(self, url: str, query: str) -> dict:
@@ -291,11 +294,32 @@ class VisualFinder:
                 if kind == "photo":
                     fit_16_9(Image.open(jpg).convert("RGB")).save(img, "PNG")
                     jpg.unlink(missing_ok=True)
-                    return img, "image"
+                    path = img
+                if kind != "video":
+                    self.found.append(path)
                 return path, "video" if kind == "video" else "image"
 
-        # Hiçbir şey bulunamazsa: sahnenin ana fikrini yazan başlık kartı
-        log(f"  sahne {idx}: görsel bulunamadı, başlık kartı kullanılıyor")
+        # Bulunamazsa aramayı genişlet: sadeleştirilmiş arama, sahne tarifi, videonun genel konusu
+        words = q.split()
+        extra = []
+        if len(words) > 2:
+            extra += [" ".join(words[-2:]), " ".join(words[:2])]
+        extra.append(" ".join((scene.get("prompt") or "").split()[:4]))
+        if self.topic:
+            extra.append(self.topic)
+        for eq in dict.fromkeys(e.strip() for e in extra if e and e.strip()):
+            if self.commons_image(eq, img) or self.openverse_image(eq, img):
+                self.found.append(img)
+                return img, "image"
+
+        # Hâlâ yoksa: daha önce bulunan bir görseli farklı bir kadrajla yeniden kullan (yazı ekranı yok)
+        if self.found:
+            src = self.found[idx % len(self.found)]
+            log(f"  sahne {idx}: yeni görsel bulunamadı, önceki bir görsel farklı kadrajla kullanılıyor")
+            recrop(Image.open(src).convert("RGB"), idx).save(img, "PNG")
+            return img, "image"
+
+        log(f"  sahne {idx}: hiç görsel bulunamadı, başlık kartı kullanılıyor")
         self.title_card(scene["text"], img, idx)
         return img, "image"
 
@@ -308,8 +332,46 @@ def _card_font(size: int):
     return ImageFont.load_default()
 
 
-def fit_16_9(img: Image.Image, width: int = 1920, height: int = 1080) -> Image.Image:
-    """Görseli bozmadan 16:9'a kırpar ve boyutlandırır."""
+def recrop(img: Image.Image, seed: int) -> Image.Image:
+    """Aynı görselin farklı bir bölümünü yakınlaştırarak yeni bir kadraj üretir."""
+    rnd = random.Random(seed)
+    w, h = img.size
+    z = rnd.uniform(1.35, 1.7)
+    cw, ch = int(w / z), int(h / z)
+    x, y = rnd.randint(0, w - cw), rnd.randint(0, h - ch)
+    return img.crop((x, y, x + cw, y + ch)).resize((w, h), Image.LANCZOS)
+
+
+def _vignette(width: int, height: int) -> Image.Image:
+    mask = Image.new("L", (width // 8, height // 8), 0)
+    d = ImageDraw.Draw(mask)
+    mw, mh = mask.size
+    d.ellipse((mw * 0.02, mh * 0.0, mw * 0.98, mh * 1.0), fill=255)
+    return mask.filter(ImageFilter.GaussianBlur(mw // 6)).resize((width, height), Image.BICUBIC)
+
+
+_VIGNETTE = {}
+
+
+def channel_style(img: Image.Image) -> Image.Image:
+    """Kanalın sabit görsel stili: tüm kaynaklardan gelen görseller aynı sinematik belgesel
+    tonuna getirilir (ayarlı kontrast, hafif soluk renk, sıcak-lacivert ton, kenar kararması)."""
+    lo, hi = img.convert("L").getextrema()
+    if hi - lo > 60:                      # düz/tek renkli görselleri bozmamak için
+        img = ImageOps.autocontrast(img, cutoff=1)
+    img = ImageEnhance.Color(img).enhance(0.6)
+    tone = ImageOps.colorize(img.convert("L"), black=(10, 20, 36), mid=(120, 108, 92), white=(250, 230, 200))
+    img = Image.blend(img, tone, 0.55)
+    img = ImageEnhance.Contrast(img).enhance(1.08)
+    key = img.size
+    if key not in _VIGNETTE:
+        _VIGNETTE[key] = _vignette(*key)
+    dark = ImageEnhance.Brightness(img).enhance(0.35)
+    return Image.composite(img, dark, _VIGNETTE[key])
+
+
+def fit_16_9(img: Image.Image, width: int = 1920, height: int = 1080, style: bool = True) -> Image.Image:
+    """Görseli bozmadan 16:9'a kırpar, boyutlandırır ve kanal stilini uygular."""
     target = width / height
     w, h = img.size
     if w / h > target:
@@ -318,4 +380,5 @@ def fit_16_9(img: Image.Image, width: int = 1920, height: int = 1080) -> Image.I
     else:
         new_h = int(w / target)
         img = img.crop((0, (h - new_h) // 2, w, (h - new_h) // 2 + new_h))
-    return img.resize((width, height), Image.LANCZOS)
+    img = img.resize((width, height), Image.LANCZOS)
+    return channel_style(img) if style else img

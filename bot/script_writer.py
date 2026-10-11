@@ -230,11 +230,13 @@ PAKETLEME:
 - "tags": 10-15 Türkçe etiket
 - "thumbnail_text": kapakta yazacak 2-3 kelimelik, başlığı tekrar ETMEYEN, duygusu güçlü çarpıcı
   Türkçe ifade (ör. "KİMSE BİLMİYOR", "5 DAKİKA KALDI")
+- "search_en": videonun genel konusunu anlatan 2-3 kelimelik İNGİLİZCE görsel arama ifadesi
+  (ör. "human brain", "Titanic wreck", "black hole"); sahne görseli bulunamazsa bununla aranır
 - "thumbnail_prompt": kapak arka planı için İNGİLİZCE görsel tarifi; tek, net, dramatik bir odak nesnesi;
   sol tarafta yazı için sade alan; yazı içermeyen
 
 Sadece şu JSON'u döndür:
-{{"title": "...", "description": "...", "tags": ["..."], "thumbnail_text": "...", "thumbnail_prompt": "...",
+{{"title": "...", "description": "...", "tags": ["..."], "thumbnail_text": "...", "search_en": "...", "thumbnail_prompt": "...",
   "sections": [{{"heading": "...", "goal": "...", "facts": ["..."]}}]}}"""
     log("Video planı yazılıyor...")
     return _ask_json(llm, _system(cfg), prompt, 4000, "sections")
@@ -301,7 +303,8 @@ def write_script(llm, cfg: dict, topic: dict) -> dict:
     script["scenes"] = scenes
     script["sections"] = [s.get("heading", "") for s in sections]
     script["topic"] = {"topic": outline.get("topic") or topic.get("topic"),
-                       "angle": outline.get("angle") or topic.get("angle", "")}
+                       "angle": outline.get("angle") or topic.get("angle", ""),
+                       "search_en": outline.get("search_en") or ""}
     return validate(script)
 
 

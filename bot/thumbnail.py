@@ -41,7 +41,7 @@ def _wrap(draw, text: str, font, max_w: int) -> list:
 
 def make_thumbnail(background: Path, text: str, out: Path) -> Path:
     if background and Path(background).exists():
-        bg = fit_16_9(Image.open(background).convert("RGB"), W, H)
+        bg = fit_16_9(Image.open(background).convert("RGB"), W, H, style=False)
     else:
         bg = Image.new("RGB", (W, H), (20, 24, 36))
     bg = ImageEnhance.Contrast(bg).enhance(1.15)
