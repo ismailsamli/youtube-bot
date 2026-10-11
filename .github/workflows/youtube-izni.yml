@@ -1,0 +1,66 @@
+name: YouTube İzni (tek seferlik)
+
+on:
+  workflow_dispatch:
+    inputs:
+      adim:
+        description: "Hangi adım?"
+        type: choice
+        options:
+          - "1 - İzin bağlantısı oluştur"
+          - "2 - İzni kaydet"
+        required: true
+      adres:
+        description: "2. adım için: izin verdikten sonra tarayıcının adres çubuğundaki TAM adres"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  izin:
+    runs-on: ubuntu-latest
+    env:
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Paketleri kur
+        run: pip install -q google-auth-oauthlib cryptography
+
+      - name: "1. adım: izin bağlantısı"
+        if: startsWith(inputs.adim, '1')
+        run: |
+          LINK=$(python youtube_yetki.py link)
+          {
+            echo "## 1. adım: Bu bağlantıyı aç ve izin ver"
+            echo ""
+            echo "[👉 Google izin sayfasını aç]($LINK)"
+            echo ""
+            echo "1. YouTube kanalının bağlı olduğu Google hesabını seç."
+            echo "2. *Google bu uygulamayı doğrulamadı* uyarısı çıkarsa **Gelişmiş → ... sayfasına git (güvenli değil)** de. Uygulama senin kendi projen olduğu için güvenli."
+            echo "3. İzin verince açılmayan bir sayfaya (localhost) gideceksin. **Bu normal.**"
+            echo "4. O sayfanın adres çubuğundaki **tam adresi** kopyala (http://localhost:8080/?... ile başlar)."
+            echo "5. Bu işlemi tekrar çalıştır: **2 - İzni kaydet** seç ve adresi yapıştır."
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: "2. adım: izni kaydet"
+        if: startsWith(inputs.adim, '2')
+        env:
+          ADRES: ${{ inputs.adres }}
+        run: |
+          echo "::add-mask::$ADRES"
+          python youtube_yetki.py kod "$ADRES"
+          git config user.name "video-bot"
+          git config user.email "video-bot@users.noreply.github.com"
+          git add data/youtube_token.enc
+          git commit -m "YouTube izni kaydedildi (şifreli)"
+          git push -q
+          echo "## ✅ YouTube izni alındı" >> $GITHUB_STEP_SUMMARY
+          echo "İzin şifrelenerek kaydedildi. Artık **Video Üret** işlemini çalıştırabilirsin." >> $GITHUB_STEP_SUMMARY

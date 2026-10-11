@@ -1,0 +1,102 @@
+name: Video Üret
+
+on:
+  schedule:
+    # Her gün Türkiye saatiyle 06:13'te çalışır (GitHub saati UTC: 03:13).
+    # Video, config.yaml'daki yayın saatine (varsayılan 19:00) planlanır.
+    - cron: "13 3 * * *"
+  workflow_dispatch:
+    inputs:
+      adet:
+        description: "Kaç video üretilsin"
+        default: "1"
+        required: true
+      konu:
+        description: "Belirli bir konu (boş bırakırsan bot seçer)"
+        default: ""
+        required: false
+      yukle:
+        description: "YouTube'a yüklensin mi?"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: video-uret
+  cancel-in-progress: false
+
+jobs:
+  uret:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      PYTHONUNBUFFERED: "1"
+      PYTHONIOENCODING: "utf-8"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: FFmpeg ve fontları kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-liberation fonts-dejavu-core > /dev/null
+
+      - name: Python paketlerini kur
+        run: pip install -q -r requirements.txt
+
+      - name: Video üret
+        env:
+          ADET: ${{ inputs.adet || '1' }}
+          KONU: ${{ inputs.konu }}
+          YUKLE: ${{ inputs.yukle }}
+        run: |
+          ARGS=(--count "$ADET")
+          if [ -n "$KONU" ]; then ARGS+=(--topic "$KONU"); fi
+          if [ "$YUKLE" = "false" ]; then ARGS+=(--no-upload); fi
+          echo "Komut: python run.py ${ARGS[*]}"
+          python run.py "${ARGS[@]}" --keep-files
+
+      - name: Video geçmişini kaydet
+        if: always()
+        run: |
+          git config user.name "video-bot"
+          git config user.email "video-bot@users.noreply.github.com"
+          git add data/history.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Video geçmişi güncellendi"
+            git pull --rebase -q && git push -q
+          fi
+
+      - name: Özet
+        if: always()
+        run: |
+          echo "## Üretilen videolar" >> $GITHUB_STEP_SUMMARY
+          for d in output/*/; do
+            [ -f "$d/youtube_bilgileri.txt" ] || continue
+            echo "### $(head -2 "$d/youtube_bilgileri.txt" | tail -1)" >> $GITHUB_STEP_SUMMARY
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Video, kapak ve senaryo aşağıdaki **Artifacts** bölümünden 3 gün boyunca indirilebilir." >> $GITHUB_STEP_SUMMARY
+
+      - name: Videoları indirilebilir yap
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: videolar
+          path: |
+            output/*/video.mp4
+            output/*/thumbnail.jpg
+            output/*/senaryo.txt
+            output/*/youtube_bilgileri.txt
+          retention-days: 3
+          if-no-files-found: ignore

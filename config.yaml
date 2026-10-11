@@ -1,0 +1,61 @@
+# ============================================================
+#  YouTube Video Botu - Ayarlar
+#  Bu dosyayı Not Defteri ile açıp değiştirebilirsin.
+# ============================================================
+
+channel:
+  niche: "Genel bilgi ve ilginç gerçekler"
+  audience: "Meraklı, 18-45 yaş arası Türk izleyici"
+  tone: "Merak uyandıran, samimi, akıcı ama ciddi; abartısız ve doğru bilgi veren"
+  # Kanalın odaklanacağı alt konular (bot bunlardan seçer, boş bırakırsan serbest seçer)
+  topic_pool:
+    - tarih
+    - bilim
+    - uzay
+    - doğa ve hayvanlar
+    - insan vücudu
+    - çözülememiş gizemler
+    - mühendislik harikaları
+    - ilginç coğrafya
+
+video:
+  target_minutes: 9          # 8-10 dk hedef
+  width: 1920
+  height: 1080
+  fps: 30
+  ai_image_ratio: 0.35       # Sahnelerin yaklaşık ne kadarı yapay zeka görseli olsun (0-1)
+  scene_padding: 0.35        # Sahneler arasında bırakılan sessizlik (saniye)
+  music_volume: 0.08         # assets/music klasöründeki müziğin sesi (0 = müzik yok)
+  subtitle_font: "Arial"     # Windows'ta Arial vardır
+  subtitle_size: 62
+
+voice:
+  name: "tr-TR-AhmetNeural"  # Kadın ses için: tr-TR-EmelNeural
+  rate: "+5%"                # Konuşma hızı (-20% yavaş, +20% hızlı)
+
+llm:
+  # "gemini" = ÜCRETSİZ (Google AI Studio ücretsiz katmanı)
+  # "claude" = ücretli, daha kaliteli Türkçe (ileride para harcamak istersen)
+  provider: "gemini"
+  gemini_model: "gemini-2.5-flash"   # Ücretsiz katmanda çalışan model
+  claude_model: "claude-sonnet-5-5"
+  fact_check: true           # Senaryo yazıldıktan sonra ikinci bir doğruluk kontrolü yapılsın
+
+images:
+  # "free"   = ÜCRETSİZ yapay zeka görseli (Pollinations, anahtar gerekmez)
+  # "gemini" = Nano Banana (ücretli, Google AI Studio'da faturalandırma gerekir)
+  # "none"   = sadece stok video/fotoğraf
+  provider: "free"
+  free_model: "flux"
+  model: "gemini-2.5-flash-image"
+
+upload:
+  enabled: true
+  category_id: "27"          # 27 = Eğitim, 28 = Bilim ve Teknoloji
+  made_for_kids: false
+  synthetic_media: true      # YouTube'a "yapay zeka ile üretildi" bilgisi verilir (önerilir)
+  # Planlama: videolar bu saatlerde yayına girer (Türkiye saati)
+  timezone: "Europe/Istanbul"
+  publish_times: ["19:00"]   # Örn: ["12:00", "19:00"] günde iki video
+  # true: videolar "özel" yüklenir, belirlenen saatte otomatik herkese açılır
+  schedule: true
