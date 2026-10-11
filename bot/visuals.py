@@ -1,13 +1,23 @@
-"""Sahne görselleri: Pexels'ten ücretsiz stok video/fotoğraf ve Gemini ile yapay zeka görseli."""
+"""Sahne görselleri: Wikimedia Commons / Openverse (ücretsiz, lisanslı gerçek görseller),
+Pexels stok video, isteğe bağlı yapay zeka görseli ve son çare olarak başlık kartı."""
 import io
 import time
 from pathlib import Path
 from urllib.parse import quote
 
+import html
+import re
+
 import requests
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 from .utils import env, log
+
+UA = {"User-Agent": "youtube-bilgi-botu/1.0 (https://github.com/ismailsamli/youtube-bot)"}
+COMMONS_API = "https://commons.wikimedia.org/w/api.php"
+OPENVERSE_API = "https://api.openverse.org/v1/images/"
+# Ticari kullanıma ve değiştirmeye izin vermeyen lisanslar atlanır
+BAD_LICENSE = re.compile(r"\b(NC|ND)\b|non-?commercial|no-?deriv|fair use", re.I)
 
 PEXELS_VIDEO = "https://api.pexels.com/videos/search"
 PEXELS_PHOTO = "https://api.pexels.com/v1/search"
@@ -19,11 +29,12 @@ class VisualFinder:
         self.out_dir = out_dir
         out_dir.mkdir(parents=True, exist_ok=True)
         self.pexels_key = env("PEXELS_API_KEY", required=False)
-        if not self.pexels_key:
-            log("  Pexels anahtarı yok: tüm sahneler ücretsiz yapay zeka görseliyle üretilecek.")
         self.gemini_key = env("GEMINI_API_KEY", required=False)
         self.used_ids = set()
         self._gemini = None
+        self.credits = []          # açıklamaya eklenecek görsel kaynakları
+        self.dead = set()          # bu çalışmada kapalı olduğu anlaşılan servisler
+        self.topic = ""
 
     # ---------------- Pexels ----------------
     def _pexels(self, url: str, query: str) -> dict:
@@ -80,6 +91,114 @@ class VisualFinder:
                 continue
         return False
 
+    # ---------------- Wikimedia Commons ----------------
+    def commons_image(self, query: str, path: Path) -> bool:
+        if "commons" in self.dead:
+            return False
+        try:
+            r = requests.get(COMMONS_API, headers=UA, timeout=30, params={
+                "action": "query", "format": "json", "generator": "search",
+                "gsrsearch": f"{query} filetype:bitmap", "gsrnamespace": 6, "gsrlimit": 20,
+                "prop": "imageinfo", "iiprop": "url|size|extmetadata|mime", "iiurlwidth": 1920,
+                "iiextmetadatafilter": "LicenseShortName|Artist|UsageTerms"})
+            r.raise_for_status()
+            pages = (r.json().get("query") or {}).get("pages") or {}
+        except Exception as e:
+            log(f"  Commons hatası ({query}): {e}")
+            return False
+        cands = []
+        for pg in sorted(pages.values(), key=lambda p: p.get("index", 99)):
+            ii = (pg.get("imageinfo") or [{}])[0]
+            w, h = ii.get("width") or 0, ii.get("height") or 0
+            meta = ii.get("extmetadata") or {}
+            lic = (meta.get("LicenseShortName") or {}).get("value", "")
+            if pg.get("title") in self.used_ids or w < 800 or h < 450:
+                continue
+            if ii.get("mime") not in ("image/jpeg", "image/png", "image/webp", "image/tiff"):
+                continue
+            if not lic or BAD_LICENSE.search(lic):
+                continue
+            artist = re.sub(r"<[^>]+>", "", html.unescape((meta.get("Artist") or {}).get("value", ""))).strip()
+            score = (w / max(h, 1) >= 1.2, min(w, 4000))   # yatay ve büyük olanlar önce
+            cands.append((score, pg["title"], ii.get("thumburl") or ii.get("url"), lic, artist))
+        for _, title, url, lic, artist in sorted(cands, reverse=True):
+            if self._save_remote_image(url, path):
+                self.used_ids.add(title)
+                self.credits.append(f"{title.replace('File:', '')} – {artist or 'Wikimedia Commons'} ({lic})")
+                return True
+        return False
+
+    # ---------------- Openverse (Flickr vb. CC lisanslı görseller) ----------------
+    def openverse_image(self, query: str, path: Path) -> bool:
+        if "openverse" in self.dead:
+            return False
+        try:
+            r = requests.get(OPENVERSE_API, headers=UA, timeout=30, params={
+                "q": query, "license_type": "commercial,modification",
+                "aspect_ratio": "wide", "size": "large", "page_size": 15})
+            if r.status_code in (401, 403, 429):
+                self.dead.add("openverse")
+                log(f"  Openverse şu an kullanılamıyor ({r.status_code}).")
+                return False
+            r.raise_for_status()
+            results = r.json().get("results") or []
+        except Exception as e:
+            log(f"  Openverse hatası ({query}): {e}")
+            return False
+        for it in results:
+            if it.get("id") in self.used_ids or (it.get("width") or 0) < 1000:
+                continue
+            if self._save_remote_image(it.get("url"), path):
+                self.used_ids.add(it.get("id"))
+                lic = f"CC {str(it.get('license', '')).upper()} {it.get('license_version', '')}".strip()
+                self.credits.append(f"{it.get('title') or 'Görsel'} – {it.get('creator') or it.get('source')} ({lic})")
+                return True
+        return False
+
+    def _save_remote_image(self, url: str, path: Path) -> bool:
+        if not url:
+            return False
+        try:
+            r = requests.get(url, headers=UA, timeout=60)
+            r.raise_for_status()
+            img = Image.open(io.BytesIO(r.content)).convert("RGB")
+            if img.width < 640:
+                return False
+            fit_16_9(img).save(path, "PNG")
+            return True
+        except Exception as e:
+            log(f"  görsel indirilemedi: {e}")
+            return False
+
+    # ---------------- Son çare: başlık kartı ----------------
+    def title_card(self, text: str, path: Path, idx: int) -> None:
+        W, H = 1920, 1080
+        palettes = [((20, 24, 38), (196, 52, 52)), ((16, 32, 30), (229, 170, 60)),
+                    ((30, 20, 40), (120, 160, 230)), ((24, 24, 24), (240, 240, 240))]
+        bg, accent = palettes[idx % len(palettes)]
+        img = Image.new("RGB", (W, H), bg)
+        d = ImageDraw.Draw(img)
+        d.rectangle([120, 470, 140, 610], fill=accent)
+        first = re.split(r"[.!?;:,]", text.strip())[0]
+        words = re.sub(r"[^\wçğıöşüÇĞİÖŞÜ' ]", "", first).split()
+        if len(words) > 9:
+            words = words[:8] + ["…"]
+        font = _card_font(84)
+        lines, cur = [], ""
+        for w in words:
+            t = f"{cur} {w}".strip()
+            if d.textlength(t, font=font) > 1500 and cur:
+                lines.append(cur)
+                cur = w
+            else:
+                cur = t
+        lines.append(cur)
+        y = 540 - len(lines) * 50
+        for line in lines[:3]:
+            d.text((180, y), line, font=font, fill=(245, 245, 245))
+            y += 100
+        img.filter(ImageFilter.SMOOTH).save(path, "PNG")
+
     # ---------------- Gemini (Nano Banana) ----------------
     def ai_image(self, prompt: str, path: Path) -> bool:
         provider = self.cfg["images"].get("provider", "free")
@@ -117,6 +236,8 @@ class VisualFinder:
 
     # ---------------- Ücretsiz görsel (Pollinations, anahtar gerektirmez) ----------------
     def free_image(self, prompt: str, path: Path) -> bool:
+        if "pollinations" in self.dead:
+            return False
         full = (f"{prompt}, cinematic, photorealistic, highly detailed, dramatic lighting, "
                 "no text, no watermark")
         url = "https://image.pollinations.ai/prompt/" + quote(full[:900])
@@ -131,6 +252,10 @@ class VisualFinder:
                     fit_16_9(img).save(path, "PNG")
                     return True
                 log(f"  ücretsiz görsel servisi cevap vermedi ({r.status_code})")
+                if r.status_code in (401, 402, 403):
+                    self.dead.add("pollinations")
+                    log("  Ücretsiz yapay zeka görsel servisi artık ücretli; bu video için devre dışı.")
+                    return False
             except Exception as e:
                 log(f"  ücretsiz görsel hatası: {e}")
             time.sleep(5 * (attempt + 1))
@@ -147,17 +272,21 @@ class VisualFinder:
             return img, "image"
 
         jpg = self.out_dir / f"visual_{idx:03d}.jpg"
-        if not self.pexels_key:
-            order = [("ai", img), ("ai", img)]  # stok yok: yapay zeka görselini bir kez daha dene
-        elif scene["visual"] == "ai":
-            order = [("ai", img), ("video", vid), ("photo", jpg)]
-        else:
-            order = [("video", vid), ("photo", jpg), ("ai", img)]
+        order = [("commons", img)]
+        if self.pexels_key and scene["visual"] != "ai":
+            order += [("video", vid), ("photo", jpg)]
+        order += [("openverse", img), ("ai", img)]
+        if self.pexels_key and scene["visual"] == "ai":
+            order += [("video", vid), ("photo", jpg)]
 
+        q = scene["query"]
         for kind, path in order:
-            ok = (kind == "ai" and self.ai_image(scene["prompt"], path)) or \
-                 (kind == "video" and self.stock_video(scene["query"], path, seconds)) or \
-                 (kind == "photo" and self.stock_photo(scene["query"], path))
+            ok = (kind == "commons" and (self.commons_image(q, path) or
+                                         (self.topic and self.commons_image(f"{self.topic} {q}", path)))) or \
+                 (kind == "openverse" and self.openverse_image(q, path)) or \
+                 (kind == "ai" and self.ai_image(scene["prompt"], path)) or \
+                 (kind == "video" and self.stock_video(q, path, seconds)) or \
+                 (kind == "photo" and self.stock_photo(q, path))
             if ok:
                 if kind == "photo":
                     fit_16_9(Image.open(jpg).convert("RGB")).save(img, "PNG")
@@ -165,10 +294,18 @@ class VisualFinder:
                     return img, "image"
                 return path, "video" if kind == "video" else "image"
 
-        # Hiçbir şey bulunamazsa: düz koyu arka plan
-        log(f"  sahne {idx}: görsel bulunamadı, düz arka plan kullanılıyor")
-        Image.new("RGB", (1920, 1080), (18, 22, 32)).save(img, "PNG")
+        # Hiçbir şey bulunamazsa: sahnenin ana fikrini yazan başlık kartı
+        log(f"  sahne {idx}: görsel bulunamadı, başlık kartı kullanılıyor")
+        self.title_card(scene["text"], img, idx)
         return img, "image"
+
+
+def _card_font(size: int):
+    for p in ("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+              "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "C:/Windows/Fonts/arialbd.ttf"):
+        if Path(p).exists():
+            return ImageFont.truetype(p, size)
+    return ImageFont.load_default()
 
 
 def fit_16_9(img: Image.Image, width: int = 1920, height: int = 1080) -> Image.Image:

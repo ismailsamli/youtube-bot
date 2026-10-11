@@ -46,10 +46,12 @@ llm:
   fact_check: false
 
 images:
-  # "free"   = ÜCRETSİZ yapay zeka görseli (Pollinations, anahtar gerekmez)
+  # Görseller önce Wikimedia Commons ve Openverse'ten (ücretsiz, lisanslı gerçek görseller) aranır.
+  # Bulunamazsa yapay zeka görseli denenir:
+  # "none"   = yapay zeka görseli yok (varsayılan; ücretsiz servis artık ücretli)
+  # "free"   = Pollinations (artık çoğunlukla ücretli, 402 verir)
   # "gemini" = Nano Banana (ücretli, Google AI Studio'da faturalandırma gerekir)
-  # "none"   = sadece stok video/fotoğraf
-  provider: "free"
+  provider: "none"
   free_model: "flux"
   model: "gemini-2.5-flash-image"
 

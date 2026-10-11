@@ -64,6 +64,7 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
 
     log("Görseller hazırlanıyor...")
     finder = VisualFinder(cfg, folder / "visuals")
+    finder.topic = ((script.get("topic") or {}).get("topic") or "")[:60]
     visuals = []
     for i, (scene, audio) in enumerate(zip(script["scenes"], audios)):
         visuals.append(finder.get(scene, i, media_duration(audio)))
@@ -86,6 +87,12 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
     final = folder / "video.mp4"
     editor.assemble(script["scenes"], visuals, audios, folder / "scenes", final, cfg)
 
+    # Lisanslı görsellerin kaynakları açıklamaya eklenir (CC lisansları bunu şart koşar)
+    if finder.credits and "Görsel kaynakları" not in script["description"]:
+        uniq = list(dict.fromkeys(finder.credits))
+        block = "\n\nGörsel kaynakları (Wikimedia Commons / Openverse):\n" + "\n".join(f"• {c}" for c in uniq)
+        script["description"] = (script["description"] + block)[:4900]
+        save_json(folder / "script.json", script)
     meta = (f"BAŞLIK:\n{script['title']}\n\nAÇIKLAMA:\n{script['description']}\n\n"
             f"ETİKETLER:\n{', '.join(script.get('tags', []))}\n")
     (folder / "youtube_bilgileri.txt").write_text(meta, encoding="utf-8")

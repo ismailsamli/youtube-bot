@@ -172,13 +172,14 @@ SECTIONS = 6
 
 
 def _visual_rules(ai_ratio: float) -> str:
-    return f"""GÖRSELLER (her sahne için):
-- "visual": "stock" ya da "ai". Sahnelerin yaklaşık %{int(ai_ratio * 100)} kadarı "ai", gerisi "stock".
-- "query": Pexels'te aranacak, kameraya çekilebilir somut bir şey anlatan 2-4 kelimelik İNGİLİZCE arama
-  (ör. "ancient stone ruins", "starry night sky timelapse").
-- "prompt": sahneyi anlatan detaylı İNGİLİZCE görsel tarifi; sinematik, gerçekçi, 16:9.
-  Görselde YAZI, logo ve tanınmış gerçek kişilerin yüzü OLMASIN.
-- Her sahneye "query" ve "prompt" alanlarının ikisini de yaz."""
+    return """GÖRSELLER (her sahne için):
+- "query": Wikimedia Commons'ta aranacak 2-5 kelimelik İNGİLİZCE arama. Sahnede anlatılan şeyin GERÇEK
+  fotoğrafını, haritasını, tarihi görselini ya da çizimini bulduracak şekilde yaz; mümkünse özel isim kullan
+  (ör. "Voyager 1 spacecraft", "Golden Record cover", "Topkapi Palace", "common raven", "Mars surface").
+  Soyut ifadeler ("success", "mystery", "time") YAZMA; somut bir nesne, yer, kişi veya olay yaz.
+  Ardışık sahnelerde aynı aramayı tekrarlama; konuyu farklı açılardan gösteren çeşitli aramalar kullan.
+- "prompt": sahneyi anlatan kısa İNGİLİZCE görsel tarifi (yedek olarak kullanılır).
+- "visual": "stock"."""
 
 
 def write_outline(llm, cfg: dict, topic: dict = None, past_titles: list = None) -> dict:
