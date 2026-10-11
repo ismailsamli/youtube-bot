@@ -21,7 +21,10 @@ class LLM:
             self.model = cfg["llm"].get("claude_model", "claude-sonnet-5-5")
         else:
             from google import genai
-            self.client = genai.Client(api_key=env("GEMINI_API_KEY"))
+            from google.genai import types as gtypes
+            # 5 dakikada cevap gelmezse isteği kesip yeniden dener
+            self.client = genai.Client(api_key=env("GEMINI_API_KEY"),
+                                       http_options=gtypes.HttpOptions(timeout=300_000))
             first = cfg["llm"].get("gemini_model", "gemini-3.8-flash")
             # Google eski modelleri kapatırsa sıradakini dener
             self.candidates = [m for m in dict.fromkeys(
@@ -46,9 +49,11 @@ class LLM:
         )
         for attempt in range(6):
             try:
+                t0 = time.time()
                 resp = self.client.models.generate_content(
                     model=self.model, contents=prompt, config=config)
                 if resp.text:
+                    log(f"  Gemini cevabı {time.time() - t0:.0f} sn sürdü")
                     return resp.text
                 raise RuntimeError("Gemini boş cevap döndürdü.")
             except Exception as e:
@@ -58,11 +63,15 @@ class LLM:
                     self.model = self.candidates[0]
                     log(f"  {old} modeli kullanılamıyor, {self.model} modeline geçiliyor.")
                     continue
-                busy = any(k in msg for k in ("429", "RESOURCE_EXHAUSTED", "503", "UNAVAILABLE", "boş cevap"))
+                transient = ("429", "RESOURCE_EXHAUSTED", "500", "502", "503", "504", "INTERNAL",
+                             "UNAVAILABLE", "DEADLINE", "boş cevap", "disconnected", "Disconnected",
+                             "timed out", "Timeout", "timeout", "Connection", "RemoteProtocolError",
+                             "ReadError")
+                busy = any(k in msg or k in type(e).__name__ for k in transient)
                 if not busy or attempt == 5:
                     raise
-                wait = 65 if "429" in msg or "RESOURCE_EXHAUSTED" in msg else 15
-                log(f"  Gemini ücretsiz limit/yoğunluk, {wait} sn bekleniyor...")
+                wait = 65 if "429" in msg or "RESOURCE_EXHAUSTED" in msg else 20
+                log(f"  Gemini geçici hata ({type(e).__name__}), {wait} sn sonra yeniden deneniyor...")
                 time.sleep(wait)
 
 
@@ -221,7 +230,10 @@ def generate(cfg: dict, past_titles: list, forced_topic: str = None) -> dict:
         topic = pick_topic(llm, cfg, past_titles)
     script = write_script(llm, cfg, topic)
     if cfg["llm"].get("fact_check", True):
-        script = fact_check(llm, cfg, script)
+        try:
+            script = fact_check(llm, cfg, script)
+        except Exception as e:
+            log(f"  Doğruluk kontrolü yapılamadı, ilk senaryoyla devam ediliyor: {e}")
     script["topic"] = topic
     words = sum(len(s["text"].split()) for s in script["scenes"])
     log(f"Senaryo hazır: {len(script['scenes'])} sahne, {words} kelime "
