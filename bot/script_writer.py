@@ -103,7 +103,32 @@ def _parse_json(text: str) -> dict:
     start, end = text.find("{"), text.rfind("}")
     if start == -1 or end == -1:
         raise ValueError("Yapay zekadan JSON alınamadı.")
-    return json.loads(text[start:end + 1])
+    chunk = text[start:end + 1]
+    try:
+        return json.loads(chunk)
+    except json.JSONDecodeError:
+        # Kaçırılmamış tırnak, eksik virgül gibi küçük bozuklukları onar
+        from json_repair import repair_json
+        data = repair_json(chunk, return_objects=True)
+        if not isinstance(data, dict) or not data:
+            raise ValueError("Yapay zekanın JSON cevabı onarılamadı.")
+        log("  Bozuk JSON cevabı onarıldı.")
+        return data
+
+
+def _ask_json(llm, system: str, prompt: str, max_tokens: int, required: str, tries: int = 3) -> dict:
+    """JSON ister; bozuk/eksik gelirse aynı isteği yeniden dener."""
+    last = None
+    for i in range(tries):
+        try:
+            data = _parse_json(llm.ask(system, prompt, max_tokens))
+            if data.get(required):
+                return data
+            last = ValueError(f"Cevapta '{required}' alanı yok.")
+        except ValueError as e:
+            last = e
+        log(f"  Geçersiz cevap ({last}), yeniden isteniyor ({i + 2}/{tries})...")
+    raise last
 
 
 def _system(cfg: dict) -> str:
@@ -193,10 +218,7 @@ Sadece şu JSON'u döndür:
 {{"title": "...", "description": "...", "tags": ["..."], "thumbnail_text": "...", "thumbnail_prompt": "...",
   "sections": [{{"heading": "...", "goal": "...", "facts": ["..."]}}]}}"""
     log("Video planı yazılıyor...")
-    outline = _parse_json(llm.ask(_system(cfg), prompt, 4000))
-    if not outline.get("sections"):
-        raise ValueError("Video planında bölüm yok.")
-    return outline
+    return _ask_json(llm, _system(cfg), prompt, 4000, "sections")
 
 
 def write_section(llm, cfg: dict, outline: dict, idx: int, scene_count: int,
@@ -233,7 +255,7 @@ her cümleyi bir bilgi editörü gibi kontrol et ve şüpheli olanı düzelt.
 
 Sadece şu JSON'u döndür:
 {{"scenes": [{{"text": "...", "visual": "stock", "query": "...", "prompt": "..."}}]}}"""
-    data = _parse_json(llm.ask(_system(cfg), prompt, 6000))
+    data = _ask_json(llm, _system(cfg), prompt, 6000, "scenes")
     return data.get("scenes", [])
 
 
