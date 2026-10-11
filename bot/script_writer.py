@@ -178,6 +178,9 @@ def _visual_rules(ai_ratio: float) -> str:
   (ör. "Voyager 1 spacecraft", "Golden Record cover", "Topkapi Palace", "common raven", "Mars surface").
   Soyut ifadeler ("success", "mystery", "time") YAZMA; somut bir nesne, yer, kişi veya olay yaz.
   Ardışık sahnelerde aynı aramayı tekrarlama; konuyu farklı açılardan gösteren çeşitli aramalar kullan.
+  Görsel, sahnede söylenen şeyi DOĞRUDAN göstermeli. Konuyla ilgisiz genel sokak, kalabalık, düğün,
+  otopark gibi aramalar YAZMA; soyut bir cümlede bile konuyla ilgili somut bir nesne seç
+  (ör. zaman algısı için "hourglass", "human brain MRI", "pocket watch").
 - "prompt": sahneyi anlatan kısa İNGİLİZCE görsel tarifi (yedek olarak kullanılır).
 - "visual": "stock"."""
 
@@ -190,28 +193,43 @@ def write_outline(llm, cfg: dict, topic: dict = None, past_titles: list = None) 
         pool = cfg["channel"].get("topic_pool") or []
         focus = random.choice(pool) if pool else "serbest"
         past = "\n".join(f"- {t}" for t in (past_titles or [])[-150:]) or "(henüz video yok)"
-        intro = (f"Önce kanal için YENİ bir konu seç. Bu seferki alan: {focus}.\n"
+        intro = (f"Önce kanal için YENİ ve VİRAL potansiyeli yüksek bir konu seç. Bu seferki alan: {focus}.\n"
                  f"Daha önce yapılan videolar (bunları ve çok benzerlerini TEKRARLAMA):\n{past}\n"
-                 "Konu: Türk izleyicinin arayabileceği, merak uyandıran, zamansız, 8-10 dakikada "
-                 "derinlemesine anlatılabilecek, gerçek ve doğrulanabilir bilgilere dayanan bir konu olsun.\n"
-                 'JSON\'a ayrıca "topic" (konu) ve "angle" (videonun özgün bakış açısı) alanlarını ekle.')
+                 "Konu seçimi için önce aklında 5 aday konu düşün ve her birini şu ölçütlere göre puanla, "
+                 "en yüksek puanlıyı seç:\n"
+                 "- Merak boşluğu: başlığı okuyan 'bunu bilmiyordum, hemen öğrenmeliyim' demeli.\n"
+                 "- Şaşırtıcılık: sezgilere ters düşen, 'gerçekten mi?' dedirten bir gerçek ya da soru.\n"
+                 "- Geniş kitle: herkesin günlük hayatına, korkularına, merakına dokunan konular "
+                 "(insan vücudu, felaketler, rekorlar, 'ya olsaydı' senaryoları, tarihin karanlık sırları, "
+                 "uzayın korkutucu gerçekleri, gizemler, olağanüstü hayatta kalma hikâyeleri).\n"
+                 "- Türk izleyicinin ilgisi: mümkünse Türkiye/Osmanlı/Anadolu bağlantısı veya Türkiye'de çok "
+                 "konuşulan konular.\n"
+                 "- Gerçeklik: konu tamamen gerçek ve doğrulanabilir bilgilere dayanmalı; uydurma yok.\n"
+                 "Sıkıcı ansiklopedik konular yerine bir soru, sır, tehlike veya rekor etrafında kurulmuş, "
+                 "8-10 dakikada anlatılabilecek bir konu seç.\n"
+                 'JSON\'a ayrıca "topic" (konu) ve "angle" (videonun özgün, merak uyandıran bakış açısı) alanlarını ekle.')
     prompt = f"""{cfg['video']['target_minutes']} dakikalık bir YouTube videosunun PLANINI çıkar.
 
 {intro}
 
 Video tam olarak {SECTIONS} bölümden oluşacak:
-- 1. bölüm: güçlü bir kanca (şaşırtıcı soru/bilgi) ve videoda ne öğrenileceği vaadi.
-- Ortadaki bölümler: konuyu mantıklı sırayla, her bölümde yeni bir merak noktası açarak anlat.
+- 1. bölüm: ilk 10 saniyede izleyiciyi yakalayan çok güçlü bir kanca (en şaşırtıcı bilgi, çarpıcı bir
+  soru ya da gerilimli bir sahne) ve videonun sonunda neyin açıklanacağına dair net bir vaat.
+- Ortadaki bölümler: konuyu mantıklı sırayla anlat; her bölüm yeni bir merak noktası açsın ve
+  en çarpıcı bilgiyi videonun ortasına ve sonuna sakla ki izleyici sonuna kadar izlesin.
 - Son bölüm: konuyu bağla, kısa kapanış ve doğal bir abone olma çağrısı.
 
 Her bölüm için "heading" (kısa başlık), "goal" (bölümün amacı, 1 cümle) ve
 "facts" (bölümde anlatılacak 3-5 doğrulanabilir somut bilgi) yaz.
 
 PAKETLEME:
-- "title": en fazla 70 karakter, merak uyandıran ama dürüst, arama ifadesini içeren Türkçe başlık
+- "title": en fazla 65 karakter; tıklamak istetecek, merak boşluğu bırakan ama DÜRÜST Türkçe başlık.
+  Etkili kalıplar: soru ("... Neden ...?"), şaşırtıcı iddia ("... Aslında ..."), rakam/rekor, "ya olsaydı"
+  senaryosu. Büyük harfle tek bir vurgu kelimesi kullanabilirsin. Videoda olmayan bir şeyi vaat etme.
 - "description": 3 kısa paragraf Türkçe açıklama (ilk 2 satır aramada görünecek şekilde güçlü), ardından 3-5 hashtag
 - "tags": 10-15 Türkçe etiket
-- "thumbnail_text": kapakta yazacak 2-4 kelimelik, başlığı tekrar ETMEYEN çarpıcı Türkçe ifade
+- "thumbnail_text": kapakta yazacak 2-3 kelimelik, başlığı tekrar ETMEYEN, duygusu güçlü çarpıcı
+  Türkçe ifade (ör. "KİMSE BİLMİYOR", "5 DAKİKA KALDI")
 - "thumbnail_prompt": kapak arka planı için İNGİLİZCE görsel tarifi; tek, net, dramatik bir odak nesnesi;
   sol tarafta yazı için sade alan; yazı içermeyen
 
@@ -227,13 +245,15 @@ def write_section(llm, cfg: dict, outline: dict, idx: int, scene_count: int,
     sections = outline["sections"]
     sec = sections[idx]
     plan = "\n".join(f"{i + 1}. {s.get('heading', '')}: {s.get('goal', '')}" for i, s in enumerate(sections))
-    position = ("Bu videonun İLK bölümü: ilk sahne güçlü bir kanca olsun, 'merhaba arkadaşlar' gibi boş "
-                "girişler kullanma; ikinci sahnede videoda ne öğrenileceğini vaat et."
+    position = ("Bu videonun İLK bölümü: ilk cümle doğrudan en şaşırtıcı bilgi veya çarpıcı bir soru olsun; "
+                "'merhaba arkadaşlar', 'bu videoda' gibi boş girişler kullanma; ikinci sahnede videonun "
+                "sonunda neyin açıklanacağını vaat et ve izleyiciyi sonuna kadar kalmaya teşvik et."
                 if idx == 0 else
                 "Bu videonun SON bölümü: konuyu bağla, son sahnede kısa bir kapanış ve doğal bir "
                 "'ilginç bulduysan abone olmayı unutma' çağrısı yap."
                 if idx == len(sections) - 1 else
-                "Bu bir ara bölüm: bir önceki bölümden doğal bir geçişle başla, selamlama veya kapanış yapma.")
+                "Bu bir ara bölüm: bir önceki bölümden doğal bir geçişle başla, selamlama veya kapanış yapma. "
+                "Bölümün son sahnesi bir sonraki bölüme merak bırakan kısa bir köprü cümlesiyle bitsin.")
     prompt = f"""Video başlığı: {outline.get('title', '')}
 
 Videonun bölüm planı:

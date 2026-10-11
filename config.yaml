@@ -9,14 +9,18 @@ channel:
   tone: "Merak uyandıran, samimi, akıcı ama ciddi; abartısız ve doğru bilgi veren"
   # Kanalın odaklanacağı alt konular (bot bunlardan seçer, boş bırakırsan serbest seçer)
   topic_pool:
-    - tarih
-    - bilim
-    - uzay
-    - doğa ve hayvanlar
-    - insan vücudu
+    - insan vücudunun şaşırtıcı gerçekleri
+    - uzayın korkutucu gerçekleri
+    - tarihin karanlık sırları ve az bilinen olayları
     - çözülememiş gizemler
-    - mühendislik harikaları
-    - ilginç coğrafya
+    - doğal afetler ve felaketler
+    - olağanüstü hayatta kalma hikâyeleri
+    - dünya rekorları ve uç noktalar
+    - "ya olsaydı" bilimsel senaryoları
+    - tehlikeli ve tuhaf hayvanlar
+    - Osmanlı ve Anadolu'nun ilginç gerçekleri
+    - mühendislik harikaları ve büyük başarısızlıklar
+    - beynin ve psikolojinin tuhaflıkları
 
 video:
   target_minutes: 9          # 8-10 dk hedef

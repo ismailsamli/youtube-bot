@@ -100,8 +100,20 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
     return folder
 
 
+def _script_from_meta(folder: Path) -> dict:
+    """script.json yoksa youtube_bilgileri.txt'den başlık/açıklama/etiketleri okur."""
+    text = (folder / "youtube_bilgileri.txt").read_text(encoding="utf-8")
+    title = text.split("BAŞLIK:\n", 1)[1].split("\n\nAÇIKLAMA:\n", 1)[0].strip()
+    desc = text.split("\n\nAÇIKLAMA:\n", 1)[1].rsplit("\n\nETİKETLER:\n", 1)[0].strip()
+    tags = [t.strip() for t in text.rsplit("ETİKETLER:\n", 1)[1].split(",") if t.strip()]
+    return {"title": title, "description": desc, "tags": tags}
+
+
 def publish(cfg: dict, folder: Path) -> None:
-    script = load_json(folder / "script.json")
+    if (folder / "script.json").exists():
+        script = load_json(folder / "script.json")
+    else:
+        script = _script_from_meta(folder)
     publish_at = None
     if cfg["upload"].get("schedule", True):
         taken = [h.get("publish_at") for h in load_history()]

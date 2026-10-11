@@ -2,9 +2,10 @@ name: Video Üret
 
 on:
   schedule:
-    # Her gün Türkiye saatiyle 06:13'te çalışır (GitHub saati UTC: 03:13).
+    # Her gün Türkiye saatiyle 11:13'te çalışır (GitHub saati UTC: 08:13).
+    # Gemini ücretsiz kotası ABD Pasifik gece yarısı (TR 10:00-11:00) yenilendiği için bundan sonra çalışır.
     # Video, config.yaml'daki yayın saatine (varsayılan 19:00) planlanır.
-    - cron: "13 3 * * *"
+    - cron: "13 8 * * *"
   workflow_dispatch:
     inputs:
       adet:
@@ -106,6 +107,7 @@ jobs:
             output/*/thumbnail.jpg
             output/*/senaryo.txt
             output/*/youtube_bilgileri.txt
+            output/*/script.json
             bot_log.txt
           retention-days: 3
           if-no-files-found: ignore

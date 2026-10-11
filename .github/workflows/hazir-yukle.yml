@@ -1,0 +1,75 @@
+name: Hazır Videoyu Yükle
+
+# Daha önce "Video Üret" ile YÜKLENMEDEN üretilmiş bir videoyu YouTube'a yükler ve planlar.
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Videonun üretildiği 'Video Üret' işleminin numarası (adres çubuğundaki runs/... sayısı)"
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: video-uret
+  cancel-in-progress: false
+
+jobs:
+  yukle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      PYTHONUNBUFFERED: "1"
+      PYTHONIOENCODING: "utf-8"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Python paketlerini kur
+        run: pip install -q -r requirements.txt
+
+      - name: Videoyu indir
+        uses: actions/download-artifact@v4
+        with:
+          name: videolar
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+          path: indirilen
+
+      - name: YouTube'a yükle
+        run: |
+          set -o pipefail
+          n=0
+          for d in indirilen/output/*/; do
+            [ -f "$d/video.mp4" ] || continue
+            mkdir -p output && cp -r "$d" output/
+            python run.py --upload-only "output/$(basename "$d")" 2>&1 | tee -a bot_log.txt
+            n=$((n+1))
+          done
+          [ "$n" -gt 0 ] || { echo "İndirilen dosyalarda video bulunamadı"; ls -R indirilen; exit 1; }
+
+      - name: Video geçmişini kaydet
+        if: always()
+        run: |
+          git config user.name "video-bot"
+          git config user.email "video-bot@users.noreply.github.com"
+          git add data/history.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Video geçmişi güncellendi"
+            git pull --rebase -q && git push -q
+          fi
+
+      - name: Özet
+        if: always()
+        run: |
+          echo "## Yükleme kaydı" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          tail -n 40 bot_log.txt >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
+          echo '```' >> $GITHUB_STEP_SUMMARY

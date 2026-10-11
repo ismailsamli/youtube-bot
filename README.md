@@ -60,7 +60,7 @@ Repo sayfasında **Settings → Secrets and variables → Actions → New reposi
 2. **"YouTube'a yüklensin mi?"** kutusundaki işareti kaldır ve çalıştır.
 3. İşlem 20–40 dakika sürer. Bitince işlemin sayfasında en alttaki **Artifacts → videolar** bölümünden videoyu indirip izleyebilirsin.
 
-Video iyi görünüyorsa kurulum tamam. Bundan sonra bot **her sabah 06:13'te** kendiliğinden bir video üretir ve **19:00'a planlar**.
+Video iyi görünüyorsa kurulum tamam. Bundan sonra bot **her gün 11:13'te** kendiliğinden bir video üretir ve **19:00'a planlar**.
 
 ---
 
