@@ -43,18 +43,23 @@ class LLM:
         from google.genai import types
         config = types.GenerateContentConfig(
             system_instruction=system,
-            max_output_tokens=max(max_tokens, 8192) * 2,
+            max_output_tokens=max(max_tokens * 3, 16384),
             response_mime_type="application/json",
             temperature=0.8,
         )
         for attempt in range(6):
             try:
                 t0 = time.time()
-                resp = self.client.models.generate_content(
-                    model=self.model, contents=prompt, config=config)
-                if resp.text:
+                # Akış halinde alınır: uzun cevaplarda bağlantı boşta kalıp kopmaz
+                parts = []
+                for chunk in self.client.models.generate_content_stream(
+                        model=self.model, contents=prompt, config=config):
+                    if chunk.text:
+                        parts.append(chunk.text)
+                text = "".join(parts)
+                if text:
                     log(f"  Gemini cevabı {time.time() - t0:.0f} sn sürdü")
-                    return resp.text
+                    return text
                 raise RuntimeError("Gemini boş cevap döndürdü.")
             except Exception as e:
                 msg = str(e)
@@ -122,77 +127,141 @@ def pick_topic(llm, cfg: dict, past_titles: list) -> dict:
     return data
 
 
-def write_script(llm, cfg: dict, topic: dict) -> dict:
-    minutes = cfg["video"]["target_minutes"]
-    total_words = int(minutes * WORDS_PER_MINUTE)
-    scenes = max(20, round(minutes * 60 / SECONDS_PER_SCENE))
-    words_per_scene = round(total_words / scenes)
-    ai_count = round(scenes * cfg["video"].get("ai_image_ratio", 0.35))
+SECTIONS = 6
 
-    prompt = f"""Şu konu için eksiksiz bir YouTube video senaryosu yaz.
+
+def _visual_rules(ai_ratio: float) -> str:
+    return f"""GÖRSELLER (her sahne için):
+- "visual": "stock" ya da "ai". Sahnelerin yaklaşık %{int(ai_ratio * 100)} kadarı "ai", gerisi "stock".
+- "query": Pexels'te aranacak, kameraya çekilebilir somut bir şey anlatan 2-4 kelimelik İNGİLİZCE arama
+  (ör. "ancient stone ruins", "starry night sky timelapse").
+- "prompt": sahneyi anlatan detaylı İNGİLİZCE görsel tarifi; sinematik, gerçekçi, 16:9.
+  Görselde YAZI, logo ve tanınmış gerçek kişilerin yüzü OLMASIN.
+- Her sahneye "query" ve "prompt" alanlarının ikisini de yaz."""
+
+
+def write_outline(llm, cfg: dict, topic: dict) -> dict:
+    prompt = f"""Şu konu için {cfg['video']['target_minutes']} dakikalık bir YouTube videosunun PLANINI çıkar.
 
 KONU: {topic['topic']}
 BAKIŞ AÇISI: {topic.get('angle', '')}
 ARAMA İFADELERİ: {', '.join(topic.get('search_terms', []))}
 
-UZUNLUK: Toplam yaklaşık {total_words} kelime, tam olarak {scenes} sahne,
-her sahnede {words_per_scene - 5}-{words_per_scene + 5} kelime seslendirme metni.
+Video tam olarak {SECTIONS} bölümden oluşacak:
+- 1. bölüm: güçlü bir kanca (şaşırtıcı soru/bilgi) ve videoda ne öğrenileceği vaadi.
+- Ortadaki bölümler: konuyu mantıklı sırayla, her bölümde yeni bir merak noktası açarak anlat.
+- Son bölüm: konuyu bağla, kısa kapanış ve doğal bir abone olma çağrısı.
 
-YAPI:
-- İlk sahne güçlü bir kanca olsun: ilk 10 saniyede izleyiciyi yakalayan şaşırtıcı bir soru ya da bilgi.
-  "Merhaba arkadaşlar", "bu videoda" gibi boş girişler kullanma.
-- 2. sahnede videoda ne öğrenileceğini tek cümleyle vaat et.
-- Ortada bilgiyi mantıklı bir sırayla, her birkaç sahnede bir yeni bir merak noktası açarak anlat.
-- Sondan bir önceki sahnede konuyu bağla; son sahnede kısa bir kapanış ve doğal bir
-  "ilginç bulduysan abone olmayı unutma" çağrısı yap.
-- Metinler sesli okunacak: kısaltma, parantez, emoji, madde işareti kullanma.
-  Sayıları okunacağı gibi yazabilirsin (ör. "1453" uygundur).
-
-GÖRSELLER:
-- Her sahne için "visual" alanı "stock" ya da "ai" olsun. Yaklaşık {ai_count} sahne "ai", gerisi "stock".
-- "stock" sahnelerde "query": Pexels'te aranacak, kameraya çekilebilir somut bir şey anlatan
-  2-4 kelimelik İNGİLİZCE arama (ör. "ancient stone ruins", "starry night sky timelapse").
-- "ai" sahnelerde "prompt": stok videoda bulunamayacak şeyler için (tarihi sahneler, bilimsel
-  çizimler, uzay, temsilî canlandırmalar) detaylı İNGİLİZCE görsel tarifi; sinematik, gerçekçi,
-  16:9. Görselde YAZI, logo ve tanınmış gerçek kişilerin yüzü OLMASIN.
-- Her sahneye her iki alanı da yaz ("query" ve "prompt"), ama "visual" hangisinin kullanılacağını belirler.
+Her bölüm için "heading" (kısa başlık), "goal" (bölümün amacı, 1 cümle) ve
+"facts" (bölümde anlatılacak 3-5 doğrulanabilir somut bilgi) yaz.
 
 PAKETLEME:
 - "title": en fazla 70 karakter, merak uyandıran ama dürüst, arama ifadesini içeren Türkçe başlık
-- "description": 3 kısa paragraf Türkçe açıklama (ilk 2 satır aramada görünecek şekilde güçlü),
-  ardından 3-5 hashtag
+- "description": 3 kısa paragraf Türkçe açıklama (ilk 2 satır aramada görünecek şekilde güçlü), ardından 3-5 hashtag
 - "tags": 10-15 Türkçe etiket
 - "thumbnail_text": kapakta yazacak 2-4 kelimelik, başlığı tekrar ETMEYEN çarpıcı Türkçe ifade
-- "thumbnail_prompt": kapak arka planı için İNGİLİZCE görsel tarifi; tek, net, dramatik bir odak
-  nesnesi; sol tarafta yazı için sade alan bırakılmış; yazı içermeyen
+- "thumbnail_prompt": kapak arka planı için İNGİLİZCE görsel tarifi; tek, net, dramatik bir odak nesnesi;
+  sol tarafta yazı için sade alan; yazı içermeyen
 
 Sadece şu JSON'u döndür:
-{{"title": "...", "description": "...", "tags": ["..."], "thumbnail_text": "...",
-  "thumbnail_prompt": "...",
-  "scenes": [{{"text": "...", "visual": "stock", "query": "...", "prompt": "..."}}]}}"""
+{{"title": "...", "description": "...", "tags": ["..."], "thumbnail_text": "...", "thumbnail_prompt": "...",
+  "sections": [{{"heading": "...", "goal": "...", "facts": ["..."]}}]}}"""
+    log("Video planı yazılıyor...")
+    outline = _parse_json(llm.ask(_system(cfg), prompt, 4000))
+    if not outline.get("sections"):
+        raise ValueError("Video planında bölüm yok.")
+    return outline
 
-    log("Senaryo yazılıyor...")
-    script = _parse_json(llm.ask(_system(cfg), prompt))
+
+def write_section(llm, cfg: dict, outline: dict, idx: int, scene_count: int,
+                  words_per_scene: int, previous_text: str) -> list:
+    sections = outline["sections"]
+    sec = sections[idx]
+    plan = "\n".join(f"{i + 1}. {s.get('heading', '')}: {s.get('goal', '')}" for i, s in enumerate(sections))
+    position = ("Bu videonun İLK bölümü: ilk sahne güçlü bir kanca olsun, 'merhaba arkadaşlar' gibi boş "
+                "girişler kullanma; ikinci sahnede videoda ne öğrenileceğini vaat et."
+                if idx == 0 else
+                "Bu videonun SON bölümü: konuyu bağla, son sahnede kısa bir kapanış ve doğal bir "
+                "'ilginç bulduysan abone olmayı unutma' çağrısı yap."
+                if idx == len(sections) - 1 else
+                "Bu bir ara bölüm: bir önceki bölümden doğal bir geçişle başla, selamlama veya kapanış yapma.")
+    prompt = f"""Video başlığı: {outline.get('title', '')}
+
+Videonun bölüm planı:
+{plan}
+
+Şimdi SADECE {idx + 1}. bölümü yaz: "{sec.get('heading', '')}"
+Amaç: {sec.get('goal', '')}
+Anlatılacak bilgiler: {'; '.join(sec.get('facts', []))}
+{position}
+
+Bir önceki bölümün son cümleleri (devamlılık için, tekrar etme): {previous_text[-400:] or '(yok)'}
+
+UZUNLUK: tam olarak {scene_count} sahne, her sahnede {words_per_scene - 5}-{words_per_scene + 5} kelime
+seslendirme metni. Metinler sesli okunacak: kısaltma, parantez, emoji, madde işareti kullanma.
+Sadece doğrulanabilir bilgiler kullan; emin olmadığın sayı, tarih veya alıntıyı yazma.
+
+{_visual_rules(cfg['video'].get('ai_image_ratio', 0.35))}
+
+Sadece şu JSON'u döndür:
+{{"scenes": [{{"text": "...", "visual": "stock", "query": "...", "prompt": "..."}}]}}"""
+    data = _parse_json(llm.ask(_system(cfg), prompt, 6000))
+    return data.get("scenes", [])
+
+
+def write_script(llm, cfg: dict, topic: dict) -> dict:
+    minutes = cfg["video"]["target_minutes"]
+    total_words = int(minutes * WORDS_PER_MINUTE)
+    total_scenes = max(20, round(minutes * 60 / SECONDS_PER_SCENE))
+    words_per_scene = round(total_words / total_scenes)
+
+    outline = write_outline(llm, cfg, topic)
+    sections = outline["sections"]
+    per = max(3, round(total_scenes / len(sections)))
+    scenes, previous = [], ""
+    for i in range(len(sections)):
+        log(f"Bölüm {i + 1}/{len(sections)} yazılıyor: {sections[i].get('heading', '')}")
+        part = write_section(llm, cfg, outline, i, per, words_per_scene, previous)
+        scenes.extend(part)
+        previous = " ".join(s.get("text", "") for s in part[-2:])
+    script = {k: outline.get(k) for k in ("title", "description", "tags", "thumbnail_text",
+                                           "thumbnail_prompt")}
+    script["scenes"] = scenes
+    script["sections"] = [s.get("heading", "") for s in sections]
     return validate(script)
 
 
 def fact_check(llm, cfg: dict, script: dict) -> dict:
+    """Senaryoyu bölüm bölüm kontrol eder (büyük tek istek zaman aşımına düşmesin diye)."""
     log("Doğruluk kontrolü yapılıyor...")
-    prompt = (
-        "Aşağıdaki YouTube senaryosunu titiz bir bilgi editörü olarak kontrol et.\n"
-        "- Yanlış, şüpheli, abartılı veya doğrulanamayan her iddiayı düzelt ya da yumuşat.\n"
-        "- Uydurma sayı, tarih, alıntı varsa çıkar veya doğrusuyla değiştir.\n"
-        "- Başlık ve kapak yazısı videonun içeriğini dürüstçe yansıtmıyorsa düzelt.\n"
-        "- Sahne sayısını, sahne uzunluklarını ve JSON yapısını AYNEN koru.\n"
-        "- Yaptığın değişiklikleri kısa maddeler olarak \"fact_check_notes\" listesine yaz.\n\n"
-        "Sadece düzeltilmiş tam JSON'u döndür.\n\n"
-        + json.dumps(script, ensure_ascii=False)
-    )
-    checked = _parse_json(llm.ask(_system(cfg), prompt))
-    checked = validate(checked)
-    for note in checked.get("fact_check_notes", [])[:10]:
-        log(f"  düzeltme: {note}")
-    return checked
+    scenes = script["scenes"]
+    chunk = 8
+    checked_scenes = []
+    for start in range(0, len(scenes), chunk):
+        part = scenes[start:start + chunk]
+        prompt = (
+            f"Video başlığı: {script['title']}\n\n"
+            "Aşağıdaki sahneleri titiz bir bilgi editörü olarak kontrol et.\n"
+            "- Yanlış, şüpheli, abartılı veya doğrulanamayan iddiaları düzelt ya da yumuşat.\n"
+            "- Uydurma sayı, tarih, alıntı varsa çıkar veya doğrusuyla değiştir.\n"
+            "- Sahne sayısını, her sahnenin uzunluğunu ve tüm alanları AYNEN koru.\n"
+            "- Değişiklikleri kısa maddeler olarak \"notes\" listesine yaz.\n\n"
+            'Sadece şu JSON\'u döndür: {"scenes": [...], "notes": ["..."]}\n\n'
+            + json.dumps({"scenes": part}, ensure_ascii=False)
+        )
+        try:
+            data = _parse_json(llm.ask(_system(cfg), prompt, 6000))
+            fixed = data.get("scenes") or []
+            if len(fixed) != len(part):
+                fixed = part
+            for note in (data.get("notes") or [])[:5]:
+                log(f"  düzeltme: {note}")
+        except Exception as e:
+            log(f"  {start + 1}-{start + len(part)}. sahneler kontrol edilemedi, olduğu gibi bırakıldı: {e}")
+            fixed = part
+        checked_scenes.extend(fixed)
+    script["scenes"] = checked_scenes
+    return validate(script)
 
 
 def validate(script: dict) -> dict:
