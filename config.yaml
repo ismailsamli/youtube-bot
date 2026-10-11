@@ -39,7 +39,11 @@ llm:
   provider: "gemini"
   gemini_model: "gemini-3.8-flash"   # Ücretsiz katmanda çalışan model (kapanırsa bot otomatik yenisine geçer)
   claude_model: "claude-sonnet-5-5"
-  fact_check: true           # Senaryo yazıldıktan sonra ikinci bir doğruluk kontrolü yapılsın
+  # Model kapanırsa ya da günlük ücretsiz kotası dolarsa sırayla bunlara geçilir
+  gemini_fallbacks: ["gemini-3.8-flash", "gemini-flash-latest", "gemini-flash-lite-latest"]
+  # Ayrı doğruluk kontrolü (video başına +6 istek). Ücretsiz katmanda kapalı tutun;
+  # doğruluk kuralları zaten bölüm yazımının içinde uygulanıyor.
+  fact_check: false
 
 images:
   # "free"   = ÜCRETSİZ yapay zeka görseli (Pollinations, anahtar gerekmez)

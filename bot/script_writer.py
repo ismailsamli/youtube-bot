@@ -27,9 +27,13 @@ class LLM:
                                        http_options=gtypes.HttpOptions(timeout=300_000))
             first = cfg["llm"].get("gemini_model", "gemini-3.8-flash")
             # Google eski modelleri kapatırsa sıradakini dener
-            self.candidates = [m for m in dict.fromkeys(
-                [first, "gemini-3.8-flash", "gemini-flash-latest"]) if m]
+            # Model kapanırsa veya günlük ücretsiz kotası dolarsa sıradakine geçilir
+            # (her modelin ücretsiz kotası ayrıdır)
+            fallbacks = cfg["llm"].get("gemini_fallbacks") or [
+                "gemini-3.8-flash", "gemini-flash-latest", "gemini-flash-lite-latest"]
+            self.candidates = [m for m in dict.fromkeys([first, *fallbacks]) if m]
             self.model = self.candidates[0]
+            self._last_call = 0.0
 
     def ask(self, system: str, prompt: str, max_tokens: int = 16000) -> str:
         if self.provider == "claude":
@@ -47,7 +51,12 @@ class LLM:
             response_mime_type="application/json",
             temperature=0.8,
         )
-        for attempt in range(6):
+        for attempt in range(8):
+            # Dakikalık ücretsiz sınıra takılmamak için istekler arasında en az 13 sn
+            gap = time.time() - self._last_call
+            if gap < 13:
+                time.sleep(13 - gap)
+            self._last_call = time.time()
             try:
                 t0 = time.time()
                 # Akış halinde alınır: uzun cevaplarda bağlantı boşta kalıp kopmaz
@@ -63,17 +72,24 @@ class LLM:
                 raise RuntimeError("Gemini boş cevap döndürdü.")
             except Exception as e:
                 msg = str(e)
-                if ("404" in msg or "NOT_FOUND" in msg) and len(self.candidates) > 1:
-                    old = self.candidates.pop(0)
-                    self.model = self.candidates[0]
-                    log(f"  {old} modeli kullanılamıyor, {self.model} modeline geçiliyor.")
-                    continue
+                gone = "404" in msg or "NOT_FOUND" in msg
+                daily = "PerDay" in msg or "per day" in msg.lower()
+                if gone or daily:
+                    if len(self.candidates) > 1:
+                        old = self.candidates.pop(0)
+                        self.model = self.candidates[0]
+                        why = "günlük ücretsiz kotası doldu" if daily else "kullanılamıyor"
+                        log(f"  {old} modelinin {why}, {self.model} modeline geçiliyor.")
+                        continue
+                    if daily:
+                        raise RuntimeError("Tüm Gemini modellerinin günlük ücretsiz kotası doldu; "
+                                           "kota Türkiye saatiyle gece ~03:00'te sıfırlanır.") from e
                 transient = ("429", "RESOURCE_EXHAUSTED", "500", "502", "503", "504", "INTERNAL",
                              "UNAVAILABLE", "DEADLINE", "boş cevap", "disconnected", "Disconnected",
                              "timed out", "Timeout", "timeout", "Connection", "RemoteProtocolError",
                              "ReadError")
                 busy = any(k in msg or k in type(e).__name__ for k in transient)
-                if not busy or attempt == 5:
+                if not busy or attempt == 7:
                     raise
                 wait = 65 if "429" in msg or "RESOURCE_EXHAUSTED" in msg else 20
                 log(f"  Gemini geçici hata ({type(e).__name__}), {wait} sn sonra yeniden deneniyor...")
@@ -140,12 +156,22 @@ def _visual_rules(ai_ratio: float) -> str:
 - Her sahneye "query" ve "prompt" alanlarının ikisini de yaz."""
 
 
-def write_outline(llm, cfg: dict, topic: dict) -> dict:
-    prompt = f"""Şu konu için {cfg['video']['target_minutes']} dakikalık bir YouTube videosunun PLANINI çıkar.
+def write_outline(llm, cfg: dict, topic: dict = None, past_titles: list = None) -> dict:
+    if topic:
+        intro = (f"KONU: {topic['topic']}\nBAKIŞ AÇISI: {topic.get('angle', '')}\n"
+                 f"ARAMA İFADELERİ: {', '.join(topic.get('search_terms', []))}")
+    else:
+        pool = cfg["channel"].get("topic_pool") or []
+        focus = random.choice(pool) if pool else "serbest"
+        past = "\n".join(f"- {t}" for t in (past_titles or [])[-150:]) or "(henüz video yok)"
+        intro = (f"Önce kanal için YENİ bir konu seç. Bu seferki alan: {focus}.\n"
+                 f"Daha önce yapılan videolar (bunları ve çok benzerlerini TEKRARLAMA):\n{past}\n"
+                 "Konu: Türk izleyicinin arayabileceği, merak uyandıran, zamansız, 8-10 dakikada "
+                 "derinlemesine anlatılabilecek, gerçek ve doğrulanabilir bilgilere dayanan bir konu olsun.\n"
+                 'JSON\'a ayrıca "topic" (konu) ve "angle" (videonun özgün bakış açısı) alanlarını ekle.')
+    prompt = f"""{cfg['video']['target_minutes']} dakikalık bir YouTube videosunun PLANINI çıkar.
 
-KONU: {topic['topic']}
-BAKIŞ AÇISI: {topic.get('angle', '')}
-ARAMA İFADELERİ: {', '.join(topic.get('search_terms', []))}
+{intro}
 
 Video tam olarak {SECTIONS} bölümden oluşacak:
 - 1. bölüm: güçlü bir kanca (şaşırtıcı soru/bilgi) ve videoda ne öğrenileceği vaadi.
@@ -199,7 +225,9 @@ Bir önceki bölümün son cümleleri (devamlılık için, tekrar etme): {previo
 
 UZUNLUK: tam olarak {scene_count} sahne, her sahnede {words_per_scene - 5}-{words_per_scene + 5} kelime
 seslendirme metni. Metinler sesli okunacak: kısaltma, parantez, emoji, madde işareti kullanma.
-Sadece doğrulanabilir bilgiler kullan; emin olmadığın sayı, tarih veya alıntıyı yazma.
+DOĞRULUK: Sadece iyi bilinen, güvenilir kaynaklarla doğrulanabilir bilgiler kullan. Emin olmadığın
+sayı, tarih, isim veya alıntıyı YAZMA; tartışmalı bilgileri "bir görüşe göre" diye belirt. Yazdıktan sonra
+her cümleyi bir bilgi editörü gibi kontrol et ve şüpheli olanı düzelt.
 
 {_visual_rules(cfg['video'].get('ai_image_ratio', 0.35))}
 
@@ -215,7 +243,8 @@ def write_script(llm, cfg: dict, topic: dict) -> dict:
     total_scenes = max(20, round(minutes * 60 / SECONDS_PER_SCENE))
     words_per_scene = round(total_words / total_scenes)
 
-    outline = write_outline(llm, cfg, topic)
+    outline = write_outline(llm, cfg, topic if topic.get("topic") else None,
+                            topic.get("past_titles"))
     sections = outline["sections"]
     per = max(3, round(total_scenes / len(sections)))
     scenes, previous = [], ""
@@ -228,6 +257,8 @@ def write_script(llm, cfg: dict, topic: dict) -> dict:
                                            "thumbnail_prompt")}
     script["scenes"] = scenes
     script["sections"] = [s.get("heading", "") for s in sections]
+    script["topic"] = {"topic": outline.get("topic") or topic.get("topic"),
+                       "angle": outline.get("angle") or topic.get("angle", "")}
     return validate(script)
 
 
@@ -293,17 +324,16 @@ def validate(script: dict) -> dict:
 def generate(cfg: dict, past_titles: list, forced_topic: str = None) -> dict:
     llm = LLM(cfg)
     log(f"Yapay zeka: {llm.provider} ({llm.model})")
-    if forced_topic:
-        topic = {"topic": forced_topic, "angle": "", "search_terms": []}
-    else:
-        topic = pick_topic(llm, cfg, past_titles)
+    # Konu seçimi plan isteğinin içinde yapılır (ücretsiz kotayı korumak için ayrı istek yok)
+    topic = {"topic": forced_topic, "angle": "", "search_terms": []} if forced_topic \
+        else {"topic": None, "past_titles": past_titles}
     script = write_script(llm, cfg, topic)
-    if cfg["llm"].get("fact_check", True):
+    log(f"Konu: {script['topic']['topic']}")
+    if cfg["llm"].get("fact_check", False):
         try:
             script = fact_check(llm, cfg, script)
         except Exception as e:
             log(f"  Doğruluk kontrolü yapılamadı, ilk senaryoyla devam ediliyor: {e}")
-    script["topic"] = topic
     words = sum(len(s["text"].split()) for s in script["scenes"])
     log(f"Senaryo hazır: {len(script['scenes'])} sahne, {words} kelime "
         f"(~{words / WORDS_PER_MINUTE:.1f} dk)")

@@ -64,7 +64,8 @@ jobs:
           if [ -n "$KONU" ]; then ARGS+=(--topic "$KONU"); fi
           if [ "$YUKLE" = "false" ]; then ARGS+=(--no-upload); fi
           echo "Komut: python run.py ${ARGS[*]}"
-          python run.py "${ARGS[@]}" --keep-files
+          set -o pipefail
+          python run.py "${ARGS[@]}" --keep-files 2>&1 | tee bot_log.txt
 
       - name: Video geçmişini kaydet
         if: always()
@@ -87,6 +88,13 @@ jobs:
           done
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Video, kapak ve senaryo aşağıdaki **Artifacts** bölümünden 3 gün boyunca indirilebilir." >> $GITHUB_STEP_SUMMARY
+          if [ -f bot_log.txt ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "## Bot kaydı (son 60 satır)" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 60 bot_log.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
 
       - name: Videoları indirilebilir yap
         if: always()
@@ -98,5 +106,6 @@ jobs:
             output/*/thumbnail.jpg
             output/*/senaryo.txt
             output/*/youtube_bilgileri.txt
+            bot_log.txt
           retention-days: 3
           if-no-files-found: ignore
