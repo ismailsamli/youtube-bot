@@ -37,7 +37,7 @@ llm:
   # "gemini" = ÜCRETSİZ (Google AI Studio ücretsiz katmanı)
   # "claude" = ücretli, daha kaliteli Türkçe (ileride para harcamak istersen)
   provider: "gemini"
-  gemini_model: "gemini-2.5-flash"   # Ücretsiz katmanda çalışan model
+  gemini_model: "gemini-3.8-flash"   # Ücretsiz katmanda çalışan model (kapanırsa bot otomatik yenisine geçer)
   claude_model: "claude-sonnet-5-5"
   fact_check: true           # Senaryo yazıldıktan sonra ikinci bir doğruluk kontrolü yapılsın
 

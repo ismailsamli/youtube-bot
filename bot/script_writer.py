@@ -22,7 +22,11 @@ class LLM:
         else:
             from google import genai
             self.client = genai.Client(api_key=env("GEMINI_API_KEY"))
-            self.model = cfg["llm"].get("gemini_model", "gemini-2.5-flash")
+            first = cfg["llm"].get("gemini_model", "gemini-3.8-flash")
+            # Google eski modelleri kapatırsa sıradakini dener
+            self.candidates = [m for m in dict.fromkeys(
+                [first, "gemini-3.8-flash", "gemini-flash-latest"]) if m]
+            self.model = self.candidates[0]
 
     def ask(self, system: str, prompt: str, max_tokens: int = 16000) -> str:
         if self.provider == "claude":
@@ -49,6 +53,11 @@ class LLM:
                 raise RuntimeError("Gemini boş cevap döndürdü.")
             except Exception as e:
                 msg = str(e)
+                if ("404" in msg or "NOT_FOUND" in msg) and len(self.candidates) > 1:
+                    old = self.candidates.pop(0)
+                    self.model = self.candidates[0]
+                    log(f"  {old} modeli kullanılamıyor, {self.model} modeline geçiliyor.")
+                    continue
                 busy = any(k in msg for k in ("429", "RESOURCE_EXHAUSTED", "503", "UNAVAILABLE", "boş cevap"))
                 if not busy or attempt == 5:
                     raise
