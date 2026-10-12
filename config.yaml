@@ -56,6 +56,8 @@ images:
   # "free"   = Pollinations (artık çoğunlukla ücretli, 402 verir)
   # "gemini" = Nano Banana (ücretli, Google AI Studio'da faturalandırma gerekir)
   provider: "none"
+  # Kanal kimliği çerçevesi: "kolaj" = kâğıt zemin + yırtık kenarlı fotoğraf + kırmızı bant, "yok" = tam ekran
+  frame: "kolaj"
   free_model: "flux"
   model: "gemini-2.5-flash-image"
 

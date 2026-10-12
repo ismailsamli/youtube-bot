@@ -77,6 +77,9 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
     if not thumb_bg.exists() and not finder.ai_image(script["thumbnail_prompt"], thumb_bg):
         # Yapay zeka yoksa ilk görselden bir kare kullan
         first, kind = visuals[0]
+        ham = first.with_name(first.stem + "_ham.png")
+        if kind == "image" and ham.exists():
+            first = ham       # kapakta kolaj çerçevesi değil, görselin kendisi kullanılır
         if kind == "video":
             run(["ffmpeg", "-y", "-ss", "1", "-i", str(first), "-frames:v", "1", str(thumb_bg)])
         else:

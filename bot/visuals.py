@@ -13,6 +13,7 @@ import random
 
 from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
+from .collage import collage
 from .utils import env, log
 
 UA = {"User-Agent": "youtube-bilgi-botu/1.0 (https://github.com/ismailsamli/youtube-bot)"}
@@ -38,6 +39,7 @@ class VisualFinder:
         self.dead = set()          # bu çalışmada kapalı olduğu anlaşılan servisler
         self.topic = ""
         self.found = []            # bulunan görseller (son çarede farklı kadrajla yeniden kullanılır)
+        self.frame = (cfg.get("images") or {}).get("frame", "kolaj")   # kanal çerçevesi: "kolaj" | "yok"
 
     # ---------------- Pexels ----------------
     def _pexels(self, url: str, query: str) -> dict:
@@ -265,6 +267,17 @@ class VisualFinder:
         return False
 
     # ---------------- Ana fonksiyon ----------------
+    def _finish(self, path: Path, idx: int, keep: bool = True) -> Path:
+        """Ham görseli saklar ve kanal çerçevesini (kâğıt kolaj) uygular."""
+        raw = path.with_name(path.stem + "_ham.png")
+        img = Image.open(path).convert("RGB")
+        img.save(raw, "PNG")
+        if keep:
+            self.found.append(raw)
+        if self.frame == "kolaj":
+            collage(img, idx).save(path, "PNG")
+        return path
+
     def get(self, scene: dict, idx: int, seconds: float):
         """(dosya_yolu, 'video' | 'image') döndürür."""
         vid = self.out_dir / f"visual_{idx:03d}.mp4"
@@ -295,9 +308,9 @@ class VisualFinder:
                     fit_16_9(Image.open(jpg).convert("RGB")).save(img, "PNG")
                     jpg.unlink(missing_ok=True)
                     path = img
-                if kind != "video":
-                    self.found.append(path)
-                return path, "video" if kind == "video" else "image"
+                if kind == "video":
+                    return path, "video"
+                return self._finish(path, idx), "image"
 
         # Bulunamazsa aramayı genişlet: sadeleştirilmiş arama, sahne tarifi, videonun genel konusu
         words = q.split()
@@ -309,15 +322,14 @@ class VisualFinder:
             extra.append(self.topic)
         for eq in dict.fromkeys(e.strip() for e in extra if e and e.strip()):
             if self.commons_image(eq, img) or self.openverse_image(eq, img):
-                self.found.append(img)
-                return img, "image"
+                return self._finish(img, idx), "image"
 
         # Hâlâ yoksa: daha önce bulunan bir görseli farklı bir kadrajla yeniden kullan (yazı ekranı yok)
         if self.found:
             src = self.found[idx % len(self.found)]
             log(f"  sahne {idx}: yeni görsel bulunamadı, önceki bir görsel farklı kadrajla kullanılıyor")
             recrop(Image.open(src).convert("RGB"), idx).save(img, "PNG")
-            return img, "image"
+            return self._finish(img, idx, keep=False), "image"
 
         log(f"  sahne {idx}: hiç görsel bulunamadı, başlık kartı kullanılıyor")
         self.title_card(scene["text"], img, idx)
