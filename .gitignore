@@ -3,3 +3,4 @@ client_secret.json
 token.json
 output/
 __pycache__/
+data/piper/

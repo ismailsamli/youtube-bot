@@ -20,9 +20,14 @@ on:
         description: "YouTube'a yüklensin mi?"
         type: boolean
         default: true
+      devam_run:
+        description: "Yarıda kalan bir işlemin numarası (senaryosu hazırsa oradan devam eder; boş bırak)"
+        default: ""
+        required: false
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: video-uret
@@ -55,6 +60,15 @@ jobs:
       - name: Python paketlerini kur
         run: pip install -q -r requirements.txt
 
+      - name: Yarıda kalan senaryoyu indir
+        if: ${{ inputs.devam_run != '' && inputs.devam_run != null }}
+        uses: actions/download-artifact@v4
+        with:
+          name: videolar
+          run-id: ${{ inputs.devam_run }}
+          github-token: ${{ github.token }}
+          path: devam
+
       - name: Video üret
         env:
           ADET: ${{ inputs.adet || '1' }}
@@ -63,6 +77,12 @@ jobs:
         run: |
           ARGS=(--count "$ADET")
           if [ -n "$KONU" ]; then ARGS+=(--topic "$KONU"); fi
+          if [ -d devam/output ]; then
+            D=$(ls -d devam/output/*/ | head -1)
+            mkdir -p output && cp -r "$D" output/
+            ARGS+=(--resume "output/$(basename "$D")")
+            echo "Kaldığı yerden devam: $D"
+          fi
           if [ "$YUKLE" = "false" ]; then ARGS+=(--no-upload); fi
           echo "Komut: python run.py ${ARGS[*]}"
           set -o pipefail
