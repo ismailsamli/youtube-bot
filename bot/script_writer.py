@@ -6,7 +6,7 @@ import time
 
 from .utils import env, log
 
-WORDS_PER_MINUTE = 135  # Türkçe yapay zeka sesi için yaklaşık konuşma hızı
+WORDS_PER_MINUTE = 145  # Türkçe yapay zeka sesi için yaklaşık konuşma hızı
 SECONDS_PER_SCENE = 12
 
 

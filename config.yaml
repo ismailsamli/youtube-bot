@@ -28,14 +28,14 @@ video:
   height: 1080
   fps: 30
   ai_image_ratio: 0.35       # Sahnelerin yaklaşık ne kadarı yapay zeka görseli olsun (0-1)
-  scene_padding: 0.35        # Sahneler arasında bırakılan sessizlik (saniye)
+  scene_padding: 0.2         # Sahneler arasında bırakılan sessizlik (saniye)
   music_volume: 0.08         # assets/music klasöründeki müziğin sesi (0 = müzik yok)
   subtitle_font: "Arial"     # Windows'ta Arial vardır
   subtitle_size: 62
 
 voice:
   name: "tr-TR-AhmetNeural"  # Kadın ses için: tr-TR-EmelNeural
-  rate: "+5%"                # Konuşma hızı (-20% yavaş, +20% hızlı)
+  rate: "+15%"               # Konuşma hızı (-20% yavaş, +20% hızlı)
 
 llm:
   # "gemini" = ÜCRETSİZ (Google AI Studio ücretsiz katmanı)
