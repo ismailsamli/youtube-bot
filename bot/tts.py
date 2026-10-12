@@ -33,6 +33,7 @@ def synthesize(text: str, voice: str, rate: str, path: Path, retries: int = 4, w
         except Exception as e:  # ağ hataları vb.
             last = e
         time.sleep(wait * (attempt + 1))
+    path.unlink(missing_ok=True)          # yarım kalan dosya sonraki adımları bozmasın
     raise RuntimeError(f"Seslendirme başarısız: {last}")
 
 
@@ -84,7 +85,7 @@ def voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> list:
 
     if engine == "edge":
         first = out_dir / "audio_000.mp3"
-        if not first.exists():
+        if not first.exists() or first.stat().st_size < 1000:
             try:
                 # Geçici engellere karşı ilk sahnede daha uzun bekleyerek dene (~2,5 dk)
                 synthesize(scenes[0]["text"], voice, rate, first, retries=5, wait=10)
@@ -96,7 +97,7 @@ def voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> list:
     paths = []
     for i, scene in enumerate(scenes):
         path = out_dir / f"audio_{i:03d}.mp3"
-        if not path.exists():
+        if not path.exists() or path.stat().st_size < 1000:
             if engine == "piper":
                 piper_synthesize(scene["text"], rate, path)
             else:
