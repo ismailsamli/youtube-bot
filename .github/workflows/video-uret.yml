@@ -115,6 +115,9 @@ jobs:
             echo '```' >> $GITHUB_STEP_SUMMARY
             tail -n 60 bot_log.txt >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
+            # Son satırlar uyarı olarak da yazılır (API ile okunabilsin diye)
+            msg=$(tail -n 25 bot_log.txt | cut -c1-300 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
+            echo "::notice title=Bot kaydı::${msg}"
           fi
 
       - name: Videoları indirilebilir yap
