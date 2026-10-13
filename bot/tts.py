@@ -3,6 +3,8 @@
 Bir videonun tamamı tek bir sesle okunur: Edge ilk sahnede çalışmazsa tüm video Piper ile seslendirilir.
 """
 import asyncio
+import base64
+import os
 import subprocess
 import time
 import wave
@@ -76,12 +78,83 @@ def piper_synthesize(text: str, rate: str, path: Path) -> None:
     wav.unlink(missing_ok=True)
 
 
+# ---------------- Google Cloud Text-to-Speech ----------------
+GOOGLE_TTS_URL = "https://texttospeech.googleapis.com/v1/text:synthesize"
+
+
+def _rate_to_speaking_rate(rate: str) -> float:
+    try:
+        return round(1 + float(rate.strip().rstrip("%")) / 100, 2)
+    except ValueError:
+        return 1.0
+
+
+_google_voice = None   # bu çalışmada çalıştığı doğrulanan ses
+
+
+def google_synthesize(text: str, cfg: dict, path: Path, retries: int = 4) -> None:
+    """Google Cloud TTS. Ses adı bulunamazsa sıradaki yedek sese geçer (Chirp 3 HD → WaveNet)."""
+    global _google_voice
+    key = os.environ.get("GOOGLE_TTS_KEY", "").strip()
+    if not key:
+        raise RuntimeError("GOOGLE_TTS_KEY tanımlı değil")
+    v = cfg["voice"]
+    wanted = v.get("google_voice", "tr-TR-Chirp3-HD-Charon")
+    candidates = [_google_voice] if _google_voice else list(dict.fromkeys(
+        ([wanted] if isinstance(wanted, str) else list(wanted)) + ["tr-TR-Wavenet-E", "tr-TR-Wavenet-B"]))
+    errors = []
+    for name in candidates:
+        audio_cfg = {"audioEncoding": "MP3", "speakingRate": _rate_to_speaking_rate(v.get("rate", "+0%"))}
+        last = None
+        for attempt in range(retries):
+            body = {"input": {"text": text}, "voice": {"languageCode": "tr-TR", "name": name}, "audioConfig": audio_cfg}
+            try:
+                r = requests.post(GOOGLE_TTS_URL, params={"key": key}, json=body, timeout=120)
+            except Exception as e:          # ağ hatası: tekrar dene
+                last = e
+                time.sleep(3 * (attempt + 1))
+                continue
+            if r.ok:
+                path.write_bytes(base64.b64decode(r.json()["audioContent"]))
+                if path.stat().st_size > 1000:
+                    if _google_voice != name:
+                        log(f"  Google sesi: {name}")
+                    _google_voice = name
+                    return
+                last = "boş ses"
+            elif r.status_code == 400 and "speakingRate" in audio_cfg and "rate" in r.text.lower():
+                audio_cfg.pop("speakingRate")   # bu ses hız ayarını desteklemiyor
+                continue
+            elif r.status_code in (400, 404):
+                last = f"{r.status_code}: {r.text[:200]}"
+                break                            # bu ses yok/uygun değil: sıradaki ses
+            elif r.status_code in (401, 403):
+                raise RuntimeError(f"Google ses yetki hatası {r.status_code}: {r.text[:300]}")
+            else:
+                last = f"{r.status_code}: {r.text[:200]}"
+            time.sleep(3 * (attempt + 1))
+        errors.append(f"{name} -> {last}")
+        if _google_voice:                         # çalışan ses bir anda bozulduysa diğerlerini deneme
+            break
+    raise RuntimeError("Google seslendirme başarısız: " + " | ".join(errors))
+
+
 # ---------------- Ana akış ----------------
 def voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> list:
     out_dir.mkdir(parents=True, exist_ok=True)
     voice, rate = cfg["voice"]["name"], cfg["voice"]["rate"]
     engine_file = out_dir / "motor.txt"
     engine = engine_file.read_text().strip() if engine_file.exists() else cfg["voice"].get("engine", "edge")
+
+    if engine == "google":
+        first = out_dir / "audio_000.mp3"
+        if not first.exists() or first.stat().st_size < 1000:
+            try:
+                google_synthesize(scenes[0]["text"], cfg, first)
+            except RuntimeError as e:
+                first.unlink(missing_ok=True)
+                log(f"  Google sesi kullanılamıyor ({str(e)[:160]}). Video Piper sesiyle seslendirilecek.")
+                engine = "piper"
 
     if engine == "edge":
         first = out_dir / "audio_000.mp3"
@@ -100,6 +173,8 @@ def voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> list:
         if not path.exists() or path.stat().st_size < 1000:
             if engine == "piper":
                 piper_synthesize(scene["text"], rate, path)
+            elif engine == "google":
+                google_synthesize(scene["text"], cfg, path)
             else:
                 synthesize(scene["text"], voice, rate, path)
         paths.append(path)
