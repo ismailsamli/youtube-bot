@@ -34,7 +34,10 @@ video:
   subtitle_size: 62
 
 voice:
-  name: "tr-TR-AhmetNeural"  # Kadın ses için: tr-TR-EmelNeural
+  # "piper" = çevrimdışı Türkçe ses (kanalın sesi, her zaman çalışır)
+  # "edge"  = Microsoft Edge sesi (GitHub sunucularında şu an engelli; çalışmazsa otomatik piper'a geçer)
+  engine: "piper"
+  name: "tr-TR-AhmetNeural"  # Sadece edge için. Kadın ses: tr-TR-EmelNeural
   rate: "+15%"               # Konuşma hızı (-20% yavaş, +20% hızlı)
 
 llm:
