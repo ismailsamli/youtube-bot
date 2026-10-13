@@ -37,7 +37,7 @@ voice:
   # "google" = Google Cloud doğal Türkçe ses (GOOGLE_TTS_KEY secret'ı gerekir; yoksa/çalışmazsa otomatik piper)
   # "piper"  = çevrimdışı Türkçe ses (her zaman çalışır, yedek)
   # "edge"   = Microsoft Edge sesi (GitHub sunucularında şu an engelli)
-  engine: "google"
+  engine: "piper"
   google_voice: "tr-TR-Chirp3-HD-Charon"   # Erkek ses. Diğerleri: tr-TR-Chirp3-HD-Fenrir, -Orus, kadın: -Aoede, -Kore
   name: "tr-TR-AhmetNeural"  # Sadece edge için. Kadın ses: tr-TR-EmelNeural
   rate: "+15%"               # Konuşma hızı (-20% yavaş, +20% hızlı)
