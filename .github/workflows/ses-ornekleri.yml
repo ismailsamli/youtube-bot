@@ -1,0 +1,37 @@
+name: Ses Örnekleri
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ornek:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GOOGLE_TTS_KEY: ${{ secrets.GOOGLE_TTS_KEY }}
+      PYTHONIOENCODING: "utf-8"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Paketler
+        run: pip install -q -r requirements.txt
+      - name: Örnekleri üret
+        run: |
+          python tools/ses_ornekleri.py 2>&1 | tee ses_log.txt
+          msg=$(cut -c1-300 ses_log.txt | sed ':a;N;$!ba;s/%/%25/g;s/\n/%0A/g')
+          echo "::notice title=Ses örnekleri::${msg}"
+      - name: Örnekleri kaydet
+        run: |
+          git config user.name "video-bot"
+          git config user.email "video-bot@users.noreply.github.com"
+          git add ses_ornekleri/*.mp3 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Ses örnekleri"
+            git pull --rebase -q && git push -q
+          fi
