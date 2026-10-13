@@ -142,6 +142,8 @@ def main():
     ap.add_argument("--resume", help="Yarıda kalan video klasörü")
     ap.add_argument("--upload-only", help="Hazır videoyu yükle")
     ap.add_argument("--keep-files", action="store_true", help="Ara dosyaları silme")
+    ap.add_argument("--max-queue", type=int, default=0,
+                    help="Bu kadar video zaten yayın sırasındaysa yeni video üretme (0 = sınır yok)")
     args = ap.parse_args()
 
     cfg = load_config()
@@ -151,6 +153,14 @@ def main():
     if args.upload_only:
         publish(cfg, Path(args.upload_only))
         return
+
+    if args.max_queue and not args.resume:
+        now = datetime.now().astimezone()
+        waiting = [h for h in load_history() if h.get("publish_at")
+                   and datetime.fromisoformat(h["publish_at"]) > now]
+        if len(waiting) >= args.max_queue:
+            log(f"Yayın sırasında zaten {len(waiting)} video var; bugün yeni video üretilmedi.")
+            return
 
     failures = 0
     for n in range(args.count):

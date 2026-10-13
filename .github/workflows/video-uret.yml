@@ -84,6 +84,8 @@ jobs:
             echo "Kaldığı yerden devam: $D"
           fi
           if [ "$YUKLE" = "false" ]; then ARGS+=(--no-upload); fi
+          # Zamanlanmış (otomatik) çalışmada: sırada 2 video varsa yenisini üretme (GitHub geç tetiklerse birikmesin)
+          if [ "${{ github.event_name }}" = "schedule" ]; then ARGS+=(--max-queue 2); fi
           echo "Komut: python run.py ${ARGS[*]}"
           set -o pipefail
           python run.py "${ARGS[@]}" --keep-files 2>&1 | tee bot_log.txt
