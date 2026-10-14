@@ -51,7 +51,9 @@ class LLM:
             response_mime_type="application/json",
             temperature=0.8,
         )
-        for attempt in range(8):
+        overloaded = 0
+        attempts = 12
+        for attempt in range(attempts):
             # Dakikalık ücretsiz sınıra takılmamak için istekler arasında en az 13 sn
             gap = time.time() - self._last_call
             if gap < 13:
@@ -89,9 +91,19 @@ class LLM:
                              "timed out", "Timeout", "timeout", "Connection", "RemoteProtocolError",
                              "ReadError")
                 busy = any(k in msg or k in type(e).__name__ for k in transient)
-                if not busy or attempt == 7:
+                if not busy or attempt == attempts - 1:
                     raise
-                wait = 65 if "429" in msg or "RESOURCE_EXHAUSTED" in msg else 20
+                if "503" in msg or "UNAVAILABLE" in msg or "high demand" in msg:
+                    overloaded += 1
+                    # Model aşırı yoğunsa sıradaki modele geç (yoğun model listenin sonuna)
+                    if overloaded >= 3 and len(self.candidates) > 1:
+                        old = self.candidates.pop(0)
+                        self.candidates.append(old)
+                        self.model = self.candidates[0]
+                        overloaded = 0
+                        log(f"  {old} modeli çok yoğun, {self.model} modeline geçiliyor.")
+                        continue
+                wait = 65 if "429" in msg or "RESOURCE_EXHAUSTED" in msg else min(20 * (overloaded or 1), 60)
                 log(f"  Gemini geçici hata ({type(e).__name__}), {wait} sn sonra yeniden deneniyor...")
                 time.sleep(wait)
 
