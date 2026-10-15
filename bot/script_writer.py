@@ -193,7 +193,10 @@ def _visual_rules(ai_ratio: float) -> str:
   Görsel, sahnede söylenen şeyi DOĞRUDAN göstermeli. Konuyla ilgisiz genel sokak, kalabalık, düğün,
   otopark gibi aramalar YAZMA; soyut bir cümlede bile konuyla ilgili somut bir nesne seç
   (ör. zaman algısı için "hourglass", "human brain MRI", "pocket watch").
-- "prompt": sahneyi anlatan kısa İNGİLİZCE görsel tarifi (yedek olarak kullanılır).
+- "prompt": sahnenin çizilecek görüntüsünü anlatan 15-30 kelimelik İNGİLİZCE tarif. Sahnede anlatılan
+  şeyi SOMUT olarak göster (ör. "a box jellyfish with long trailing tentacles drifting in dark blue water",
+  "a tall Soviet drilling tower in a snowy landscape"). Stil, renk, kâğıt gibi tarz kelimeleri YAZMA
+  (tarz otomatik eklenir); yazı, harf, rakam isteme. Gerçek kişileri yüz detayıyla tarif etme.
 - "visual": "stock"."""
 
 

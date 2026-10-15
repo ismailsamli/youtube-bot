@@ -14,6 +14,7 @@ import random
 from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
 from .collage import collage
+from .paperstyle import kagit_kesme
 from .utils import env, log
 
 UA = {"User-Agent": "youtube-bilgi-botu/1.0 (https://github.com/ismailsamli/youtube-bot)"}
@@ -40,6 +41,8 @@ class VisualFinder:
         self.topic = ""
         self.found = []            # bulunan görseller (son çarede farklı kadrajla yeniden kullanılır)
         self.frame = (cfg.get("images") or {}).get("frame", "kolaj")   # kanal çerçevesi: "kolaj" | "yok"
+        global PHOTO_STYLE
+        PHOTO_STYLE = (cfg.get("images") or {}).get("photo_style", "kagit")
 
     # ---------------- Pexels ----------------
     def _pexels(self, url: str, query: str) -> dict:
@@ -209,6 +212,8 @@ class VisualFinder:
         provider = self.cfg["images"].get("provider", "free")
         if provider == "none":
             return False
+        if provider == "cloudflare":
+            return self.cloudflare_image(prompt, path)
         if provider == "free":
             return self.free_image(prompt, path)
         if not self.gemini_key:
@@ -237,6 +242,46 @@ class VisualFinder:
                     return True
         except Exception as e:
             log(f"  Gemini görsel hatası: {e}")
+        return False
+
+    # ---------------- Cloudflare Workers AI (ücretsiz günlük kota) ----------------
+    def cloudflare_image(self, prompt: str, path: Path) -> bool:
+        if "cloudflare" in self.dead:
+            return False
+        acc, tok = env("CF_ACCOUNT_ID", required=False), env("CF_API_TOKEN", required=False)
+        if not acc or not tok:
+            self.dead.add("cloudflare")
+            log("  Cloudflare bilgileri tanımlı değil; yapay zeka çizimi yerine fotoğraf kullanılacak.")
+            return False
+        style = self.cfg["images"].get("style_prompt", "")
+        full = f"{prompt}. {style}".strip()[:2000]
+        model = self.cfg["images"].get("cf_model", "@cf/black-forest-labs/flux-1-schnell")
+        url = f"https://api.cloudflare.com/client/v4/accounts/{acc}/ai/run/{model}"
+        for attempt in range(3):
+            try:
+                r = requests.post(url, headers={"Authorization": f"Bearer {tok}"},
+                                  json={"prompt": full, "steps": 8,
+                                        "seed": abs(hash(prompt)) % 2_000_000}, timeout=120)
+                if r.ok and r.headers.get("content-type", "").startswith("image"):
+                    data = r.content
+                elif r.ok:
+                    import base64
+                    data = base64.b64decode((r.json().get("result") or {}).get("image") or "")
+                else:
+                    data = b""
+                    txt = r.text[:300]
+                    if r.status_code in (401, 403) or "allocation" in txt.lower() or "4006" in txt:
+                        self.dead.add("cloudflare")
+                        log(f"  Cloudflare kullanılamıyor ({r.status_code}): {txt}. Kalan sahnelerde fotoğraf kullanılacak.")
+                        return False
+                    log(f"  Cloudflare hatası ({r.status_code}): {txt}")
+                if data:
+                    img = Image.open(io.BytesIO(data)).convert("RGB")
+                    fit_16_9(img, style=False).save(path, "PNG")
+                    return True
+            except Exception as e:
+                log(f"  Cloudflare görsel hatası: {e}")
+            time.sleep(5 * (attempt + 1))
         return False
 
     # ---------------- Ücretsiz görsel (Pollinations, anahtar gerektirmez) ----------------
@@ -288,10 +333,12 @@ class VisualFinder:
             return img, "image"
 
         jpg = self.out_dir / f"visual_{idx:03d}.jpg"
-        order = [("commons", img)]
+        cf_first = self.cfg["images"].get("provider") == "cloudflare" and "cloudflare" not in self.dead
+        order = [("ai", img)] if cf_first else []
+        order += [("commons", img)]
         if self.pexels_key and scene["visual"] != "ai":
             order += [("video", vid), ("photo", jpg)]
-        order += [("openverse", img), ("ai", img)]
+        order += [("openverse", img)] + ([] if cf_first else [("ai", img)])
         if self.pexels_key and scene["visual"] == "ai":
             order += [("video", vid), ("photo", jpg)]
 
@@ -363,6 +410,7 @@ def _vignette(width: int, height: int) -> Image.Image:
 
 
 _VIGNETTE = {}
+PHOTO_STYLE = "kagit"     # fotoğraflara uygulanan kanal stili: "kagit" (kâğıt kesme) | "sinema"
 
 
 def channel_style(img: Image.Image) -> Image.Image:
@@ -393,4 +441,6 @@ def fit_16_9(img: Image.Image, width: int = 1920, height: int = 1080, style: boo
         new_h = int(w / target)
         img = img.crop((0, (h - new_h) // 2, w, (h - new_h) // 2 + new_h))
     img = img.resize((width, height), Image.LANCZOS)
-    return channel_style(img) if style else img
+    if not style:
+        return img
+    return kagit_kesme(img) if PHOTO_STYLE == "kagit" else channel_style(img)

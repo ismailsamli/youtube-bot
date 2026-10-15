@@ -55,13 +55,22 @@ llm:
   fact_check: false
 
 images:
-  # Görseller önce Wikimedia Commons ve Openverse'ten (ücretsiz, lisanslı gerçek görseller) aranır.
-  # Bulunamazsa yapay zeka görseli denenir:
-  # "none"   = yapay zeka görseli yok (varsayılan; ücretsiz servis artık ücretli)
-  # "free"   = Pollinations (artık çoğunlukla ücretli, 402 verir)
-  # "gemini" = Nano Banana (ücretli, Google AI Studio'da faturalandırma gerekir)
-  provider: "none"
-  # Kanal kimliği çerçevesi: "kolaj" = kâğıt zemin + yırtık kenarlı fotoğraf + kırmızı bant, "yok" = tam ekran
+  # "cloudflare" = her sahne sabit kâğıt kesme tarzında yapay zekâyla çizilir (Cloudflare Workers AI,
+  #                ücretsiz günlük kota; CF_ACCOUNT_ID ve CF_API_TOKEN secret'ları gerekir)
+  #                Kota biterse/çalışmazsa: Wikimedia Commons / Openverse fotoğrafı + kâğıt kesme efekti
+  # "none"       = sadece fotoğraf + kâğıt kesme efekti
+  provider: "cloudflare"
+  cf_model: "@cf/black-forest-labs/flux-1-schnell"
+  # Kanalın sabit çizim tarzı (her sahnenin tarifine eklenir)
+  style_prompt: >-
+    Handmade layered paper-cut craft diorama illustration, made entirely of cut and folded colored paper,
+    visible paper fibers and texture, soft drop shadows between paper layers, depth like a shadow box,
+    muted palette of cream, beige, warm brown and charcoal with a single crimson red accent,
+    documentary explainer style, simple clear composition, wide 16:9 framing with the subject centered,
+    no text, no letters, no numbers, no words, no watermark, no logo
+  # Fotoğraflara uygulanan stil: "kagit" = kâğıt kesme efekti, "sinema" = sinematik ton
+  photo_style: "kagit"
+  # Kanal kimliği çerçevesi: "kolaj" = kâğıt zemin + yırtık kenarlı görsel + kırmızı bant, "yok" = tam ekran
   frame: "kolaj"
   free_model: "flux"
   model: "gemini-2.5-flash-image"
