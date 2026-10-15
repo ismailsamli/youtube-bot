@@ -264,6 +264,22 @@ class VisualFinder:
             self.dead.add("cloudflare")
             log("  Cloudflare bilgileri tanımlı değil; yapay zeka çizimi yerine fotoğraf kullanılacak.")
             return False
+        if not getattr(self, "_cf_acc_checked", False):
+            self._cf_acc_checked = True
+            try:
+                r = requests.get("https://api.cloudflare.com/client/v4/accounts",
+                                 headers={"Authorization": f"Bearer {tok}"}, timeout=30)
+                ids = [a.get("id") for a in (r.json().get("result") or []) if a.get("id")]
+                if ids and acc not in ids:
+                    log(f"  Cloudflare hesap numarası anahtarla eşleşmedi; anahtarın bağlı olduğu hesap kullanılıyor "
+                        f"({len(ids)} hesap bulundu).")
+                    acc = ids[0]
+                elif not ids:
+                    log(f"  Cloudflare hesap listesi alınamadı ({r.status_code}): {r.text[:200]}")
+            except Exception as e:
+                log(f"  Cloudflare hesap kontrolü hatası: {e}")
+            self._cf_acc = acc
+        acc = getattr(self, "_cf_acc", acc)
         style = self.cfg["images"].get("style_prompt", "")
         full = f"{prompt}. {style}".strip()[:2000]
         model = self.cfg["images"].get("cf_model", "@cf/black-forest-labs/flux-1-schnell")
