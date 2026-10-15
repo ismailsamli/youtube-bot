@@ -257,7 +257,9 @@ class VisualFinder:
         tok = toks[0] if toks else tok_raw.strip()
         if tok_raw.strip() and ("\n" in tok_raw.strip() or " " in tok_raw.strip()) and "cf_note" not in self.dead:
             self.dead.add("cf_note")
-            log(f"  Not: CF_API_TOKEN birden fazla satır içeriyor; içinden {len(toks)} uygun anahtar bulundu.")
+            lens = [len(x.strip()) for x in tok_raw.strip().splitlines()]
+            log(f"  Not: CF_API_TOKEN {len(lens)} satır (uzunluklar: {lens}); içinden {len(toks)} uygun anahtar bulundu. "
+                f"CF_ACCOUNT_ID uzunluğu: {len(acc_raw.strip())}")
         if not acc or not tok:
             self.dead.add("cloudflare")
             log("  Cloudflare bilgileri tanımlı değil; yapay zeka çizimi yerine fotoğraf kullanılacak.")
