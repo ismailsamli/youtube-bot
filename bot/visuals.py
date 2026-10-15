@@ -248,7 +248,16 @@ class VisualFinder:
     def cloudflare_image(self, prompt: str, path: Path) -> bool:
         if "cloudflare" in self.dead:
             return False
-        acc, tok = env("CF_ACCOUNT_ID", required=False), env("CF_API_TOKEN", required=False)
+        acc_raw = env("CF_ACCOUNT_ID", required=False) or ""
+        tok_raw = env("CF_API_TOKEN", required=False) or ""
+        # Kopyalarken araya giren boşluk/satır sonlarına dayanıklı: geçerli biçimdeki parçayı al
+        accs = re.findall(r"\b[0-9a-f]{32}\b", acc_raw) or re.findall(r"\b[0-9a-f]{32}\b", tok_raw)
+        acc = accs[0] if accs else acc_raw.strip()
+        toks = [t for t in re.findall(r"[A-Za-z0-9_\-]{35,60}", tok_raw) if t != acc]
+        tok = toks[0] if toks else tok_raw.strip()
+        if tok_raw.strip() and ("\n" in tok_raw.strip() or " " in tok_raw.strip()) and "cf_note" not in self.dead:
+            self.dead.add("cf_note")
+            log(f"  Not: CF_API_TOKEN birden fazla satır içeriyor; içinden {len(toks)} uygun anahtar bulundu.")
         if not acc or not tok:
             self.dead.add("cloudflare")
             log("  Cloudflare bilgileri tanımlı değil; yapay zeka çizimi yerine fotoğraf kullanılacak.")
