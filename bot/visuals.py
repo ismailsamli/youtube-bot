@@ -251,6 +251,7 @@ class VisualFinder:
         acc_raw = env("CF_ACCOUNT_ID", required=False) or ""
         tok_raw = env("CF_API_TOKEN", required=False) or ""
         # Kopyalarken araya giren boşluk/satır sonlarına dayanıklı: geçerli biçimdeki parçayı al
+        acc_raw = str(self.cfg["images"].get("cf_account_id") or "") + " " + acc_raw   # config'teki numara önce
         accs = re.findall(r"\b[0-9a-f]{32}\b", acc_raw) or re.findall(r"\b[0-9a-f]{32}\b", tok_raw)
         acc = accs[0] if accs else acc_raw.strip()
         toks = [t for t in re.findall(r"[A-Za-z0-9_\-]{35,60}", tok_raw) if t != acc]
