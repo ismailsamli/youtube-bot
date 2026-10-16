@@ -91,6 +91,22 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
     final = folder / "video.mp4"
     editor.assemble(script["scenes"], visuals, audios, folder / "scenes", final, cfg)
 
+    # YouTube bölümleri (zaman damgaları): izleyici ve algoritma için "önemli anlar"
+    if "Bölümler:" not in script["description"] and script.get("sections"):
+        pad = float(cfg["video"].get("scene_padding", 0.2))
+        t, starts = 0.0, {}
+        for sc, au in zip(script["scenes"], audios):
+            sec = sc.get("section")
+            if sec is not None and sec not in starts:
+                starts[sec] = t
+            t += media_duration(au) + pad
+        marks = sorted(starts.items(), key=lambda kv: kv[1])
+        if len(marks) >= 3 and marks[0][1] == 0.0:
+            lines = [f"{int(v // 60):02d}:{int(v % 60):02d} {script['sections'][k]}"
+                     for k, v in marks if k < len(script["sections"])]
+            script["description"] = script["description"] + "\n\nBölümler:\n" + "\n".join(lines)
+            save_json(folder / "script.json", script)
+
     # Lisanslı görsellerin kaynakları açıklamaya eklenir (CC lisansları bunu şart koşar)
     if finder.credits and "Görsel kaynakları" not in script["description"]:
         uniq = list(dict.fromkeys(finder.credits))

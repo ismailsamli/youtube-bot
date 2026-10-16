@@ -248,8 +248,8 @@ PAKETLEME:
   Türkçe ifade (ör. "KİMSE BİLMİYOR", "5 DAKİKA KALDI")
 - "search_en": videonun genel konusunu anlatan 2-3 kelimelik İNGİLİZCE görsel arama ifadesi
   (ör. "human brain", "Titanic wreck", "black hole"); sahne görseli bulunamazsa bununla aranır
-- "thumbnail_prompt": kapak arka planı için İNGİLİZCE görsel tarifi; tek, net, dramatik bir odak nesnesi;
-  sol tarafta yazı için sade alan; yazı içermeyen
+- "thumbnail_prompt": kapak görseli için İNGİLİZCE tarif (15-25 kelime): tek, net, dramatik bir ana nesne
+  görselin SAĞ yarısında; sol yarı sade arka plan (oraya yazı gelecek); stil kelimesi yazma, yazı isteme
 
 Sadece şu JSON'u döndür:
 {{"title": "...", "description": "...", "tags": ["..."], "thumbnail_text": "...", "search_en": "...", "thumbnail_prompt": "...",
@@ -312,6 +312,8 @@ def write_script(llm, cfg: dict, topic: dict) -> dict:
     for i in range(len(sections)):
         log(f"Bölüm {i + 1}/{len(sections)} yazılıyor: {sections[i].get('heading', '')}")
         part = write_section(llm, cfg, outline, i, per, words_per_scene, previous)
+        for sc in part:
+            sc["section"] = i
         scenes.extend(part)
         previous = " ".join(s.get("text", "") for s in part[-2:])
     script = {k: outline.get(k) for k in ("title", "description", "tags", "thumbnail_text",
