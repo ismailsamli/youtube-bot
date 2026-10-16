@@ -11,7 +11,7 @@ on:
           - "2 - İzni kaydet"
         required: true
       adres:
-        description: "2. adım için: izin verdikten sonra tarayıcının adres çubuğundaki TAM adres"
+        description: "İzin verdikten sonra açılmayan sayfanın adres çubuğundaki TAM adres (doldurursan izin kaydedilir)"
         required: false
         default: ""
 
@@ -35,7 +35,7 @@ jobs:
         run: pip install -q google-auth-oauthlib cryptography
 
       - name: "1. adım: izin bağlantısı"
-        if: startsWith(inputs.adim, '1')
+        if: startsWith(inputs.adim, '1') && inputs.adres == ''
         run: |
           LINK=$(python youtube_yetki.py link)
           {
@@ -51,7 +51,7 @@ jobs:
           } >> $GITHUB_STEP_SUMMARY
 
       - name: "2. adım: izni kaydet"
-        if: startsWith(inputs.adim, '2')
+        if: startsWith(inputs.adim, '2') || inputs.adres != ''
         env:
           ADRES: ${{ inputs.adres }}
         run: |
