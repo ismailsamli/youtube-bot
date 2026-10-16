@@ -128,6 +128,25 @@ def publish(cfg: dict, folder: Path) -> None:
                  "video_id": vid, "publish_at": publish_at.isoformat() if publish_at else None})
 
 
+def planned_topic(cfg: dict) -> str:
+    """konular.yaml'da, sıradaki yayın gününe yazılmış bir konu varsa onu döndürür."""
+    path = ROOT / "konular.yaml"
+    if not path.exists():
+        return None
+    try:
+        import yaml
+        plan = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        taken = [h.get("publish_at") for h in load_history()]
+        day = uploader.next_publish_time(cfg, taken).date().isoformat()
+        topic = plan.get(day) or plan.get(str(day))
+        if topic:
+            log(f"Yayın günü {day} için seçilmiş konu: {topic}")
+        return topic
+    except Exception as e:
+        log(f"  konular.yaml okunamadı: {e}")
+        return None
+
+
 def cleanup(folder: Path) -> None:
     """Büyük ara dosyaları siler; video, kapak ve senaryo kalır."""
     for sub in ("scenes", "visuals", "audio"):
@@ -168,7 +187,10 @@ def main():
         folder = Path(args.resume) if args.resume and n == 0 else None
         CURRENT["folder"] = folder
         try:
-            folder = produce(cfg, folder, args.topic if n == 0 else None)
+            topic = args.topic if n == 0 else None
+            if not topic and not folder:
+                topic = planned_topic(cfg)
+            folder = produce(cfg, folder, topic)
             if do_upload:
                 publish(cfg, folder)
             if not args.keep_files:

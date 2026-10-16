@@ -1,0 +1,7 @@
+# Senin seçtiğin video konuları.
+# Tarih = videonun YAYINLANACAĞI gün (YYYY-AA-GG). O günün videosu bu konuyla hazırlanır.
+# Burada olmayan günlerde bot konuyu kendisi seçer.
+# Örnek:
+#   "2026-10-19": "Titanik neden battı? Bilinmeyen detaylar"
+#   "2026-10-21": "Osmanlı'da ilk kahvehaneler ve yasaklanması"
+{}
