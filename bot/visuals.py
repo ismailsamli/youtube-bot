@@ -288,8 +288,7 @@ class VisualFinder:
         for attempt in range(3):
             try:
                 r = requests.post(url, headers={"Authorization": f"Bearer {tok}"},
-                                  json={"prompt": full, "steps": 8,
-                                        "seed": abs(hash(prompt)) % 2_000_000}, timeout=120)
+                                  json={"prompt": full, "steps": 8}, timeout=120)
                 if r.ok and r.headers.get("content-type", "").startswith("image"):
                     data = r.content
                 elif r.ok:
@@ -298,7 +297,7 @@ class VisualFinder:
                 else:
                     data = b""
                     txt = r.text[:300]
-                    if r.status_code in (401, 403) or "allocation" in txt.lower() or "4006" in txt:
+                    if r.status_code in (401, 403, 404) or "allocation" in txt.lower() or "4006" in txt:
                         self.dead.add("cloudflare")
                         log(f"  Cloudflare kullanılamıyor ({r.status_code}): {txt}. Kalan sahnelerde fotoğraf kullanılacak.")
                         return False
