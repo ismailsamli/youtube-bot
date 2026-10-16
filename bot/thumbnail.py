@@ -92,8 +92,8 @@ def make_thumbnail(background: Path, text: str, out: Path) -> Path:
     bg = Image.composite(Image.new("RGB", (W, H), (40, 30, 24)), bg, shadow)
     bg.paste(card, (x0, y0), mask)
     t = _tape(rnd.randint(0, 999), -35)
-    t = t.resize((int(t.width * 0.8), int(t.height * 0.8)))
-    bg.paste(t, (x0 - 48, y0 - 46), t)
+    t = t.resize((int(t.width * 0.65), int(t.height * 0.65)))
+    bg.paste(t, (max(0, x0 - 70), max(0, y0 - 62)), t)
 
     bg = bg.filter(ImageFilter.UnsharpMask(radius=2, percent=50))
     quality = 92
