@@ -16,7 +16,7 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 
-from bot import editor, script_writer, thumbnail, tts, uploader
+from bot import branding, editor, script_writer, thumbnail, tts, uploader
 from bot.utils import ROOT, check_ffmpeg, load_config, load_json, log, media_duration, run, save_json, slugify
 from bot.visuals import VisualFinder
 
@@ -89,21 +89,40 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
 
     log("Video montajı yapılıyor (bu adım birkaç dakika sürebilir)...")
     final = folder / "video.mp4"
-    editor.assemble(script["scenes"], visuals, audios, folder / "scenes", final, cfg)
+    intro = outro = None
+    if cfg["video"].get("branding", True):
+        try:
+            intro = branding.make_intro(folder / "scenes", cfg)
+            try:
+                line = tts.say(branding.OUTRO_LINE, cfg, folder / "audio" / "outro.mp3", folder / "audio")
+            except Exception as e:
+                log(f"  Kapanış sesi okunamadı, sessiz devam: {e}")
+                line = None
+            outro = branding.make_outro(folder / "scenes", cfg, line)
+        except Exception as e:
+            log(f"  Jenerik hazırlanamadı, jeneriksiz devam ediliyor: {e}")
+            intro = outro = None
+    editor.assemble(script["scenes"], visuals, audios, folder / "scenes", final, cfg, intro, outro)
 
     # YouTube bölümleri (zaman damgaları): izleyici ve algoritma için "önemli anlar"
     if "Bölümler:" not in script["description"] and script.get("sections"):
         pad = float(cfg["video"].get("scene_padding", 0.2))
         t, starts = 0.0, {}
+        intro_done = intro is None
         for sc, au in zip(script["scenes"], audios):
+            if not intro_done and not sc.get("cold"):
+                t += media_duration(intro)
+                intro_done = True
             sec = sc.get("section")
             if sec is not None and sec not in starts:
                 starts[sec] = t
             t += media_duration(au) + pad
         marks = sorted(starts.items(), key=lambda kv: kv[1])
+        if marks and marks[0][1] < 5:             # ilk bölüm her zaman 00:00'da başlamalı
+            marks[0] = (marks[0][0], 0.0)
+        names = lambda k: "Giriş" if k == -1 else (script["sections"][k] if k < len(script["sections"]) else None)
         if len(marks) >= 3 and marks[0][1] == 0.0:
-            lines = [f"{int(v // 60):02d}:{int(v % 60):02d} {script['sections'][k]}"
-                     for k, v in marks if k < len(script["sections"])]
+            lines = [f"{int(v // 60):02d}:{int(v % 60):02d} {names(k)}" for k, v in marks if names(k)]
             script["description"] = script["description"] + "\n\nBölümler:\n" + "\n".join(lines)
             save_json(folder / "script.json", script)
 

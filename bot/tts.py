@@ -139,6 +139,22 @@ def google_synthesize(text: str, cfg: dict, path: Path, retries: int = 4) -> Non
     raise RuntimeError("Google seslendirme başarısız: " + " | ".join(errors))
 
 
+def say(text: str, cfg: dict, path: Path, out_dir: Path) -> Path:
+    """Tek bir cümleyi videonun geri kalanıyla aynı sesle okur (kapanış jeneriği için)."""
+    engine_file = out_dir / "motor.txt"
+    engine = engine_file.read_text().strip() if engine_file.exists() else cfg["voice"].get("engine", "piper")
+    rate = cfg["voice"]["rate"]
+    if path.exists() and path.stat().st_size > 1000:
+        return path
+    if engine == "google":
+        google_synthesize(text, cfg, path)
+    elif engine == "edge":
+        synthesize(text, cfg["voice"]["name"], rate, path)
+    else:
+        piper_synthesize(text, rate, path)
+    return path
+
+
 # ---------------- Ana akış ----------------
 def voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> list:
     out_dir.mkdir(parents=True, exist_ok=True)

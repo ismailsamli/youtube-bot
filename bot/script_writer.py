@@ -229,11 +229,14 @@ def write_outline(llm, cfg: dict, topic: dict = None, past_titles: list = None) 
 {intro}
 
 Video tam olarak {SECTIONS} bölümden oluşacak:
-- 1. bölüm: ilk 10 saniyede izleyiciyi yakalayan çok güçlü bir kanca (en şaşırtıcı bilgi, çarpıcı bir
-  soru ya da gerilimli bir sahne) ve videonun sonunda neyin açıklanacağına dair net bir vaat.
+(Video, hikâyenin EN çarpıcı anını gösteren 20-25 saniyelik bir "soğuk açılış" ve kısa kanal jeneriğiyle
+başlayacak; o kısım ayrıca yazılır. Bu yüzden bölümleri buna göre planla.)
+- 1. bölüm: jenerikten hemen sonra gelir; hikâyeyi başından, hızlı ve merak uyandırarak anlatmaya başlar
+  ve videonun sonunda neyin açıklanacağına dair net bir vaat verir.
 - Ortadaki bölümler: konuyu mantıklı sırayla anlat; her bölüm yeni bir merak noktası açsın ve
   en çarpıcı bilgiyi videonun ortasına ve sonuna sakla ki izleyici sonuna kadar izlesin.
-- Son bölüm: konuyu bağla, kısa kapanış ve doğal bir abone olma çağrısı.
+- Son bölüm: konuyu bağla ve izleyiciye yorumlarda cevaplayacağı kısa bir soru sor
+  (abone çağrısı kapanış jeneriğinde zaten var).
 
 Her bölüm için "heading" (kısa başlık), "goal" (bölümün amacı, 1 cümle) ve
 "facts" (bölümde anlatılacak 3-5 doğrulanabilir somut bilgi) yaz.
@@ -244,8 +247,9 @@ PAKETLEME:
   senaryosu. Büyük harfle tek bir vurgu kelimesi kullanabilirsin. Videoda olmayan bir şeyi vaat etme.
 - "description": 3 kısa paragraf Türkçe açıklama (ilk 2 satır aramada görünecek şekilde güçlü), ardından 3-5 hashtag
 - "tags": 10-15 Türkçe etiket
-- "thumbnail_text": kapakta yazacak 2-3 kelimelik, başlığı tekrar ETMEYEN, duygusu güçlü çarpıcı
-  Türkçe ifade (ör. "KİMSE BİLMİYOR", "5 DAKİKA KALDI")
+- "thumbnail_text": kapakta DEV harflerle yazacak EN FAZLA 3 kelime (tercihen 2), her kelime en fazla
+  8 harf; başlığı tekrar ETMEYEN, telefonda bile tek bakışta okunan, mümkünse rakam içeren çarpıcı ifade
+  (ör. "60 SAAT DİPTE", "72 GÜN", "KİMSE BİLMİYOR", "5 DAKİKA KALDI")
 - "search_en": videonun genel konusunu anlatan 2-3 kelimelik İNGİLİZCE görsel arama ifadesi
   (ör. "human brain", "Titanic wreck", "black hole"); sahne görseli bulunamazsa bununla aranır
 - "thumbnail_prompt": kapak görseli için İNGİLİZCE tarif (15-25 kelime): tek, net, dramatik bir ana nesne
@@ -263,12 +267,13 @@ def write_section(llm, cfg: dict, outline: dict, idx: int, scene_count: int,
     sections = outline["sections"]
     sec = sections[idx]
     plan = "\n".join(f"{i + 1}. {s.get('heading', '')}: {s.get('goal', '')}" for i, s in enumerate(sections))
-    position = ("Bu videonun İLK bölümü: ilk cümle doğrudan en şaşırtıcı bilgi veya çarpıcı bir soru olsun; "
-                "'merhaba arkadaşlar', 'bu videoda' gibi boş girişler kullanma; ikinci sahnede videonun "
-                "sonunda neyin açıklanacağını vaat et ve izleyiciyi sonuna kadar kalmaya teşvik et."
+    position = ("Bu videonun İLK bölümü; kısa bir soğuk açılış ve kanal jeneriğinden hemen sonra gelir. "
+                "'Merhaba arkadaşlar', 'bu videoda' gibi boş girişler kullanma; hikâyeyi başından, hızlı ve "
+                "merak uyandırarak anlatmaya başla; ilk iki sahne içinde videonun sonunda neyin "
+                "açıklanacağını vaat et ve izleyiciyi sonuna kadar kalmaya teşvik et."
                 if idx == 0 else
-                "Bu videonun SON bölümü: konuyu bağla, son sahnede kısa bir kapanış ve doğal bir "
-                "'ilginç bulduysan abone olmayı unutma' çağrısı yap."
+                "Bu videonun SON bölümü: konuyu bağla; son sahnede izleyiciye yorumlarda cevaplayacağı "
+                "kısa, merak uyandıran bir soru sor. Abone çağrısı ve vedalaşma YAPMA (kapanış jeneriğinde var)."
                 if idx == len(sections) - 1 else
                 "Bu bir ara bölüm: bir önceki bölümden doğal bir geçişle başla, selamlama veya kapanış yapma. "
                 "Bölümün son sahnesi bir sonraki bölüme merak bırakan kısa bir köprü cümlesiyle bitsin.")
@@ -326,6 +331,39 @@ def write_script(llm, cfg: dict, topic: dict) -> dict:
     return validate(script)
 
 
+def write_cold_open(llm, cfg: dict, script: dict) -> list:
+    """Videonun başına, hikâyenin en çarpıcı anını gösteren kısa bir 'soğuk açılış' yazar."""
+    log("Soğuk açılış (kanca) yazılıyor...")
+    body = "\n".join(s["text"] for s in script["scenes"])[:9000]
+    prompt = f"""Video başlığı: {script['title']}
+
+Videonun metni:
+{body}
+
+Bu videonun EN BAŞINA, kanal jeneriğinden ÖNCE oynayacak 20-25 saniyelik bir "soğuk açılış" yaz.
+- Metindeki EN çarpıcı, en gerilimli ya da en şaşırtıcı anı seç (genelde hikâyenin doruk noktası) ve izleyiciyi
+  doğrudan o anın içine at: şimdiki zaman, kısa ve vurucu cümleler, somut detaylar.
+- Sonucu ya da sırrın cevabını AÇIKLAMA; merakı doruğa çıkar.
+- Son sahne izleyiciyi hikâyenin başına götüren bir köprü cümlesiyle bitsin
+  (ör. "Peki buraya nasıl gelindi? Her şey ... başladı.").
+- Selamlama, kanal adı, "bu videoda" gibi ifadeler YOK. Sadece metindeki doğru bilgileri kullan, yeni bilgi uydurma.
+- Tam olarak 4 sahne, her sahnede 10-16 kelime (her sahne yaklaşık 5-6 saniye sürecek).
+
+{_visual_rules(cfg['video'].get('ai_image_ratio', 0.35))}
+  Soğuk açılışta görseller özellikle dramatik ve hareketli bir anı göstersin.
+
+Sadece şu JSON'u döndür:
+{{"scenes": [{{"text": "...", "visual": "stock", "query": "...", "prompt": "..."}}]}}"""
+    data = _ask_json(llm, _system(cfg), prompt, 3000, "scenes")
+    scenes = [s for s in data.get("scenes", []) if (s.get("text") or "").strip()][:5]
+    if len(scenes) < 2:
+        raise ValueError("soğuk açılış çok kısa")
+    for s in scenes:
+        s["section"] = -1
+        s["cold"] = True
+    return scenes
+
+
 def fact_check(llm, cfg: dict, script: dict) -> dict:
     """Senaryoyu bölüm bölüm kontrol eder (büyük tek istek zaman aşımına düşmesin diye)."""
     log("Doğruluk kontrolü yapılıyor...")
@@ -349,6 +387,10 @@ def fact_check(llm, cfg: dict, script: dict) -> dict:
             fixed = data.get("scenes") or []
             if len(fixed) != len(part):
                 fixed = part
+            for orig, new in zip(part, fixed):
+                for k in ("section", "cold"):
+                    if k in orig:
+                        new[k] = orig[k]
             for note in (data.get("notes") or [])[:5]:
                 log(f"  düzeltme: {note}")
         except Exception as e:
@@ -369,7 +411,9 @@ def validate(script: dict) -> dict:
         if not text:
             continue
         visual = s.get("visual") if s.get("visual") in ("stock", "ai") else "stock"
+        item = {k: s[k] for k in ("section", "cold") if k in s}
         clean.append({
+            **item,
             "text": text,
             "visual": visual,
             "query": (s.get("query") or "nature landscape").strip(),
@@ -398,6 +442,13 @@ def generate(cfg: dict, past_titles: list, forced_topic: str = None) -> dict:
             script = fact_check(llm, cfg, script)
         except Exception as e:
             log(f"  Doğruluk kontrolü yapılamadı, ilk senaryoyla devam ediliyor: {e}")
+    if cfg["video"].get("cold_open", True):
+        try:
+            cold = write_cold_open(llm, cfg, script)
+            script["scenes"] = cold + [s for s in script["scenes"] if not s.get("cold")]
+            script = validate(script)
+        except Exception as e:
+            log(f"  Soğuk açılış yazılamadı, video normal başlayacak: {e}")
     words = sum(len(s["text"].split()) for s in script["scenes"])
     log(f"Senaryo hazır: {len(script['scenes'])} sahne, {words} kelime "
         f"(~{words / WORDS_PER_MINUTE:.1f} dk)")

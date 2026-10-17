@@ -53,11 +53,14 @@ def make_thumbnail(background: Path, text: str, out: Path) -> Path:
     bg = ImageEnhance.Contrast(bg).enhance(1.12)
     bg = ImageEnhance.Color(bg).enhance(1.15)
 
-    text = tr_upper(text.strip())
-    card_w, pad = int(W * 0.5), 40
+    words = tr_upper(text.strip()).split()
+    if len(words) > 4:          # kapakta en fazla 3 kelime: telefonda okunabilsin
+        words = words[:3]
+    text = " ".join(words)
+    card_w, pad = int(W * 0.56), 40
     probe = ImageDraw.Draw(Image.new("RGB", (10, 10)))
     max_w = card_w - 2 * pad
-    size = 150
+    size = 170
     while size > 54:
         font = _font(size)
         lines = _wrap(probe, text, font, max_w)

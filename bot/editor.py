@@ -130,13 +130,20 @@ def concat(scene_files: list, work: Path, final: Path, cfg: dict) -> Path:
     return final
 
 
-def assemble(scenes: list, visuals: list, audios: list, work: Path, final: Path, cfg: dict) -> Path:
+def assemble(scenes: list, visuals: list, audios: list, work: Path, final: Path, cfg: dict,
+             intro: Path = None, outro: Path = None) -> Path:
+    """Sıra: soğuk açılış sahneleri -> kanal jeneriği (intro) -> video -> kapanış jeneriği (outro)."""
     work.mkdir(parents=True, exist_ok=True)
     clips = []
+    n_cold = sum(1 for s in scenes if s.get("cold"))
     for i, (scene, (vis, kind), audio) in enumerate(zip(scenes, visuals, audios)):
+        if intro is not None and i == n_cold:
+            clips.append(intro)
         clips.append(build_scene(i, vis, kind, audio, scene["text"], work, cfg))
         if (i + 1) % 5 == 0 or i + 1 == len(scenes):
             log(f"  montaj {i + 1}/{len(scenes)}")
+    if outro is not None:
+        clips.append(outro)
     concat(clips, work, final, cfg)
     log(f"Video hazır: {final} ({media_duration(final) / 60:.1f} dk)")
     return final

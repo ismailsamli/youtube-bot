@@ -15,6 +15,9 @@ channel:
     - çözülememiş gizemler
     - doğal afetler ve felaketler
     - olağanüstü hayatta kalma hikâyeleri
+    - olağanüstü hayatta kalma hikâyeleri (kanalda en çok izlenen tür)
+    - gerçek kaza, mahsur kalma ve kurtarma hikâyeleri
+    - doğa karşısında insan: mahsur kalma ve hayatta kalma mücadeleleri
     - dünya rekorları ve uç noktalar
     - ya olsaydı türünden bilimsel senaryolar
     - tehlikeli ve tuhaf hayvanlar
@@ -28,6 +31,8 @@ video:
   height: 1080
   fps: 30
   ai_image_ratio: 0.35       # Sahnelerin yaklaşık ne kadarı yapay zeka görseli olsun (0-1)
+  cold_open: true            # Video, hikâyenin en çarpıcı anıyla (20-25 sn) başlar, sonra jenerik girer
+  branding: true             # Kısa kanal jeneriği (3 sn) ve sonda 12 sn'lik bitiş ekranı
   scene_padding: 0.2         # Sahneler arasında bırakılan sessizlik (saniye)
   music_volume: 0.08         # assets/music klasöründeki müziğin sesi (0 = müzik yok)
   subtitle_font: "Arial"     # Windows'ta Arial vardır
