@@ -32,7 +32,8 @@ video:
   fps: 30
   ai_image_ratio: 0.35       # Sahnelerin yaklaşık ne kadarı yapay zeka görseli olsun (0-1)
   cold_open: true            # Video, hikâyenin en çarpıcı anıyla (20-25 sn) başlar, sonra jenerik girer
-  branding: true             # Kısa kanal jeneriği (3 sn) ve sonda 12 sn'lik bitiş ekranı
+  branding: true             # Kanal jeneriği ve sonda 12 sn'lik bitiş ekranı
+  intro_animation: true      # true = 8 sn'lik kravatlı adam animasyonu, false = 3 sn'lik kısa logo
   scene_padding: 0.2         # Sahneler arasında bırakılan sessizlik (saniye)
   music_volume: 0.08         # assets/music klasöründeki müziğin sesi (0 = müzik yok)
   subtitle_font: "Arial"     # Windows'ta Arial vardır

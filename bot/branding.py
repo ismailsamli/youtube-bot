@@ -124,6 +124,13 @@ def make_intro(work: Path, cfg: dict) -> Path:
     if out.exists():
         return out
     work.mkdir(parents=True, exist_ok=True)
+    anim = ROOT / "assets" / "intro_animasyon.mp4"
+    if anim.exists() and cfg["video"].get("intro_animation", True):
+        # hazır animasyon (tools/intro_animasyon.py ile üretildi); diğer sahnelerle aynı ayarlarla kodlanır
+        fps = cfg["video"]["fps"]
+        run(["ffmpeg", "-y", "-hide_banner", "-i", str(anim),
+             "-vf", f"scale={W}:{H},fps={fps},setsar=1,format=yuv420p", *ENCODE, out.name], cwd=work)
+        return out
     png = work / "intro.png"
     intro_frame().save(png)
     fps = cfg["video"]["fps"]
