@@ -40,7 +40,7 @@ def _wrap(draw, text: str, font, max_w: int) -> list:
     return lines
 
 
-def make_thumbnail(background: Path, text: str, out: Path) -> Path:
+def make_thumbnail(background: Path, text: str, out: Path, badge: str = None) -> Path:
     """Kanal tarzı kapak: kâğıt diorama arka plan + yırtık kenarlı krem kâğıt üzerinde büyük yazı,
     son satır kırmızı kâğıt şerit üzerinde, kırmızı bant."""
     import random
@@ -98,6 +98,16 @@ def make_thumbnail(background: Path, text: str, out: Path) -> Path:
     t = t.resize((int(t.width * 0.65), int(t.height * 0.65)))
     bg.paste(t, (max(0, x0 - 70), max(0, y0 - 62)), t)
 
+    if badge:   # seri etiketi: sağ üstte koyu kâğıt şerit (ör. "VURGUN DOSYALARI #3")
+        bt = tr_upper(badge)
+        bf = _font(40)
+        bw = int(ImageDraw.Draw(bg).textlength(bt, font=bf)) + 56
+        strip = Image.new("RGB", (bw, 74), (30, 26, 23))
+        ImageDraw.Draw(strip).text((28, 12), bt, font=bf, fill=(250, 244, 232))
+        smask = _torn_mask(bw, 74, 7, amp=5)
+        strip = strip.rotate(2, expand=True, resample=Image.BICUBIC)
+        smask = smask.rotate(2, expand=True, resample=Image.BICUBIC)
+        bg.paste(strip, (W - strip.width - 26, 26), smask)
     bg = bg.filter(ImageFilter.UnsharpMask(radius=2, percent=50))
     quality = 92
     while True:

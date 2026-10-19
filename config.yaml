@@ -106,6 +106,7 @@ upload:
     - "Doğanın Gücü: Afetler ve Canlılar"
     - "Çözülemeyen Gizemler"
     - "Anadolu ve Osmanlı'nın Bilinmeyenleri"
+    - "Vurgun Dosyaları"
   first_comment: true        # Video yayına girince kanal, izleyiciye soru soran ilk yorumu yazar
   watermark: true            # Videolarda köşede "abone ol" filigranı (kravat logosu), bir kez ayarlanır
   thumbnail_variants: true   # Her video için 3 kapak üretilir (kapaklar/ klasörü): Studio'da "Test ve karşılaştır" için

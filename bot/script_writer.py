@@ -201,10 +201,24 @@ def _visual_rules(ai_ratio: float) -> str:
 - "visual": "stock"."""
 
 
+TR_HASSAS = (
+    "HUKUKİ VE SİYASİ HASSASİYET (bu bir Türkiye vakası, KESİNLİKLE uy):\n"
+    "- Sadece kesinleşmiş mahkeme kararlarına, resmî kurum açıklamalarına ve geniş çapta haberleşmiş temel "
+    "olgulara dayan. Kesinleşmemiş her bilgiyi 'iddia edildi', 'iddianameye göre' diye açıkça belirt.\n"
+    "- Hiçbir siyasetçiyi, siyasi partiyi, hükümeti, muhalefeti, yargıyı, orduyu veya devlet kurumlarını "
+    "isim vererek suçlama, övme ya da yorumlama. 'Siyasi bağlantı' iddialarına HİÇ girme.\n"
+    "- Kişilere hakaret, alay, aşağılayıcı sıfat YOK; olayları tarafsız bir belgesel anlatıcısı gibi aktar.\n"
+    "- Ceza, tarih ve para miktarlarını sadece eminsen ver; emin değilsen yuvarlak/genel ifade kullan.\n"
+    "- Hayatını kaybetmiş kişiler hakkında spekülasyon yapma; mağdurlara saygılı ol.\n"
+    "- Videonun odağı: dolandırıcılığın nasıl işlediği ve izleyicinin benzerlerinden nasıl korunacağı.\n"
+)
+
+
 def write_outline(llm, cfg: dict, topic: dict = None, past_titles: list = None) -> dict:
     if topic:
         intro = (f"KONU: {topic['topic']}\nBAKIŞ AÇISI: {topic.get('angle', '')}\n"
                  f"ARAMA İFADELERİ: {', '.join(topic.get('search_terms', []))}")
+        intro += _extra_rules(topic.get("extra") or {})
     else:
         pool = cfg["channel"].get("topic_pool") or []
         focus = random.choice(pool) if pool else "serbest"
@@ -270,6 +284,18 @@ Sadece şu JSON'u döndür:
     return _ask_json(llm, _system(cfg), prompt, 4000, "sections")
 
 
+def _extra_rules(extra: dict) -> str:
+    out = ""
+    if extra.get("series"):
+        out += (f"\nSERİ: Bu video '{extra['series']}' serisinin {extra.get('episode')}. bölümü. Video yine de "
+                "tek başına anlaşılmalı (izleyici seriye bu bölümden girebilir).")
+    if extra.get("tr"):
+        out += "\n" + TR_HASSAS
+    if extra.get("notes"):
+        out += f"\nBU BÖLÜME ÖZEL KURALLAR: {extra['notes']}"
+    return out
+
+
 def write_section(llm, cfg: dict, outline: dict, idx: int, scene_count: int,
                   words_per_scene: int, previous_text: str) -> list:
     sections = outline["sections"]
@@ -290,8 +316,13 @@ def write_section(llm, cfg: dict, outline: dict, idx: int, scene_count: int,
                    "(ör. 'Bu tür gerçek hikâyeleri seviyorsan, her akşam 19:00'da yenisi geliyor; abone olursan "
                    "kaçırmazsın.'). Kelime sınırına dahildir; yalvarma, abartma."
                    if idx == max(1, round(len(sections) * 0.4)) else ""))
+    extra = outline.get("_extra") or {}
+    if idx == len(sections) - 1 and extra.get("next"):
+        position += (f" SERİ KANCASI: soru sorduğun sahneden hemen önce, serinin bir sonraki bölümünü "
+                     f"merak uyandırarak tek cümleyle duyur: \"{extra['series']} serisinin bir sonraki dosyası, "
+                     f"{extra['next']}\" (doğal bir dille, bilgiyi değiştirmeden).")
     prompt = f"""Video başlığı: {outline.get('title', '')}
-
+{_extra_rules(extra)}
 Videonun bölüm planı:
 {plan}
 
@@ -324,6 +355,7 @@ def write_script(llm, cfg: dict, topic: dict) -> dict:
 
     outline = write_outline(llm, cfg, topic if topic.get("topic") else None,
                             topic.get("past_titles"))
+    outline["_extra"] = topic.get("extra") or {}
     sections = outline["sections"]
     per = max(3, round(total_scenes / len(sections)))
     scenes, previous = [], ""
@@ -391,7 +423,9 @@ def fact_check(llm, cfg: dict, script: dict) -> dict:
             "- Yanlış, şüpheli, abartılı veya doğrulanamayan iddiaları düzelt ya da yumuşat.\n"
             "- Uydurma sayı, tarih, alıntı varsa çıkar veya doğrusuyla değiştir.\n"
             "- Sahne sayısını, her sahnenin uzunluğunu ve tüm alanları AYNEN koru.\n"
-            "- Değişiklikleri kısa maddeler olarak \"notes\" listesine yaz.\n\n"
+            "- Değişiklikleri kısa maddeler olarak \"notes\" listesine yaz.\n"
+            + (TR_HASSAS + "Bu kurallara uymayan her cümleyi düzelt veya çıkar.\n" if script.get("_tr") else "")
+            + "\n"
             'Sadece şu JSON\'u döndür: {"scenes": [...], "notes": ["..."]}\n\n'
             + json.dumps({"scenes": part}, ensure_ascii=False)
         )
@@ -442,15 +476,23 @@ def validate(script: dict) -> dict:
     return script
 
 
-def generate(cfg: dict, past_titles: list, forced_topic: str = None) -> dict:
+def generate(cfg: dict, past_titles: list, forced_topic: str = None, extra: dict = None) -> dict:
     llm = LLM(cfg)
     log(f"Yapay zeka: {llm.provider} ({llm.model})")
     # Konu seçimi plan isteğinin içinde yapılır (ücretsiz kotayı korumak için ayrı istek yok)
-    topic = {"topic": forced_topic, "angle": "", "search_terms": []} if forced_topic \
+    topic = {"topic": forced_topic, "angle": "", "search_terms": [], "extra": extra or {}} if forced_topic \
         else {"topic": None, "past_titles": past_titles}
     script = write_script(llm, cfg, topic)
     log(f"Konu: {script['topic']['topic']}")
-    if cfg["llm"].get("fact_check", False):
+    extra = extra or {}
+    if extra.get("series"):
+        script["series"] = {"name": extra["series"], "episode": extra.get("episode")}
+        script["playlist"] = extra["series"]
+        script["description"] = (script["description"] + f"\n\n📁 {extra['series']} — Dosya #{extra.get('episode')}"
+                                 "\nYeni dosyalar her Salı ve Cuma 19:00'da. Serinin tamamı oynatma listesinde.")
+    if extra.get("tr"):
+        script["_tr"] = True
+    if cfg["llm"].get("fact_check", False) or extra.get("tr") or extra.get("series"):
         try:
             script = fact_check(llm, cfg, script)
         except Exception as e:

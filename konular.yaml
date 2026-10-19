@@ -1,7 +1,84 @@
 # Senin seçtiğin video konuları.
 # Tarih = videonun YAYINLANACAĞI gün (YYYY-AA-GG). O günün videosu bu konuyla hazırlanır.
 # Burada olmayan günlerde bot konuyu kendisi seçer.
-# Örnek:
-#   "2026-10-19": "Titanik neden battı? Bilinmeyen detaylar"
-#   "2026-10-21": "Osmanlı'da ilk kahvehaneler ve yasaklanması"
-{}
+# Basit kullanım:   "2026-10-21": "Osmanlı'da ilk kahvehaneler ve yasaklanması"
+# Seri bölümü:      konu + seri + bolum (+ sonraki: bir sonraki bölümün tanıtımı, notlar: özel kurallar)
+
+# ===================== VURGUN DOSYALARI (Salı ve Cuma) =====================
+"2026-10-23":
+  konu: "Bernie Madoff: Wall Street'in en saygın adamı tarihin en büyük saadet zincirini onlarca yıl nasıl gizledi?"
+  seri: "Vurgun Dosyaları"
+  bolum: 1
+  sonraki: "Salı günü: sanal ineklere yatırım yapan on binlerce insan — Çiftlik Bank"
+"2026-10-27":
+  konu: "Çiftlik Bank: sanal çiftlik oyunu ve yüksek kazanç vaadiyle kurulan saadet zinciri nasıl çöktü?"
+  seri: "Vurgun Dosyaları"
+  bolum: 2
+  tr: true
+  sonraki: "Cuma günü: 45 günde yüzde 50 kazanç vaat eden ve adını bir dolandırıcılık türüne veren adam — Charles Ponzi"
+  notlar: "Mehmet Aydın hakkında sadece mahkeme kararıyla kesinleşmiş bilgileri ve yaygın biçimde haberleşmiş temel olguları kullan. Ceza miktarını emin değilsen rakam vermeden 'ağır hapis cezası' diye aktar. Siyasi bağlantı iddialarına, siyasetçi isimlerine ve iade sürecindeki siyasi tartışmalara HİÇ girme."
+"2026-10-30":
+  konu: "Charles Ponzi: 45 günde yüzde 50 kazanç vaadi ve adını taşıyan dolandırıcılığın doğuşu"
+  seri: "Vurgun Dosyaları"
+  bolum: 3
+  sonraki: "Salı günü: bir gecede buharlaşan dev kripto borsası — FTX"
+"2026-11-03":
+  konu: "FTX: dünyanın en değerli kripto borsalarından biri birkaç günde nasıl çöktü?"
+  seri: "Vurgun Dosyaları"
+  bolum: 4
+  sonraki: "Cuma günü: Türkiye'de bir gecede kapanan kripto borsası — Thodex"
+"2026-11-06":
+  konu: "Thodex: Türkiye'nin büyük kripto borsası bir gecede nasıl kapandı ve yatırımcılar ne yaşadı?"
+  seri: "Vurgun Dosyaları"
+  bolum: 5
+  tr: true
+  sonraki: "Salı günü: tek bir çalışanın 233 yıllık bankayı batırması — Barings"
+  notlar: "Faruk Fatih Özer hakkında sadece mahkeme kararlarını ve resmî açıklamaları kullan. 2024'teki ölümü hakkında YALNIZCA resmî açıklamayı tek cümleyle aktar; ölümüyle ilgili hiçbir spekülasyon, iddia ya da yorum yapma. Siyasi yorum ve siyasetçi isimleri yok. Mağdurlara saygılı ol; odak: kripto borsalarında yatırımcının nasıl korunacağı."
+"2026-11-10":
+  konu: "Barings Bankası: tek bir çalışanın gizli işlemleri 233 yıllık bankayı nasıl batırdı? (Nick Leeson)"
+  seri: "Vurgun Dosyaları"
+  bolum: 6
+  sonraki: "Cuma günü: 1980'lerde Türkiye'yi sarsan bankerler krizi — Banker Kastelli"
+"2026-11-13":
+  konu: "Banker Kastelli ve 1982 Bankerler Krizi: yüksek faiz vaadi binlerce tasarruf sahibini nasıl mağdur etti?"
+  seri: "Vurgun Dosyaları"
+  bolum: 7
+  tr: true
+  sonraki: "Salı günü: tek damla kanla her şeyi test edeceğini söyleyen şirket — Theranos"
+  notlar: "Konuyu ekonomik mekanizma üzerinden anlat (yüksek faiz, mevduat sertifikası, zincirleme çöküş). Dönemin hükümeti, askerî yönetim, siyasetçiler ve siyasi olaylar hakkında HİÇBİR yorum, değerlendirme ya da suçlama yapma; dönemi sadece tarih olarak an. Cevher Özden hakkında sadece kesinleşmiş ve yaygın bilinen olguları kullan; kesin olmayan toplam rakamları 'tartışmalı' diye belirt."
+"2026-11-17":
+  konu: "Theranos: tek damla kanla yüzlerce test vaadi milyar dolarlık bir yalana nasıl dönüştü?"
+  seri: "Vurgun Dosyaları"
+  bolum: 8
+  sonraki: "Cuma günü: gerçek bir blokzinciri bile olmayan 'kripto para' — OneCoin"
+"2026-11-20":
+  konu: "OneCoin: gerçek bir blokzinciri olmayan kripto para milyarlarca doları nasıl topladı ve 'Kripto Kraliçe' nereye kayboldu?"
+  seri: "Vurgun Dosyaları"
+  bolum: 9
+  sonraki: "Salı günü: Amerika'nın en yenilikçi şirketi seçilen dev nasıl iflas etti — Enron"
+"2026-11-24":
+  konu: "Enron: Amerika'nın en yenilikçi şirketi seçilen enerji devi muhasebe hileleriyle nasıl çöktü?"
+  seri: "Vurgun Dosyaları"
+  bolum: 10
+  sonraki: "Cuma günü: var olmayan bir ülkeye göç etmek için para ödeyen insanlar — Poyais"
+"2026-11-27":
+  konu: "Poyais: var olmayan bir ülkenin tahvillerini satıp insanları o ülkeye göç ettiren adam (Gregor MacGregor)"
+  seri: "Vurgun Dosyaları"
+  bolum: 11
+  sonraki: "Salı günü: bilançodaki 1,9 milyar euro nereye kayboldu — Wirecard"
+"2026-12-01":
+  konu: "Wirecard: Almanya'nın yıldız teknoloji şirketinin bilançosundaki 1,9 milyar euro nasıl 'yok' çıktı?"
+  seri: "Vurgun Dosyaları"
+  bolum: 12
+  sonraki: "Cuma günü: Isaac Newton'ı bile batıran borsa balonu — South Sea"
+"2026-12-04":
+  konu: "South Sea Balonu (1720): Isaac Newton'ı bile servetinden eden ilk büyük borsa çılgınlığı"
+  seri: "Vurgun Dosyaları"
+  bolum: 13
+  sonraki: "Salı günü: serinin final dosyası — bir devlet fonundan kaybolan milyarlar, 1MDB"
+"2026-12-08":
+  konu: "1MDB: bir kalkınma fonundan milyarlarca dolar nasıl kayboldu ve Hollywood filmlerine nasıl aktı?"
+  seri: "Vurgun Dosyaları"
+  bolum: 14
+  sonraki: ""
+  notlar: "Malezya siyaseti, partiler ve hükümetler hakkında yorum yapma. Sadece mahkeme kararları (ör. eski başbakanın mahkûmiyeti — kararı doğru aktar) ve ABD Adalet Bakanlığı davaları gibi resmî kaynaklara dayan; paranın izlediği yolu anlat. Serinin son bölümü olduğunu belirt ve izleyiciye serinin tüm dosyalarını oynatma listesinden izleyebileceğini söyle."

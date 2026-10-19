@@ -43,7 +43,10 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
         return folder
     if folder is None:
         past = [h["title"] for h in load_history()]
-        script = script_writer.generate(cfg, past, topic)
+        extra = None
+        if isinstance(topic, dict):
+            topic, extra = topic["konu"], topic["extra"]
+        script = script_writer.generate(cfg, past, topic, extra)
         folder = OUTPUT / f"{datetime.now():%Y%m%d-%H%M}_{slugify(script['title'])}"
         folder.mkdir(parents=True, exist_ok=True)
         save_json(folder / "script.json", script)
@@ -84,8 +87,11 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
             run(["ffmpeg", "-y", "-ss", "1", "-i", str(first), "-frames:v", "1", str(thumb_bg)])
         else:
             shutil.copy(first, thumb_bg)
+    badge = None
+    if script.get("series"):
+        badge = f"{script['series']['name']} #{script['series'].get('episode')}"
     thumbnail.make_thumbnail(thumb_bg, script.get("thumbnail_text", script["title"]),
-                             folder / "thumbnail.jpg")
+                             folder / "thumbnail.jpg", badge)
     if cfg["upload"].get("thumbnail_variants", True):
         make_thumbnail_variants(cfg, script, folder, finder, thumb_bg)
 
@@ -151,12 +157,13 @@ def make_thumbnail_variants(cfg: dict, script: dict, folder: Path, finder, thumb
         out = ROOT / "kapaklar" / folder.name[:60]
         out.mkdir(parents=True, exist_ok=True)
         shutil.copy(folder / "thumbnail.jpg", out / "A.jpg")
-        thumbnail.make_thumbnail(thumb_bg, alts[0]["text"], out / "B.jpg")
+        badge = f"{script['series']['name']} #{script['series'].get('episode')}" if script.get("series") else None
+        thumbnail.make_thumbnail(thumb_bg, alts[0]["text"], out / "B.jpg", badge)
         if len(alts) > 1:
             bg_c = folder / "visuals" / "thumb_bg_c.png"
             if not bg_c.exists() and not (alts[1].get("prompt") and finder.ai_image(alts[1]["prompt"], bg_c)):
                 bg_c = thumb_bg
-            thumbnail.make_thumbnail(bg_c, alts[1]["text"], out / "C.jpg")
+            thumbnail.make_thumbnail(bg_c, alts[1]["text"], out / "C.jpg", badge)
         (out / "bilgi.txt").write_text(
             f"{script['title']}\nA: {script.get('thumbnail_text', '')}\n"
             + "\n".join(f"{'BC'[i]}: {a['text']}" for i, a in enumerate(alts)) + "\n", encoding="utf-8")
@@ -243,7 +250,7 @@ def publish_shorts(cfg: dict, folder: Path, script: dict, entry: dict) -> None:
         log(f"Shorts atlandı: {e}")
 
 
-def planned_topic(cfg: dict) -> str:
+def planned_topic(cfg: dict):
     """konular.yaml'da, sıradaki yayın gününe yazılmış bir konu varsa onu döndürür."""
     path = ROOT / "konular.yaml"
     if not path.exists():
@@ -254,8 +261,14 @@ def planned_topic(cfg: dict) -> str:
         taken = [h.get("publish_at") for h in load_history()]
         day = uploader.next_publish_time(cfg, taken).date().isoformat()
         topic = plan.get(day) or plan.get(str(day))
+        if isinstance(topic, dict):      # seri bölümü
+            topic = {"konu": topic.get("konu"), "extra": {
+                "series": topic.get("seri"), "episode": topic.get("bolum"), "next": topic.get("sonraki") or "",
+                "notes": topic.get("notlar") or "", "tr": bool(topic.get("tr"))}}
+            if not topic["konu"]:
+                return None
         if topic:
-            log(f"Yayın günü {day} için seçilmiş konu: {topic}")
+            log(f"Yayın günü {day} için seçilmiş konu: {topic if isinstance(topic, str) else topic['konu']}")
         return topic
     except Exception as e:
         log(f"  konular.yaml okunamadı: {e}")
