@@ -81,6 +81,12 @@ images:
   free_model: "flux"
   model: "gemini-2.5-flash-image"
 
+shorts:
+  enabled: true
+  per_video: 2               # Her uzun videodan kaç Short (2 ile başladık; tutarsa 3'e çıkarılabilir)
+  day_offset: 1              # Uzun video yayına girdikten kaç gün sonra
+  publish_times: ["12:00", "15:00", "21:00"]
+
 upload:
   enabled: true
   category_id: "27"          # 27 = Eğitim, 28 = Bilim ve Teknoloji

@@ -45,10 +45,11 @@ def write_ass(text: str, duration: float, path: Path, cfg: dict) -> None:
         "BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, "
         "BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
         f"Style: Default,{font},{size},&H00FFFFFF,&H000000FF,&H00000000,&H96000000,"
-        "-1,0,0,0,100,100,0,0,1,4,2,2,160,160,70,1\n\n"
+        f"-1,0,0,0,100,100,0,0,1,4,2,2,{v.get('subtitle_margin_lr', 160)},{v.get('subtitle_margin_lr', 160)},"
+        f"{v.get('subtitle_margin_v', 70)},1\n\n"
         "[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     )
-    parts = _chunks(text)
+    parts = _chunks(text, v.get("subtitle_words", 7))
     total_chars = sum(len(p) for p in parts) or 1
     t, lines = 0.0, []
     for p in parts:
@@ -84,10 +85,11 @@ def build_scene(idx: int, visual: Path, kind: str, audio: Path, text: str,
     else:
         frames = math.ceil(dur * fps) + 5
         # Sırayla yakınlaşma / uzaklaşma (Ken Burns efekti)
+        zm = v.get("zoom_max", 1.18)
         if idx % 2 == 0:
-            zoom = "min(zoom+0.0006,1.18)"
+            zoom = f"min(zoom+0.0006,{zm})"
         else:
-            zoom = "if(eq(on,0),1.18,max(zoom-0.0006,1.0))"
+            zoom = f"if(eq(on,0),{zm},max(zoom-0.0006,1.0))"
         inputs = ["-i", str(visual.resolve())]
         vf = (f"[0:v]scale={W * 3 // 2}:{H * 3 // 2}:force_original_aspect_ratio=increase,"
               f"crop={W * 3 // 2}:{H * 3 // 2},"

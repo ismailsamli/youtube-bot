@@ -145,6 +145,8 @@ def upload(video: Path, thumb: Path, script: dict, cfg: dict, publish_at: dateti
     video_id = response["id"]
     log(f"Yüklendi: https://youtu.be/{video_id}")
 
+    if thumb is None:
+        return video_id
     try:
         yt.thumbnails().set(videoId=video_id,
                             media_body=MediaFileUpload(str(thumb), mimetype="image/jpeg")).execute()

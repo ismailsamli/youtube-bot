@@ -16,7 +16,7 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 
-from bot import branding, editor, script_writer, thumbnail, tts, uploader
+from bot import branding, editor, script_writer, shorts, thumbnail, tts, uploader
 from bot.utils import ROOT, check_ffmpeg, load_config, load_json, log, media_duration, run, save_json, slugify
 from bot.visuals import VisualFinder
 
@@ -220,9 +220,27 @@ def publish(cfg: dict, folder: Path) -> None:
         publish_at = uploader.next_publish_time(cfg, taken)
         log(f"Yayın zamanı: {publish_at:%d.%m.%Y %H:%M}")
     vid = uploader.upload(folder / "video.mp4", folder / "thumbnail.jpg", script, cfg, publish_at)
-    add_history({"folder": folder.name, "title": script["title"], "status": "yüklendi",
-                 "video_id": vid, "publish_at": publish_at.isoformat() if publish_at else None,
-                 "comment": script.get("comment"), "playlist": script.get("playlist")})
+    entry = {"folder": folder.name, "title": script["title"], "status": "yüklendi",
+             "video_id": vid, "publish_at": publish_at.isoformat() if publish_at else None,
+             "comment": script.get("comment"), "playlist": script.get("playlist")}
+    add_history(entry)
+    publish_shorts(cfg, folder, script, entry)
+
+
+def publish_shorts(cfg: dict, folder: Path, script: dict, entry: dict) -> None:
+    """Uzun videodan Shorts üretip ertesi güne planlar. Hata olursa uzun video etkilenmez."""
+    if not cfg.get("shorts", {}).get("enabled", True) or not script.get("scenes"):
+        return
+    if any(h.get("folder", "").startswith(folder.name + "#short") for h in load_history()):
+        return
+    try:
+        def up(video, meta, when):
+            log(f"Short yükleniyor: {meta['title'][:60]} ({when:%d.%m %H:%M})")
+            return uploader.upload(video, None, meta, cfg, when)
+        for e in shorts.make_and_upload(cfg, folder, script, entry, up):
+            add_history(e)
+    except Exception as e:
+        log(f"Shorts atlandı: {e}")
 
 
 def planned_topic(cfg: dict) -> str:
@@ -275,7 +293,7 @@ def main():
 
     if args.max_queue and not args.resume:
         now = datetime.now().astimezone()
-        waiting = [h for h in load_history() if h.get("publish_at")
+        waiting = [h for h in load_history() if h.get("publish_at") and h.get("type") != "short"
                    and datetime.fromisoformat(h["publish_at"]) > now]
         if len(waiting) >= args.max_queue:
             log(f"Yayın sırasında zaten {len(waiting)} video var; bugün yeni video üretilmedi.")
