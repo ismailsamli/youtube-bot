@@ -26,7 +26,7 @@ channel:
     - beynin ve psikolojinin tuhaflıkları
 
 video:
-  target_minutes: 8          # 8-10 dk aralığının alt tarafı (yaklaşık 8,5 dk video)
+  target_minutes: 7.5        # metin süresi; hook + giriş animasyonu + bitiş ekranıyla toplam ~9 dk
   width: 1920
   height: 1080
   fps: 30
