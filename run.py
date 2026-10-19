@@ -86,6 +86,8 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
             shutil.copy(first, thumb_bg)
     thumbnail.make_thumbnail(thumb_bg, script.get("thumbnail_text", script["title"]),
                              folder / "thumbnail.jpg")
+    if cfg["upload"].get("thumbnail_variants", True):
+        make_thumbnail_variants(cfg, script, folder, finder, thumb_bg)
 
     log("Video montajı yapılıyor (bu adım birkaç dakika sürebilir)...")
     final = folder / "video.mp4"
@@ -139,6 +141,65 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
     return folder
 
 
+def make_thumbnail_variants(cfg: dict, script: dict, folder: Path, finder, thumb_bg: Path) -> None:
+    """Studio'daki 'Test ve karşılaştır' için 3 kapak: A (asıl), B (farklı yazı), C (farklı yazı + görsel).
+    kapaklar/<tarih>_<başlık>/ klasörüne kaydedilir (depoya eklenir)."""
+    try:
+        alts = [a for a in (script.get("thumbnail_alt") or []) if isinstance(a, dict) and a.get("text")][:2]
+        if not alts:
+            return
+        out = ROOT / "kapaklar" / folder.name[:60]
+        out.mkdir(parents=True, exist_ok=True)
+        shutil.copy(folder / "thumbnail.jpg", out / "A.jpg")
+        thumbnail.make_thumbnail(thumb_bg, alts[0]["text"], out / "B.jpg")
+        if len(alts) > 1:
+            bg_c = folder / "visuals" / "thumb_bg_c.png"
+            if not bg_c.exists() and not (alts[1].get("prompt") and finder.ai_image(alts[1]["prompt"], bg_c)):
+                bg_c = thumb_bg
+            thumbnail.make_thumbnail(bg_c, alts[1]["text"], out / "C.jpg")
+        (out / "bilgi.txt").write_text(
+            f"{script['title']}\nA: {script.get('thumbnail_text', '')}\n"
+            + "\n".join(f"{'BC'[i]}: {a['text']}" for i, a in enumerate(alts)) + "\n", encoding="utf-8")
+        log(f"  Kapak testi için 3 kapak hazır: kapaklar/{out.name}")
+    except Exception as e:
+        log(f"  Kapak seçenekleri üretilemedi: {e}")
+
+
+def channel_upkeep(cfg: dict) -> None:
+    """Videoları oynatma listelerine ekler, yayına girmiş videolara ilk yorumu yazar, kanal filigranını
+    bir kez ayarlar. Genişletilmiş YouTube izni yoksa atlar (izin yenilenince eksikleri tamamlar)."""
+    up = cfg["upload"]
+    if not (up.get("first_comment") or up.get("watermark") or up.get("playlists")):
+        return
+    try:
+        yt = uploader.get_service()
+    except BaseException as e:   # izin yoksa üretim yine de devam etsin
+        log(f"  Kanal bakımı atlandı: {e}")
+        return
+    if not uploader.can_manage():
+        log("  Yorum/filigran için YouTube izninin yenilenmesi gerekiyor (bir kez).")
+        return
+    state_file = ROOT / "data" / "kanal_durumu.json"
+    state = load_json(state_file, {})
+    if up.get("watermark") and not state.get("watermark"):
+        if uploader.set_watermark(yt, ROOT / "assets" / "filigran.png"):
+            state["watermark"] = datetime.now().isoformat(timespec="seconds")
+            save_json(state_file, state)
+    if up.get("playlists"):
+        for h in load_history():
+            if h.get("video_id") and h.get("playlist") and not h.get("playlist_done"):
+                if uploader.add_to_playlist(yt, h["video_id"], h["playlist"], cfg):
+                    add_history({**h, "playlist_done": True})
+    if up.get("first_comment"):
+        now = datetime.now().astimezone()
+        for h in load_history():
+            if (h.get("video_id") and h.get("comment") and not h.get("comment_done") and h.get("publish_at")
+                    and datetime.fromisoformat(h["publish_at"]) <= now):
+                if uploader.post_comment(yt, h["video_id"], h["comment"]):
+                    log(f"  İlk yorum yazıldı: {h['title'][:50]}")
+                    add_history({**h, "comment_done": True})
+
+
 def _script_from_meta(folder: Path) -> dict:
     """script.json yoksa youtube_bilgileri.txt'den başlık/açıklama/etiketleri okur."""
     text = (folder / "youtube_bilgileri.txt").read_text(encoding="utf-8")
@@ -160,7 +221,8 @@ def publish(cfg: dict, folder: Path) -> None:
         log(f"Yayın zamanı: {publish_at:%d.%m.%Y %H:%M}")
     vid = uploader.upload(folder / "video.mp4", folder / "thumbnail.jpg", script, cfg, publish_at)
     add_history({"folder": folder.name, "title": script["title"], "status": "yüklendi",
-                 "video_id": vid, "publish_at": publish_at.isoformat() if publish_at else None})
+                 "video_id": vid, "publish_at": publish_at.isoformat() if publish_at else None,
+                 "comment": script.get("comment"), "playlist": script.get("playlist")})
 
 
 def planned_topic(cfg: dict) -> str:
@@ -208,6 +270,9 @@ def main():
         publish(cfg, Path(args.upload_only))
         return
 
+    if do_upload:
+        channel_upkeep(cfg)
+
     if args.max_queue and not args.resume:
         now = datetime.now().astimezone()
         waiting = [h for h in load_history() if h.get("publish_at")
@@ -228,6 +293,7 @@ def main():
             folder = produce(cfg, folder, topic)
             if do_upload:
                 publish(cfg, folder)
+                channel_upkeep(cfg)
             if not args.keep_files:
                 cleanup(folder)
             log(f"Tamamlandı: {folder}")

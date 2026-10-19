@@ -224,6 +224,7 @@ def write_outline(llm, cfg: dict, topic: dict = None, past_titles: list = None) 
                  "Sıkıcı ansiklopedik konular yerine bir soru, sır, tehlike veya rekor etrafında kurulmuş, "
                  "8-10 dakikada anlatılabilecek bir konu seç.\n"
                  'JSON\'a ayrıca "topic" (konu) ve "angle" (videonun özgün, merak uyandıran bakış açısı) alanlarını ekle.')
+    playlists = " | ".join(cfg.get("upload", {}).get("playlists") or ["Genel"])
     prompt = f"""{cfg['video']['target_minutes']} dakikalık bir YouTube videosunun PLANINI çıkar.
 
 {intro}
@@ -254,9 +255,16 @@ PAKETLEME:
   (ör. "human brain", "Titanic wreck", "black hole"); sahne görseli bulunamazsa bununla aranır
 - "thumbnail_prompt": kapak görseli için İNGİLİZCE tarif (15-25 kelime): tek, net, dramatik bir ana nesne
   görselin SAĞ yarısında; sol yarı sade arka plan (oraya yazı gelecek); stil kelimesi yazma, yazı isteme
+- "thumbnail_alt": kapak TESTİ için 2 farklı alternatif: [{{"text": "...", "prompt": "..."}}, ...]. Her biri
+  "thumbnail_text" ile aynı kurallara uysun ama FARKLI bir duyguya/açıya oynasın (biri rakam/rekor, biri
+  korku/merak gibi); prompt farklı bir ana nesne veya an göstersin.
+- "playlist": videonun gireceği oynatma listesi; şunlardan TAM OLARAK birini aynen yaz: {playlists}
+- "comment": video yayına girince kanalın yazacağı ilk yorum: izleyicinin cevap vermek isteyeceği, konuyla
+  ilgili kısa, samimi bir soru (1-2 cümle, en fazla 1 emoji). Ör. "Sen olsan o dağda ilk ne yapardın? 👇"
 
 Sadece şu JSON'u döndür:
 {{"title": "...", "description": "...", "tags": ["..."], "thumbnail_text": "...", "search_en": "...", "thumbnail_prompt": "...",
+  "thumbnail_alt": [{{"text": "...", "prompt": "..."}}], "playlist": "...", "comment": "...",
   "sections": [{{"heading": "...", "goal": "...", "facts": ["..."]}}]}}"""
     log("Video planı yazılıyor...")
     return _ask_json(llm, _system(cfg), prompt, 4000, "sections")
@@ -276,7 +284,12 @@ def write_section(llm, cfg: dict, outline: dict, idx: int, scene_count: int,
                 "kısa, merak uyandıran bir soru sor. Abone çağrısı ve vedalaşma YAPMA (kapanış jeneriğinde var)."
                 if idx == len(sections) - 1 else
                 "Bu bir ara bölüm: bir önceki bölümden doğal bir geçişle başla, selamlama veya kapanış yapma. "
-                "Bölümün son sahnesi bir sonraki bölüme merak bırakan kısa bir köprü cümlesiyle bitsin.")
+                "Bölümün son sahnesi bir sonraki bölüme merak bırakan kısa bir köprü cümlesiyle bitsin."
+                + (" ABONE ÇAĞRISI: bu bölümün son sahnesinde, köprü cümlesinden hemen ÖNCE, hikâyeyi bölmeden "
+                   "tek cümlelik doğal bir abone çağrısı yap; izleyiciye neden abone olması gerektiğini söyle "
+                   "(ör. 'Bu tür gerçek hikâyeleri seviyorsan, her akşam 19:00'da yenisi geliyor; abone olursan "
+                   "kaçırmazsın.'). Kelime sınırına dahildir; yalvarma, abartma."
+                   if idx == max(1, round(len(sections) * 0.4)) else ""))
     prompt = f"""Video başlığı: {outline.get('title', '')}
 
 Videonun bölüm planı:
@@ -322,7 +335,7 @@ def write_script(llm, cfg: dict, topic: dict) -> dict:
         scenes.extend(part)
         previous = " ".join(s.get("text", "") for s in part[-2:])
     script = {k: outline.get(k) for k in ("title", "description", "tags", "thumbnail_text",
-                                           "thumbnail_prompt")}
+                                           "thumbnail_prompt", "thumbnail_alt", "playlist", "comment")}
     script["scenes"] = scenes
     script["sections"] = [s.get("heading", "") for s in sections]
     script["topic"] = {"topic": outline.get("topic") or topic.get("topic"),

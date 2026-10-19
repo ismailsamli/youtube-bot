@@ -7,7 +7,10 @@ from zoneinfo import ZoneInfo
 
 from .utils import ROOT, log
 
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+SCOPES = ["https://www.googleapis.com/auth/youtube.upload",
+          "https://www.googleapis.com/auth/youtube.force-ssl"]
+MANAGE = "https://www.googleapis.com/auth/youtube.force-ssl"
+_STATE = {"scopes": set()}
 CLIENT_SECRET = ROOT / "client_secret.json"
 TOKEN = ROOT / "token.json"
 
@@ -45,7 +48,8 @@ def get_service():
         raise SystemExit("HATA: client_secret.json bulunamadı. README'deki 'YouTube bağlantısı' adımını uygula.")
     creds = None
     if TOKEN.exists():
-        creds = Credentials.from_authorized_user_file(str(TOKEN), SCOPES)
+        # izindeki kendi kapsamlarıyla yüklenir (eski izin yeni kapsam istemeden çalışmaya devam eder)
+        creds = Credentials.from_authorized_user_file(str(TOKEN))
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             try:
@@ -60,6 +64,7 @@ def get_service():
             flow = InstalledAppFlow.from_client_secrets_file(str(CLIENT_SECRET), SCOPES)
             creds = flow.run_local_server(port=0)
         TOKEN.write_text(creds.to_json(), encoding="utf-8")
+    _STATE["scopes"] = set(creds.scopes or [])
     return build("youtube", "v3", credentials=creds, cache_discovery=False)
 
 
@@ -147,3 +152,79 @@ def upload(video: Path, thumb: Path, script: dict, cfg: dict, publish_at: dateti
     except HttpError as e:
         log(f"Kapak yüklenemedi (kanalın telefonla doğrulanmış olması gerekir): {e}")
     return video_id
+
+
+def can_manage() -> bool:
+    """Oynatma listesi / yorum / filigran için genişletilmiş izin var mı?"""
+    return MANAGE in _STATE["scopes"]
+
+
+def _pick_playlist(name: str, cfg: dict) -> str:
+    names = cfg["upload"].get("playlists") or []
+    if name in names:
+        return name
+    low = name.lower()
+    for n in names:
+        if low in n.lower() or n.lower() in low:
+            return n
+    return None
+
+
+def add_to_playlist(yt, video_id: str, name: str, cfg: dict) -> bool:
+    from googleapiclient.errors import HttpError
+    title = _pick_playlist(name, cfg)
+    if not title:
+        log(f"  Oynatma listesi eşleşmedi: {name}")
+        return True          # tekrar denemenin anlamı yok
+    try:
+        pid = None
+        req = yt.playlists().list(part="snippet", mine=True, maxResults=50)
+        while req is not None and pid is None:
+            res = req.execute()
+            for it in res.get("items", []):
+                if it["snippet"]["title"] == title:
+                    pid = it["id"]
+                    break
+            req = yt.playlists().list_next(req, res)
+        if pid is None:
+            pid = yt.playlists().insert(part="snippet,status", body={
+                "snippet": {"title": title, "defaultLanguage": "tr",
+                            "description": f"{title} — Kırmızı Kravat. Her akşam 19:00'da yeni bir gerçek hikâye."},
+                "status": {"privacyStatus": "public"}}).execute()["id"]
+            log(f"  Yeni oynatma listesi oluşturuldu: {title}")
+        yt.playlistItems().insert(part="snippet", body={"snippet": {
+            "playlistId": pid, "resourceId": {"kind": "youtube#video", "videoId": video_id}}}).execute()
+        log(f"  Oynatma listesine eklendi: {title}")
+        return True
+    except HttpError as e:
+        log(f"  Oynatma listesine eklenemedi: {str(e)[:200]}")
+        return False
+
+
+def post_comment(yt, video_id: str, text: str) -> bool:
+    from googleapiclient.errors import HttpError
+    try:
+        yt.commentThreads().insert(part="snippet", body={"snippet": {
+            "videoId": video_id, "topLevelComment": {"snippet": {"textOriginal": text}}}}).execute()
+        return True
+    except HttpError as e:
+        log(f"  İlk yorum yazılamadı ({video_id}): {str(e)[:200]}")
+        return False
+
+
+def set_watermark(yt, image: Path) -> bool:
+    """Videoların sağ alt köşesinde 'abone ol' filigranı (videonun tamamında görünür)."""
+    from googleapiclient.errors import HttpError
+    from googleapiclient.http import MediaFileUpload
+    try:
+        ch = yt.channels().list(part="id", mine=True).execute()["items"][0]["id"]
+        yt.watermarks().set(channelId=ch, body={
+            "timing": {"type": "offsetFromStart", "offsetMs": 0},
+            "position": {"type": "corner", "cornerPosition": "bottomRight"},
+            "targetChannelId": ch,
+        }, media_body=MediaFileUpload(str(image), mimetype="image/png")).execute()
+        log("Kanal filigranı (abone ol) ayarlandı.")
+        return True
+    except HttpError as e:
+        log(f"Filigran ayarlanamadı: {str(e)[:200]}")
+        return False

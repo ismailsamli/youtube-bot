@@ -91,3 +91,15 @@ upload:
   publish_times: ["19:00"]   # Örn: ["12:00", "19:00"] günde iki video
   # true: videolar "özel" yüklenir, belirlenen saatte otomatik herkese açılır
   schedule: true
+  # Oynatma listeleri: bot her videoyu konusuna göre bunlardan birine ekler (liste yoksa kendisi oluşturur)
+  playlists:
+    - "Hayatta Kalma Hikâyeleri"
+    - "Tarihin Karanlık Sırları"
+    - "Uzayın ve Bilimin Gizemleri"
+    - "İnsan Vücudu ve Beynin Tuhaflıkları"
+    - "Doğanın Gücü: Afetler ve Canlılar"
+    - "Çözülemeyen Gizemler"
+    - "Anadolu ve Osmanlı'nın Bilinmeyenleri"
+  first_comment: true        # Video yayına girince kanal, izleyiciye soru soran ilk yorumu yazar
+  watermark: true            # Videolarda köşede "abone ol" filigranı (kravat logosu), bir kez ayarlanır
+  thumbnail_variants: true   # Her video için 3 kapak üretilir (kapaklar/ klasörü): Studio'da "Test ve karşılaştır" için
