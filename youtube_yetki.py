@@ -20,7 +20,8 @@ from bot.secure import encrypt_token
 ROOT = Path(__file__).resolve().parent
 # upload: video yükleme · force-ssl: oynatma listesi, ilk yorum ve filigran
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload",
-          "https://www.googleapis.com/auth/youtube.force-ssl"]
+          "https://www.googleapis.com/auth/youtube.force-ssl",
+          "https://www.googleapis.com/auth/yt-analytics.readonly"]
 os.environ.setdefault("OAUTHLIB_RELAX_TOKEN_SCOPE", "1")
 REDIRECT = "http://localhost:8080/"
 

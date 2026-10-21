@@ -8,7 +8,8 @@ from zoneinfo import ZoneInfo
 from .utils import ROOT, log
 
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload",
-          "https://www.googleapis.com/auth/youtube.force-ssl"]
+          "https://www.googleapis.com/auth/youtube.force-ssl",
+          "https://www.googleapis.com/auth/yt-analytics.readonly"]
 MANAGE = "https://www.googleapis.com/auth/youtube.force-ssl"
 _STATE = {"scopes": set()}
 CLIENT_SECRET = ROOT / "client_secret.json"
