@@ -75,6 +75,7 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
         if (i + 1) % 10 == 0 or i + 1 == len(audios):
             log(f"  görsel {i + 1}/{len(audios)}")
 
+    log(f"  Yapay zeka çizimi: {getattr(finder, 'cf_count', 0)}/{len(visuals)} sahne")
     log("Kapak fotoğrafı hazırlanıyor...")
     thumb_bg = folder / "visuals" / "thumb_bg.png"
     if not thumb_bg.exists() and not finder.ai_image(script["thumbnail_prompt"], thumb_bg):

@@ -297,14 +297,24 @@ class VisualFinder:
                 else:
                     data = b""
                     txt = r.text[:300]
-                    if r.status_code in (401, 403, 404) or "allocation" in txt.lower() or "4006" in txt:
-                        self.dead.add("cloudflare")
-                        log(f"  Cloudflare kullanılamıyor ({r.status_code}): {txt}. Kalan sahnelerde fotoğraf kullanılacak.")
-                        return False
+                    quota = "allocation" in txt.lower() or "4006" in txt
+                    if quota or r.status_code in (401, 403, 404):
+                        # tek seferlik bir hata yüzünden tüm videoyu fotoğrafa düşürme: 3 kez üst üste olursa kapat
+                        self._cf_fail = getattr(self, "_cf_fail", 0) + 1
+                        if quota or self._cf_fail >= 3:
+                            self.dead.add("cloudflare")
+                            log(f"  Cloudflare kullanılamıyor ({r.status_code}): {txt}. "
+                                f"{'Günlük ücretsiz kota doldu. ' if quota else ''}Kalan sahnelerde fotoğraf kullanılacak.")
+                            return False
+                        log(f"  Cloudflare geçici erişim hatası ({r.status_code}): {txt[:150]}")
+                        time.sleep(5)
+                        continue
                     log(f"  Cloudflare hatası ({r.status_code}): {txt}")
                 if data:
                     img = Image.open(io.BytesIO(data)).convert("RGB")
                     fit_16_9(img, style=False).save(path, "PNG")
+                    self._cf_fail = 0
+                    self.cf_count = getattr(self, "cf_count", 0) + 1
                     return True
             except Exception as e:
                 log(f"  Cloudflare görsel hatası: {e}")
