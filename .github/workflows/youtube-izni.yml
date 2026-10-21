@@ -38,6 +38,7 @@ jobs:
         if: startsWith(inputs.adim, '1') && inputs.adres == ''
         run: |
           LINK=$(python youtube_yetki.py link)
+          echo "::notice title=İzin bağlantısı::$LINK"
           {
             echo "## 1. adım: Bu bağlantıyı aç ve izin ver"
             echo ""
