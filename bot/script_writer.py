@@ -156,6 +156,8 @@ def _system(cfg: dict) -> str:
         "- Sağlık, finans ve hukuk konusunda tavsiye verme.\n"        "- Güncel siyaset, seçimler, siyasi partiler ve terör örgütleri konularına girme; "
         "dini ve etnik gruplar hakkında tartışmalı/kışkırtıcı içerik üretme.\n"
         "- Clickbait yalan söyleme: başlık ve kapak, videoda gerçekten anlatılanı vaat etmeli.\n"
+        "- Sağlık ve vücut konularında nadir durumları genel kural gibi sunma, korku yayma; "
+        "'olabilir', 'nadiren' gibi doğru ifadeler kullan (başlıklarda da).\n"
         "- Doğal, akıcı, konuşma dilinde Türkçe yaz; yapay zeka gibi kalıp cümleler kurma.\n"
         "- Her zaman sadece istenen JSON'u döndür."
     )

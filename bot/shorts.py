@@ -123,7 +123,7 @@ Bu videodan {count} adet YouTube Shorts senaryosu çıkar. Her Short:
 - KENDİ BAŞINA anlaşılsın: ilk cümle doğrudan kanca (izleyici 1 saniyede kaydırmasın), sonra 3-5 cümlede
   mini hikâye, sonunda merak bırakan bir cümle. Sonucu/sırrın cevabını tamamen VERME.
 - Son sahne tam olarak şu olsun: "Hikâyenin tamamı Kırmızı Kravat kanalında."
-- Toplam 125-145 kelime (EN AZ 125), 7-9 sahne (her sahne 14-20 kelime). Sadece videodaki doğru bilgileri kullan.
+- Toplam 110-125 kelime, 7-8 sahne (her sahne 13-18 kelime). Sadece videodaki doğru bilgileri kullan.
 - Her sahne için "src": o sahneye en uygun görselin bulunduğu uzun video sahne numarası.
 - "title": en fazla 70 karakter, merak uyandıran dürüst Türkçe başlık (hashtag yazma).
 - "headline": ekranın üstünde duracak 2-5 kelimelik çarpıcı başlık (ör. "72 GÜN KARDA").

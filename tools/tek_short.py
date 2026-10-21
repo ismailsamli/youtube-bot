@@ -29,7 +29,7 @@ def main():
 
 Bu konu için tek bir YouTube Shorts senaryosu yaz:
 - İlk cümle doğrudan kanca; 3-5 cümlede mini hikâye; sonu merak bırakan bir cümle.
-- Toplam 125-145 kelime (EN AZ 125), 7-9 sahne (her sahne 14-20 kelime). Sadece doğrulanabilir bilgiler.
+- Toplam 110-125 kelime, 7-8 sahne (her sahne 13-18 kelime). Sadece doğrulanabilir bilgiler.
 - Her sahne için "prompt": sahnenin çizilecek görüntüsünü anlatan 15-30 kelimelik İNGİLİZCE tarif
   (somut nesne/sahne; stil kelimesi, yazı, gerçek kişi yüzü YOK).
 - "title": en fazla 70 karakter dürüst, merak uyandıran başlık; "headline": 2-5 kelimelik ekran başlığı;
