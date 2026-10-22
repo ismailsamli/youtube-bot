@@ -4,6 +4,10 @@
 # Basit kullanım:   "2026-10-21": "Osmanlı'da ilk kahvehaneler ve yasaklanması"
 # Seri bölümü:      konu + seri + bolum (+ sonraki: bir sonraki bölümün tanıtımı, notlar: özel kurallar)
 
+"2026-10-25":
+  konu: "Beyniniz size her gün bu 5 yalanı söylüyor: algı, hafıza, zaman ve görmediğiniz şeyler"
+  notlar: "Kanalın en çok izlenen 'Vücudunuz Gözlerinizin Var Olduğunu BİLMİYOR' videosunun devamı niteliğinde. Başlık izleyiciye doğrudan seslensin (ör. 'Beyniniz Size Her Gün Bu 5 YALANI Söylüyor'). Her yalan bilimsel olarak doğrulanmış bir algı/beyin olgusu olsun (kör nokta, değişim körlüğü, sahte anılar, zaman algısı, sakkadik maskeleme gibi); abartma ve sağlık tavsiyesi verme. Son bölümde göz videosuna doğal bir atıf yap ('gözlerinin var olduğunu vücudunun bile bilmediğini anlattığımız videoyu izlemediysen...')."
+
 # ===================== VURGUN DOSYALARI (Salı ve Cuma) =====================
 "2026-10-23":
   konu: "Bernie Madoff: Wall Street'in en saygın adamı tarihin en büyük saadet zincirini onlarca yıl nasıl gizledi?"
