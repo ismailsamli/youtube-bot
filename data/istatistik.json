@@ -1,60 +1,46 @@
 {
-  "from": "2026-10-07",
-  "to": "2026-10-21",
+  "from": "2026-10-15",
+  "to": "2026-10-22",
   "total": {
-    "views": 363,
-    "subscribersGained": 1,
+    "views": 290,
+    "subscribersGained": 0,
     "subscribersLost": 1,
-    "estimatedMinutesWatched": 178
+    "estimatedMinutesWatched": 149
   },
   "traffic": {
-    "SUBSCRIBER": 269,
-    "RELATED_VIDEO": 43,
-    "YT_SEARCH": 30,
-    "YT_CHANNEL": 16,
-    "NOTIFICATION": 3,
+    "SUBSCRIBER": 230,
+    "RELATED_VIDEO": 31,
+    "YT_SEARCH": 20,
+    "YT_CHANNEL": 7,
     "NO_LINK_OTHER": 1,
     "YT_OTHER_PAGE": 1
   },
   "videos": [
     {
       "video": "4HDIsTkqMD8",
-      "views": 238,
-      "estimatedMinutesWatched": 133,
-      "averageViewDuration": 120,
-      "averageViewPercentage": 22.95,
+      "views": 212,
+      "estimatedMinutesWatched": 112,
+      "averageViewDuration": 128,
+      "averageViewPercentage": 24.52,
       "subscribersGained": 0,
-      "likes": 1,
-      "comments": 1,
+      "likes": 0,
+      "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "Okyanusun 30 Metre Altında 60 Saat: Nasıl SAĞ Kaldı?"
     },
     {
       "video": "C_fGGF4AKcY",
-      "views": 79,
-      "estimatedMinutesWatched": 24,
-      "averageViewDuration": 80,
-      "averageViewPercentage": 15.879999999999999,
+      "views": 45,
+      "estimatedMinutesWatched": 19,
+      "averageViewDuration": 184,
+      "averageViewPercentage": 36.32,
       "subscribersGained": 0,
-      "likes": 1,
+      "likes": 0,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "Dünyanın En Derin Çukuru: 12.000 Metrede Neden DURDULAR?"
-    },
-    {
-      "video": "bveOmbncP04",
-      "views": 13,
-      "estimatedMinutesWatched": 2,
-      "averageViewDuration": 23,
-      "averageViewPercentage": 4.18,
-      "subscribersGained": 0,
-      "likes": 2,
-      "comments": 0,
-      "shares": 0,
-      "type": "VIDEO",
-      "title": "Zaman Neden Hızlanır? Yaşlandıkça Akıp Giden Yılların Sırrı"
     },
     {
       "video": "rneyASFOJtM",
@@ -68,19 +54,6 @@
       "shares": 0,
       "type": "VIDEO",
       "title": "Göbeklitepe'yi Neden Kendi Elleriyle GÖMDÜLER?"
-    },
-    {
-      "video": "GWPpMk12YOE",
-      "views": 6,
-      "estimatedMinutesWatched": 0,
-      "averageViewDuration": 22,
-      "averageViewPercentage": 5.16,
-      "subscribersGained": 0,
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "type": "VIDEO",
-      "title": "2 Dakikada Kalbi DURDURAN Canlı: Kutu Denizanası"
     },
     {
       "video": "Ok6y_7YSfG8",
@@ -122,6 +95,19 @@
       "title": "Uçak Kazasından Sonra ANDEZ Dağları'nda 72 Gün Nasıl HAYATTA Kaldılar?"
     },
     {
+      "video": "bveOmbncP04",
+      "views": 4,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 6,
+      "averageViewPercentage": 1.1,
+      "subscribersGained": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "Zaman Neden Hızlanır? Yaşlandıkça Akıp Giden Yılların Sırrı"
+    },
+    {
       "video": "b1K17Xx2H7g",
       "views": 3,
       "estimatedMinutesWatched": 0,
@@ -135,11 +121,24 @@
       "title": "Asıl Kararları Sen Değil, Beynindeki Bu İki Parça Veriyor"
     },
     {
-      "video": "nuQitM3kyrk",
-      "views": 2,
+      "video": "GWPpMk12YOE",
+      "views": 3,
       "estimatedMinutesWatched": 0,
-      "averageViewDuration": 12,
-      "averageViewPercentage": 4.19,
+      "averageViewDuration": 35,
+      "averageViewPercentage": 8.1,
+      "subscribersGained": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "2 Dakikada Kalbi DURDURAN Canlı: Kutu Denizanası"
+    },
+    {
+      "video": "nuQitM3kyrk",
+      "views": 1,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 1,
+      "averageViewPercentage": 0.37,
       "subscribersGained": 0,
       "likes": 0,
       "comments": 0,
