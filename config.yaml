@@ -10,6 +10,8 @@ channel:
   # Kanalın odaklanacağı alt konular (bot bunlardan seçer, boş bırakırsan serbest seçer)
   topic_pool:
     - insan vücudunun şaşırtıcı gerçekleri
+    - izleyicinin kendi vücudu/beyni hakkında sezgiye ters gerçekler ("vücudun sana bunu söylemiyor" tarzı; kanalda en çok izlenenlerden)
+    - beyninin seni her gün kandırdığı şeyler (algı, hafıza, zaman)
     - uzayın korkutucu gerçekleri
     - tarihin karanlık sırları ve az bilinen olayları
     - çözülememiş gizemler

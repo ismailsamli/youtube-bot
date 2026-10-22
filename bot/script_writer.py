@@ -262,7 +262,8 @@ Her bölüm için "heading" (kısa başlık), "goal" (bölümün amacı, 1 cüml
 PAKETLEME:
 - "title": en fazla 65 karakter; tıklamak istetecek, merak boşluğu bırakan ama DÜRÜST Türkçe başlık.
   Etkili kalıplar: soru ("... Neden ...?"), şaşırtıcı iddia ("... Aslında ..."), rakam/rekor, "ya olsaydı"
-  senaryosu. Büyük harfle tek bir vurgu kelimesi kullanabilirsin. Videoda olmayan bir şeyi vaat etme.
+  senaryosu. Konu uygunsa izleyiciye doğrudan seslenen, kendi vücudu/hayatıyla ilgili sezgiye ters iddia
+  (ör. "Vücudunuz Gözlerinizin Var Olduğunu BİLMİYOR") kanalda en iyi sonucu verdi. Büyük harfle tek bir vurgu kelimesi kullanabilirsin. Videoda olmayan bir şeyi vaat etme.
 - "description": 3 kısa paragraf Türkçe açıklama (ilk 2 satır aramada görünecek şekilde güçlü), ardından 3-5 hashtag
 - "tags": 10-15 Türkçe etiket
 - "thumbnail_text": kapakta DEV harflerle yazacak EN FAZLA 3 kelime (tercihen 2), her kelime en fazla
