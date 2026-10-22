@@ -46,7 +46,16 @@ def main():
     except Exception as e:
         sources = {"hata": str(e)[:100]}
 
-    out = {"from": str(start), "to": str(end), "total": total, "traffic": sources, "videos": []}
+    try:   # günlük seyir
+        dd = ya.reports().query(ids="channel==MINE", startDate=str(start), endDate=str(end),
+                                metrics="views,subscribersGained,subscribersLost,estimatedMinutesWatched",
+                                dimensions="day", sort="day").execute()
+        daily = dd.get("rows", [])
+    except Exception as e:
+        daily = [["hata", str(e)[:100]]]
+    out = {"from": str(start), "to": str(end), "total": total, "traffic": sources, "daily": daily, "videos": []}
+    for r in daily:
+        print("GÜN " + " ".join(str(x) for x in r))
     print(f"KANAL {start}..{end}: izlenme {total.get('views')}, +abone {total.get('subscribersGained')}, "
           f"-abone {total.get('subscribersLost')}, izlenme dk {total.get('estimatedMinutesWatched')}")
     print("TRAFİK: " + ", ".join(f"{k}={v}" for k, v in sources.items()))
