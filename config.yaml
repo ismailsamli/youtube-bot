@@ -67,6 +67,7 @@ images:
   # "none"       = sadece fotoğraf + kâğıt kesme efekti
   provider: "cloudflare"
   cf_model: "@cf/black-forest-labs/flux-1-schnell"
+  cf_steps: 4                # 4 adım = modelin önerdiği değer; ücretsiz günlük kotayı yarı yarıya korur
   # Kanalın sabit çizim tarzı (her sahnenin tarifine eklenir)
   style_prompt: >-
     Handmade layered paper-cut craft diorama illustration, made entirely of cut and folded colored paper,

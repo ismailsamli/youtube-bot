@@ -69,6 +69,10 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
     finder = VisualFinder(cfg, folder / "visuals")
     t = script.get("topic") or {}
     finder.topic = (t.get("search_en") or t.get("topic") or "")[:60]
+    # Kapak çizimi önce: günlük ücretsiz çizim kotası biterse en önemli görsel kapak olsun
+    thumb_bg = folder / "visuals" / "thumb_bg.png"
+    if not thumb_bg.exists():
+        finder.ai_image(script["thumbnail_prompt"], thumb_bg)
     visuals = []
     for i, (scene, audio) in enumerate(zip(script["scenes"], audios)):
         visuals.append(finder.get(scene, i, media_duration(audio)))
@@ -77,8 +81,7 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
 
     log(f"  Yapay zeka çizimi: {getattr(finder, 'cf_count', 0)}/{len(visuals)} sahne")
     log("Kapak fotoğrafı hazırlanıyor...")
-    thumb_bg = folder / "visuals" / "thumb_bg.png"
-    if not thumb_bg.exists() and not finder.ai_image(script["thumbnail_prompt"], thumb_bg):
+    if not thumb_bg.exists():
         # Yapay zeka yoksa ilk görselden bir kare kullan
         first, kind = visuals[0]
         ham = first.with_name(first.stem + "_ham.png")

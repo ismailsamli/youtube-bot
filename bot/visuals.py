@@ -288,7 +288,7 @@ class VisualFinder:
         for attempt in range(3):
             try:
                 r = requests.post(url, headers={"Authorization": f"Bearer {tok}"},
-                                  json={"prompt": full, "steps": 8}, timeout=120)
+                                  json={"prompt": full, "steps": int(self.cfg["images"].get("cf_steps", 4))}, timeout=120)
                 if r.ok and r.headers.get("content-type", "").startswith("image"):
                     data = r.content
                 elif r.ok:
@@ -314,7 +314,9 @@ class VisualFinder:
                     img = Image.open(io.BytesIO(data)).convert("RGB")
                     # okunaklılık kontrolü: çok karanlık / düz (kontrastsız) çizimi bir kez daha, aydınlık iste
                     st = ImageStat.Stat(img.convert("L"))
-                    if (st.mean[0] < 60 or st.stddev[0] < 30) and not getattr(self, "_cf_retry", False):
+                    if ((st.mean[0] < 60 or st.stddev[0] < 30) and not getattr(self, "_cf_retry", False)
+                            and getattr(self, "_cf_retries", 0) < 4):   # kota için en fazla 4 tekrar
+                        self._cf_retries = getattr(self, "_cf_retries", 0) + 1
                         self._cf_retry = True
                         try:
                             ok = self.cloudflare_image("brightly lit, clear and simple, close-up of " + prompt, path)
