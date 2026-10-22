@@ -1,42 +1,150 @@
 {
-  "from": "2026-10-15",
+  "from": "2026-10-06",
   "to": "2026-10-22",
   "total": {
-    "views": 290,
-    "subscribersGained": 0,
+    "views": 395,
+    "subscribersGained": 2,
     "subscribersLost": 1,
-    "estimatedMinutesWatched": 149
+    "estimatedMinutesWatched": 231
   },
   "traffic": {
-    "SUBSCRIBER": 230,
-    "RELATED_VIDEO": 31,
-    "YT_SEARCH": 20,
-    "YT_CHANNEL": 7,
-    "NO_LINK_OTHER": 1,
-    "YT_OTHER_PAGE": 1
+    "SUBSCRIBER": 270,
+    "RELATED_VIDEO": 53,
+    "YT_SEARCH": 35,
+    "YT_CHANNEL": 30,
+    "NOTIFICATION": 4,
+    "YT_OTHER_PAGE": 2,
+    "NO_LINK_OTHER": 1
   },
+  "daily": [
+    [
+      "2026-10-06",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-07",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-08",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-09",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-10",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-11",
+      7,
+      1,
+      0,
+      2
+    ],
+    [
+      "2026-10-12",
+      6,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-13",
+      17,
+      0,
+      0,
+      20
+    ],
+    [
+      "2026-10-14",
+      43,
+      0,
+      0,
+      5
+    ],
+    [
+      "2026-10-15",
+      197,
+      0,
+      0,
+      77
+    ],
+    [
+      "2026-10-16",
+      44,
+      0,
+      1,
+      13
+    ],
+    [
+      "2026-10-17",
+      16,
+      0,
+      0,
+      9
+    ],
+    [
+      "2026-10-18",
+      14,
+      0,
+      0,
+      38
+    ],
+    [
+      "2026-10-19",
+      19,
+      0,
+      0,
+      10
+    ],
+    [
+      "2026-10-20",
+      32,
+      1,
+      0,
+      52
+    ]
+  ],
   "videos": [
     {
       "video": "4HDIsTkqMD8",
-      "views": 212,
-      "estimatedMinutesWatched": 112,
-      "averageViewDuration": 128,
-      "averageViewPercentage": 24.52,
+      "views": 243,
+      "estimatedMinutesWatched": 140,
+      "averageViewDuration": 117,
+      "averageViewPercentage": 22.3,
       "subscribersGained": 0,
-      "likes": 0,
-      "comments": 0,
+      "likes": 2,
+      "comments": 1,
       "shares": 0,
       "type": "VIDEO",
       "title": "Okyanusun 30 Metre Altında 60 Saat: Nasıl SAĞ Kaldı?"
     },
     {
       "video": "C_fGGF4AKcY",
-      "views": 45,
-      "estimatedMinutesWatched": 19,
-      "averageViewDuration": 184,
-      "averageViewPercentage": 36.32,
+      "views": 81,
+      "estimatedMinutesWatched": 24,
+      "averageViewDuration": 76,
+      "averageViewPercentage": 15.03,
       "subscribersGained": 0,
-      "likes": 0,
+      "likes": 2,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
@@ -44,29 +152,55 @@
     },
     {
       "video": "rneyASFOJtM",
-      "views": 8,
-      "estimatedMinutesWatched": 8,
-      "averageViewDuration": 74,
-      "averageViewPercentage": 12.22,
+      "views": 18,
+      "estimatedMinutesWatched": 39,
+      "averageViewDuration": 141,
+      "averageViewPercentage": 23.16,
       "subscribersGained": 0,
-      "likes": 0,
+      "likes": 2,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "Göbeklitepe'yi Neden Kendi Elleriyle GÖMDÜLER?"
     },
     {
-      "video": "Ok6y_7YSfG8",
-      "views": 5,
-      "estimatedMinutesWatched": 6,
-      "averageViewDuration": 136,
-      "averageViewPercentage": 23.32,
+      "video": "bveOmbncP04",
+      "views": 14,
+      "estimatedMinutesWatched": 2,
+      "averageViewDuration": 23,
+      "averageViewPercentage": 4.18,
       "subscribersGained": 0,
-      "likes": 0,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "Zaman Neden Hızlanır? Yaşlandıkça Akıp Giden Yılların Sırrı"
+    },
+    {
+      "video": "Ok6y_7YSfG8",
+      "views": 11,
+      "estimatedMinutesWatched": 10,
+      "averageViewDuration": 89,
+      "averageViewPercentage": 15.299999999999999,
+      "subscribersGained": 0,
+      "likes": 1,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "3.000 Metreden Düştü: Amazon'da 11 Gün Nasıl SAĞ Kaldı?"
+    },
+    {
+      "video": "GWPpMk12YOE",
+      "views": 8,
+      "estimatedMinutesWatched": 6,
+      "averageViewDuration": 89,
+      "averageViewPercentage": 20.18,
+      "subscribersGained": 0,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "2 Dakikada Kalbi DURDURAN Canlı: Kutu Denizanası"
     },
     {
       "video": "zBesBidHrUo",
@@ -83,68 +217,81 @@
     },
     {
       "video": "Ulj2DL8wnTA",
-      "views": 4,
+      "views": 5,
       "estimatedMinutesWatched": 0,
-      "averageViewDuration": 10,
-      "averageViewPercentage": 2.42,
+      "averageViewDuration": 7,
+      "averageViewPercentage": 1.8399999999999999,
       "subscribersGained": 0,
-      "likes": 0,
+      "likes": 1,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "Uçak Kazasından Sonra ANDEZ Dağları'nda 72 Gün Nasıl HAYATTA Kaldılar?"
     },
     {
-      "video": "bveOmbncP04",
-      "views": 4,
-      "estimatedMinutesWatched": 0,
-      "averageViewDuration": 6,
-      "averageViewPercentage": 1.1,
-      "subscribersGained": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "type": "VIDEO",
-      "title": "Zaman Neden Hızlanır? Yaşlandıkça Akıp Giden Yılların Sırrı"
-    },
-    {
       "video": "b1K17Xx2H7g",
-      "views": 3,
-      "estimatedMinutesWatched": 0,
-      "averageViewDuration": 12,
-      "averageViewPercentage": 2.7,
+      "views": 4,
+      "estimatedMinutesWatched": 5,
+      "averageViewDuration": 166,
+      "averageViewPercentage": 35.82,
       "subscribersGained": 0,
-      "likes": 0,
+      "likes": 1,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "Asıl Kararları Sen Değil, Beynindeki Bu İki Parça Veriyor"
     },
     {
-      "video": "GWPpMk12YOE",
-      "views": 3,
+      "video": "CDvCz4oy0Sk",
+      "views": 2,
       "estimatedMinutesWatched": 0,
-      "averageViewDuration": 35,
-      "averageViewPercentage": 8.1,
+      "averageViewDuration": 8,
+      "averageViewPercentage": 2.05,
       "subscribersGained": 0,
       "likes": 0,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
-      "title": "2 Dakikada Kalbi DURDURAN Canlı: Kutu Denizanası"
+      "title": "Okyanusun Ortasında 76 Gün: Kurtulmanın Yolu Neydi?"
     },
     {
       "video": "nuQitM3kyrk",
-      "views": 1,
+      "views": 2,
       "estimatedMinutesWatched": 0,
-      "averageViewDuration": 1,
-      "averageViewPercentage": 0.37,
+      "averageViewDuration": 12,
+      "averageViewPercentage": 4.19,
       "subscribersGained": 0,
       "likes": 0,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "?"
+    },
+    {
+      "video": "cYPCknDhcYY",
+      "views": 1,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 10,
+      "averageViewPercentage": 34.83,
+      "subscribersGained": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "type": "SHORT",
+      "title": "Okyanusun Ortasında Devasa Köpekbalıkları"
+    },
+    {
+      "video": "Kr0voHJrvEk",
+      "views": 1,
+      "estimatedMinutesWatched": 0,
+      "averageViewDuration": 6,
+      "averageViewPercentage": 19.35,
+      "subscribersGained": 0,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "type": "SHORT",
+      "title": "Tarihin İlk Sigorta Dolandırıcılığı"
     }
   ]
 }
