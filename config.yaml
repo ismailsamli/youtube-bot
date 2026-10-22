@@ -87,6 +87,10 @@ images:
   free_model: "flux"
   model: "gemini-2.5-flash-image"
 
+scout:
+  enabled: true              # Konu avcısı: İngilizce'de patlamış videoların KONULARINI önerir (kopyalamaz)
+  every_n_days: 2            # Takvimde konu olmayan günlerin kaçta birinde bu listeden seçilsin
+
 shorts:
   enabled: true
   per_video: 2               # Her uzun videodan kaç Short (2 ile başladık; tutarsa 3'e çıkarılabilir)

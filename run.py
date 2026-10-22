@@ -308,6 +308,30 @@ def planned_topic(cfg: dict):
         return None
 
 
+def scout_topic(cfg: dict):
+    """Konu avcısının (tools/konu_avcisi.py) kanıtlanmış konularından birini seçer; her gün değil,
+    config'teki sıklıkla (varsayılan: iki günde bir), böylece kanalın kendi konu çeşitliliği de sürer."""
+    sc = cfg.get("scout", {})
+    if not sc.get("enabled", True):
+        return None
+    every = int(sc.get("every_n_days", 2))
+    if datetime.now().timetuple().tm_yday % max(1, every):
+        return None
+    path = ROOT / "data" / "konu_onerileri.json"
+    data = load_json(path, {})
+    for o in data.get("oneriler", []):
+        if not o.get("kullanildi") and o.get("konu"):
+            o["kullanildi"] = True
+            save_json(path, data)
+            log(f"Konu avcısından kanıtlanmış konu: {o['konu']} (ilham: {o.get('kaynak_baslik', '')})")
+            return {"konu": o["konu"], "extra": {
+                "series": None, "episode": None, "next": "", "tr": False,
+                "notes": (f"Bakış açısı: {o.get('aci', '')}. Bu konu İngilizce'de çok ilgi gören bir videodan "
+                          "ilham alındı; SADECE konu fikrini kullan. İçeriği kendi bilgin ve güvenilir kaynaklarla "
+                          "sıfırdan kur, hiçbir videonun metnini, yapısını veya başlığını kopyalama.")}}
+    return None
+
+
 def cleanup(folder: Path) -> None:
     """Büyük ara dosyaları siler; video, kapak ve senaryo kalır."""
     for sub in ("scenes", "visuals", "audio"):
@@ -353,7 +377,7 @@ def main():
         try:
             topic = args.topic if n == 0 else None
             if not topic and not folder:
-                topic = planned_topic(cfg)
+                topic = planned_topic(cfg) or scout_topic(cfg)
             folder = produce(cfg, folder, topic)
             if do_upload:
                 publish(cfg, folder)

@@ -98,7 +98,7 @@ jobs:
         run: |
           git config user.name "video-bot"
           git config user.email "video-bot@users.noreply.github.com"
-          for f in data/history.json data/kanal_durumu.json kapaklar; do [ -e "$f" ] && git add "$f"; done
+          for f in data/history.json data/kanal_durumu.json data/konu_onerileri.json kapaklar; do [ -e "$f" ] && git add "$f"; done
           if ! git diff --cached --quiet; then
             git commit -m "Video geçmişi güncellendi"
             git pull --rebase -q && git push -q
