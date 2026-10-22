@@ -112,6 +112,27 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
             log(f"  Jenerik hazırlanamadı, jeneriksiz devam ediliyor: {e}")
             intro = outro = None
     editor.assemble(script["scenes"], visuals, audios, folder / "scenes", final, cfg, intro, outro)
+    try:   # kontrol için önizleme: açılış, jenerik, orta, bitiş ekranı karelerinden tek görsel (depoya kaydedilir)
+        pad = float(cfg["video"].get("scene_padding", 0.2))
+        cold = sum(media_duration(a) + pad for s, a in zip(script["scenes"], audios) if s.get("cold"))
+        total = media_duration(final)
+        times = [1.5, cold + 3.5 if intro else cold + 1, total / 2, total - 5]
+        prev = ROOT / "kapaklar" / folder.name[:60]
+        prev.mkdir(parents=True, exist_ok=True)
+        tiles = []
+        for k, t in enumerate(times):
+            fr = folder / f"_onizleme_{k}.jpg"
+            run(["ffmpeg", "-y", "-v", "error", "-ss", f"{max(0, t):.2f}", "-i", str(final), "-frames:v", "1",
+                 "-vf", "scale=640:360", str(fr)])
+            tiles.append(fr)
+        from PIL import Image as _I
+        sheet = _I.new("RGB", (1280, 720))
+        for k, fr in enumerate(tiles):
+            sheet.paste(_I.open(fr), ((k % 2) * 640, (k // 2) * 360))
+        sheet.save(prev / "onizleme.jpg", quality=80)
+        log(f"  Önizleme kaydedildi (jenerik {'var' if intro else 'YOK'}, açılış {cold:.0f} sn)")
+    except Exception as e:
+        log(f"  Önizleme alınamadı: {e}")
 
     # YouTube bölümleri (zaman damgaları): izleyici ve algoritma için "önemli anlar"
     if "Bölümler:" not in script["description"] and script.get("sections"):

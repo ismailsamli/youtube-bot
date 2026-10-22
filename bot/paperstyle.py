@@ -47,3 +47,33 @@ def kagit_kesme(img, levels=5, seed=3):
         layer = tex(c, 0) * (1 - 0.18 * edge[..., None]) + 255 * 0.18 * edge[..., None]
         out = out * (1 - m[..., None]) + layer * m[..., None]
     return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
+
+
+def kagit_baski(img):
+    """Fotoğrafı okunaklı tutan kâğıt baskı görünümü: ayrıntı korunur, sıcak sepya-krem ton,
+    kâğıt dokusu ve hafif kenar kararması (kolaj çerçevesiyle birlikte kanal tarzına uyar)."""
+    a = np.asarray(img.convert("RGB")).astype(np.float32) / 255
+    h, w = a.shape[:2]
+    g = cv2.cvtColor((a * 255).astype(np.uint8), cv2.COLOR_RGB2GRAY)
+    g = cv2.createCLAHE(1.6, (8, 8)).apply(g).astype(np.float32) / 255
+    # iki tonlu baskı: koyu kahve -> krem; orijinal rengin %35'i korunur (nesneler tanınsın)
+    dark, light = np.array([46, 36, 30], np.float32) / 255, np.array([244, 234, 214], np.float32) / 255
+    duo = dark[None, None, :] * (1 - g[..., None]) + light[None, None, :] * g[..., None]
+    out = duo * 0.65 + a * 0.35
+    # güçlü kırmızılar kanal rengi olarak kalsın
+    hsv = cv2.cvtColor((a * 255).astype(np.uint8), cv2.COLOR_RGB2HSV)
+    red = (((hsv[..., 0] < 8) | (hsv[..., 0] > 168)) & (hsv[..., 1] > 140) & (hsv[..., 2] > 70)).astype(np.float32)
+    red = cv2.GaussianBlur(red, (0, 0), 2)[..., None]
+    out = out * (1 - 0.5 * red) + a * 0.5 * red
+    # kâğıt dokusu (çarpma) + yumuşak vinyet
+    rng = np.random.default_rng(5)
+    n = cv2.resize(cv2.GaussianBlur(rng.normal(0, 1, (h // 3, w // 3)).astype(np.float32), (0, 0), 1), (w, h))
+    out = out * (1 + 0.035 * n[..., None])
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    v = 1 - 0.22 * (((xx - w / 2) / (w / 2)) ** 2 + ((yy - h / 2) / (h / 2)) ** 2)
+    out = out * np.clip(v, 0.7, 1)[..., None]
+    # hafif keskinlik: kâğıt üzerinde baskı netliği
+    out8 = np.clip(out * 255, 0, 255).astype(np.uint8)
+    blur = cv2.GaussianBlur(out8, (0, 0), 1.5)
+    out8 = cv2.addWeighted(out8, 1.4, blur, -0.4, 0)
+    return Image.fromarray(out8)

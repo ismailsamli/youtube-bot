@@ -11,10 +11,10 @@ import re
 import requests
 import random
 
-from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps, ImageStat
 
 from .collage import collage
-from .paperstyle import kagit_kesme
+from .paperstyle import kagit_baski, kagit_kesme
 from .utils import env, log
 
 UA = {"User-Agent": "youtube-bilgi-botu/1.0 (https://github.com/ismailsamli/youtube-bot)"}
@@ -312,6 +312,16 @@ class VisualFinder:
                     log(f"  Cloudflare hatası ({r.status_code}): {txt}")
                 if data:
                     img = Image.open(io.BytesIO(data)).convert("RGB")
+                    # okunaklılık kontrolü: çok karanlık / düz (kontrastsız) çizimi bir kez daha, aydınlık iste
+                    st = ImageStat.Stat(img.convert("L"))
+                    if (st.mean[0] < 60 or st.stddev[0] < 30) and not getattr(self, "_cf_retry", False):
+                        self._cf_retry = True
+                        try:
+                            ok = self.cloudflare_image("brightly lit, clear and simple, close-up of " + prompt, path)
+                        finally:
+                            self._cf_retry = False
+                        if ok:
+                            return True
                     fit_16_9(img, style=False).save(path, "PNG")
                     self._cf_fail = 0
                     self.cf_count = getattr(self, "cf_count", 0) + 1
@@ -480,4 +490,6 @@ def fit_16_9(img: Image.Image, width: int = 1920, height: int = 1080, style: boo
     img = img.resize((width, height), Image.LANCZOS)
     if not style:
         return img
+    if PHOTO_STYLE == "baski":
+        return kagit_baski(img)
     return kagit_kesme(img) if PHOTO_STYLE == "kagit" else channel_style(img)

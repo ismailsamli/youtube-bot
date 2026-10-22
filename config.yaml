@@ -72,10 +72,13 @@ images:
     Handmade layered paper-cut craft diorama illustration, made entirely of cut and folded colored paper,
     visible paper fibers and texture, soft drop shadows between paper layers, depth like a shadow box,
     muted palette of cream, beige, warm brown and charcoal with a single crimson red accent,
-    documentary explainer style, simple clear composition, wide 16:9 framing with the subject centered,
+    documentary explainer style, ONE large clearly recognizable main subject in the foreground with a bold
+    readable silhouette, few large paper layers, plain uncluttered light background, bright even lighting,
+    strong contrast between subject and background, instantly understandable even at small size,
+    wide 16:9 framing with the subject centered,
     no text, no letters, no numbers, no words, no watermark, no logo
   # Fotoğraflara uygulanan stil: "kagit" = kâğıt kesme efekti, "sinema" = sinematik ton
-  photo_style: "kagit"
+  photo_style: "baski"      # "baski" = okunaklı kâğıt baskı (önerilen), "kagit" = yoğun kâğıt kesme (eski, bazen anlaşılmıyordu)
   # Kanal kimliği çerçevesi: "kolaj" = kâğıt zemin + yırtık kenarlı görsel + kırmızı bant, "yok" = tam ekran
   frame: "kolaj"
   free_model: "flux"
