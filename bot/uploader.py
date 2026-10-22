@@ -199,7 +199,7 @@ def add_to_playlist(yt, video_id: str, name: str, cfg: dict) -> bool:
             "playlistId": pid, "resourceId": {"kind": "youtube#video", "videoId": video_id}}}).execute()
         log(f"  Oynatma listesine eklendi: {title}")
         return True
-    except HttpError as e:
+    except Exception as e:
         log(f"  Oynatma listesine eklenemedi: {str(e)[:200]}")
         return False
 
@@ -210,7 +210,7 @@ def post_comment(yt, video_id: str, text: str) -> bool:
         yt.commentThreads().insert(part="snippet", body={"snippet": {
             "videoId": video_id, "topLevelComment": {"snippet": {"textOriginal": text}}}}).execute()
         return True
-    except HttpError as e:
+    except Exception as e:
         log(f"  İlk yorum yazılamadı ({video_id}): {str(e)[:200]}")
         return False
 
@@ -228,6 +228,6 @@ def set_watermark(yt, image: Path) -> bool:
         }, media_body=MediaFileUpload(str(image), mimetype="image/png")).execute()
         log("Kanal filigranı (abone ol) ayarlandı.")
         return True
-    except HttpError as e:
+    except Exception as e:
         log(f"Filigran ayarlanamadı: {str(e)[:200]}")
         return False

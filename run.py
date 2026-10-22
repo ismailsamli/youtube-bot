@@ -198,6 +198,14 @@ def make_thumbnail_variants(cfg: dict, script: dict, folder: Path, finder, thumb
 
 
 def channel_upkeep(cfg: dict) -> None:
+    """Hata olursa video üretimini asla durdurmaz."""
+    try:
+        _channel_upkeep(cfg)
+    except Exception as e:
+        log(f"  Kanal bakımı hata verdi, atlandı: {str(e)[:200]}")
+
+
+def _channel_upkeep(cfg: dict) -> None:
     """Videoları oynatma listelerine ekler, yayına girmiş videolara ilk yorumu yazar, kanal filigranını
     bir kez ayarlar. Genişletilmiş YouTube izni yoksa atlar (izin yenilenince eksikleri tamamlar)."""
     up = cfg["upload"]
