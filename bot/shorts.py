@@ -111,6 +111,10 @@ def _paste(bg, card, x, y, seed, ang):
 
 
 # ---------------------------------------------------------------- senaryo
+# Short başına farklı uzunluk: hangi sürenin daha iyi tuttuğunu istatistikten görmek için (test)
+LENGTHS = [(70, 85, "yaklaşık 30 sn"), (110, 125, "yaklaşık 50 sn"), (90, 100, "yaklaşık 40 sn")]
+
+
 def write_shorts(llm, cfg: dict, script: dict, count: int) -> list:
     from .script_writer import _ask_json, _system
     lines = "\n".join(f"[{i}] {s['text']}" for i, s in enumerate(script["scenes"]))[:14000]
@@ -123,7 +127,8 @@ Bu videodan {count} adet YouTube Shorts senaryosu çıkar. Her Short:
 - KENDİ BAŞINA anlaşılsın: ilk cümle doğrudan kanca (izleyici 1 saniyede kaydırmasın), sonra 3-5 cümlede
   mini hikâye, sonunda merak bırakan bir cümle. Sonucu/sırrın cevabını tamamen VERME.
 - Son sahne tam olarak şu olsun: "Hikâyenin tamamı Kırmızı Kravat kanalında."
-- Toplam 110-125 kelime, 7-8 sahne (her sahne 13-18 kelime). Sadece videodaki doğru bilgileri kullan.
+- UZUNLUK (sırayla, her Short için farklı): {"; ".join(f"{i + 1}. Short toplam {a}-{b} kelime ({t})" for i, (a, b, t) in enumerate(LENGTHS[:count]))}.
+  Sahne başına 12-18 kelime. Sadece videodaki doğru bilgileri kullan.
 - Her sahne için "src": o sahneye en uygun görselin bulunduğu uzun video sahne numarası.
 - "title": en fazla 70 karakter, merak uyandıran dürüst Türkçe başlık (hashtag yazma).
 - "headline": ekranın üstünde duracak 2-5 kelimelik çarpıcı başlık (ör. "72 GÜN KARDA").
@@ -144,6 +149,7 @@ Sadece şu JSON'u döndür:
             except (TypeError, ValueError):
                 sc["src"] = min(n - 1, k)
         s["scenes"] = scenes
+        s["hedef"] = LENGTHS[min(len(out), len(LENGTHS) - 1)][2]
         out.append(s)
     return out
 
@@ -252,5 +258,5 @@ def make_and_upload(cfg: dict, folder: Path, script: dict, long_entry: dict, upl
             comment = (comment + f"\n\nHikâyenin tamamı burada 👉 {link}").strip()
         entries.append({"folder": f"{folder.name}#short{n + 1}", "title": s["title"], "type": "short",
                         "status": "yüklendi", "video_id": short_id, "publish_at": when.isoformat(),
-                        "comment": comment, "long_video": vid})
+                        "comment": comment, "long_video": vid, "hedef": s.get("hedef")})
     return entries

@@ -238,6 +238,57 @@ def _channel_upkeep(cfg: dict) -> None:
                 if uploader.post_comment(yt, h["video_id"], h["comment"]):
                     log(f"  İlk yorum yazıldı: {h['title'][:50]}")
                     add_history({**h, "comment_done": True})
+    if up.get("reply_comments", True):
+        reply_to_comments(cfg, yt, state, state_file)
+
+
+def reply_to_comments(cfg: dict, yt, state: dict, state_file: Path) -> None:
+    """İzleyici yorumlarına kanal adına kısa, samimi cevap yazar (spam/hakaret/siyaset atlanır)."""
+    try:
+        ch = yt.channels().list(part="id", mine=True).execute()["items"][0]["id"]
+        res = yt.commentThreads().list(part="snippet,replies", allThreadsRelatedToChannelId=ch,
+                                       maxResults=50, order="time", textFormat="plainText").execute()
+    except Exception as e:
+        log(f"  Yorumlar okunamadı: {str(e)[:150]}")
+        return
+    done = set(state.get("cevaplanan", []))
+    titles = {h.get("video_id"): h.get("title", "") for h in load_history()}
+    todo = []
+    for t in res.get("items", []):
+        top = t["snippet"]["topLevelComment"]["snippet"]
+        if t["id"] in done or (top.get("authorChannelId") or {}).get("value") == ch:
+            continue
+        if any((r["snippet"].get("authorChannelId") or {}).get("value") == ch
+               for r in (t.get("replies") or {}).get("comments", [])):
+            continue
+        todo.append((t["id"], top.get("textDisplay", "")[:500], titles.get(t["snippet"].get("videoId"), "")))
+    if not todo:
+        return
+    from bot.script_writer import LLM, _ask_json
+    llm = LLM(cfg)
+    system = ("Sen 'Kırmızı Kravat' adlı Türkçe bilgi kanalının samimi ama ölçülü sesisin. İzleyici yorumlarına "
+              "kanal adına cevap yazıyorsun. Kurallar: 1-2 kısa cümle, doğal Türkçe, en fazla 1 emoji; teşekkür et, "
+              "soru varsa videonun konusuna dayanarak kısa ve doğru cevap ver, emin değilsen uydurma; uygunsa "
+              "sohbeti sürdüren kısa bir soru sor. Spam, link, reklam, hakaret, siyaset, din tartışması, kişisel "
+              "bilgi isteyen veya anlamsız yorumlarda karar='atla' döndür. Sadece JSON döndür.")
+    for tid, text, title in todo[:15]:
+        try:
+            d = _ask_json(llm, system, f'Video: "{title}"\nİzleyici yorumu: "{text}"\n'
+                          'JSON: {"karar": "cevapla" veya "atla", "reply": "..."}', 400, "karar")
+        except Exception as e:
+            log(f"  Yorum cevabı yazılamadı: {str(e)[:120]}")
+            continue
+        if d.get("karar") == "cevapla" and (d.get("reply") or "").strip():
+            try:
+                yt.comments().insert(part="snippet", body={"snippet": {
+                    "parentId": tid, "textOriginal": d["reply"].strip()[:500]}}).execute()
+                log(f"  Yoruma cevap verildi: {text[:40]!r} -> {d['reply'][:60]!r}")
+            except Exception as e:
+                log(f"  Yoruma cevap gönderilemedi: {str(e)[:120]}")
+                continue
+        done.add(tid)
+    state["cevaplanan"] = sorted(done)[-500:]
+    save_json(state_file, state)
 
 
 def _script_from_meta(folder: Path) -> dict:

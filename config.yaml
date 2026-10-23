@@ -93,7 +93,7 @@ scout:
 
 shorts:
   enabled: true
-  per_video: 2               # Her uzun videodan kaç Short (2 ile başladık; tutarsa 3'e çıkarılabilir)
+  per_video: 3               # Her uzun videodan kaç Short (Short'lar izlenmenin %74'ünü getirdi; 23 Eki'de 3'e çıktı)
   day_offset: 1              # Uzun video yayına girdikten kaç gün sonra
   publish_times: ["12:00", "15:00", "21:00"]
 
