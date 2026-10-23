@@ -1,22 +1,92 @@
 {
-  "from": "2026-10-16",
+  "from": "2026-10-06",
   "to": "2026-10-23",
   "total": {
-    "views": 125,
-    "subscribersGained": 1,
+    "views": 395,
+    "subscribersGained": 2,
     "subscribersLost": 1,
-    "estimatedMinutesWatched": 124
+    "estimatedMinutesWatched": 231
   },
   "traffic": {
-    "SUBSCRIBER": 46,
-    "RELATED_VIDEO": 34,
-    "YT_SEARCH": 21,
-    "YT_CHANNEL": 19,
+    "SUBSCRIBER": 270,
+    "RELATED_VIDEO": 53,
+    "YT_SEARCH": 35,
+    "YT_CHANNEL": 29,
+    "NOTIFICATION": 4,
     "YT_OTHER_PAGE": 2,
-    "NO_LINK_OTHER": 1,
-    "NOTIFICATION": 1
+    "NO_LINK_OTHER": 1
   },
   "daily": [
+    [
+      "2026-10-06",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-07",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-08",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-09",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-10",
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-11",
+      7,
+      1,
+      0,
+      2
+    ],
+    [
+      "2026-10-12",
+      6,
+      0,
+      0,
+      0
+    ],
+    [
+      "2026-10-13",
+      17,
+      0,
+      0,
+      20
+    ],
+    [
+      "2026-10-14",
+      43,
+      0,
+      0,
+      5
+    ],
+    [
+      "2026-10-15",
+      197,
+      0,
+      0,
+      77
+    ],
     [
       "2026-10-16",
       44,
@@ -56,16 +126,29 @@
   "videos": [
     {
       "video": "4HDIsTkqMD8",
-      "views": 67,
-      "estimatedMinutesWatched": 61,
+      "views": 243,
+      "estimatedMinutesWatched": 140,
       "averageViewDuration": 117,
-      "averageViewPercentage": 22.29,
+      "averageViewPercentage": 22.3,
       "subscribersGained": 0,
-      "likes": 1,
-      "comments": 0,
+      "likes": 2,
+      "comments": 1,
       "shares": 0,
       "type": "VIDEO",
       "title": "Okyanusun 30 Metre Altında 60 Saat: Nasıl SAĞ Kaldı?"
+    },
+    {
+      "video": "C_fGGF4AKcY",
+      "views": 81,
+      "estimatedMinutesWatched": 24,
+      "averageViewDuration": 76,
+      "averageViewPercentage": 15.03,
+      "subscribersGained": 0,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "Dünyanın En Derin Çukuru: 12.000 Metrede Neden DURDULAR?"
     },
     {
       "video": "rneyASFOJtM",
@@ -81,6 +164,19 @@
       "title": "Göbeklitepe'yi Neden Kendi Elleriyle GÖMDÜLER?"
     },
     {
+      "video": "bveOmbncP04",
+      "views": 14,
+      "estimatedMinutesWatched": 2,
+      "averageViewDuration": 23,
+      "averageViewPercentage": 4.18,
+      "subscribersGained": 0,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "Zaman Neden Hızlanır? Yaşlandıkça Akıp Giden Yılların Sırrı"
+    },
+    {
       "video": "Ok6y_7YSfG8",
       "views": 11,
       "estimatedMinutesWatched": 10,
@@ -94,17 +190,17 @@
       "title": "3.000 Metreden Düştü: Amazon'da 11 Gün Nasıl SAĞ Kaldı?"
     },
     {
-      "video": "C_fGGF4AKcY",
+      "video": "GWPpMk12YOE",
       "views": 8,
-      "estimatedMinutesWatched": 0,
-      "averageViewDuration": 16,
-      "averageViewPercentage": 3.2400000000000007,
+      "estimatedMinutesWatched": 6,
+      "averageViewDuration": 89,
+      "averageViewPercentage": 20.18,
       "subscribersGained": 0,
       "likes": 1,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
-      "title": "Dünyanın En Derin Çukuru: 12.000 Metrede Neden DURDULAR?"
+      "title": "2 Dakikada Kalbi DURDURAN Canlı: Kutu Denizanası"
     },
     {
       "video": "Ulj2DL8wnTA",
@@ -134,29 +230,16 @@
     },
     {
       "video": "b1K17Xx2H7g",
-      "views": 3,
+      "views": 4,
       "estimatedMinutesWatched": 5,
-      "averageViewDuration": 321,
-      "averageViewPercentage": 68.94,
+      "averageViewDuration": 166,
+      "averageViewPercentage": 35.82,
       "subscribersGained": 0,
       "likes": 1,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "Asıl Kararları Sen Değil, Beynindeki Bu İki Parça Veriyor"
-    },
-    {
-      "video": "GWPpMk12YOE",
-      "views": 2,
-      "estimatedMinutesWatched": 5,
-      "averageViewDuration": 155,
-      "averageViewPercentage": 35.21,
-      "subscribersGained": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "type": "VIDEO",
-      "title": "2 Dakikada Kalbi DURDURAN Canlı: Kutu Denizanası"
     },
     {
       "video": "CDvCz4oy0Sk",
@@ -172,17 +255,17 @@
       "title": "Okyanusun Ortasında 76 Gün: Kurtulmanın Yolu Neydi?"
     },
     {
-      "video": "Kr0voHJrvEk",
-      "views": 1,
+      "video": "nuQitM3kyrk",
+      "views": 2,
       "estimatedMinutesWatched": 0,
-      "averageViewDuration": 6,
-      "averageViewPercentage": 19.35,
+      "averageViewDuration": 12,
+      "averageViewPercentage": 4.19,
       "subscribersGained": 0,
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "type": "SHORT",
-      "title": "Tarihin İlk Sigorta Dolandırıcılığı"
+      "type": "VIDEO",
+      "title": "?"
     },
     {
       "video": "cYPCknDhcYY",
@@ -198,30 +281,222 @@
       "title": "Okyanusun Ortasında Devasa Köpekbalıkları"
     },
     {
-      "video": "nuQitM3kyrk",
+      "video": "Kr0voHJrvEk",
       "views": 1,
       "estimatedMinutesWatched": 0,
-      "averageViewDuration": 1,
-      "averageViewPercentage": 0.37,
+      "averageViewDuration": 6,
+      "averageViewPercentage": 19.35,
       "subscribersGained": 0,
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "type": "VIDEO",
-      "title": "?"
-    },
-    {
-      "video": "bveOmbncP04",
-      "views": 1,
-      "estimatedMinutesWatched": 0,
-      "averageViewDuration": 0,
-      "averageViewPercentage": 0,
-      "subscribersGained": 0,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "type": "VIDEO",
-      "title": "Zaman Neden Hızlanır? Yaşlandıkça Akıp Giden Yılların Sırrı"
+      "type": "SHORT",
+      "title": "Tarihin İlk Sigorta Dolandırıcılığı"
     }
-  ]
+  ],
+  "anlik": {
+    "Kr0voHJrvEk": {
+      "views": 228,
+      "likes": 2,
+      "comments": 0,
+      "duration": "PT31S",
+      "type": "SHORT",
+      "title": "Tarihin İlk Sigorta Dolandırıcılığı",
+      "publish_at": "2026-10-22T21:00:00+03:00"
+    },
+    "oDLBDtqDVts": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT49S",
+      "type": "SHORT",
+      "title": "4.000 Metreden Atlayıp Buharlaşan Adam: D.B. Cooper",
+      "publish_at": "2026-10-23T12:00:00+03:00"
+    },
+    "Vpwol1Ye5bA": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT52S",
+      "type": "SHORT",
+      "title": "9 Yıl Sonra Nehir Kıyısında Bulunan Esrarengiz Servet",
+      "publish_at": "2026-10-23T15:00:00+03:00"
+    },
+    "cYPCknDhcYY": {
+      "views": 1156,
+      "likes": 6,
+      "comments": 1,
+      "duration": "PT29S",
+      "type": "SHORT",
+      "title": "Okyanusun Ortasında Devasa Köpekbalıkları",
+      "publish_at": "2026-10-21T12:00:00+03:00"
+    },
+    "EbON3W4BRM0": {
+      "views": 1093,
+      "likes": 6,
+      "comments": 1,
+      "duration": "PT30S",
+      "type": "SHORT",
+      "title": "76 Gün Okyanusta Nasıl Yaşanır?",
+      "publish_at": "2026-10-21T15:00:00+03:00"
+    },
+    "np58gWXdFyU": {
+      "views": 637,
+      "likes": 9,
+      "comments": 1,
+      "duration": "PT59S",
+      "type": "SHORT",
+      "title": "Tek Gözü Yaralanan Biri Nasıl Tamamen Kör Olabilir?",
+      "publish_at": "2026-10-22T12:00:00+03:00"
+    },
+    "ZaAtGHy1xBw": {
+      "views": 667,
+      "likes": 8,
+      "comments": 1,
+      "duration": "PT59S",
+      "type": "SHORT",
+      "title": "Vücudunuz Gözlerinizin Var Olduğunu Neden Bilmiyor?",
+      "publish_at": "2026-10-22T15:00:00+03:00"
+    },
+    "GWPpMk12YOE": {
+      "views": 8,
+      "likes": 1,
+      "comments": 1,
+      "duration": "PT7M23S",
+      "type": "VIDEO",
+      "title": "2 Dakikada Kalbi DURDURAN Canlı: Kutu Denizanası",
+      "publish_at": "2026-10-14T19:00:00+03:00"
+    },
+    "b1K17Xx2H7g": {
+      "views": 5,
+      "likes": 1,
+      "comments": 1,
+      "duration": "PT7M46S",
+      "type": "VIDEO",
+      "title": "Asıl Kararları Sen Değil, Beynindeki Bu İki Parça Veriyor",
+      "publish_at": "2026-10-15T19:00:00+03:00"
+    },
+    "zBesBidHrUo": {
+      "views": 6,
+      "likes": 0,
+      "comments": 1,
+      "duration": "PT8M28S",
+      "type": "VIDEO",
+      "title": "Güneşin Söndüğü Yıl: 1816'da Dünyaya Ne OLDU?",
+      "publish_at": "2026-10-16T19:00:00+03:00"
+    },
+    "Ulj2DL8wnTA": {
+      "views": 6,
+      "likes": 1,
+      "comments": 1,
+      "duration": "PT7M3S",
+      "type": "VIDEO",
+      "title": "Uçak Kazasından Sonra ANDEZ Dağları'nda 72 Gün Nasıl HAYATTA Kaldılar?",
+      "publish_at": "2026-10-17T19:00:00+03:00"
+    },
+    "Ok6y_7YSfG8": {
+      "views": 14,
+      "likes": 1,
+      "comments": 1,
+      "duration": "PT9M44S",
+      "type": "VIDEO",
+      "title": "3.000 Metreden Düştü: Amazon'da 11 Gün Nasıl SAĞ Kaldı?",
+      "publish_at": "2026-10-18T19:00:00+03:00"
+    },
+    "CDvCz4oy0Sk": {
+      "views": 15,
+      "likes": 0,
+      "comments": 1,
+      "duration": "PT7M9S",
+      "type": "VIDEO",
+      "title": "Okyanusun Ortasında 76 Gün: Kurtulmanın Yolu Neydi?",
+      "publish_at": "2026-10-20T19:00:00+03:00"
+    },
+    "VphrcF21F4I": {
+      "views": 855,
+      "likes": 5,
+      "comments": 1,
+      "duration": "PT7M49S",
+      "type": "VIDEO",
+      "title": "Vücudunuz Gözlerinizin Var Olduğunu BİLMİYOR",
+      "publish_at": "2026-10-21T19:00:00+03:00"
+    },
+    "vmApJJY65iM": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT56S",
+      "type": "SHORT",
+      "title": "Gökdelenin Gizli Katında 65 Milyar Dolarlık Sahtekarlık",
+      "publish_at": "2026-10-24T12:00:00+03:00"
+    },
+    "MeNQQ40g_9I": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT57S",
+      "type": "SHORT",
+      "title": "Tarihin En Büyük Yalanını 5 Yıl Boyunca Kimse Dinlemedi",
+      "publish_at": "2026-10-24T15:00:00+03:00"
+    },
+    "3ZfueJI_Uac": {
+      "views": 13,
+      "likes": 1,
+      "comments": 0,
+      "duration": "PT8M26S",
+      "type": "VIDEO",
+      "title": "4.000 Metreden Atladı ve BUHARLAŞTI: D.B. Cooper Sırrı",
+      "publish_at": "2026-10-22T19:00:00+03:00"
+    },
+    "bveOmbncP04": {
+      "views": 14,
+      "likes": 2,
+      "comments": 1,
+      "duration": "PT9M24S",
+      "type": "VIDEO",
+      "title": "Zaman Neden Hızlanır? Yaşlandıkça Akıp Giden Yılların Sırrı",
+      "publish_at": "2026-10-11T19:00:00+03:00"
+    },
+    "C_fGGF4AKcY": {
+      "views": 84,
+      "likes": 2,
+      "comments": 1,
+      "duration": "PT8M29S",
+      "type": "VIDEO",
+      "title": "Dünyanın En Derin Çukuru: 12.000 Metrede Neden DURDULAR?",
+      "publish_at": "2026-10-12T19:00:00+03:00"
+    },
+    "4HDIsTkqMD8": {
+      "views": 243,
+      "likes": 2,
+      "comments": 2,
+      "duration": "PT8M45S",
+      "type": "VIDEO",
+      "title": "Okyanusun 30 Metre Altında 60 Saat: Nasıl SAĞ Kaldı?",
+      "publish_at": "2026-10-13T19:00:00+03:00"
+    },
+    "rneyASFOJtM": {
+      "views": 73,
+      "likes": 2,
+      "comments": 1,
+      "duration": "PT10M9S",
+      "type": "VIDEO",
+      "title": "Göbeklitepe'yi Neden Kendi Elleriyle GÖMDÜLER?",
+      "publish_at": "2026-10-19T19:00:00+03:00"
+    },
+    "-NvMLk_uo34": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT7M5S",
+      "type": "VIDEO",
+      "title": "Tarihin En BÜYÜK Vurgunu: 65 Milyar Dolar Nasıl Yok Oldu?",
+      "publish_at": "2026-10-23T19:00:00+03:00"
+    }
+  },
+  "kanal": {
+    "viewCount": 4590,
+    "subscriberCount": 147,
+    "videoCount": 18
+  }
 }
