@@ -1,6 +1,6 @@
 [
-  {"video_id": "VphrcF21F4I", "text": "GÖZÜNÜ BİLMİYOR",
-   "prompt": "a large anatomical human eyeball with the optic nerve trailing behind it, floating in a dark space, placed on the right half"},
-  {"video_id": "CDvCz4oy0Sk", "text": "76 GÜN SALDA",
-   "prompt": "a small inflatable life raft alone on a vast stormy ocean with a shark fin circling nearby, placed on the right half"}
+  {"video_id": "VphrcF21F4I", "text": "GİZLİ ORGAN", "sadece_dosya": true, "dosya": "kapak_testi/goz/B.jpg",
+   "prompt": "a single large anatomical human eyeball sealed inside a protective glass dome like a guarded treasure, placed on the right half"},
+  {"video_id": "VphrcF21F4I", "text": "DOKUNULMAZ GÖZ", "sadece_dosya": true, "dosya": "kapak_testi/goz/C.jpg",
+   "prompt": "a large human eye behind a tall stone wall while tiny paper soldiers stop in front of the wall, placed on the right half"}
 ]

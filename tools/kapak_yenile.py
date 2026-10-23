@@ -19,12 +19,16 @@ finder = VisualFinder(cfg, out / "_tmp")
 yt = uploader.get_service()
 for it in items:
     vid = it["video_id"]
-    bg = out / "_tmp" / f"{vid}.png"
+    bg = out / "_tmp" / f"{vid}_{len(it['text'])}.png"
     if not finder.cloudflare_image(it["prompt"], bg):
         print(f"HATA {vid}: çizim üretilemedi")
         continue
-    jpg = out / f"{vid}.jpg"
+    jpg = out / (it.get("dosya") or f"{vid}.jpg")
+    jpg.parent.mkdir(parents=True, exist_ok=True)
     thumbnail.make_thumbnail(bg, it["text"], jpg)
+    if it.get("sadece_dosya"):      # kapak testi seçeneği: YouTube'daki kapağa dokunma
+        print(f"OK {vid}: dosya hazır ({jpg})")
+        continue
     try:
         yt.thumbnails().set(videoId=vid, media_body=MediaFileUpload(str(jpg), mimetype="image/jpeg")).execute()
         print(f"OK {vid}: kapak değiştirildi")
