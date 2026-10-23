@@ -5,35 +5,6 @@
     "status": "üretiliyor"
   },
   {
-    "folder": "short_20261022_hegestratos-tarihte-bilinen-ilk-sigorta-",
-    "title": "Tarihin İlk Sigorta Dolandırıcılığı",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "Kr0voHJrvEk",
-    "publish_at": "2026-10-22T21:00:00+03:00",
-    "comment": "Sizce bu dolandırıcılık bugün fark edilir miydi?"
-  },
-  {
-    "folder": "20261021-1350_4-000-metreden-atladi-ve-buharlasti-d-b-cooper-sir#short1",
-    "title": "4.000 Metreden Atlayıp Buharlaşan Adam: D.B. Cooper",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "oDLBDtqDVts",
-    "publish_at": "2026-10-23T12:00:00+03:00",
-    "comment": "Sizce Cooper o dondurucu gecede hayatta kalmayı başarmış olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/3ZfueJI_Uac",
-    "long_video": "3ZfueJI_Uac"
-  },
-  {
-    "folder": "20261021-1350_4-000-metreden-atladi-ve-buharlasti-d-b-cooper-sir#short2",
-    "title": "9 Yıl Sonra Nehir Kıyısında Bulunan Esrarengiz Servet",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "Vpwol1Ye5bA",
-    "publish_at": "2026-10-23T15:00:00+03:00",
-    "comment": "Sizce Cooper paraları bilerek mi oraya gömdü yoksa nehirde boğuldu mu?\n\nHikâyenin tamamı burada 👉 https://youtu.be/3ZfueJI_Uac",
-    "long_video": "3ZfueJI_Uac"
-  },
-  {
     "folder": "20261019-1538_okyanusun-ortasinda-76-gun-kurtulmanin-yolu-ne#short1",
     "title": "Okyanusun Ortasında Devasa Köpekbalıkları",
     "type": "short",
@@ -175,16 +146,6 @@
     "long_video": "-NvMLk_uo34"
   },
   {
-    "folder": "20261021-1350_4-000-metreden-atladi-ve-buharlasti-d-b-cooper-sir",
-    "title": "4.000 Metreden Atladı ve BUHARLAŞTI: D.B. Cooper Sırrı",
-    "status": "yüklendi",
-    "video_id": "3ZfueJI_Uac",
-    "publish_at": "2026-10-22T19:00:00+03:00",
-    "comment": "Sizce Cooper o dondurucu fırtınada yere sağ inmeyi başardı mı, yoksa ormanın derinliklerinde sırrıyla birlikte mi kayboldu? 👇",
-    "playlist": "Çözülemeyen Gizemler",
-    "playlist_done": true
-  },
-  {
     "folder": "20261011-1250_zaman-neden-hizlanir-yaslandikca-akip-giden-yillar",
     "title": "Zaman Neden Hızlanır? Yaşlandıkça Akıp Giden Yılların Sırrı",
     "status": "yüklendi",
@@ -236,6 +197,92 @@
     "publish_at": "2026-10-23T19:00:00+03:00",
     "comment": "Sizce Madoff bu kadar uzun süre zekası sayesinde mi, yoksa insanların aşırı açgözlülüğü yüzünden mi yakalanmadı? 👇",
     "playlist": "Vurgun Dosyaları",
+    "playlist_done": true
+  },
+  {
+    "folder": "short_20261022_hegestratos-tarihte-bilinen-ilk-sigorta-",
+    "title": "Tarihin İlk Sigorta Dolandırıcılığı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "Kr0voHJrvEk",
+    "publish_at": "2026-10-22T21:00:00+03:00",
+    "comment": "Sizce bu dolandırıcılık bugün fark edilir miydi?",
+    "comment_done": true
+  },
+  {
+    "folder": "20261021-1350_4-000-metreden-atladi-ve-buharlasti-d-b-cooper-sir#short1",
+    "title": "4.000 Metreden Atlayıp Buharlaşan Adam: D.B. Cooper",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "oDLBDtqDVts",
+    "publish_at": "2026-10-23T12:00:00+03:00",
+    "comment": "Sizce Cooper o dondurucu gecede hayatta kalmayı başarmış olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/3ZfueJI_Uac",
+    "long_video": "3ZfueJI_Uac",
+    "comment_done": true
+  },
+  {
+    "folder": "20261021-1350_4-000-metreden-atladi-ve-buharlasti-d-b-cooper-sir#short2",
+    "title": "9 Yıl Sonra Nehir Kıyısında Bulunan Esrarengiz Servet",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "Vpwol1Ye5bA",
+    "publish_at": "2026-10-23T15:00:00+03:00",
+    "comment": "Sizce Cooper paraları bilerek mi oraya gömdü yoksa nehirde boğuldu mu?\n\nHikâyenin tamamı burada 👉 https://youtu.be/3ZfueJI_Uac",
+    "long_video": "3ZfueJI_Uac",
+    "comment_done": true
+  },
+  {
+    "folder": "20261021-1350_4-000-metreden-atladi-ve-buharlasti-d-b-cooper-sir",
+    "title": "4.000 Metreden Atladı ve BUHARLAŞTI: D.B. Cooper Sırrı",
+    "status": "yüklendi",
+    "video_id": "3ZfueJI_Uac",
+    "publish_at": "2026-10-22T19:00:00+03:00",
+    "comment": "Sizce Cooper o dondurucu fırtınada yere sağ inmeyi başardı mı, yoksa ormanın derinliklerinde sırrıyla birlikte mi kayboldu? 👇",
+    "playlist": "Çözülemeyen Gizemler",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short1",
+    "title": "Çernobil'deki Robotları Saniyeler İçinde Yakan Ölümcül Kütle",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "Y_SsxYc5Z74",
+    "publish_at": "2026-10-25T12:00:00+03:00",
+    "comment": "Sizce gelecekte robotlar bu radyasyona dayanabilecek mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/mTI6Q0t7AQE",
+    "long_video": "mTI6Q0t7AQE",
+    "hedef": "yaklaşık 30 sn"
+  },
+  {
+    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short2",
+    "title": "Çernobil'i Neden Beton Döküp Sonsuza Dek Gömemiyoruz?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "XOZ0Z0SphUQ",
+    "publish_at": "2026-10-25T15:00:00+03:00",
+    "comment": "Sizce bu enkazı temizlemenin güvenli bir yolu bulunabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/mTI6Q0t7AQE",
+    "long_video": "mTI6Q0t7AQE",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short3",
+    "title": "1.5 Milyar Euro Harcanan Dev Çelik Kubbe Çernobil'i Çözdü mü?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "0vQrn4-7Ako",
+    "publish_at": "2026-10-25T21:00:00+03:00",
+    "comment": "Sizce gelecek nesiller bu nükleer nöbeti sürdürebilecek mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/mTI6Q0t7AQE",
+    "long_video": "mTI6Q0t7AQE",
+    "hedef": "yaklaşık 40 sn"
+  },
+  {
+    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor",
+    "title": "Çernobil Neden 38 Yıldır Bir Türlü TEMİZLENEMİYOR?",
+    "status": "yüklendi",
+    "video_id": "mTI6Q0t7AQE",
+    "publish_at": "2026-10-24T19:00:00+03:00",
+    "comment": "Sizce insanlık yüz yıl sonra bile bu enkazı tamamen ortadan kaldırmayı başarabilecek mi? Fikirlerinizi bekliyorum 👇",
+    "playlist": "Tarihin Karanlık Sırları",
     "playlist_done": true
   }
 ]
