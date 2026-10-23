@@ -66,6 +66,28 @@ def main():
         out["videos"].append(r)
         print(f"{kind} {r['video']} | {r['views']} izl | %{r['averageViewPercentage']:.0f} izlenme | "
               f"{r['averageViewDuration']} sn | +{r['subscribersGained']} abone | {h.get('title', '?')[:50]}")
+    # ANLIK sayılar (Data API, gecikmesiz): her video için izlenme/beğeni/yorum + kanal abone sayısı
+    try:
+        ids = [h for h in hist if h]
+        anlik = {}
+        for i in range(0, len(ids), 50):
+            res2 = yt.videos().list(part="statistics,contentDetails", id=",".join(ids[i:i + 50])).execute()
+            for it in res2.get("items", []):
+                st = it["statistics"]
+                anlik[it["id"]] = {"views": int(st.get("viewCount", 0)), "likes": int(st.get("likeCount", 0)),
+                                   "comments": int(st.get("commentCount", 0)),
+                                   "duration": it["contentDetails"].get("duration"),
+                                   "type": "SHORT" if hist[it["id"]].get("type") == "short" else "VIDEO",
+                                   "title": hist[it["id"]].get("title", "?"),
+                                   "publish_at": hist[it["id"]].get("publish_at")}
+        cs = yt.channels().list(part="statistics", mine=True).execute()["items"][0]["statistics"]
+        out["anlik"] = anlik
+        out["kanal"] = {k: int(v) for k, v in cs.items() if str(v).isdigit()}
+        print(f"ANLIK KANAL: {out['kanal']}")
+        for vid, a in sorted(anlik.items(), key=lambda kv: -kv[1]["views"]):
+            print(f"ANLIK {a['type']} {a['views']} izl | {a['likes']} beğeni | {a['comments']} yorum | {a['title'][:50]}")
+    except Exception as e:
+        print(f"Anlık sayılar alınamadı: {e}")
     (ROOT / "data" / "istatistik.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
