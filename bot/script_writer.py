@@ -147,6 +147,8 @@ def _system(cfg: dict) -> str:
     ch = cfg["channel"]
     return (
         "Sen Türkçe bir YouTube bilgi kanalının baş senaristi ve editörüsün.\n"
+        f"Bugünün tarihi: {__import__('datetime').date.today():%d.%m.%Y}. 'X yıl önce/X yıldır' gibi süreleri bu tarihe "
+        "göre hesapla; emin değilsen yıl sayısı yerine olayın yılını yaz.\n"
         f"Kanal konusu: {ch['niche']}\nHedef kitle: {ch['audience']}\nÜslup: {ch['tone']}\n\n"
         "Temel kuralların:\n"
         "- Sadece iyi bilinen, güvenilir kaynaklarla doğrulanabilir bilgiler kullan. "
