@@ -213,28 +213,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short1",
-    "title": "Çernobil'deki Robotları Saniyeler İçinde Yakan Ölümcül Kütle",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "Y_SsxYc5Z74",
-    "publish_at": "2026-10-25T12:00:00+03:00",
-    "comment": "Sizce gelecekte robotlar bu radyasyona dayanabilecek mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/mTI6Q0t7AQE",
-    "long_video": "mTI6Q0t7AQE",
-    "hedef": "yaklaşık 30 sn"
-  },
-  {
-    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short2",
-    "title": "Çernobil'i Neden Beton Döküp Sonsuza Dek Gömemiyoruz?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "XOZ0Z0SphUQ",
-    "publish_at": "2026-10-25T15:00:00+03:00",
-    "comment": "Sizce bu enkazı temizlemenin güvenli bir yolu bulunabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/mTI6Q0t7AQE",
-    "long_video": "mTI6Q0t7AQE",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short3",
     "title": "1.5 Milyar Euro Harcanan Dev Çelik Kubbe Çernobil'i Çözdü mü?",
     "type": "short",
@@ -244,16 +222,6 @@
     "comment": "Sizce gelecek nesiller bu nükleer nöbeti sürdürebilecek mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/mTI6Q0t7AQE",
     "long_video": "mTI6Q0t7AQE",
     "hedef": "yaklaşık 40 sn"
-  },
-  {
-    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor",
-    "title": "Çernobil Neden 40 Yıldır Bir Türlü TEMİZLENEMİYOR?",
-    "status": "yüklendi",
-    "video_id": "mTI6Q0t7AQE",
-    "publish_at": "2026-10-24T19:00:00+03:00",
-    "comment": "Sizce insanlık yüz yıl sonra bile bu enkazı tamamen ortadan kaldırmayı başarabilecek mi? Fikirlerinizi bekliyorum 👇",
-    "playlist": "Tarihin Karanlık Sırları",
-    "playlist_done": true
   },
   {
     "folder": "20261022-1402_tarihin-en-buyuk-vurgunu-65-milyar-dolar-nasil-yok#short1",
@@ -329,6 +297,84 @@
     "publish_at": "2026-10-25T19:00:00+03:00",
     "comment": "Günde toplam 40 dakika boyunca göz hareketleri yüzünden aslında tamamen kör olduğumuzu öğrenmek beni çok şaşırtmıştı. Sence bu 5 yanılsamadan en inanılmazı hangisi? 👇",
     "playlist": "İnsan Vücudu ve Beynin Tuhaflıkları",
+    "playlist_done": true
+  },
+  {
+    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short1",
+    "title": "Çernobil'deki Robotları Saniyeler İçinde Yakan Ölümcül Kütle",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "Y_SsxYc5Z74",
+    "publish_at": "2026-10-25T12:00:00+03:00",
+    "comment": "Sizce gelecekte robotlar bu radyasyona dayanabilecek mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/mTI6Q0t7AQE",
+    "long_video": "mTI6Q0t7AQE",
+    "hedef": "yaklaşık 30 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short2",
+    "title": "Çernobil'i Neden Beton Döküp Sonsuza Dek Gömemiyoruz?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "XOZ0Z0SphUQ",
+    "publish_at": "2026-10-25T15:00:00+03:00",
+    "comment": "Sizce bu enkazı temizlemenin güvenli bir yolu bulunabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/mTI6Q0t7AQE",
+    "long_video": "mTI6Q0t7AQE",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor",
+    "title": "Çernobil Neden 40 Yıldır Bir Türlü TEMİZLENEMİYOR?",
+    "status": "yüklendi",
+    "video_id": "mTI6Q0t7AQE",
+    "publish_at": "2026-10-24T19:00:00+03:00",
+    "comment": "Sizce insanlık yüz yıl sonra bile bu enkazı tamamen ortadan kaldırmayı başarabilecek mi? Fikirlerinizi bekliyorum 👇",
+    "playlist": "Tarihin Karanlık Sırları",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short1",
+    "title": "Himalayalar'daki Görünmez Dağ Tsunamisi",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "__uOtGdpEwM",
+    "publish_at": "2026-10-27T12:00:00+03:00",
+    "comment": "Sizce teknoloji doğanın anlık yıkım gücüne yetişebilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
+    "long_video": "tUTVErUmGS0",
+    "hedef": "yaklaşık 30 sn"
+  },
+  {
+    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short2",
+    "title": "Radarların Göremediği Gizli Buzul Tuzağı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "ADEkhmFOpsQ",
+    "publish_at": "2026-10-27T15:00:00+03:00",
+    "comment": "Sizce gökyüzündeki uydular yeraltındaki erimeyi ne zaman çözebilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
+    "long_video": "tUTVErUmGS0",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short3",
+    "title": "Bir Milyar İnsanı Tehdit Eden Su Bombası",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "AMkQRg51v2E",
+    "publish_at": "2026-10-27T21:00:00+03:00",
+    "comment": "Sizce dev barajlar buzul sellerine karşı korunabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
+    "long_video": "tUTVErUmGS0",
+    "hedef": "yaklaşık 40 sn"
+  },
+  {
+    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car",
+    "title": "Himalayalar'da Gizlenen Tsunami: Radarlar Neden ÇARESİZ?",
+    "status": "yüklendi",
+    "video_id": "tUTVErUmGS0",
+    "publish_at": "2026-10-26T19:00:00+03:00",
+    "comment": "Binlerce metre yüksekte asılı duran bu devasa su kütlelerini durdurmak mümkün mü, yoksa o vadileri tamamen terk mi etmeliyiz? Fikirlerinizi bekliyorum. 👇",
+    "playlist": "Doğanın Gücü: Afetler ve Canlılar",
     "playlist_done": true
   }
 ]
