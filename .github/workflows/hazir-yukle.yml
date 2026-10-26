@@ -35,8 +35,7 @@ jobs:
 
       - name: FFmpeg kur
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg > /dev/null
+          bash tools/ffmpeg_kur.sh
 
       - name: Python paketlerini kur
         run: pip install -q -r requirements.txt
