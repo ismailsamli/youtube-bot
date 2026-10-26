@@ -48,7 +48,7 @@ voice:
   # "piper"  = çevrimdışı Türkçe ses (her zaman çalışır, yedek)
   # "edge"   = Microsoft Edge sesi (GitHub sunucularında şu an engelli)
   engine: "gemini"
-  gemini_voice: "Charon"     # Diğer erkek sesler: Orus, Algenib, Iapetus, Rasalgethi, Sadaltager, Alnilam
+  gemini_voice: "Sadaltager" # Diğer erkek sesler: Charon, Orus, Algenib, Iapetus, Rasalgethi, Alnilam
   gemini_model: "gemini-3.8-flash-tts"
   gemini_fallbacks: ["gemini-3.8-flash-lite-tts"]
   gemini_style: "Türkçe belgesel anlatıcısı: sıcak, güven veren, merak uyandıran; doğal vurgular, canlı ve akıcı tempo, cümle sonlarında doğal duraklar. Abartılı oyunculuk yok."
