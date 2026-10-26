@@ -108,8 +108,9 @@
       "izlenme": 897993,
       "kat": 5.7,
       "kaynak": "mpAkA5-rdJE",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
+      "kullanildi": true,
+      "tarih": "2026-10-26",
+      "not": "terör konusu - kanal kuralı gereği çıkarıldı"
     },
     {
       "konu": "Dağ keçilerinin neredeyse 90 derecelik dimdik uçurumlarda düşmeden tırmanabilmesini sağlayan biyomekanik yapı.",

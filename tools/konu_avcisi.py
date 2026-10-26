@@ -89,7 +89,10 @@ Sadece JSON: {{"oneriler": [{{"konu": "...", "aci": "...", "kaynak_baslik": "...
     old = load_json(OUT, {"oneriler": []})
     kullanilan = {o["konu"] for o in old.get("oneriler", []) if o.get("kullanildi")}
     yeni = []
+    yasak = ("11 eylül", "terör", "saldırı", "bomba", "işid", "pkk", "el kaide", "seçim", "parti")
     for o in data.get("oneriler", [])[:12]:
+        if any(k in (o.get("konu", "") + " " + o.get("kaynak_baslik", "")).lower() for k in yasak):
+            continue
         a = by_title.get(o.get("kaynak_baslik", ""), {})
         o.update({"izlenme": a.get("views"), "kat": a.get("ratio"), "kaynak": a.get("id"),
                   "kullanildi": o.get("konu") in kullanilan, "tarih": datetime.now().strftime("%Y-%m-%d")})
