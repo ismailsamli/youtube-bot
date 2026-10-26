@@ -63,6 +63,12 @@ jobs:
       - name: Python paketlerini kur
         run: pip install -q -r requirements.txt
 
+      - name: Hizalama modelini önbellekten al
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: whisper-modelleri-v1
+
       - name: Yarıda kalan senaryoyu indir
         if: ${{ inputs.devam_run != '' && inputs.devam_run != null }}
         uses: actions/download-artifact@v4
@@ -123,7 +129,7 @@ jobs:
             # Son satırlar uyarı olarak da yazılır (API ile okunabilsin diye)
             msg=$(tail -n 25 bot_log.txt | cut -c1-300 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
             echo "::notice title=Bot kaydı::${msg}"
-            imp=$(grep -E "Cloudflare|HATA|kullanılamıyor|atlandı|seçilmiş konu|Senaryo hazır|Video hazır|Short . hazır|liste|yorum|Yorum|filigran|Kapak testi|çizim|Önizleme|Jenerik|Soğuk açılış" bot_log.txt | head -40 | cut -c1-250 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
+            imp=$(grep -E "Gemini|Piper|seslendirme|Müzik|müzik|hizalama|Cloudflare|HATA|kullanılamıyor|atlandı|seçilmiş konu|Senaryo hazır|Video hazır|Short . hazır|liste|yorum|Yorum|filigran|Kapak testi|çizim|Önizleme|Jenerik|Soğuk açılış" bot_log.txt | head -40 | cut -c1-250 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
             echo "::notice title=Önemli satırlar::${imp}"
           fi
 

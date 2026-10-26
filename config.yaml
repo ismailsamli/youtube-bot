@@ -37,15 +37,24 @@ video:
   branding: true             # Kanal jeneriği ve sonda 12 sn'lik bitiş ekranı
   intro_animation: true      # true = 8 sn'lik kravatlı adam animasyonu, false = 3 sn'lik kısa logo
   scene_padding: 0.2         # Sahneler arasında bırakılan sessizlik (saniye)
-  music_volume: 0.08         # assets/music klasöründeki müziğin sesi (0 = müzik yok)
+  music_volume: 0.4          # 0 = müzik yok; 0.4 = normal (daha yüksek değer müziği yükseltir)
+  music_below_voice_db: 12   # konuşma aralarında müzik, anlatıcı sesinin bu kadar dB altında (konuşurken ayrıca kısılır)
   subtitle_font: "Arial"     # Windows'ta Arial vardır
   subtitle_size: 62
 
 voice:
+  # "gemini" = Gemini TTS doğal Türkçe ses (ÜCRETSİZ katman, mevcut GEMINI_API_KEY ile; çalışmazsa otomatik piper)
   # "google" = Google Cloud doğal Türkçe ses (GOOGLE_TTS_KEY secret'ı gerekir; yoksa/çalışmazsa otomatik piper)
   # "piper"  = çevrimdışı Türkçe ses (her zaman çalışır, yedek)
   # "edge"   = Microsoft Edge sesi (GitHub sunucularında şu an engelli)
-  engine: "piper"
+  engine: "gemini"
+  gemini_voice: "Charon"     # Diğer erkek sesler: Orus, Algenib, Iapetus, Rasalgethi, Sadaltager, Alnilam
+  gemini_model: "gemini-3.8-flash-tts"
+  gemini_fallbacks: ["gemini-3.8-flash-lite-tts"]
+  gemini_style: "Türkçe belgesel anlatıcısı: sıcak, güven veren, merak uyandıran; doğal vurgular, canlı ve akıcı tempo, cümle sonlarında doğal duraklar. Abartılı oyunculuk yok."
+  gemini_wpm: 158            # hedef okuma hızı (kelime/dk); daha yavaş okursa hafifçe hızlandırılır
+  gemini_group_words: 260    # tek istekte okunacak en fazla kelime (ücretsiz günlük istek sınırı için bölüm bölüm okunur)
+  whisper_model: "base"      # bölüm sesini sahnelere bölmek için hizalama modeli (base = hızlı, small = daha isabetli)
   google_voice: "tr-TR-Chirp3-HD-Charon"   # Erkek ses. Diğerleri: tr-TR-Chirp3-HD-Fenrir, -Orus, kadın: -Aoede, -Kore
   name: "tr-TR-AhmetNeural"  # Sadece edge için. Kadın ses: tr-TR-EmelNeural
   rate: "+15%"               # Konuşma hızı (-20% yavaş, +20% hızlı)

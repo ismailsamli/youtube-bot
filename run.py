@@ -164,6 +164,17 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
             script["description"] = script["description"] + "\n\nBölümler:\n" + "\n".join(lines)
             save_json(folder / "script.json", script)
 
+    # Kullanılan müziklerin kaynakları (CC BY lisansı atıf ister)
+    try:
+        from bot import mixer
+        used = load_json(folder / "muzik.json", []) or []
+        lines = mixer.credits_for(used)
+        if lines and "Müzik:" not in script["description"]:
+            script["description"] = (script["description"] + "\n\nMüzik:\n" + "\n".join(lines))[:4900]
+            save_json(folder / "script.json", script)
+    except Exception as e:
+        log(f"  Müzik kaynakları eklenemedi: {e}")
+
     # Lisanslı görsellerin kaynakları açıklamaya eklenir (CC lisansları bunu şart koşar)
     if finder.credits and "Görsel kaynakları" not in script["description"]:
         uniq = list(dict.fromkeys(finder.credits))

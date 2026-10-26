@@ -1,4 +1,5 @@
 """FFmpeg ile sahneleri, sesi ve altyazıyı birleştirip son videoyu üretir."""
+import json
 import math
 import random
 import re
@@ -104,48 +105,43 @@ def build_scene(idx: int, visual: Path, kind: str, audio: Path, text: str,
 
 
 # ---------------- Birleştirme ----------------
-def concat(scene_files: list, work: Path, final: Path, cfg: dict) -> Path:
+def concat(scene_files: list, work: Path, final: Path, cfg: dict, mute: list = None) -> list:
+    """Sahneleri birleştirir; müzik altlığı, ducking ve ses seviyesi mixer'da. Kullanılan müzikleri döndürür."""
+    from . import mixer
     lst = work / "list.txt"
     lst.write_text("".join(f"file '{p.name}'\n" for p in scene_files), encoding="utf-8")
     joined = work / "joined.mp4"
     run(["ffmpeg", "-y", "-hide_banner", "-f", "concat", "-safe", "0", "-i", lst.name,
          "-c", "copy", joined.name], cwd=work)
-
-    music_dir = ROOT / "assets" / "music"
-    tracks = [p for p in music_dir.glob("*") if p.suffix.lower() in (".mp3", ".wav", ".m4a", ".ogg")]
-    vol = cfg["video"].get("music_volume", 0.08)
-    if tracks and vol > 0:
-        track = random.choice(tracks)
-        log(f"Arka plan müziği ekleniyor: {track.name}")
-        try:
-            run(["ffmpeg", "-y", "-hide_banner", "-i", str(joined), "-stream_loop", "-1",
-                 "-i", str(track), "-filter_complex",
-                 f"[1:a]volume={vol}[m];[0:a][m]amix=inputs=2:duration=first:normalize=0[a]",
-                 "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
-                 "-movflags", "+faststart", str(final)])
-            return final
-        except RuntimeError as e:
-            log(f"Müzik eklenemedi, müziksiz devam ediliyor: {e}")
-
-    run(["ffmpeg", "-y", "-hide_banner", "-i", str(joined), "-c", "copy",
-         "-movflags", "+faststart", str(final)])
-    return final
+    try:
+        return mixer.mix(joined, final, cfg, work, mute=mute, seed=len(scene_files))
+    except RuntimeError as e:
+        log(f"Ses miksi yapılamadı, müziksiz devam ediliyor: {str(e)[:300]}")
+        run(["ffmpeg", "-y", "-hide_banner", "-i", str(joined), "-c", "copy",
+             "-movflags", "+faststart", str(final)])
+        return []
 
 
 def assemble(scenes: list, visuals: list, audios: list, work: Path, final: Path, cfg: dict,
              intro: Path = None, outro: Path = None) -> Path:
     """Sıra: soğuk açılış sahneleri -> kanal jeneriği (intro) -> video -> kapanış jeneriği (outro)."""
     work.mkdir(parents=True, exist_ok=True)
-    clips = []
+    clips, mute, t = [], [], 0.0
     n_cold = sum(1 for s in scenes if s.get("cold"))
     for i, (scene, (vis, kind), audio) in enumerate(zip(scenes, visuals, audios)):
         if intro is not None and i == n_cold:
+            d = media_duration(intro)
+            mute.append((t, t + d))          # jenerik animasyonunun kendi sesi var: müzik sussun
             clips.append(intro)
-        clips.append(build_scene(i, vis, kind, audio, scene["text"], work, cfg))
+            t += d
+        clip = build_scene(i, vis, kind, audio, scene["text"], work, cfg)
+        clips.append(clip)
+        t += media_duration(clip)
         if (i + 1) % 5 == 0 or i + 1 == len(scenes):
             log(f"  montaj {i + 1}/{len(scenes)}")
     if outro is not None:
         clips.append(outro)
-    concat(clips, work, final, cfg)
+    used = concat(clips, work, final, cfg, mute)
+    (final.parent / "muzik.json").write_text(json.dumps(used, ensure_ascii=False), encoding="utf-8")
     log(f"Video hazır: {final} ({media_duration(final) / 60:.1f} dk)")
     return final
