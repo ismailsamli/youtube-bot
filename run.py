@@ -134,6 +134,11 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
             sheet.paste(_I.open(fr), ((k % 2) * 640, (k // 2) * 360))
         sheet.save(prev / "onizleme.jpg", quality=80)
         log(f"  Önizleme kaydedildi (jenerik {'var' if intro else 'YOK'}, açılış {cold:.0f} sn)")
+        # senaryo + başlık/açıklama da kaydedilir: yayından önce kontrol için (özellikle hassas bölümler)
+        (prev / "senaryo.txt").write_text(
+            f"BAŞLIK: {script['title']}\nKAPAK: {script.get('thumbnail_text', '')}\n\n"
+            + "\n\n".join(s["text"] for s in script["scenes"]) + f"\n\nAÇIKLAMA:\n{script['description']}",
+            encoding="utf-8")
     except Exception as e:
         log(f"  Önizleme alınamadı: {e}")
 
