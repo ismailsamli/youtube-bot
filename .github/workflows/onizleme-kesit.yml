@@ -1,0 +1,52 @@
+name: Önizleme Kesiti
+
+# Bir "Video Üret" işleminin videosundan küçük bir önizleme kesiti (ilk ~100 sn + ortadan 40 sn) çıkarır
+# ve depoya kaydeder: telefondan hızlıca izleyip kontrol etmek için.
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Video Üret işleminin numarası"
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  kesit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: FFmpeg
+        run: bash tools/ffmpeg_kur.sh
+      - name: Videoyu indir
+        uses: actions/download-artifact@v4
+        with:
+          name: videolar
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+          path: indirilen
+      - name: Kesit çıkar
+        run: |
+          v=$(ls indirilen/output/*/video.mp4 | head -1)
+          mkdir -p onizleme_kesit
+          out="onizleme_kesit/${{ inputs.run_id }}"
+          mkdir -p "$out"
+          d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$v")
+          mid=$(python3 -c "print(max(0, $d/2-20))")
+          ffmpeg -y -v error -i "$v" -t 100 -vf scale=854:480 -c:v libx264 -preset veryfast -crf 30 -c:a aac -b:a 96k "$out/bas.mp4"
+          ffmpeg -y -v error -ss "$mid" -i "$v" -t 40 -vf scale=854:480 -c:v libx264 -preset veryfast -crf 30 -c:a aac -b:a 96k "$out/orta.mp4"
+          ffmpeg -hide_banner -i "$v" -af ebur128 -f null - 2>&1 | grep -A2 "Integrated" | tail -2 > "$out/ses_seviyesi.txt" || true
+          echo "$d sn" >> "$out/ses_seviyesi.txt"
+          cp indirilen/bot_log.txt "$out/" 2>/dev/null || true
+          cp indirilen/output/*/youtube_bilgileri.txt "$out/" 2>/dev/null || true
+          cp indirilen/output/*/senaryo.txt "$out/" 2>/dev/null || true
+      - name: Kaydet
+        run: |
+          git config user.name "video-bot"
+          git config user.email "video-bot@users.noreply.github.com"
+          git add onizleme_kesit
+          git commit -m "Önizleme kesiti ${{ inputs.run_id }}"
+          git pull --rebase -q && git push -q
