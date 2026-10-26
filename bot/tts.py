@@ -396,7 +396,12 @@ def _align_and_cut(wav: Path, texts: list, names: list, out_dir: Path, cfg: dict
 
 
 def _groups(texts: list, max_words: int) -> list:
-    """Ardışık parçalar tek istekte okunur (ücretsiz günlük istek sınırı çok düşük: video başına 2-3 istek)."""
+    """Ardışık parçalar tek istekte okunur (ücretsiz günlük istek sınırı çok düşük: video başına 2-3 istek).
+    Gruplar eşit büyüklükte tutulur: sonda tek başına kalan küçük bir grup olmasın."""
+    import math
+    total = sum(len(t.split()) for t in texts)
+    n_groups = max(1, math.ceil(total / max_words))
+    max_words = math.ceil(total / n_groups) + 25
     out, cur, words = [], [], 0
     for i, t in enumerate(texts):
         n = len(t.split())
