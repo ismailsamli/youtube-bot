@@ -216,6 +216,10 @@ TR_HASSAS = (
     "- Ceza, tarih ve para miktarlarını sadece eminsen ver; emin değilsen yuvarlak/genel ifade kullan.\n"
     "- Hayatını kaybetmiş kişiler hakkında spekülasyon yapma; mağdurlara saygılı ol.\n"
     "- Videonun odağı: dolandırıcılığın nasıl işlediği ve izleyicinin benzerlerinden nasıl korunacağı.\n"
+    "- AMA hikâyeyi somut ve heyecanlı anlat: resmî kaynaklara ve mahkeme kararlarına geçmiş, geniş çapta "
+    "haberleşmiş olguları (tarihler, yerler, resmî rakamlar, kaçış/yakalanma/iade gibi olay akışı, verilen "
+    "cezalar, şirketin ve kesinleşmiş hüküm giymiş kişilerin adları) cesurca kullan; temkin yüzünden metni "
+    "genel, isimsiz ve sıkıcı bırakma. Gerilim olaylardan gelsin, yorum ve suçlamadan değil.\n"
 )
 
 
