@@ -1,27 +1,137 @@
 {
-  "guncelleme": "2026-10-22",
+  "guncelleme": "2026-10-26",
   "oneriler": [
     {
-      "konu": "Çernobil Neden Hala Tamir Edilemiyor?",
-      "aci": "Aradan geçen onca yıla rağmen hasarlı reaktörün üzerindeki lahitin ve içerideki radyoaktif atıkların neden kalıcı olarak çözülemediğini mühendislik ve fizik gerçekleriyle ele alıyoruz.",
-      "kaynak_baslik": "Why Chernobyl Still Can't Be Fixed",
-      "neden": "Yüksek merak uyandıran küresel bir felaketin bugünkü teknik ve kalıcı zorluklarını anlatması izleyicide büyük ilgi uyandırır.",
+      "konu": "Antik Mısır'da Herodot'un piramitlerden bile görkemli olduğunu yazdığı kayıp Hawara Labirenti'nin arkeolojik gizemi.",
+      "aci": "Antik tarihçilerin 3.000 odalı devasa bir yer altı sarayı olarak tasvir ettiği yapının gerçekten var olup olmadığı ve modern yer radarı taramalarının ne gösterdiği.",
+      "kaynak_baslik": "Herodotus Said It Was More Impressive Than The Pyramids. But Egypt Said A Labyrinth Didn't Exist.",
+      "neden": "Antik Mısır ve piramitlerin ötesindeki saklı yapılar Türk izleyicisinin en çok ilgi gösterdiği arkeoloji konuları arasındadır.",
       "izlenme": null,
       "kat": null,
       "kaynak": null,
-      "kullanildi": true,
-      "tarih": "2026-10-22"
+      "kullanildi": false,
+      "tarih": "2026-10-26"
     },
     {
-      "konu": "Büyük Buzul Çözülmeleri ve Önceden Tahmin Edilemeyen Ani Seller",
-      "aci": "Himalayalar'daki devasa buzulların aniden çözülmesiyle oluşan ve modern erken uyarı sistemlerini nasıl şaşırttığını bilimsel verilerle inceliyoruz.",
-      "kaynak_baslik": "Why the Nepal flash flood was almost impossible to predict | About That",
-      "neden": "Doğa olaylarının ve iklim dinamiklerinin yıkıcı gücünü gözler önüne serdiği için yüksek izlenme potansiyeline sahip.",
-      "izlenme": 2168489,
-      "kat": 31.4,
-      "kaynak": "TBCQP-CnEUQ",
-      "kullanildi": true,
-      "tarih": "2026-10-22"
+      "konu": "1942'de batan gemiden sonra açık denizde tek bir tahta sal üzerinde 133 gün hayatta kalan Poon Lim'in hikayesi.",
+      "aci": "Okyanusun ortasında aylarca tek başına açlık, susuzluk ve fırtınalarla mücadele ederken geliştirdiği hayatta kalma taktiklerinin insan iradesini nasıl sınadığı.",
+      "kaynak_baslik": "Невозможное Выживание Человека В Океане за 133 Дня",
+      "neden": "Sınırları zorlayan gerçek hayatta kalma öyküleri bilgi ve belgesel kanallarında en yüksek izlenme oranına sahip formatlardan biridir.",
+      "izlenme": 2321359,
+      "kat": 10.8,
+      "kaynak": "XKVDyVjPRJ8",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "Gözlemlenebilir evrenin bilinen en büyük kara deliklerinden TON 618'in akılalmaz boyutları.",
+      "aci": "Güneş'in 66 milyar katı kütleye sahip bir gök cisminin tüm Güneş sistemimizi yutabilecek ölçeğini kavrama ve evrenin sınırlarını anlama deneyimi.",
+      "kaynak_baslik": "Why TON 618 is The Scariest Black Hole in the Universe",
+      "neden": "Devasa kozmik yapılar ve varoluşsal büyüklük hissi meraklı Türk izleyicisinde doğrudan tıklama refleksi yaratır.",
+      "izlenme": 1542841,
+      "kat": 10.6,
+      "kaynak": "Em3HCTeTlQg",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "Yakutistan'da eksi 50 derecede kamyon şoförlerinin motoru hiç kapatmadan sürdürdüğü ölüm kalım yolculuğu.",
+      "aci": "Dünyanın en soğuk kara yolunda yapılan tek bir mekanik hatanın dakikalar içinde ölümcül donmaya nasıl dönüştüğü ve uygulanan sıra dışı kış kuralları.",
+      "kaynak_baslik": "How Can a Truck Driver Drive All Night at −50°C and Survive?",
+      "neden": "Ekstrem iklimlerdeki sıradan insanların sıra dışı hayatta kalma rutinleri izleyicide güçlü bir merak ve empati uyandırır.",
+      "izlenme": 455655,
+      "kat": 9.0,
+      "kaynak": "nEEGwmuGbBI",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "1925'te Amazon'un derinliklerinde kadim bir medeniyet ararken iz bırakmadan kaybolan kaşif Percy Fawcett'in sırrı.",
+      "aci": "Haritalanmamış balta girmemiş ormanda 'Kayıp Z Şehri'ni bulmak için yola çıkan ekibin ardında tek bir iz bile bırakmadan nasıl sırra kadem bastığı.",
+      "kaynak_baslik": "The Lost City of Z | (Real story) Amazon Jungle's Greatest Mystery",
+      "neden": "Tarihi keşifler ve çözülememiş kayboluş vakaları gizem sever kitle için zamansız bir ilgi konusudur.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "Bronz Çağı'nın en gelişmiş şehir planlamasına sahip Harappa uygarlığının birdenbire terk edilmesinin ardındaki nedenler.",
+      "aci": "Savaş veya istila izi olmaksızın, devasa bir medeniyetin nehir yataklarının değişmesi ve kuraklık yüzünden nasıl sessizce tarihe gömüldüğü.",
+      "kaynak_baslik": "Why Did Harappa Disappear? The Mystery of the Lost City Beneath the Earth | Harappa History",
+      "neden": "Gelişmiş kadim medeniyetlerin gizemli çöküşleri tarih meraklıları için her zaman güçlü bir merak unsurudur.",
+      "izlenme": 303952,
+      "kat": 28.2,
+      "kaynak": "K1ml-kC02-U",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "İrade gücünün neden hızla tükendiği ve beynin dopamin mekanizmasıyla sürdürülebilir disiplin kurmanın nörolojik temeli.",
+      "aci": "Motivasyon beklemek yerine sürtünmeyi azaltma ve mikro alışkanlıklar üzerinden beynin tembellik eğilimini aşma bilimi.",
+      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
+      "neden": "Beyin mekanizmalarını günlük hayata bağlayan bilimsel içerikler genç ve orta yaş kitlede hızla yayılır.",
+      "izlenme": 4015774,
+      "kat": 22.6,
+      "kaynak": "CkP_8bkjf1E",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "1776'da Adam Weishaupt tarafından kurulan gerçek Bavyera İlluminati örgütünün tarihi ve nasıl dağıldığı.",
+      "aci": "Aydınlanma çağında monarşi ve kilise baskısına karşı kurulan küçük bir gizli cemiyetin popüler kültürde nasıl devasa bir dünya komplosuna dönüştüğü.",
+      "kaynak_baslik": "क्या ILLUMINATI वापस आ गया?😳 Illuminati का असली सच | Akshat Gupta | The Fact-Tree #illuminati",
+      "neden": "Popüler kültürdeki en büyük komplo mitinin arkasındaki somut tarihi gerçekleri ayıklamak izleyicinin ilgisini çeker.",
+      "izlenme": 2094318,
+      "kat": 24.5,
+      "kaynak": "wR2hmAa61HQ",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "Kanada'daki Oak Island adasında 200 yılı aşkın süredir çözülemeyen 'Para Çukuru' tuzakları.",
+      "aci": "Kimin kazdığı bilinmeyen ve kazıldıkça su basmasını sağlayan zekice tasarlanmış mühendislik tuzaklarının hazine avcılarını nasıl 2 asırdır durdurduğu.",
+      "kaynak_baslik": "Oak Island का रहस्य: 200 साल से जमीन के नीचे क्या छिपा है? | Money Pit Mystery",
+      "neden": "Eski mühendislik dehası ve ulaşılamayan yeraltı gizemleri Türk YouTube izleyicisinin en çok tükettiği formatlardandır.",
+      "izlenme": 496496,
+      "kat": 9.0,
+      "kaynak": "los6an3g_7E",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "11 Eylül saldırısında ikiz kulelerin enkazı altından 27 saat sonra sağ çıkarılan son insan: Genelle Guzman-McMillan.",
+      "aci": "Tonlarca beton ve çelik molozun altında hareket edemez haldeyken yaşanan saatler ve arama kurtarma köpeğinin yaptığı mucizevi tespit.",
+      "kaynak_baslik": "Last 9/11 survivor pulled from World Trade Center rubble recounts her survival",
+      "neden": "Dünya tarihine geçmiş büyük bir trajedinin içinden çıkan bireysel kurtuluş hikayeleri derin bir merak ve duygusal bağ yaratır.",
+      "izlenme": 897993,
+      "kat": 5.7,
+      "kaynak": "mpAkA5-rdJE",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "Dağ keçilerinin neredeyse 90 derecelik dimdik uçurumlarda düşmeden tırmanabilmesini sağlayan biyomekanik yapı.",
+      "aci": "Kauçuk benzeri elastik toynaklar ve kusursuz ağırlık merkezi kontrolü sayesinde yerçekimine meydan okuyan dikey yaşam stratejisi.",
+      "kaynak_baslik": "Spectacula Escape A Mountain Goat Jumps 4.5 Meters to Survive | FULL EPISODE | Wildlife Documentary",
+      "neden": "Fizik kurallarına aykırı gibi görünen sıra dışı hayvan yetenekleri kısa sürede yüksek etkileşim alır.",
+      "izlenme": 403612,
+      "kat": 7.2,
+      "kaynak": "cFfVzJQfC8Y",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
+    },
+    {
+      "konu": "1876-1878 yılları arasında tarihin en şiddetli Süper El Niño olayının tetiklediği küresel kıtlık felaketi.",
+      "aci": "Pasifik Okyanusu'ndaki sıcaklık değişimlerinin binlerce kilometre ötedeki kıtaların yağış rejimini altüst ederek dünyayı nasıl sarstığı.",
+      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
+      "neden": "Görünmez doğa olaylarının küresel sonuçları ve insanlık tarihine etkisi yüksek merak uyandıran bir felaket bilimi konusudur.",
+      "izlenme": 2331484,
+      "kat": 5.0,
+      "kaynak": "69o-8Mtd3Kc",
+      "kullanildi": false,
+      "tarih": "2026-10-26"
     },
     {
       "konu": "Yerin Altında 200 Yıldır Çözülemeyen Gizem: Oak Island Para Çukuru",
@@ -66,18 +176,6 @@
       "kaynak": null,
       "kullanildi": false,
       "tarih": "2026-10-22"
-    },
-    {
-      "konu": "Zamanın Psikolojisi: Yaşlandıkça Yıllar Neden Daha Hızlı Geçiyor?",
-      "aci": "İnsan beyinin zaman algısının yaş ilerledikçe neden değiştiğini ve anıların hafızada nasıl paketlendiğini nörolojik açıdan ele alıyoruz.",
-      "kaynak_baslik": "8 Terrifying Facts About Time",
-      "neden": "Her bireyin kendi hayatında birebir deneyimlediği bu durum, yüksek oranda kişisel bağ ve merak uyandırır.",
-      "izlenme": 2114709,
-      "kat": 6.3,
-      "kaynak": "IlVzMF2A8C0",
-      "kullanildi": true,
-      "tarih": "2026-10-22",
-      "not": "kanalda benzeri var"
     },
     {
       "konu": "Yeraltında Kurulan Şehirler: Matmata'nın Sırrı",
