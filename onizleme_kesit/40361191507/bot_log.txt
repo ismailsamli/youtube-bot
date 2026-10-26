@@ -1,0 +1,60 @@
+[16:40:14] ========== Video 1/1 ==========
+[16:40:14] Yapay zeka: gemini (gemini-3.8-flash)
+[16:40:14] Video planı yazılıyor...
+[16:40:15]   Gemini geçici hata (ServerError), 20 sn sonra yeniden deneniyor...
+[16:40:35]   gemini-3.8-flash modelinin günlük ücretsiz kotası doldu, gemini-flash-latest modeline geçiliyor.
+[16:40:48]   gemini-flash-latest modelinin günlük ücretsiz kotası doldu, gemini-flash-lite-latest modeline geçiliyor.
+[16:41:19]   Gemini cevabı 18 sn sürdü
+[16:41:19]   Bozuk JSON cevabı onarıldı.
+[16:41:19] Bölüm 1/6 yazılıyor: Soğuk Açılış ve Giriş
+[16:41:39]   Gemini cevabı 20 sn sürdü
+[16:41:39] Bölüm 2/6 yazılıyor: Tanıkların Gözünden Kıyamet
+[16:41:54]   Gemini cevabı 15 sn sürdü
+[16:41:54] Bölüm 3/6 yazılıyor: Gizemli Sessizlik ve İlk Seferler
+[16:42:16]   Gemini cevabı 22 sn sürdü
+[16:42:16] Bölüm 4/6 yazılıyor: Krater Yokluğu ve Bilimsel Çıkmaz
+[16:42:34]   Gemini cevabı 19 sn sürdü
+[16:42:34] Bölüm 5/6 yazılıyor: Modern Teoriler ve Asteroid Patlaması
+[16:42:57]   Gemini cevabı 22 sn sürdü
+[16:42:57] Bölüm 6/6 yazılıyor: Sonuç ve Kapanış
+[16:43:31]   Gemini cevabı 34 sn sürdü
+[16:43:31] Konu: Tunguska olayı: 1908 sabahı Sibirya ormanlarını yerle bir eden gizemli patlama
+[16:43:31] Soğuk açılış (kanca) yazılıyor...
+[16:43:58]   Gemini cevabı 27 sn sürdü
+[16:43:58] Senaryo hazır: 40 sahne, 887 kelime (~6.1 dk)
+[16:43:58] Seslendirme yapılıyor...
+[16:44:08]   Hizalama modeli yükleniyor (faster-whisper base)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[16:44:13]   bölüm 1: open() got an unexpected keyword argument 'metadata_errors' — tekrar deneniyor
+[16:44:23]   bölüm 1: open() got an unexpected keyword argument 'metadata_errors' — tekrar deneniyor
+[16:44:23]   bölüm 1 sahne sahne okunuyor
+[16:44:30]   Gemini sesi kullanılamıyor (gemini-3.8-flash-tts: günlük kota doldu). Video Piper sesiyle seslendirilecek.
+[0;93m2026-10-26 16:44:30.463603753 [W:onnxruntime:Default, device_discovery.cc:95 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+[16:44:30]   Piper ses modeli indiriliyor: tr_TR-dfki-medium.onnx
+[16:44:31]   Piper ses modeli indiriliyor: tr_TR-dfki-medium.onnx.json
+[16:44:36]   seslendirme 10/40 (piper)
+[16:44:41]   seslendirme 20/40 (piper)
+[16:44:46]   seslendirme 30/40 (piper)
+[16:44:50]   seslendirme 40/40 (piper)
+[16:44:50] Görseller hazırlanıyor...
+[16:44:51]   Cloudflare hesap listesi alınamadı (200): {"result":[],"result_info":{"page":1,"per_page":20,"total_pages":0,"count":0,"total_count":0},"success":true,"errors":[],"messages":[]}
+[16:45:34]   görsel 10/40
+[16:46:15]   görsel 20/40
+[16:46:56]   görsel 30/40
+[16:47:50]   görsel 40/40
+[16:47:50]   Yapay zeka çizimi: 41/40 sahne
+[16:47:50] Kapak fotoğrafı hazırlanıyor...
+[16:47:53]   Kapak testi için 3 kapak hazır: kapaklar/20261026-1643_1908-de-sibirya-da-ne-patladi-dunyayi-sarsan-s
+[16:47:53] Video montajı yapılıyor (bu adım birkaç dakika sürebilir)...
+[16:48:25]   montaj 5/40
+[16:48:48]   montaj 10/40
+[16:49:14]   montaj 15/40
+[16:49:45]   montaj 20/40
+[16:50:13]   montaj 25/40
+[16:50:43]   montaj 30/40
+[16:51:10]   montaj 35/40
+[16:51:32]   montaj 40/40
+[16:51:44]   Arka plan müziği: gathering-darkness.mp3, investigations.mp3, long-note-two.mp3
+[16:52:08] Video hazır: /home/runner/work/youtube-bot/youtube-bot/output/20261026-1643_1908-de-sibirya-da-ne-patladi-dunyayi-sarsan-sir/video.mp4 (6.8 dk)
+[16:52:09]   Önizleme kaydedildi (jenerik var, açılış 25 sn)
+[16:52:11] Tamamlandı: /home/runner/work/youtube-bot/youtube-bot/output/20261026-1643_1908-de-sibirya-da-ne-patladi-dunyayi-sarsan-sir
