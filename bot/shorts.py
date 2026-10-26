@@ -179,6 +179,7 @@ def build_short(cfg: dict, folder: Path, short: dict, n: int) -> Path:
     scfg = copy.deepcopy(cfg)
     scfg["video"].update({"width": W, "height": H, "subtitle_size": 72, "subtitle_margin_v": 430,
                           "subtitle_margin_lr": 70, "subtitle_words": 4, "music_volume": 0, "zoom_max": 1.05})
+    scfg["voice"]["gemini_prefer"] = "lite"     # Short'lar Gemini'nin hafif ses modelini kullanır (ayrı günlük kota)
     audios = tts.voice_scenes(short["scenes"], scfg, work / "audio")
     clips = []
     for i, (sc, au) in enumerate(zip(short["scenes"], audios)):

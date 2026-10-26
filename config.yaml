@@ -52,8 +52,8 @@ voice:
   gemini_model: "gemini-3.8-flash-tts"
   gemini_fallbacks: ["gemini-3.8-flash-lite-tts"]
   gemini_style: "Türkçe belgesel anlatıcısı: sıcak, güven veren, merak uyandıran; doğal vurgular, canlı ve akıcı tempo, cümle sonlarında doğal duraklar. Abartılı oyunculuk yok."
-  gemini_wpm: 158            # hedef okuma hızı (kelime/dk); daha yavaş okursa hafifçe hızlandırılır
-  gemini_group_words: 260    # tek istekte okunacak en fazla kelime (ücretsiz günlük istek sınırı için bölüm bölüm okunur)
+  gemini_wpm: 145            # hedef okuma hızı (kelime/dk); daha yavaş okursa hafifçe hızlandırılır
+  gemini_group_words: 450    # tek istekte okunacak en fazla kelime (ücretsiz ses kotası günde ~7 istek: video 2-3 istekte okunur)
   whisper_model: "base"      # bölüm sesini sahnelere bölmek için hizalama modeli (base = hızlı, small = daha isabetli)
   google_voice: "tr-TR-Chirp3-HD-Charon"   # Erkek ses. Diğerleri: tr-TR-Chirp3-HD-Fenrir, -Orus, kadın: -Aoede, -Kore
   name: "tr-TR-AhmetNeural"  # Sadece edge için. Kadın ses: tr-TR-EmelNeural

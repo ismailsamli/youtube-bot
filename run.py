@@ -63,7 +63,9 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
         encoding="utf-8")
 
     log("Seslendirme yapılıyor...")
-    audios = tts.voice_scenes(script["scenes"], cfg, folder / "audio")
+    # kapanış cümlesi de aynı istekte okunur (ücretsiz ses kotası çok sınırlı)
+    extra = [("outro.mp3", branding.OUTRO_LINE)] if cfg["video"].get("branding", True) else None
+    audios = tts.voice_scenes(script["scenes"], cfg, folder / "audio", extra)
 
     log("Görseller hazırlanıyor...")
     finder = VisualFinder(cfg, folder / "visuals")

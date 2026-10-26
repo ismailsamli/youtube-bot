@@ -152,7 +152,7 @@ class QuotaError(RuntimeError):
     """Günlük ücretsiz kota doldu: bu çalışmada Gemini sesi tekrar denenmez."""
 
 
-_gemini_dead = {"reason": None}
+_dead_models = {}        # bu çalışmada günlük kotası biten modeller
 
 
 def _find_audio(obj):
@@ -173,16 +173,24 @@ def _find_audio(obj):
     return None
 
 
+def _gemini_models(cfg: dict) -> list:
+    v = cfg["voice"]
+    models = list(dict.fromkeys([v.get("gemini_model", "gemini-3.8-flash-tts")]
+                                + list(v.get("gemini_fallbacks") or ["gemini-3.8-flash-lite-tts"])))
+    if v.get("gemini_prefer") == "lite":          # Short'lar: ayrı kotası olan hafif modeli önce kullan
+        models.sort(key=lambda m: 0 if "lite" in m else 1)
+    return models
+
+
 def gemini_synthesize(text: str, cfg: dict, wav: Path, style: str = None, retries: int = 4) -> Path:
-    """Metni Gemini TTS ile okur, 24 kHz mono WAV yazar."""
-    if _gemini_dead["reason"]:
-        raise QuotaError(_gemini_dead["reason"])
+    """Metni Gemini TTS ile okur, 24 kHz mono WAV yazar. Günlük kotası biten modeli atlar."""
     key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key:
         raise RuntimeError("GEMINI_API_KEY tanımlı değil")
     v = cfg["voice"]
-    models = list(dict.fromkeys([v.get("gemini_model", "gemini-3.8-flash-tts")]
-                                + list(v.get("gemini_fallbacks") or ["gemini-3.8-flash-lite-tts"])))
+    models = [m for m in _gemini_models(cfg) if m not in _dead_models]
+    if not models:
+        raise QuotaError("tüm Gemini ses modellerinin günlük kotası doldu")
     errors = []
     for model in models:
         body = {"model": model,
@@ -214,13 +222,16 @@ def gemini_synthesize(text: str, cfg: dict, wav: Path, style: str = None, retrie
                         wf.setsampwidth(2)
                         wf.setframerate(24000)
                         wf.writeframes(data)
+                if model != models[0] or errors:
+                    log(f"  Gemini ses modeli: {model}")
                 return wav
             txt = r.text[:400]
             if r.status_code == 429:
                 if "PerDay" in txt or "per day" in txt.lower() or "daily" in txt.lower():
-                    _gemini_dead["reason"] = f"{model}: günlük kota doldu"
-                    last = _gemini_dead["reason"]
-                    break                           # bu model bitti: sıradaki modeli dene
+                    _dead_models[model] = True
+                    last = "günlük kota doldu"
+                    log(f"  {model}: günlük ücretsiz ses kotası doldu")
+                    break                           # bu model bitti: sıradakini dene
                 m = re.search(r'"retryDelay":\s*"(\d+)', r.text)
                 time.sleep(min(90, int(m.group(1)) + 2) if m else 20 * (attempt + 1))
                 last = f"429 {txt[:150]}"
@@ -233,9 +244,8 @@ def gemini_synthesize(text: str, cfg: dict, wav: Path, style: str = None, retrie
             last = f"{r.status_code}: {txt[:150]}"
             time.sleep(8 * (attempt + 1))
         errors.append(f"{model} -> {last}")
-    if all("kota" in e for e in errors):
+    if all(m in _dead_models for m in _gemini_models(cfg)):
         raise QuotaError(" | ".join(errors))
-    _gemini_dead["reason"] = None
     raise RuntimeError("Gemini seslendirme başarısız: " + " | ".join(errors))
 
 
@@ -249,12 +259,17 @@ def _norm(w: str) -> str:
 
 
 def _whisper_words(wav: Path, cfg: dict) -> list:
+    import numpy as np
     from faster_whisper import WhisperModel
     name = cfg["voice"].get("whisper_model", "base")
     if name not in _whisper:
         log(f"  Hizalama modeli yükleniyor (faster-whisper {name})")
         _whisper[name] = WhisperModel(name, device="cpu", compute_type="int8")
-    segs, _ = _whisper[name].transcribe(str(wav), language="tr", word_timestamps=True,
+    # ses ffmpeg ile çözülüp doğrudan verilir (faster-whisper'ın kendi çözücüsü bazı PyAV sürümlerinde bozuk)
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(wav), "-ac", "1", "-ar", "16000", "-f", "f32le", "-"],
+                         capture_output=True, check=True).stdout
+    audio = np.frombuffer(raw, dtype=np.float32)
+    segs, _ = _whisper[name].transcribe(audio, language="tr", word_timestamps=True,
                                         vad_filter=False, beam_size=1, condition_on_previous_text=False)
     out = []
     for sg in segs:
@@ -279,8 +294,33 @@ def _quiet_point(samples, rate: int, t: float, span: float = 0.35) -> float:
     return (a + k * win + win / 2) / rate
 
 
-def _align_and_cut(wav: Path, scenes: list, idxs: list, out_dir: Path, cfg: dict) -> None:
-    """Bölüm sesini Whisper ile hizalar, her sahneyi audio_XXX.mp3 olarak keser, kelime zamanlarını yazar."""
+def _speech_bounds(samples, rate: int) -> tuple:
+    import numpy as np
+    win = max(1, rate // 50)
+    n = len(samples) // win
+    e = 10 * np.log10((samples[:n * win].astype(np.float32).reshape(n, win) ** 2).mean(axis=1) + 1e-9)
+    on = np.where(e > np.percentile(e, 95) - 35)[0]
+    if len(on) == 0:
+        return 0.0, len(samples) / rate
+    return on[0] * win / rate, (on[-1] + 1) * win / rate
+
+
+def _proportional_times(script: list, samples, rate: int) -> list:
+    """Hizalama yapılamazsa: kelime zamanları harf sayısına göre tahmin edilir (yeni istek harcamadan)."""
+    t0, t1 = _speech_bounds(samples, rate)
+    lens = [max(2, len(x[1])) + 1 for x in script]
+    tot = sum(lens)
+    out, acc = [], 0
+    for L in lens:
+        a = t0 + (t1 - t0) * acc / tot
+        acc += L
+        out.append((a, t0 + (t1 - t0) * acc / tot))
+    return out
+
+
+def _align_and_cut(wav: Path, texts: list, names: list, out_dir: Path, cfg: dict) -> str:
+    """Grup sesini Whisper ile hizalar, her parçayı names[k] adlı mp3 olarak keser, kelime zamanlarını yazar.
+    Hizalama olmazsa orantılı bölme yapar. Kullanılan yöntemi döndürür."""
     import numpy as np
     with wave.open(str(wav), "rb") as wf:
         rate = wf.getframerate()
@@ -289,80 +329,82 @@ def _align_and_cut(wav: Path, scenes: list, idxs: list, out_dir: Path, cfg: dict
     if ch > 1:
         samples = samples.reshape(-1, ch).mean(axis=1)
     total = len(samples) / rate
-    script = []                                       # (normal kelime, orijinal kelime, sahne sırası)
-    for k, i in enumerate(idxs):
-        for w in scenes[i]["text"].split():
+    script = []                                       # (normal kelime, orijinal kelime, parça sırası)
+    for k, text in enumerate(texts):
+        for w in text.split():
             if _norm(w):
                 script.append((_norm(w), w, k))
-    heard = [(_norm(w), s, e) for w, s, e in _whisper_words(wav, cfg) if _norm(w)]
-    if not heard or not script:
-        raise RuntimeError("hizalama: kelime bulunamadı")
-    ratio = len(heard) / len(script)
-    sm = difflib.SequenceMatcher(None, [x[0] for x in script], [x[0] for x in heard], autojunk=False)
-    times = [None] * len(script)
-    for blk in sm.get_matching_blocks():
-        for j in range(blk.size):
-            _, s0, e0 = heard[blk.b + j]
-            times[blk.a + j] = (s0, e0)
-    matched = sum(1 for t in times if t)
-    if matched / len(script) < 0.55 or not 0.7 <= ratio <= 1.45:
-        raise RuntimeError(f"hizalama zayıf (eşleşme %{100 * matched / len(script):.0f}, kelime oranı {ratio:.2f})")
-    # eşleşmeyen kelimelerin zamanı komşularından tahmin edilir
-    known = [n for n, t in enumerate(times) if t]
-    for n in range(len(times)):
-        if times[n]:
-            continue
-        prev = max((k for k in known if k < n), default=None)
-        nxt = min((k for k in known if k > n), default=None)
-        if prev is None:
-            t1 = times[nxt][0]
-            times[n] = (max(0.0, t1 - 0.4 * (nxt - n)), max(0.0, t1 - 0.4 * (nxt - n) + 0.3))
-        elif nxt is None:
-            t0 = times[prev][1]
-            times[n] = (min(total, t0 + 0.4 * (n - prev - 1)), min(total, t0 + 0.4 * (n - prev)))
-        else:
-            a, b = times[prev][1], times[nxt][0]
-            f0, f1 = (n - prev) / (nxt - prev + 1), (n - prev + 1) / (nxt - prev + 1)
-            times[n] = (a + (b - a) * f0, a + (b - a) * f1)
-    # sahne sınırları
-    first = {}
-    last = {}
+    method = "whisper"
+    times = None
+    try:
+        heard = [(_norm(w), s, e) for w, s, e in _whisper_words(wav, cfg) if _norm(w)]
+        if not heard:
+            raise RuntimeError("kelime duyulmadı")
+        ratio = len(heard) / len(script)
+        sm = difflib.SequenceMatcher(None, [x[0] for x in script], [x[0] for x in heard], autojunk=False)
+        times = [None] * len(script)
+        for blk in sm.get_matching_blocks():
+            for j in range(blk.size):
+                _, s0, e0 = heard[blk.b + j]
+                times[blk.a + j] = (s0, e0)
+        matched = sum(1 for t in times if t)
+        if matched / len(script) < 0.5 or not 0.65 <= ratio <= 1.5:
+            raise RuntimeError(f"eşleşme %{100 * matched / len(script):.0f}, kelime oranı {ratio:.2f}")
+        known = [n for n, t in enumerate(times) if t]
+        for n in range(len(times)):
+            if times[n]:
+                continue
+            prev = max((k for k in known if k < n), default=None)
+            nxt = min((k for k in known if k > n), default=None)
+            if prev is None:
+                t1 = times[nxt][0]
+                times[n] = (max(0.0, t1 - 0.4 * (nxt - n)), max(0.0, t1 - 0.4 * (nxt - n) + 0.3))
+            elif nxt is None:
+                t0 = times[prev][1]
+                times[n] = (min(total, t0 + 0.4 * (n - prev - 1)), min(total, t0 + 0.4 * (n - prev)))
+            else:
+                a, b = times[prev][1], times[nxt][0]
+                f0, f1 = (n - prev) / (nxt - prev + 1), (n - prev + 1) / (nxt - prev + 1)
+                times[n] = (a + (b - a) * f0, a + (b - a) * f1)
+    except Exception as e:
+        log(f"  hizalama yapılamadı ({str(e)[:120]}), sahneler orantılı bölünüyor")
+        times = _proportional_times(script, samples, rate)
+        method = "orantılı"
+    first, last = {}, {}
     for n, (_, _, k) in enumerate(script):
         first.setdefault(k, n)
         last[k] = n
+    K = len(texts)
     cuts = [max(0.0, times[first[0]][0] - 0.15)]
-    for k in range(1, len(idxs)):
+    for k in range(1, K):
         e_prev, s_next = times[last[k - 1]][1], times[first[k]][0]
         guess = (e_prev + s_next) / 2 if s_next >= e_prev else s_next
-        cuts.append(_quiet_point(samples, rate, guess))
-    cuts.append(min(total, times[last[len(idxs) - 1]][1] + 0.3))
-    for k in range(len(idxs)):
-        if cuts[k + 1] - cuts[k] < 0.6:
-            raise RuntimeError(f"hizalama: {k}. sahne çok kısa çıktı")
-    for k, i in enumerate(idxs):
+        cuts.append(max(cuts[-1] + 0.3, _quiet_point(samples, rate, guess)))
+    cuts.append(min(total, max(cuts[-1] + 0.3, times[last[K - 1]][1] + 0.3)))
+    for k in range(K):
         a, b = cuts[k], cuts[k + 1]
-        path = out_dir / f"audio_{i:03d}.mp3"
+        path = out_dir / names[k]
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-af",
                         f"atrim={a:.3f}:{b:.3f},asetpts=PTS-STARTPTS,afade=t=in:d=0.02,"
                         f"afade=t=out:st={max(0.0, b - a - 0.03):.3f}:d=0.03",
                         "-ar", "44100", "-b:a", "160k", str(path)], check=True)
         words = [{"w": script[n][1], "s": round(times[n][0] - a, 3), "e": round(times[n][1] - a, 3)}
                  for n in range(first[k], last[k] + 1)]
-        (out_dir / f"words_{i:03d}.json").write_text(json.dumps(words, ensure_ascii=False), encoding="utf-8")
+        (out_dir / (Path(names[k]).stem.replace("audio_", "words_") + ".json")).write_text(
+            json.dumps(words, ensure_ascii=False), encoding="utf-8")
+    return method
 
 
-def _groups(scenes: list, max_words: int) -> list:
-    """Aynı bölümdeki ardışık sahneler tek istekte okunur (ücretsiz günlük istek sınırı için)."""
-    out, cur, words, key = [], [], 0, None
-    for i, sc in enumerate(scenes):
-        k = (bool(sc.get("cold")), sc.get("section"))
-        n = len(sc["text"].split())
-        if cur and (k != key or words + n > max_words):
+def _groups(texts: list, max_words: int) -> list:
+    """Ardışık parçalar tek istekte okunur (ücretsiz günlük istek sınırı çok düşük: video başına 2-3 istek)."""
+    out, cur, words = [], [], 0
+    for i, t in enumerate(texts):
+        n = len(t.split())
+        if cur and words + n > max_words:
             out.append(cur)
             cur, words = [], 0
         cur.append(i)
         words += n
-        key = k
     if cur:
         out.append(cur)
     return out
@@ -370,7 +412,7 @@ def _groups(scenes: list, max_words: int) -> list:
 
 def _tempo(wav: Path, words: int, cfg: dict) -> None:
     """Okuma hızı hedefin altındaysa (perdeyi bozmadan) hafifçe hızlandırır."""
-    target = float(cfg["voice"].get("gemini_wpm", 158))
+    target = float(cfg["voice"].get("gemini_wpm", 145))
     with wave.open(str(wav), "rb") as wf:
         secs = wf.getnframes() / wf.getframerate()
     wpm = words / max(secs / 60, 0.01)
@@ -382,46 +424,26 @@ def _tempo(wav: Path, words: int, cfg: dict) -> None:
         tmp.replace(wav)
 
 
-def gemini_voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> None:
-    """Tüm sahneleri Gemini ile seslendirir (bölüm bölüm). Hata olursa RuntimeError fırlatır."""
-    max_words = int(cfg["voice"].get("gemini_group_words", 260))
-    groups = _groups(scenes, max_words)
+def gemini_voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> None:
+    """Tüm sahneleri (ve varsa ek satırları, ör. kapanış cümlesi) Gemini ile birkaç büyük istekte seslendirir."""
+    items = [(f"audio_{i:03d}.mp3", sc["text"]) for i, sc in enumerate(scenes)] + list(extra or [])
+    texts = [t for _, t in items]
+    groups = _groups(texts, int(cfg["voice"].get("gemini_group_words", 450)))
     done = 0
     for g, idxs in enumerate(groups):
-        if all((out_dir / f"audio_{i:03d}.mp3").exists() for i in idxs):
+        names = [items[i][0] for i in idxs]
+        if all((out_dir / n).exists() for n in names):
+            done += len(idxs)
             continue
-        text = "\n\n".join(scenes[i]["text"] for i in idxs)
-        words = len(text.split())
-        wav = out_dir / f"bolum_{g:02d}.wav"
-        err = None
-        for attempt in range(2):
-            try:
-                if not wav.exists() or attempt:
-                    gemini_synthesize(text, cfg, wav)
-                    _tempo(wav, words, cfg)
-                _align_and_cut(wav, scenes, idxs, out_dir, cfg)
-                err = None
-                break
-            except QuotaError:
-                raise
-            except Exception as e:                    # bozuk okuma: bir kez yeniden okut
-                err = e
-                log(f"  bölüm {g + 1}: {str(e)[:160]} — tekrar deneniyor")
-        if err:
-            # son çare: bu bölümün sahneleri tek tek okunur
-            log(f"  bölüm {g + 1} sahne sahne okunuyor")
-            for i in idxs:
-                w1 = out_dir / f"tek_{i:03d}.wav"
-                gemini_synthesize(scenes[i]["text"], cfg, w1)
-                _tempo(w1, len(scenes[i]["text"].split()), cfg)
-                subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(w1), "-af",
-                                "silenceremove=start_periods=1:start_threshold=-45dB,areverse,"
-                                "silenceremove=start_periods=1:start_threshold=-45dB,areverse",
-                                "-ar", "44100", "-b:a", "160k", str(out_dir / f"audio_{i:03d}.mp3")], check=True)
-                w1.unlink(missing_ok=True)
+        part = [texts[i] for i in idxs]
+        wav = out_dir / f"grup_{g:02d}.wav"
+        if not wav.exists():
+            gemini_synthesize("\n\n".join(part), cfg, wav)
+            _tempo(wav, sum(len(t.split()) for t in part), cfg)
+        method = _align_and_cut(wav, part, names, out_dir, cfg)
         wav.unlink(missing_ok=True)
         done += len(idxs)
-        log(f"  seslendirme {done}/{len(scenes)} (gemini, {g + 1}/{len(groups)}. istek grubu)")
+        log(f"  seslendirme {min(done, len(scenes))}/{len(scenes)} (gemini, istek {g + 1}/{len(groups)}, {method})")
 
 
 def say(text: str, cfg: dict, path: Path, out_dir: Path) -> Path:
@@ -453,7 +475,8 @@ def say(text: str, cfg: dict, path: Path, out_dir: Path) -> Path:
 
 
 # ---------------- Ana akış ----------------
-def voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> list:
+def voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> list:
+    """extra: [(dosya_adı, metin)] — aynı sesle okunacak ek satırlar (ör. kapanış cümlesi)."""
     out_dir.mkdir(parents=True, exist_ok=True)
     voice, rate = cfg["voice"]["name"], cfg["voice"]["rate"]
     engine_file = out_dir / "motor.txt"
@@ -461,11 +484,12 @@ def voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> list:
 
     if engine == "gemini":
         try:
-            gemini_voice_scenes(scenes, cfg, out_dir)
+            gemini_voice_scenes(scenes, cfg, out_dir, extra)
         except Exception as e:
             log(f"  Gemini sesi kullanılamıyor ({str(e)[:200]}). Video Piper sesiyle seslendirilecek.")
             for f in list(out_dir.glob("audio_*.mp3")) + list(out_dir.glob("words_*.json")) \
-                    + list(out_dir.glob("bolum_*.wav")) + list(out_dir.glob("tek_*.wav")):
+                    + list(out_dir.glob("grup_*.wav")) \
+                    + [out_dir / n for n, _ in (extra or [])]:
                 f.unlink(missing_ok=True)       # tek ses kuralı: yarım Gemini sesleri silinir
             engine = "piper"
 
