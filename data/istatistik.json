@@ -1,32 +1,26 @@
 {
-  "from": "2026-10-18",
-  "to": "2026-10-25",
+  "from": "2026-10-19",
+  "to": "2026-10-26",
   "total": {
-    "views": 4813,
+    "views": 7094,
     "subscribersGained": 6,
     "subscribersLost": 0,
-    "estimatedMinutesWatched": 1029
+    "estimatedMinutesWatched": 1400
   },
   "traffic": {
-    "SHORTS": 3687,
-    "SUBSCRIBER": 786,
-    "RELATED_VIDEO": 178,
-    "YT_SEARCH": 105,
-    "YT_CHANNEL": 31,
-    "YT_OTHER_PAGE": 15,
-    "NO_LINK_OTHER": 4,
-    "NOTIFICATION": 4,
-    "PLAYLIST": 2,
-    "SOUND_PAGE": 1
+    "SHORTS": 5702,
+    "SUBSCRIBER": 939,
+    "RELATED_VIDEO": 202,
+    "YT_SEARCH": 164,
+    "YT_CHANNEL": 49,
+    "YT_OTHER_PAGE": 20,
+    "NO_LINK_OTHER": 5,
+    "NOTIFICATION": 5,
+    "PLAYLIST": 3,
+    "SOUND_PAGE": 1,
+    "SHORTS_CONTENT_LINKS": 1
   },
   "daily": [
-    [
-      "2026-10-18",
-      13,
-      0,
-      0,
-      38
-    ],
     [
       "2026-10-19",
       19,
@@ -46,7 +40,7 @@
       2383,
       3,
       0,
-      412
+      413
     ],
     [
       "2026-10-22",
@@ -54,15 +48,35 @@
       2,
       0,
       515
+    ],
+    [
+      "2026-10-23",
+      2294,
+      0,
+      0,
+      409
     ]
   ],
   "videos": [
     {
+      "video": "EbON3W4BRM0",
+      "views": 1219,
+      "estimatedMinutesWatched": 86,
+      "averageViewDuration": 11,
+      "averageViewPercentage": 36.89,
+      "subscribersGained": 0,
+      "likes": 8,
+      "comments": 0,
+      "shares": 0,
+      "type": "SHORT",
+      "title": "76 Gün Okyanusta Nasıl Yaşanır?"
+    },
+    {
       "video": "cYPCknDhcYY",
-      "views": 1156,
-      "estimatedMinutesWatched": 126,
+      "views": 1158,
+      "estimatedMinutesWatched": 127,
       "averageViewDuration": 12,
-      "averageViewPercentage": 41.89,
+      "averageViewPercentage": 41.95,
       "subscribersGained": 0,
       "likes": 6,
       "comments": 0,
@@ -71,24 +85,24 @@
       "title": "Okyanusun Ortasında Devasa Köpekbalıkları"
     },
     {
-      "video": "EbON3W4BRM0",
-      "views": 1093,
-      "estimatedMinutesWatched": 76,
-      "averageViewDuration": 11,
-      "averageViewPercentage": 37.3,
+      "video": "ZaAtGHy1xBw",
+      "views": 1139,
+      "estimatedMinutesWatched": 147,
+      "averageViewDuration": 15,
+      "averageViewPercentage": 26.85,
       "subscribersGained": 0,
-      "likes": 6,
+      "likes": 12,
       "comments": 0,
       "shares": 0,
       "type": "SHORT",
-      "title": "76 Gün Okyanusta Nasıl Yaşanır?"
+      "title": "Vücudunuz Gözlerinizin Var Olduğunu Neden Bilmiyor?"
     },
     {
       "video": "VphrcF21F4I",
-      "views": 856,
-      "estimatedMinutesWatched": 422,
+      "views": 1017,
+      "estimatedMinutesWatched": 472,
       "averageViewDuration": 106,
-      "averageViewPercentage": 22.81,
+      "averageViewPercentage": 22.63,
       "subscribersGained": 3,
       "likes": 5,
       "comments": 0,
@@ -97,37 +111,50 @@
       "title": "Vücudunuz Gözlerinizin Var Olduğunu BİLMİYOR"
     },
     {
-      "video": "ZaAtGHy1xBw",
-      "views": 670,
-      "estimatedMinutesWatched": 88,
-      "averageViewDuration": 16,
-      "averageViewPercentage": 28.689999999999998,
-      "subscribersGained": 0,
-      "likes": 8,
-      "comments": 0,
-      "shares": 0,
-      "type": "SHORT",
-      "title": "Vücudunuz Gözlerinizin Var Olduğunu Neden Bilmiyor?"
-    },
-    {
       "video": "np58gWXdFyU",
-      "views": 644,
-      "estimatedMinutesWatched": 124,
+      "views": 964,
+      "estimatedMinutesWatched": 192,
       "averageViewDuration": 21,
-      "averageViewPercentage": 36.39,
+      "averageViewPercentage": 35.94,
       "subscribersGained": 1,
-      "likes": 9,
+      "likes": 15,
       "comments": 0,
       "shares": 0,
       "type": "SHORT",
       "title": "Tek Gözü Yaralanan Biri Nasıl Tamamen Kör Olabilir?"
     },
     {
+      "video": "oDLBDtqDVts",
+      "views": 590,
+      "estimatedMinutesWatched": 72,
+      "averageViewDuration": 18,
+      "averageViewPercentage": 38.71,
+      "subscribersGained": 0,
+      "likes": 6,
+      "comments": 0,
+      "shares": 0,
+      "type": "SHORT",
+      "title": "4.000 Metreden Atlayıp Buharlaşan Adam: D.B. Cooper"
+    },
+    {
+      "video": "Vpwol1Ye5bA",
+      "views": 430,
+      "estimatedMinutesWatched": 83,
+      "averageViewDuration": 25,
+      "averageViewPercentage": 49.62,
+      "subscribersGained": 0,
+      "likes": 9,
+      "comments": 1,
+      "shares": 0,
+      "type": "SHORT",
+      "title": "9 Yıl Sonra Nehir Kıyısında Bulunan Esrarengiz Servet"
+    },
+    {
       "video": "Kr0voHJrvEk",
-      "views": 239,
-      "estimatedMinutesWatched": 19,
+      "views": 389,
+      "estimatedMinutesWatched": 30,
       "averageViewDuration": 17,
-      "averageViewPercentage": 56.269999999999996,
+      "averageViewPercentage": 55.39999999999999,
       "subscribersGained": 1,
       "likes": 2,
       "comments": 0,
@@ -137,10 +164,10 @@
     },
     {
       "video": "rneyASFOJtM",
-      "views": 73,
+      "views": 72,
       "estimatedMinutesWatched": 88,
-      "averageViewDuration": 168,
-      "averageViewPercentage": 27.690000000000005,
+      "averageViewDuration": 173,
+      "averageViewPercentage": 28.550000000000004,
       "subscribersGained": 0,
       "likes": 2,
       "comments": 0,
@@ -149,24 +176,11 @@
       "title": "Göbeklitepe'yi Neden Kendi Elleriyle GÖMDÜLER?"
     },
     {
-      "video": "4HDIsTkqMD8",
-      "views": 20,
-      "estimatedMinutesWatched": 39,
-      "averageViewDuration": 118,
-      "averageViewPercentage": 22.55,
-      "subscribersGained": 0,
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "type": "VIDEO",
-      "title": "Okyanusun 30 Metre Altında 60 Saat: Nasıl SAĞ Kaldı?"
-    },
-    {
       "video": "CDvCz4oy0Sk",
-      "views": 15,
-      "estimatedMinutesWatched": 5,
-      "averageViewDuration": 42,
-      "averageViewPercentage": 9.84,
+      "views": 30,
+      "estimatedMinutesWatched": 9,
+      "averageViewDuration": 41,
+      "averageViewPercentage": 9.71,
       "subscribersGained": 0,
       "likes": 0,
       "comments": 0,
@@ -175,37 +189,50 @@
       "title": "Okyanusun Ortasında 76 Gün: Kurtulmanın Yolu Neydi?"
     },
     {
-      "video": "Ok6y_7YSfG8",
-      "views": 14,
-      "estimatedMinutesWatched": 10,
-      "averageViewDuration": 79,
-      "averageViewPercentage": 13.600000000000001,
-      "subscribersGained": 0,
-      "likes": 1,
-      "comments": 0,
-      "shares": 0,
-      "type": "VIDEO",
-      "title": "3.000 Metreden Düştü: Amazon'da 11 Gün Nasıl SAĞ Kaldı?"
-    },
-    {
       "video": "3ZfueJI_Uac",
-      "views": 13,
-      "estimatedMinutesWatched": 14,
-      "averageViewDuration": 65,
-      "averageViewPercentage": 12.89,
+      "views": 29,
+      "estimatedMinutesWatched": 44,
+      "averageViewDuration": 91,
+      "averageViewPercentage": 18.13,
       "subscribersGained": 0,
-      "likes": 1,
+      "likes": 2,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
       "title": "4.000 Metreden Atladı ve BUHARLAŞTI: D.B. Cooper Sırrı"
     },
     {
+      "video": "Ok6y_7YSfG8",
+      "views": 14,
+      "estimatedMinutesWatched": 4,
+      "averageViewDuration": 40,
+      "averageViewPercentage": 6.92,
+      "subscribersGained": 0,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "3.000 Metreden Düştü: Amazon'da 11 Gün Nasıl SAĞ Kaldı?"
+    },
+    {
+      "video": "4HDIsTkqMD8",
+      "views": 13,
+      "estimatedMinutesWatched": 7,
+      "averageViewDuration": 38,
+      "averageViewPercentage": 7.290000000000001,
+      "subscribersGained": 0,
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "Okyanusun 30 Metre Altında 60 Saat: Nasıl SAĞ Kaldı?"
+    },
+    {
       "video": "C_fGGF4AKcY",
-      "views": 7,
-      "estimatedMinutesWatched": 0,
-      "averageViewDuration": 3,
-      "averageViewPercentage": 0.66,
+      "views": 10,
+      "estimatedMinutesWatched": 1,
+      "averageViewDuration": 36,
+      "averageViewPercentage": 7.090000000000001,
       "subscribersGained": 0,
       "likes": 1,
       "comments": 0,
@@ -214,13 +241,26 @@
       "title": "Dünyanın En Derin Çukuru: 12.000 Metrede Neden DURDULAR?"
     },
     {
+      "video": "-NvMLk_uo34",
+      "views": 7,
+      "estimatedMinutesWatched": 10,
+      "averageViewDuration": 153,
+      "averageViewPercentage": 36.18,
+      "subscribersGained": 0,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "type": "VIDEO",
+      "title": "Tarihin En BÜYÜK Vurgunu: 65 Milyar Dolar Nasıl Yok Oldu?"
+    },
+    {
       "video": "Ulj2DL8wnTA",
       "views": 4,
-      "estimatedMinutesWatched": 0,
-      "averageViewDuration": 5,
-      "averageViewPercentage": 1.23,
+      "estimatedMinutesWatched": 7,
+      "averageViewDuration": 212,
+      "averageViewPercentage": 50.23,
       "subscribersGained": 0,
-      "likes": 1,
+      "likes": 2,
       "comments": 0,
       "shares": 0,
       "type": "VIDEO",
@@ -294,7 +334,7 @@
   ],
   "anlik": {
     "cYPCknDhcYY": {
-      "views": 1159,
+      "views": 1161,
       "likes": 6,
       "comments": 1,
       "duration": "PT29S",
@@ -303,7 +343,7 @@
       "publish_at": "2026-10-21T12:00:00+03:00"
     },
     "EbON3W4BRM0": {
-      "views": 1221,
+      "views": 1223,
       "likes": 9,
       "comments": 1,
       "duration": "PT30S",
@@ -312,8 +352,8 @@
       "publish_at": "2026-10-21T15:00:00+03:00"
     },
     "np58gWXdFyU": {
-      "views": 976,
-      "likes": 15,
+      "views": 978,
+      "likes": 16,
       "comments": 1,
       "duration": "PT59S",
       "type": "SHORT",
@@ -348,7 +388,7 @@
       "publish_at": "2026-10-15T19:00:00+03:00"
     },
     "zBesBidHrUo": {
-      "views": 6,
+      "views": 7,
       "likes": 0,
       "comments": 1,
       "duration": "PT8M28S",
@@ -357,7 +397,7 @@
       "publish_at": "2026-10-16T19:00:00+03:00"
     },
     "Ulj2DL8wnTA": {
-      "views": 8,
+      "views": 9,
       "likes": 2,
       "comments": 1,
       "duration": "PT7M3S",
@@ -375,7 +415,7 @@
       "publish_at": "2026-10-18T19:00:00+03:00"
     },
     "CDvCz4oy0Sk": {
-      "views": 31,
+      "views": 32,
       "likes": 0,
       "comments": 1,
       "duration": "PT7M9S",
@@ -384,7 +424,7 @@
       "publish_at": "2026-10-20T19:00:00+03:00"
     },
     "VphrcF21F4I": {
-      "views": 1147,
+      "views": 1150,
       "likes": 5,
       "comments": 1,
       "duration": "PT7M49S",
@@ -402,7 +442,7 @@
       "publish_at": "2026-10-11T19:00:00+03:00"
     },
     "C_fGGF4AKcY": {
-      "views": 89,
+      "views": 92,
       "likes": 2,
       "comments": 1,
       "duration": "PT8M29S",
@@ -420,7 +460,7 @@
       "publish_at": "2026-10-13T19:00:00+03:00"
     },
     "rneyASFOJtM": {
-      "views": 74,
+      "views": 75,
       "likes": 2,
       "comments": 1,
       "duration": "PT10M9S",
@@ -438,8 +478,8 @@
       "publish_at": "2026-10-22T21:00:00+03:00"
     },
     "oDLBDtqDVts": {
-      "views": 744,
-      "likes": 8,
+      "views": 756,
+      "likes": 9,
       "comments": 1,
       "duration": "PT49S",
       "type": "SHORT",
@@ -447,8 +487,8 @@
       "publish_at": "2026-10-23T12:00:00+03:00"
     },
     "Vpwol1Ye5bA": {
-      "views": 888,
-      "likes": 12,
+      "views": 938,
+      "likes": 14,
       "comments": 1,
       "duration": "PT52S",
       "type": "SHORT",
@@ -456,7 +496,7 @@
       "publish_at": "2026-10-23T15:00:00+03:00"
     },
     "3ZfueJI_Uac": {
-      "views": 60,
+      "views": 63,
       "likes": 2,
       "comments": 3,
       "duration": "PT8M26S",
@@ -464,45 +504,18 @@
       "title": "4.000 Metreden Atladı ve BUHARLAŞTI: D.B. Cooper Sırrı",
       "publish_at": "2026-10-22T19:00:00+03:00"
     },
-    "Y_SsxYc5Z74": {
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "duration": "PT34S",
-      "type": "SHORT",
-      "title": "Çernobil'deki Robotları Saniyeler İçinde Yakan Ölümcül Kütle",
-      "publish_at": "2026-10-25T12:00:00+03:00"
-    },
-    "XOZ0Z0SphUQ": {
-      "views": 0,
-      "likes": 0,
-      "comments": 0,
-      "duration": "PT50S",
-      "type": "SHORT",
-      "title": "Çernobil'i Neden Beton Döküp Sonsuza Dek Gömemiyoruz?",
-      "publish_at": "2026-10-25T15:00:00+03:00"
-    },
     "0vQrn4-7Ako": {
-      "views": 0,
-      "likes": 0,
+      "views": 666,
+      "likes": 2,
       "comments": 0,
       "duration": "PT38S",
       "type": "SHORT",
       "title": "1.5 Milyar Euro Harcanan Dev Çelik Kubbe Çernobil'i Çözdü mü?",
       "publish_at": "2026-10-25T21:00:00+03:00"
     },
-    "mTI6Q0t7AQE": {
-      "views": 11,
-      "likes": 1,
-      "comments": 0,
-      "duration": "PT8M29S",
-      "type": "VIDEO",
-      "title": "Çernobil Neden 40 Yıldır Bir Türlü TEMİZLENEMİYOR?",
-      "publish_at": "2026-10-24T19:00:00+03:00"
-    },
     "vmApJJY65iM": {
-      "views": 263,
-      "likes": 3,
+      "views": 351,
+      "likes": 6,
       "comments": 1,
       "duration": "PT56S",
       "type": "SHORT",
@@ -510,8 +523,8 @@
       "publish_at": "2026-10-24T12:00:00+03:00"
     },
     "MeNQQ40g_9I": {
-      "views": 382,
-      "likes": 7,
+      "views": 682,
+      "likes": 10,
       "comments": 1,
       "duration": "PT57S",
       "type": "SHORT",
@@ -528,8 +541,8 @@
       "publish_at": "2026-10-23T19:00:00+03:00"
     },
     "tvJnGpj0CGE": {
-      "views": 0,
-      "likes": 0,
+      "views": 1,
+      "likes": 1,
       "comments": 0,
       "duration": "PT34S",
       "type": "SHORT",
@@ -555,18 +568,81 @@
       "publish_at": "2026-10-26T21:00:00+03:00"
     },
     "5BG2pYSLK7I": {
-      "views": 0,
+      "views": 4,
       "likes": 0,
       "comments": 0,
       "duration": "PT8M45S",
       "type": "VIDEO",
       "title": "Beyniniz Size Her Gün Bu 5 YALANI Söylüyor",
       "publish_at": "2026-10-25T19:00:00+03:00"
+    },
+    "Y_SsxYc5Z74": {
+      "views": 322,
+      "likes": 3,
+      "comments": 1,
+      "duration": "PT34S",
+      "type": "SHORT",
+      "title": "Çernobil'deki Robotları Saniyeler İçinde Yakan Ölümcül Kütle",
+      "publish_at": "2026-10-25T12:00:00+03:00"
+    },
+    "XOZ0Z0SphUQ": {
+      "views": 413,
+      "likes": 10,
+      "comments": 1,
+      "duration": "PT50S",
+      "type": "SHORT",
+      "title": "Çernobil'i Neden Beton Döküp Sonsuza Dek Gömemiyoruz?",
+      "publish_at": "2026-10-25T15:00:00+03:00"
+    },
+    "mTI6Q0t7AQE": {
+      "views": 39,
+      "likes": 2,
+      "comments": 1,
+      "duration": "PT8M29S",
+      "type": "VIDEO",
+      "title": "Çernobil Neden 40 Yıldır Bir Türlü TEMİZLENEMİYOR?",
+      "publish_at": "2026-10-24T19:00:00+03:00"
+    },
+    "__uOtGdpEwM": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT33S",
+      "type": "SHORT",
+      "title": "Himalayalar'daki Görünmez Dağ Tsunamisi",
+      "publish_at": "2026-10-27T12:00:00+03:00"
+    },
+    "ADEkhmFOpsQ": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT52S",
+      "type": "SHORT",
+      "title": "Radarların Göremediği Gizli Buzul Tuzağı",
+      "publish_at": "2026-10-27T15:00:00+03:00"
+    },
+    "AMkQRg51v2E": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT44S",
+      "type": "SHORT",
+      "title": "Bir Milyar İnsanı Tehdit Eden Su Bombası",
+      "publish_at": "2026-10-27T21:00:00+03:00"
+    },
+    "tUTVErUmGS0": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "duration": "PT8M37S",
+      "type": "VIDEO",
+      "title": "Himalayalar'da Gizlenen Tsunami: Radarlar Neden ÇARESİZ?",
+      "publish_at": "2026-10-26T19:00:00+03:00"
     }
   },
   "kanal": {
-    "viewCount": 7580,
-    "subscriberCount": 149,
-    "videoCount": 24
+    "viewCount": 9003,
+    "subscriberCount": 151,
+    "videoCount": 28
   }
 }
