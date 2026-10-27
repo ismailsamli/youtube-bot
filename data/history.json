@@ -246,17 +246,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261024-1304_beyniniz-size-her-gun-bu-5-yalani-soyluyor#short3",
-    "title": "Aslında Şu Anı Değil Geçmişi Yaşıyorsunuz",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "9gBWj5PvdN0",
-    "publish_at": "2026-10-26T21:00:00+03:00",
-    "comment": "Beyninizin dünyayı gecikmeli göstermesi hakkında ne düşünüyorsunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/5BG2pYSLK7I",
-    "long_video": "5BG2pYSLK7I",
-    "hedef": "yaklaşık 40 sn"
-  },
-  {
     "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short1",
     "title": "Çernobil'deki Robotları Saniyeler İçinde Yakan Ölümcül Kütle",
     "type": "short",
@@ -292,28 +281,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short1",
-    "title": "Himalayalar'daki Görünmez Dağ Tsunamisi",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "__uOtGdpEwM",
-    "publish_at": "2026-10-27T12:00:00+03:00",
-    "comment": "Sizce teknoloji doğanın anlık yıkım gücüne yetişebilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
-    "long_video": "tUTVErUmGS0",
-    "hedef": "yaklaşık 30 sn"
-  },
-  {
-    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short2",
-    "title": "Radarların Göremediği Gizli Buzul Tuzağı",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "ADEkhmFOpsQ",
-    "publish_at": "2026-10-27T15:00:00+03:00",
-    "comment": "Sizce gökyüzündeki uydular yeraltındaki erimeyi ne zaman çözebilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
-    "long_video": "tUTVErUmGS0",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short3",
     "title": "Bir Milyar İnsanı Tehdit Eden Su Bombası",
     "type": "short",
@@ -323,16 +290,6 @@
     "comment": "Sizce dev barajlar buzul sellerine karşı korunabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
     "long_video": "tUTVErUmGS0",
     "hedef": "yaklaşık 40 sn"
-  },
-  {
-    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car",
-    "title": "Himalayalar'da Gizlenen Tsunami: Radarlar Neden ÇARESİZ?",
-    "status": "yüklendi",
-    "video_id": "tUTVErUmGS0",
-    "publish_at": "2026-10-26T19:00:00+03:00",
-    "comment": "Binlerce metre yüksekte asılı duran bu devasa su kütlelerini durdurmak mümkün mü, yoksa o vadileri tamamen terk mi etmeliyiz? Fikirlerinizi bekliyorum. 👇",
-    "playlist": "Doğanın Gücü: Afetler ve Canlılar",
-    "playlist_done": true
   },
   {
     "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short3",
@@ -433,5 +390,95 @@
     "folder": "20261026-1708_1908-de-sibirya-da-ne-patladi-bilinmeyen-gercek",
     "title": "1908'de Sibirya'da Ne Patladı? BİLİNMEYEN Gerçek",
     "status": "hazır"
+  },
+  {
+    "folder": "20261024-1304_beyniniz-size-her-gun-bu-5-yalani-soyluyor#short3",
+    "title": "Aslında Şu Anı Değil Geçmişi Yaşıyorsunuz",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "9gBWj5PvdN0",
+    "publish_at": "2026-10-26T21:00:00+03:00",
+    "comment": "Beyninizin dünyayı gecikmeli göstermesi hakkında ne düşünüyorsunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/5BG2pYSLK7I",
+    "long_video": "5BG2pYSLK7I",
+    "hedef": "yaklaşık 40 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short1",
+    "title": "Himalayalar'daki Görünmez Dağ Tsunamisi",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "__uOtGdpEwM",
+    "publish_at": "2026-10-27T12:00:00+03:00",
+    "comment": "Sizce teknoloji doğanın anlık yıkım gücüne yetişebilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
+    "long_video": "tUTVErUmGS0",
+    "hedef": "yaklaşık 30 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short2",
+    "title": "Radarların Göremediği Gizli Buzul Tuzağı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "ADEkhmFOpsQ",
+    "publish_at": "2026-10-27T15:00:00+03:00",
+    "comment": "Sizce gökyüzündeki uydular yeraltındaki erimeyi ne zaman çözebilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
+    "long_video": "tUTVErUmGS0",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car",
+    "title": "Himalayalar'da Gizlenen Tsunami: Radarlar Neden ÇARESİZ?",
+    "status": "yüklendi",
+    "video_id": "tUTVErUmGS0",
+    "publish_at": "2026-10-26T19:00:00+03:00",
+    "comment": "Binlerce metre yüksekte asılı duran bu devasa su kütlelerini durdurmak mümkün mü, yoksa o vadileri tamamen terk mi etmeliyiz? Fikirlerinizi bekliyorum. 👇",
+    "playlist": "Doğanın Gücü: Afetler ve Canlılar",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize#short1",
+    "title": "Mısır Kumlarının Altındaki 3.000 Odalı Dev Labirent",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "YWKXPb-IjiE",
+    "publish_at": "2026-10-29T12:00:00+03:00",
+    "comment": "Sizce antik yazarların anlattığı bu labirent piramitlerden daha görkemli olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/9izZBPqO2qw",
+    "long_video": "9izZBPqO2qw",
+    "hedef": "yaklaşık 30 sn"
+  },
+  {
+    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize#short2",
+    "title": "Yok Oldu Sanılan Mısır Labirenti Radarla Nasıl Bulundu?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "YQzLQTZGt5A",
+    "publish_at": "2026-10-29T15:00:00+03:00",
+    "comment": "Sizce kumların altındaki bu antik komplekste ne tür gizemler saklıdır?\n\nHikâyenin tamamı burada 👉 https://youtu.be/9izZBPqO2qw",
+    "long_video": "9izZBPqO2qw",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize#short3",
+    "title": "Mısır'ın Yeraltı Labirenti Neden Hâlâ Kazılamıyor?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "CbrWm4G9oW8",
+    "publish_at": "2026-10-29T21:00:00+03:00",
+    "comment": "Sizce bu kazıların durdurulmasının asıl sebebi sular mı yoksa bürokrasi mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/9izZBPqO2qw",
+    "long_video": "9izZBPqO2qw",
+    "hedef": "yaklaşık 40 sn"
+  },
+  {
+    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize",
+    "title": "Piramitlerden BİLE Büyük: Mısır'ın 3.000 Odalı Gizemi",
+    "status": "yüklendi",
+    "video_id": "9izZBPqO2qw",
+    "publish_at": "2026-10-28T19:00:00+03:00",
+    "comment": "Sizce Mısır kumlarının altında gerçekten piramitleri gölgede bırakacak devasa bir yeraltı labirenti olabilir mi, yoksa Heredot abartmış mıydı? 👇",
+    "playlist": "Tarihin Karanlık Sırları",
+    "playlist_done": true
   }
 ]
