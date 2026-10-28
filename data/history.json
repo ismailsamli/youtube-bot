@@ -281,17 +281,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short3",
-    "title": "Bir Milyar İnsanı Tehdit Eden Su Bombası",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "AMkQRg51v2E",
-    "publish_at": "2026-10-27T21:00:00+03:00",
-    "comment": "Sizce dev barajlar buzul sellerine karşı korunabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
-    "long_video": "tUTVErUmGS0",
-    "hedef": "yaklaşık 40 sn"
-  },
-  {
     "folder": "20261023-1434_cernobil-neden-38-yildir-bir-turlu-temizlenemiyor#short3",
     "title": "1.5 Milyar Euro Harcanan Dev Çelik Kubbe Çernobil'i Çözdü mü?",
     "type": "short",
@@ -339,28 +328,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu#short1",
-    "title": "Sanal Çiftlikten Gelen Devasa Vurgun",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "ih0NGXjC4FE",
-    "publish_at": "2026-10-28T12:00:00+03:00",
-    "comment": "Sizce bu tür vaatlere insanlar neden inanıyor?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ex4TlFqmj1k",
-    "long_video": "ex4TlFqmj1k",
-    "hedef": "yaklaşık 30 sn"
-  },
-  {
-    "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu#short2",
-    "title": "Çiftlik Bank Çarkı Nasıl Döndü?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "COj0XwTtqjU",
-    "publish_at": "2026-10-28T15:00:00+03:00",
-    "comment": "Yeni üye akışı durunca ne olur?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ex4TlFqmj1k",
-    "long_video": "ex4TlFqmj1k",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu#short3",
     "title": "Dijital Vurgunun Kaçınılmaz Sonu",
     "type": "short",
@@ -370,16 +337,6 @@
     "comment": "Finansal okuryazarlık hayat kurtarır mı?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ex4TlFqmj1k",
     "long_video": "ex4TlFqmj1k",
     "hedef": "yaklaşık 40 sn"
-  },
-  {
-    "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu",
-    "title": "Dijital Vurgun: Çiftlik Bank Oyunu Neden Çöktü?",
-    "status": "yüklendi",
-    "video_id": "ex4TlFqmj1k",
-    "publish_at": "2026-10-27T19:00:00+03:00",
-    "comment": "Sizce bu tarz vaatlere insanları en çok çeken şey ne? Sosyal baskı mı, yoksa hızlı zenginleşme hayali mi? 👇",
-    "playlist": "Vurgun Dosyaları",
-    "playlist_done": true
   },
   {
     "folder": "20261026-1643_1908-de-sibirya-da-ne-patladi-dunyayi-sarsan-sir",
@@ -479,6 +436,96 @@
     "publish_at": "2026-10-28T19:00:00+03:00",
     "comment": "Sizce Mısır kumlarının altında gerçekten piramitleri gölgede bırakacak devasa bir yeraltı labirenti olabilir mi, yoksa Heredot abartmış mıydı? 👇",
     "playlist": "Tarihin Karanlık Sırları",
+    "playlist_done": true
+  },
+  {
+    "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short3",
+    "title": "Bir Milyar İnsanı Tehdit Eden Su Bombası",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "AMkQRg51v2E",
+    "publish_at": "2026-10-27T21:00:00+03:00",
+    "comment": "Sizce dev barajlar buzul sellerine karşı korunabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/tUTVErUmGS0",
+    "long_video": "tUTVErUmGS0",
+    "hedef": "yaklaşık 40 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu#short1",
+    "title": "Sanal Çiftlikten Gelen Devasa Vurgun",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "ih0NGXjC4FE",
+    "publish_at": "2026-10-28T12:00:00+03:00",
+    "comment": "Sizce bu tür vaatlere insanlar neden inanıyor?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ex4TlFqmj1k",
+    "long_video": "ex4TlFqmj1k",
+    "hedef": "yaklaşık 30 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu#short2",
+    "title": "Çiftlik Bank Çarkı Nasıl Döndü?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "COj0XwTtqjU",
+    "publish_at": "2026-10-28T15:00:00+03:00",
+    "comment": "Yeni üye akışı durunca ne olur?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ex4TlFqmj1k",
+    "long_video": "ex4TlFqmj1k",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu",
+    "title": "Dijital Vurgun: Çiftlik Bank Oyunu Neden Çöktü?",
+    "status": "yüklendi",
+    "video_id": "ex4TlFqmj1k",
+    "publish_at": "2026-10-27T19:00:00+03:00",
+    "comment": "Sizce bu tarz vaatlere insanları en çok çeken şey ne? Sosyal baskı mı, yoksa hızlı zenginleşme hayali mi? 👇",
+    "playlist": "Vurgun Dosyaları",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261028-1510_acik-denizde-438-gun-okyanusta-nasil-sag-kaldi#short1",
+    "title": "Okyanusun Ortasında 438 Gün Nasıl Yaşanır?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "BjDeL7yi6wc",
+    "publish_at": "2026-10-30T12:00:00+03:00",
+    "comment": "Siz olsanız ilk ne yapardınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/r9v1REYPnb0",
+    "long_video": "r9v1REYPnb0",
+    "hedef": "yaklaşık 30 sn"
+  },
+  {
+    "folder": "20261028-1510_acik-denizde-438-gun-okyanusta-nasil-sag-kaldi#short2",
+    "title": "438 Gün Okyanusta Kalan Adamın Sırrı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "_CU5Z-qnwRA",
+    "publish_at": "2026-10-30T15:00:00+03:00",
+    "comment": "Bu kadar süre nasıl dayanılır?\n\nHikâyenin tamamı burada 👉 https://youtu.be/r9v1REYPnb0",
+    "long_video": "r9v1REYPnb0",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261028-1510_acik-denizde-438-gun-okyanusta-nasil-sag-kaldi#short3",
+    "title": "Zihni Sağlam Tutma Yolu",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "_5MwugKAhtA",
+    "publish_at": "2026-10-30T21:00:00+03:00",
+    "comment": "Yalnızlığa ne kadar dayanırdınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/r9v1REYPnb0",
+    "long_video": "r9v1REYPnb0",
+    "hedef": "yaklaşık 40 sn"
+  },
+  {
+    "folder": "20261028-1510_acik-denizde-438-gun-okyanusta-nasil-sag-kaldi",
+    "title": "Açık Denizde 438 Gün: Okyanusta Nasıl SAĞ Kaldı?",
+    "status": "yüklendi",
+    "video_id": "r9v1REYPnb0",
+    "publish_at": "2026-10-29T19:00:00+03:00",
+    "comment": "Sen okyanusun ortasında pusulasız kalsan, ilk gün ne yapardın? 👇",
+    "playlist": "Hayatta Kalma Hikâyeleri",
     "playlist_done": true
   }
 ]
