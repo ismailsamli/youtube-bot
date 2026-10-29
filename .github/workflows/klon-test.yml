@@ -1,0 +1,37 @@
+name: Ses Klonu Testi
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      PYTHONIOENCODING: "utf-8"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Kurulum (CPU)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts
+      - name: Test
+        run: |
+          set -o pipefail
+          python tools/klon_test.py 2>&1 | grep -v Warning | tee log.txt
+          msg=$(tail -20 log.txt | cut -c1-250 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
+          echo "::notice title=Klon testi::${msg}"
+      - name: Kaydet
+        if: always()
+        run: |
+          git config user.name "video-bot"
+          git config user.email "video-bot@users.noreply.github.com"
+          git add ses_ornekleri/klon_test_*.mp3 2>/dev/null || true
+          if ! git diff --cached --quiet; then git commit -m "Ses klonu testi" && git pull --rebase -q && git push -q; fi
