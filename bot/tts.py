@@ -458,6 +458,12 @@ def say(text: str, cfg: dict, path: Path, out_dir: Path) -> Path:
     rate = cfg["voice"]["rate"]
     if path.exists() and path.stat().st_size > 1000:
         return path
+    if engine == "klon":
+        try:
+            klon_voice_scenes([], cfg, out_dir, [(path.name, text)])
+            return path
+        except Exception as e:
+            raise RuntimeError(f"klon sesle okunamadı: {str(e)[:120]}")   # başka sesle okumak yerine sessiz kalsın
     if engine == "gemini":
         try:
             wav = path.with_suffix(".wav")
@@ -480,31 +486,55 @@ def say(text: str, cfg: dict, path: Path, out_dir: Path) -> Path:
 
 
 # ---------------- Ana akış ----------------
-def klon_voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> None:
-    """Kullanıcının klon sesiyle (Chatterbox) okur. Ayrı Python ortamı: KLON_PY ortam değişkeni."""
+def _klon_mp3(wav: Path, mp3: Path) -> None:
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-af",
+                    "silenceremove=start_periods=1:start_threshold=-45dB,areverse,"
+                    "silenceremove=start_periods=1:start_threshold=-45dB,areverse",
+                    "-ar", "44100", "-b:a", "160k", str(mp3)], check=True)
+
+
+def klon_voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> None:
+    """Kullanıcının klon sesiyle (Chatterbox) okur.
+    voice.klon_yer = "kaggle" → Kaggle'ın ücretsiz ekran kartı (uzun videolar); yoksa/olmazsa bu makinenin
+    işlemcisi (KLON_PY ortamı) — işlemci yavaş olduğundan yalnız kısa işlerde (Short) kullanılır."""
     import json as _json
-    py = os.environ.get("KLON_PY", "").strip()
+    from bot.sayilar import cevir
+    hedefler = [(out_dir / f"audio_{i:03d}.mp3", sc["text"]) for i, sc in enumerate(scenes)]
+    hedefler += [(out_dir / n, t) for n, t in (extra or [])]
+    eksik = [(m, t) for m, t in hedefler if not m.exists() or m.stat().st_size < 1000]
+    if not eksik:
+        return
     ref = next(iter(sorted((ROOT / "assets" / "ses").glob("referans.*"))), None)
-    if not py or not Path(py).exists():
-        raise RuntimeError("klon ses ortamı kurulu değil (KLON_PY)")
     if not ref:
         raise RuntimeError("assets/ses/referans.* bulunamadı")
-    from bot.sayilar import cevir
-    items = [{"text": cevir(sc["text"]), "out": str((out_dir / f"klon_{i:03d}.wav").resolve())} for i, sc in enumerate(scenes)]
+    texts = [cevir(t) for _, t in eksik]
+    vcfg = cfg.get("voice", {})
+    if vcfg.get("klon_yer") == "kaggle":
+        from bot import kaggle_ses
+        try:
+            wavs = kaggle_ses.seslendir(texts, ref, out_dir, int(vcfg.get("kaggle_bekle_dk", 75)))
+            for (mp3, _), wav in zip(eksik, wavs):
+                _klon_mp3(wav, mp3)
+            log(f"  klon ses (Kaggle ekran kartı): {len(eksik)} parça okundu")
+            return
+        except Exception as e:
+            if len(eksik) > int(vcfg.get("klon_cpu_max", 12)):
+                raise
+            log(f"  Kaggle olmadı ({str(e)[:160]}), işlemciyle okunuyor")
+    py = os.environ.get("KLON_PY", "").strip()
+    if not py or not Path(py).exists():
+        raise RuntimeError("klon ses ortamı kurulu değil (KLON_PY)")
+    items = [{"text": t, "out": str((out_dir / f"klon_{i:03d}.wav").resolve())} for i, t in enumerate(texts)]
     job = out_dir / "klon_is.json"
     job.write_text(_json.dumps(items, ensure_ascii=False), encoding="utf-8")
     subprocess.run([py, str(ROOT / "tools" / "klon_tts.py"), str(job), str(ref)], check=True,
-                   timeout=int(cfg.get("voice", {}).get("klon_timeout", 2400)))
-    for i, it in enumerate(items):
+                   timeout=int(vcfg.get("klon_timeout", 2400)))
+    for (mp3, _), it in zip(eksik, items):
         wav = Path(it["out"])
         if not wav.exists() or wav.stat().st_size < 2000:
-            raise RuntimeError(f"klon ses {i + 1}. sahnede üretilemedi")
-        mp3 = out_dir / f"audio_{i:03d}.mp3"
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-af",
-                        "silenceremove=start_periods=1:start_threshold=-45dB,areverse,"
-                        "silenceremove=start_periods=1:start_threshold=-45dB,areverse",
-                        "-ar", "44100", "-b:a", "160k", str(mp3)], check=True)
-    log(f"  klon ses: {len(items)} sahne okundu")
+            raise RuntimeError(f"klon ses üretilemedi: {mp3.name}")
+        _klon_mp3(wav, mp3)
+    log(f"  klon ses (işlemci): {len(items)} parça okundu")
 
 
 def voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> list:
@@ -516,10 +546,10 @@ def voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> 
 
     if engine == "klon":
         try:
-            klon_voice_scenes(scenes, cfg, out_dir)
+            klon_voice_scenes(scenes, cfg, out_dir, extra)
         except Exception as e:
             log(f"  Klon ses kullanılamıyor ({str(e)[:200]}). Gemini sesine geçiliyor.")
-            for f in list(out_dir.glob("audio_*.mp3")):
+            for f in list(out_dir.glob("audio_*.mp3")) + [out_dir / n for n, _ in (extra or [])]:
                 f.unlink(missing_ok=True)       # tek ses kuralı
             engine = "gemini"
 
