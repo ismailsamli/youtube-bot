@@ -1,5 +1,5 @@
 """Uzun videolarda klon ses: metinleri Kaggle'ın ücretsiz ekran kartında (GPU) Chatterbox ile okutur.
-GitHub'daki secret'lar: KAGGLE_USERNAME + (KAGGLE_API_TOKEN ya da KAGGLE_KEY). Kaggle hesabında telefon doğrulaması şart.
+GitHub'daki secret: KAGGLE_API_TOKEN (ya da eski tip KAGGLE_KEY). Kaggle hesabında telefon doğrulaması şart.
 Akış: metinler + referans ses tek bir Kaggle betiğine gömülür → `kaggle kernels push` → bitmesi beklenir →
 `kaggle kernels output` ile wav dosyaları indirilir."""
 import base64
@@ -14,6 +14,7 @@ from pathlib import Path
 from bot.utils import log
 
 SLUG = "kirmizi-kravat-ses"
+KULLANICI = "krmzkravat"       # Kaggle kullanıcı adı (gizli değil)
 
 BETIK = r'''
 import base64, json, os, re, subprocess, sys, time
@@ -38,11 +39,12 @@ print("BITTI", int(time.time() - t0), "sn", flush=True)
 
 
 def hazir() -> bool:
-    return bool(os.environ.get("KAGGLE_USERNAME") and (os.environ.get("KAGGLE_API_TOKEN") or os.environ.get("KAGGLE_KEY")))
+    return bool(os.environ.get("KAGGLE_API_TOKEN") or os.environ.get("KAGGLE_KEY"))
 
 
 def _kaggle(*args, timeout=600) -> str:
     env = {k: v for k, v in os.environ.items() if not (k.startswith("KAGGLE_") and not v.strip())}  # boş secret'lar
+    env.setdefault("KAGGLE_USERNAME", KULLANICI)
     r = subprocess.run(["kaggle", *args], capture_output=True, text=True, timeout=timeout, env=env)
     if r.returncode != 0:
         raise RuntimeError(f"kaggle {args[0]} {args[1] if len(args) > 1 else ''}: {(r.stderr or r.stdout)[-300:]}")
@@ -53,7 +55,7 @@ def seslendir(texts: list, ref: Path, out_dir: Path, bekle_dk: int = 75) -> list
     """texts → out_dir/klon_000.wav ... ; wav yollarını döndürür."""
     if not hazir():
         raise RuntimeError("Kaggle secret'ları yok")
-    user = os.environ["KAGGLE_USERNAME"].strip()
+    user = os.environ.get("KAGGLE_USERNAME", "").strip() or KULLANICI
     work = out_dir / "_kaggle"
     work.mkdir(parents=True, exist_ok=True)
     refwav = work / "ref.wav"
