@@ -328,17 +328,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu#short3",
-    "title": "Dijital Vurgunun Kaçınılmaz Sonu",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "D9Eds6TVQ3o",
-    "publish_at": "2026-10-28T21:00:00+03:00",
-    "comment": "Finansal okuryazarlık hayat kurtarır mı?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ex4TlFqmj1k",
-    "long_video": "ex4TlFqmj1k",
-    "hedef": "yaklaşık 40 sn"
-  },
-  {
     "folder": "20261026-1643_1908-de-sibirya-da-ne-patladi-dunyayi-sarsan-sir",
     "title": "1908'de Sibirya'da Ne Patladı? Dünyayı Sarsan Sır",
     "status": "hazır"
@@ -396,28 +385,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize#short1",
-    "title": "Mısır Kumlarının Altındaki 3.000 Odalı Dev Labirent",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "YWKXPb-IjiE",
-    "publish_at": "2026-10-29T12:00:00+03:00",
-    "comment": "Sizce antik yazarların anlattığı bu labirent piramitlerden daha görkemli olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/9izZBPqO2qw",
-    "long_video": "9izZBPqO2qw",
-    "hedef": "yaklaşık 30 sn"
-  },
-  {
-    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize#short2",
-    "title": "Yok Oldu Sanılan Mısır Labirenti Radarla Nasıl Bulundu?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "YQzLQTZGt5A",
-    "publish_at": "2026-10-29T15:00:00+03:00",
-    "comment": "Sizce kumların altındaki bu antik komplekste ne tür gizemler saklıdır?\n\nHikâyenin tamamı burada 👉 https://youtu.be/9izZBPqO2qw",
-    "long_video": "9izZBPqO2qw",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize#short3",
     "title": "Mısır'ın Yeraltı Labirenti Neden Hâlâ Kazılamıyor?",
     "type": "short",
@@ -427,16 +394,6 @@
     "comment": "Sizce bu kazıların durdurulmasının asıl sebebi sular mı yoksa bürokrasi mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/9izZBPqO2qw",
     "long_video": "9izZBPqO2qw",
     "hedef": "yaklaşık 40 sn"
-  },
-  {
-    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize",
-    "title": "Piramitlerden BİLE Büyük: Mısır'ın 3.000 Odalı Gizemi",
-    "status": "yüklendi",
-    "video_id": "9izZBPqO2qw",
-    "publish_at": "2026-10-28T19:00:00+03:00",
-    "comment": "Sizce Mısır kumlarının altında gerçekten piramitleri gölgede bırakacak devasa bir yeraltı labirenti olabilir mi, yoksa Heredot abartmış mıydı? 👇",
-    "playlist": "Tarihin Karanlık Sırları",
-    "playlist_done": true
   },
   {
     "folder": "20261025-1359_himalayalar-da-gizlenen-tsunami-radarlar-neden-car#short3",
@@ -519,6 +476,96 @@
     "hedef": "yaklaşık 40 sn"
   },
   {
+    "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu#short3",
+    "title": "Dijital Vurgunun Kaçınılmaz Sonu",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "D9Eds6TVQ3o",
+    "publish_at": "2026-10-28T21:00:00+03:00",
+    "comment": "Finansal okuryazarlık hayat kurtarır mı?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ex4TlFqmj1k",
+    "long_video": "ex4TlFqmj1k",
+    "hedef": "yaklaşık 40 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize#short1",
+    "title": "Mısır Kumlarının Altındaki 3.000 Odalı Dev Labirent",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "YWKXPb-IjiE",
+    "publish_at": "2026-10-29T12:00:00+03:00",
+    "comment": "Sizce antik yazarların anlattığı bu labirent piramitlerden daha görkemli olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/9izZBPqO2qw",
+    "long_video": "9izZBPqO2qw",
+    "hedef": "yaklaşık 30 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize#short2",
+    "title": "Yok Oldu Sanılan Mısır Labirenti Radarla Nasıl Bulundu?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "YQzLQTZGt5A",
+    "publish_at": "2026-10-29T15:00:00+03:00",
+    "comment": "Sizce kumların altındaki bu antik komplekste ne tür gizemler saklıdır?\n\nHikâyenin tamamı burada 👉 https://youtu.be/9izZBPqO2qw",
+    "long_video": "9izZBPqO2qw",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261027-1441_piramitlerden-bile-buyuk-misir-in-3-000-odali-gize",
+    "title": "Piramitlerden BİLE Büyük: Mısır'ın 3.000 Odalı Gizemi",
+    "status": "yüklendi",
+    "video_id": "9izZBPqO2qw",
+    "publish_at": "2026-10-28T19:00:00+03:00",
+    "comment": "Sizce Mısır kumlarının altında gerçekten piramitleri gölgede bırakacak devasa bir yeraltı labirenti olabilir mi, yoksa Heredot abartmış mıydı? 👇",
+    "playlist": "Tarihin Karanlık Sırları",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short1",
+    "title": "Kapıya Dayanan Kalabalığa Kahve Dağıtan Adam",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "Oiar4uIDwnc",
+    "publish_at": "2026-10-31T12:00:00+03:00",
+    "comment": "Sizce Ponzi kaçmak yerine neden kalabalığa kahve ikram etti?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
+    "long_video": "t5qnMgDCARg",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short2",
+    "title": "Dünyada Olmayan Kuponlarla Milyonlar Kazandı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "UuJiv05FvCE",
+    "publish_at": "2026-10-31T15:00:00+03:00",
+    "comment": "Sizce insanlar neden bu matematiksel imkansızlığı aylarca fark etmedi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
+    "long_video": "t5qnMgDCARg",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short3",
+    "title": "Ponzi Düzeninin Doğduğu Karanlık Banka",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "pNEiQ94ppj8",
+    "publish_at": "2026-10-31T21:00:00+03:00",
+    "comment": "Kolay yoldan yüksek kazanç vaatlerine bugün hala inanılmasının sebebi ne?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
+    "long_video": "t5qnMgDCARg",
+    "hedef": "yaklaşık 55 sn"
+  },
+  {
+    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam",
+    "title": "45 Günde %50 Kazanç Vaadi: Dünyayı KANDIRAN Adam",
+    "status": "yüklendi",
+    "video_id": "t5qnMgDCARg",
+    "publish_at": "2026-10-30T19:00:00+03:00",
+    "comment": "Sizce bir insanın 'imkânsız' kazanç vaatlerine inanmasındaki ana sebep açgözlülük mü, yoksa çaresizlik mi? Yorumlarda tartışalım. 👇",
+    "playlist": "Vurgun Dosyaları",
+    "playlist_done": true
+  },
+  {
     "folder": "20261028-1510_acik-denizde-438-gun-okyanusta-nasil-sag-kaldi",
     "title": "Açık Denizde 438 Gün: Okyanusta Nasıl SAĞ Kaldı?",
     "status": "yüklendi",
@@ -526,6 +573,7 @@
     "publish_at": "2026-10-29T19:00:00+03:00",
     "comment": "Sen okyanusun ortasında pusulasız kalsan, ilk gün ne yapardın? 👇",
     "playlist": "Hayatta Kalma Hikâyeleri",
-    "playlist_done": true
+    "playlist_done": true,
+    "comment_done": true
   }
 ]
