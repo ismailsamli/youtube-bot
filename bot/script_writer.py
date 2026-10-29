@@ -359,7 +359,9 @@ Sadece şu JSON'u döndür:
 
 def write_script(llm, cfg: dict, topic: dict) -> dict:
     minutes = cfg["video"]["target_minutes"]
-    total_words = int(minutes * WORDS_PER_MINUTE)
+    # klon ses Gemini'den yavaş okur (~112 kelime/dk); kelime sayısı sese göre ayarlanır ki süre hedefi tutsun
+    wpm = cfg["voice"].get("klon_wpm", 112) if cfg["voice"].get("engine") == "klon" else WORDS_PER_MINUTE
+    total_words = int(minutes * wpm)
     total_scenes = max(20, round(minutes * 60 / SECONDS_PER_SCENE))
     words_per_scene = round(total_words / total_scenes)
 

@@ -28,7 +28,7 @@ channel:
     - beynin ve psikolojinin tuhaflıkları
 
 video:
-  target_minutes: 7.5        # metin süresi; hook + giriş animasyonu + bitiş ekranıyla toplam ~9 dk
+  target_minutes: 7.8        # anlatım süresi; soğuk açılış + giriş + bitiş ekranıyla toplam ~8,5 dk (8 dk üstü = ara reklam açılır)
   width: 1920
   height: 1080
   fps: 30
@@ -49,6 +49,7 @@ voice:
   # "edge"   = Microsoft Edge sesi (GitHub sunucularında şu an engelli)
   engine: "klon"            # "klon" = kullanıcının klon sesi (Kaggle ekran kartı, Whisper kontrollü); olmazsa otomatik gemini → piper
   klon_yer: "kaggle"         # Klon ses nerede okunsun: "kaggle" = ücretsiz ekran kartı (KAGGLE_API_TOKEN); olmazsa işlemci
+  klon_wpm: 112              # klon sesin okuma hızı (kelime/dk) — senaryo uzunluğu buna göre hesaplanır
   klon_min_benzerlik: 0.6    # Klon ses Whisper ile kontrol edilir; metne bu orandan az benzeyen parça yeniden okunur
   gemini_voice: "Sadaltager" # Diğer erkek sesler: Charon, Orus, Algenib, Iapetus, Rasalgethi, Alnilam
   gemini_model: "gemini-3.8-flash-tts"
