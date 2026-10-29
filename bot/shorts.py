@@ -112,7 +112,8 @@ def _paste(bg, card, x, y, seed, ang):
 
 # ---------------------------------------------------------------- senaryo
 # Short başına farklı uzunluk: hangi sürenin daha iyi tuttuğunu istatistikten görmek için (test)
-LENGTHS = [(70, 85, "yaklaşık 30 sn"), (110, 125, "yaklaşık 50 sn"), (90, 100, "yaklaşık 40 sn")]
+# 28 Eki testi: ~50 sn Short'lar ort. 971 izlenme / 10 beğeni; ~30 sn 382 / 2,2; ~40 sn 437 / 3,7 → hepsi ~50 sn
+LENGTHS = [(110, 125, "yaklaşık 50 sn"), (110, 125, "yaklaşık 50 sn"), (115, 130, "yaklaşık 55 sn")]
 
 
 def write_shorts(llm, cfg: dict, script: dict, count: int) -> list:
@@ -126,7 +127,8 @@ Bu videodan {count} adet YouTube Shorts senaryosu çıkar. Her Short:
 - Videonun FARKLI bir çarpıcı anını anlatsın (biri en gerilimli an, biri en şaşırtıcı bilgi, biri dönüm noktası).
 - KENDİ BAŞINA anlaşılsın: ilk cümle doğrudan kanca (izleyici 1 saniyede kaydırmasın), sonra 3-5 cümlede
   mini hikâye, sonunda merak bırakan bir cümle. Sonucu/sırrın cevabını tamamen VERME.
-- Son sahne tam olarak şu olsun: "Hikâyenin tamamı Kırmızı Kravat kanalında."
+- Son sahne tam olarak şu olsun: "Hikâyenin tamamı kanalda. Her gün yeni bir gerçek hikâye için abone ol."
+  (Short izleyicisi abone olmuyor; bu çağrı net ve kısa kalmalı.)
 - UZUNLUK (sırayla, her Short için farklı): {"; ".join(f"{i + 1}. Short toplam {a}-{b} kelime ({t})" for i, (a, b, t) in enumerate(LENGTHS[:count]))}.
   Sahne başına 12-18 kelime. Sadece videodaki doğru bilgileri kullan.
 - Her sahne için "src": o sahneye en uygun görselin bulunduğu uzun video sahne numarası.
