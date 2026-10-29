@@ -105,6 +105,7 @@ shorts:
   per_video: 3               # Her uzun videodan kaç Short (Short'lar izlenmenin %74'ünü getirdi; 23 Eki'de 3'e çıktı)
   day_offset: 1              # Uzun video yayına girdikten kaç gün sonra
   publish_times: ["12:00", "15:00", "21:00"]
+  voice_engine: "klon"       # Short'lar kullanıcının klon sesiyle (Chatterbox, CPU). Kurulu değilse Gemini sesi
 
 upload:
   enabled: true

@@ -7,7 +7,7 @@ on:
         description: "Short konusu"
         required: true
       yayin:
-        description: "Yayın zamanı (Türkiye saati) ör. 2026-10-22 21:00"
+        description: "Yayın zamanı (Türkiye saati) ör. 2026-10-22 21:00 — ya da 'deneme' (yüklemez)"
         required: true
       ek:
         description: "Ek talimat (isteğe bağlı)"
@@ -24,7 +24,7 @@ concurrency:
 jobs:
   short:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 75
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -38,6 +38,11 @@ jobs:
       EK: ${{ inputs.ek }}
     steps:
       - uses: actions/checkout@v4
+      - name: Klon ses için Python 3.11
+        id: klonpy
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -46,6 +51,14 @@ jobs:
         run: |
           bash tools/ffmpeg_kur.sh
           pip install -q -r requirements.txt
+      - name: Klon ses ortamını kur (Short'lar için; olmazsa Gemini sesi kullanılır)
+        continue-on-error: true
+        timeout-minutes: 15
+        run: |
+          "${{ steps.klonpy.outputs.python-path }}" -m venv /opt/klon
+          /opt/klon/bin/pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          /opt/klon/bin/pip install -q chatterbox-tts > klon_pip.txt 2>&1 || { tail -5 klon_pip.txt; exit 1; }
+          echo "KLON_PY=/opt/klon/bin/python" >> "$GITHUB_ENV"
       - name: Short üret ve yükle
         run: |
           set -o pipefail
@@ -58,7 +71,8 @@ jobs:
           git config user.name "video-bot"
           git config user.email "video-bot@users.noreply.github.com"
           git add data/history.json 2>/dev/null || true
+          [ -e onizleme_kesit/short_deneme.mp4 ] && git add onizleme_kesit/short_deneme.mp4
           if ! git diff --cached --quiet; then
-            git commit -m "Tek Short kaydı"
+            git commit -m "Tek Short kaydı" -q
             git pull --rebase -q && git push -q
           fi

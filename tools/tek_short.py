@@ -20,7 +20,8 @@ def main():
     ek = sys.argv[3] if len(sys.argv) > 3 else ""
     cfg = load_config()
     tz = ZoneInfo(cfg["upload"].get("timezone", "Europe/Istanbul"))
-    when = datetime.strptime(zaman, "%Y-%m-%d %H:%M").replace(tzinfo=tz)
+    deneme = zaman.strip().lower() == "deneme"     # deneme: yüklemez, videoyu onizleme_kesit/'e koyar
+    when = datetime.now(tz) if deneme else datetime.strptime(zaman, "%Y-%m-%d %H:%M").replace(tzinfo=tz)
     folder = ROOT / "output" / f"short_{when:%Y%m%d}_{slugify(konu)[:40]}"
     (folder / "visuals").mkdir(parents=True, exist_ok=True)
 
@@ -44,6 +45,13 @@ Sadece JSON: {{"title": "...", "headline": "...", "comment": "...", "scenes": [{
                 finder.commons_image(" ".join((sc.get("prompt") or konu).split()[:3]), raw)
         sc["src"] = i
     video = shorts.build_short(cfg, folder, s, 0)
+    if deneme:
+        import shutil
+        hedef = ROOT / "onizleme_kesit" / "short_deneme.mp4"
+        hedef.parent.mkdir(exist_ok=True)
+        shutil.copy(video, hedef)
+        log(f"Deneme Short hazır (yüklenmedi): {s['title']}")
+        return
     meta = {"title": (s["title"][:90] + " #shorts")[:100],
             "description": f"{s['title']}\n\nHer akşam 19:00'da yeni bir gerçek hikâye: Kırmızı Kravat.\n"
                            "#shorts #bilgi #ilginçbilgiler",

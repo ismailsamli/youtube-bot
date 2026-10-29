@@ -50,6 +50,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Klon ses için Python 3.11
+        id: klonpy
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -61,6 +67,15 @@ jobs:
 
       - name: Python paketlerini kur
         run: pip install -q -r requirements.txt
+
+      - name: Klon ses ortamını kur (Short'lar için; olmazsa Gemini sesi kullanılır)
+        continue-on-error: true
+        timeout-minutes: 15
+        run: |
+          "${{ steps.klonpy.outputs.python-path }}" -m venv /opt/klon
+          /opt/klon/bin/pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          /opt/klon/bin/pip install -q chatterbox-tts > klon_pip.txt 2>&1 || { tail -5 klon_pip.txt; exit 1; }
+          echo "KLON_PY=/opt/klon/bin/python" >> "$GITHUB_ENV"
 
       - name: Hizalama modelini önbellekten al
         uses: actions/cache@v4
@@ -128,7 +143,7 @@ jobs:
             # Son satırlar uyarı olarak da yazılır (API ile okunabilsin diye)
             msg=$(tail -n 25 bot_log.txt | cut -c1-300 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
             echo "::notice title=Bot kaydı::${msg}"
-            imp=$(grep -E "Gemini|Piper|seslendirme|Müzik|müzik|hizalama|Cloudflare|HATA|kullanılamıyor|atlandı|seçilmiş konu|Senaryo hazır|Video hazır|Short . hazır|liste|yorum|Yorum|filigran|Kapak testi|çizim|Önizleme|Jenerik|Soğuk açılış" bot_log.txt | head -40 | cut -c1-250 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
+            imp=$(grep -E "Gemini|Piper|seslendirme|Müzik|müzik|hizalama|Cloudflare|HATA|kullanılamıyor|atlandı|seçilmiş konu|Senaryo hazır|Video hazır|Short . hazır|liste|yorum|Yorum|filigran|Kapak testi|çizim|klon ses|Klon ses|Önizleme|Jenerik|Soğuk açılış" bot_log.txt | head -40 | cut -c1-250 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
             echo "::notice title=Önemli satırlar::${imp}"
           fi
 

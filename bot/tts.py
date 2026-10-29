@@ -480,12 +480,48 @@ def say(text: str, cfg: dict, path: Path, out_dir: Path) -> Path:
 
 
 # ---------------- Ana akış ----------------
+def klon_voice_scenes(scenes: list, cfg: dict, out_dir: Path) -> None:
+    """Kullanıcının klon sesiyle (Chatterbox) okur. Ayrı Python ortamı: KLON_PY ortam değişkeni."""
+    import json as _json
+    py = os.environ.get("KLON_PY", "").strip()
+    ref = next(iter(sorted((ROOT / "assets" / "ses").glob("referans.*"))), None)
+    if not py or not Path(py).exists():
+        raise RuntimeError("klon ses ortamı kurulu değil (KLON_PY)")
+    if not ref:
+        raise RuntimeError("assets/ses/referans.* bulunamadı")
+    from bot.sayilar import cevir
+    items = [{"text": cevir(sc["text"]), "out": str((out_dir / f"klon_{i:03d}.wav").resolve())} for i, sc in enumerate(scenes)]
+    job = out_dir / "klon_is.json"
+    job.write_text(_json.dumps(items, ensure_ascii=False), encoding="utf-8")
+    subprocess.run([py, str(ROOT / "tools" / "klon_tts.py"), str(job), str(ref)], check=True,
+                   timeout=int(cfg.get("voice", {}).get("klon_timeout", 2400)))
+    for i, it in enumerate(items):
+        wav = Path(it["out"])
+        if not wav.exists() or wav.stat().st_size < 2000:
+            raise RuntimeError(f"klon ses {i + 1}. sahnede üretilemedi")
+        mp3 = out_dir / f"audio_{i:03d}.mp3"
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav), "-af",
+                        "silenceremove=start_periods=1:start_threshold=-45dB,areverse,"
+                        "silenceremove=start_periods=1:start_threshold=-45dB,areverse",
+                        "-ar", "44100", "-b:a", "160k", str(mp3)], check=True)
+    log(f"  klon ses: {len(items)} sahne okundu")
+
+
 def voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> list:
     """extra: [(dosya_adı, metin)] — aynı sesle okunacak ek satırlar (ör. kapanış cümlesi)."""
     out_dir.mkdir(parents=True, exist_ok=True)
     voice, rate = cfg["voice"]["name"], cfg["voice"]["rate"]
     engine_file = out_dir / "motor.txt"
     engine = engine_file.read_text().strip() if engine_file.exists() else cfg["voice"].get("engine", "edge")
+
+    if engine == "klon":
+        try:
+            klon_voice_scenes(scenes, cfg, out_dir)
+        except Exception as e:
+            log(f"  Klon ses kullanılamıyor ({str(e)[:200]}). Gemini sesine geçiliyor.")
+            for f in list(out_dir.glob("audio_*.mp3")):
+                f.unlink(missing_ok=True)       # tek ses kuralı
+            engine = "gemini"
 
     if engine == "gemini":
         try:
