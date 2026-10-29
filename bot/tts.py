@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 import edge_tts
 import requests
 
-from .utils import log
+from .utils import log, media_duration
 
 PIPER_VOICE = "tr_TR-dfki-medium"
 PIPER_URL = "https://huggingface.co/rhasspy/piper-voices/resolve/main/tr/tr_TR/dfki/medium/"
@@ -495,12 +495,54 @@ def _klon_mp3(wav: Path, mp3: Path) -> None:
                     "-ar", "44100", "-b:a", "160k", str(mp3)], check=True)
 
 
-def klon_voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> None:
-    """Kullanıcının klon sesiyle (Chatterbox) okur.
-    voice.klon_yer = "kaggle" → Kaggle'ın ücretsiz ekran kartı (uzun videolar); yoksa/olmazsa bu makinenin
-    işlemcisi (KLON_PY ortamı) — işlemci yavaş olduğundan yalnız kısa işlerde (Short) kullanılır."""
+def _klon_uret(texts: list, ref: Path, out_dir: Path, cfg: dict, etiket: str = "") -> list:
+    """Metinleri klon sesle wav'a çevirir: önce Kaggle ekran kartı, olmazsa (kısa işlerde) bu makinenin işlemcisi."""
     import json as _json
-    from bot.sayilar import cevir
+    vcfg = cfg.get("voice", {})
+    if vcfg.get("klon_yer") == "kaggle":
+        from . import kaggle_ses
+        try:
+            wavs = kaggle_ses.seslendir(texts, ref, out_dir, int(vcfg.get("kaggle_bekle_dk", 75)), etiket)
+            log(f"  klon ses (Kaggle ekran kartı): {len(texts)} parça okundu")
+            return wavs
+        except Exception as e:
+            if len(texts) > int(vcfg.get("klon_cpu_max", 12)):
+                raise
+            log(f"  Kaggle olmadı ({str(e)[:160]}), işlemciyle okunuyor")
+    py = os.environ.get("KLON_PY", "").strip()
+    if not py or not Path(py).exists():
+        raise RuntimeError("klon ses ortamı kurulu değil (KLON_PY)")
+    items = [{"text": t, "out": str((out_dir / f"klon{etiket}_{i:03d}.wav").resolve())} for i, t in enumerate(texts)]
+    job = out_dir / f"klon_is{etiket}.json"
+    job.write_text(_json.dumps(items, ensure_ascii=False), encoding="utf-8")
+    subprocess.run([py, str(ROOT / "tools" / "klon_tts.py"), str(job), str(ref)], check=True,
+                   timeout=int(vcfg.get("klon_timeout", 2400)))
+    wavs = [Path(it["out"]) for it in items]
+    for w in wavs:
+        if not w.exists() or w.stat().st_size < 2000:
+            raise RuntimeError(f"klon ses üretilemedi: {w.name}")
+    log(f"  klon ses (işlemci): {len(items)} parça okundu")
+    return wavs
+
+
+def _klon_iyi(wav: Path, text: str, cfg: dict) -> tuple:
+    """Klon ses bazen metni okumak yerine hırıltı/sessizlik/anlamsız ses üretiyor (yapay zekâ 'halüsinasyonu').
+    Whisper ile dinleyip metinle karşılaştırır. (iyi_mi, benzerlik, süre)"""
+    from .sayilar import cevir
+    sure = media_duration(wav)
+    kelime = len(text.split())
+    duyulan = " ".join(w for w, _, _ in _whisper_words(wav, cfg))
+    a = " ".join(_norm(w) for w in cevir(text).split() if _norm(w))
+    b = " ".join(_norm(w) for w in cevir(duyulan).split() if _norm(w))
+    oran = difflib.SequenceMatcher(None, a, b).ratio()
+    cok_uzun = sure > kelime * 0.75 + 2.0          # normalde ~0,45 sn/kelime; fazlası uzun sessizlik/hırıltı
+    return (oran >= float(cfg.get("voice", {}).get("klon_min_benzerlik", 0.6)) and not cok_uzun), oran, sure
+
+
+def klon_voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> None:
+    """Kullanıcının klon sesiyle (Chatterbox) okur. Her parça Whisper ile kontrol edilir; bozuk çıkan parça
+    en fazla 2 kez yeniden okunur, yine bozuksa hata verilir (çağıran Gemini sesine geçer — tek ses kuralı)."""
+    from .sayilar import cevir
     hedefler = [(out_dir / f"audio_{i:03d}.mp3", sc["text"]) for i, sc in enumerate(scenes)]
     hedefler += [(out_dir / n, t) for n, t in (extra or [])]
     eksik = [(m, t) for m, t in hedefler if not m.exists() or m.stat().st_size < 1000]
@@ -510,33 +552,26 @@ def klon_voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None
     if not ref:
         raise RuntimeError("assets/ses/referans.* bulunamadı")
     texts = [cevir(t) for _, t in eksik]
-    vcfg = cfg.get("voice", {})
-    if vcfg.get("klon_yer") == "kaggle":
-        from bot import kaggle_ses
-        try:
-            wavs = kaggle_ses.seslendir(texts, ref, out_dir, int(vcfg.get("kaggle_bekle_dk", 75)))
-            for (mp3, _), wav in zip(eksik, wavs):
-                _klon_mp3(wav, mp3)
-            log(f"  klon ses (Kaggle ekran kartı): {len(eksik)} parça okundu")
-            return
-        except Exception as e:
-            if len(eksik) > int(vcfg.get("klon_cpu_max", 12)):
-                raise
-            log(f"  Kaggle olmadı ({str(e)[:160]}), işlemciyle okunuyor")
-    py = os.environ.get("KLON_PY", "").strip()
-    if not py or not Path(py).exists():
-        raise RuntimeError("klon ses ortamı kurulu değil (KLON_PY)")
-    items = [{"text": t, "out": str((out_dir / f"klon_{i:03d}.wav").resolve())} for i, t in enumerate(texts)]
-    job = out_dir / "klon_is.json"
-    job.write_text(_json.dumps(items, ensure_ascii=False), encoding="utf-8")
-    subprocess.run([py, str(ROOT / "tools" / "klon_tts.py"), str(job), str(ref)], check=True,
-                   timeout=int(vcfg.get("klon_timeout", 2400)))
-    for (mp3, _), it in zip(eksik, items):
-        wav = Path(it["out"])
-        if not wav.exists() or wav.stat().st_size < 2000:
-            raise RuntimeError(f"klon ses üretilemedi: {mp3.name}")
+    wavs = _klon_uret(texts, ref, out_dir, cfg)
+    for tur in range(1, 3):
+        bozuk = []
+        for k, (w, t) in enumerate(zip(wavs, texts)):
+            iyi, oran, sure = _klon_iyi(w, t, cfg)
+            if not iyi:
+                bozuk.append(k)
+                log(f"  klon ses bozuk parça {k + 1}: benzerlik {oran:.2f}, {sure:.1f} sn — yeniden okunacak")
+        if not bozuk:
+            break
+        yeni = _klon_uret([texts[k] for k in bozuk], ref, out_dir, cfg, f"_t{tur}")
+        for k, w in zip(bozuk, yeni):
+            wavs[k] = w
+    else:
+        kalan = [k for k, (w, t) in enumerate(zip(wavs, texts)) if not _klon_iyi(w, t, cfg)[0]]
+        if kalan:
+            raise RuntimeError(f"klon ses {len(kalan)} parçada düzgün okunamadı")
+    for (mp3, _), wav in zip(eksik, wavs):
         _klon_mp3(wav, mp3)
-    log(f"  klon ses (işlemci): {len(items)} parça okundu")
+    log(f"  klon ses kontrolü tamam: {len(eksik)} parça")
 
 
 def voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None) -> list:

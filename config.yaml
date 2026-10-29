@@ -48,6 +48,8 @@ voice:
   # "piper"  = çevrimdışı Türkçe ses (her zaman çalışır, yedek)
   # "edge"   = Microsoft Edge sesi (GitHub sunucularında şu an engelli)
   engine: "gemini"
+  klon_yer: "kaggle"         # Klon ses nerede okunsun: "kaggle" = ücretsiz ekran kartı (KAGGLE_API_TOKEN); olmazsa işlemci
+  klon_min_benzerlik: 0.6    # Klon ses Whisper ile kontrol edilir; metne bu orandan az benzeyen parça yeniden okunur
   gemini_voice: "Sadaltager" # Diğer erkek sesler: Charon, Orus, Algenib, Iapetus, Rasalgethi, Alnilam
   gemini_model: "gemini-3.8-flash-tts"
   gemini_fallbacks: ["gemini-3.8-flash-lite-tts"]

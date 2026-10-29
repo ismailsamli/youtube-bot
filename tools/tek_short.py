@@ -25,12 +25,13 @@ def main():
     folder = ROOT / "output" / f"short_{when:%Y%m%d}_{slugify(konu)[:40]}"
     (folder / "visuals").mkdir(parents=True, exist_ok=True)
 
+    kelime = "90-100" if cfg.get("shorts", {}).get("voice_engine") == "klon" else "110-125"
     prompt = f"""KONU: {konu}
 {ek}
 
 Bu konu için tek bir YouTube Shorts senaryosu yaz:
 - İlk cümle doğrudan kanca; 3-5 cümlede mini hikâye; sonu merak bırakan bir cümle.
-- Toplam 110-125 kelime, 7-8 sahne (her sahne 13-18 kelime). Sadece doğrulanabilir bilgiler.
+- Toplam {kelime} kelime, 7-8 sahne (her sahne 11-16 kelime). Sadece doğrulanabilir bilgiler.
 - Her sahne için "prompt": sahnenin çizilecek görüntüsünü anlatan 15-30 kelimelik İNGİLİZCE tarif
   (somut nesne/sahne; stil kelimesi, yazı, gerçek kişi yüzü YOK).
 - "title": en fazla 70 karakter dürüst, merak uyandıran başlık; "headline": 2-5 kelimelik ekran başlığı;

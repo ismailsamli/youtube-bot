@@ -55,12 +55,12 @@ def _kaggle(*args, timeout=600) -> str:
     return r.stdout
 
 
-def seslendir(texts: list, ref: Path, out_dir: Path, bekle_dk: int = 75) -> list:
+def seslendir(texts: list, ref: Path, out_dir: Path, bekle_dk: int = 75, etiket: str = "") -> list:
     """texts → out_dir/klon_000.wav ... ; wav yollarını döndürür."""
     if not hazir():
         raise RuntimeError("Kaggle secret'ları yok")
     user = os.environ.get("KAGGLE_USERNAME", "").strip() or KULLANICI
-    work = out_dir / "_kaggle"
+    work = out_dir / f"_kaggle{etiket}"
     work.mkdir(parents=True, exist_ok=True)
     refwav = work / "ref.mp3"       # küçük tutulur: Kaggle betik boyutunu sınırlıyor
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(ref), "-t", "30", "-ac", "1", "-ar", "24000",

@@ -114,6 +114,11 @@ def _paste(bg, card, x, y, seed, ang):
 # Short başına farklı uzunluk: hangi sürenin daha iyi tuttuğunu istatistikten görmek için (test)
 # 28 Eki testi: ~50 sn Short'lar ort. 971 izlenme / 10 beğeni; ~30 sn 382 / 2,2; ~40 sn 437 / 3,7 → hepsi ~50 sn
 LENGTHS = [(110, 125, "yaklaşık 50 sn"), (110, 125, "yaklaşık 50 sn"), (115, 130, "yaklaşık 55 sn")]
+KLON_LENGTHS = [(90, 100, "yaklaşık 50 sn"), (90, 100, "yaklaşık 50 sn"), (95, 105, "yaklaşık 55 sn")]  # klon ses daha yavaş
+
+
+def _lengths(cfg: dict) -> list:
+    return KLON_LENGTHS if cfg.get("shorts", {}).get("voice_engine") == "klon" else LENGTHS
 
 
 def write_shorts(llm, cfg: dict, script: dict, count: int) -> list:
@@ -129,7 +134,7 @@ Bu videodan {count} adet YouTube Shorts senaryosu çıkar. Her Short:
   mini hikâye, sonunda merak bırakan bir cümle. Sonucu/sırrın cevabını tamamen VERME.
 - Son sahne tam olarak şu olsun: "Hikâyenin tamamı kanalda. Her gün yeni bir gerçek hikâye için abone ol."
   (Short izleyicisi abone olmuyor; bu çağrı net ve kısa kalmalı.)
-- UZUNLUK (sırayla, her Short için farklı): {"; ".join(f"{i + 1}. Short toplam {a}-{b} kelime ({t})" for i, (a, b, t) in enumerate(LENGTHS[:count]))}.
+- UZUNLUK (sırayla, her Short için farklı): {"; ".join(f"{i + 1}. Short toplam {a}-{b} kelime ({t})" for i, (a, b, t) in enumerate(_lengths(cfg)[:count]))}.
   Sahne başına 12-18 kelime. Sadece videodaki doğru bilgileri kullan.
 - Her sahne için "src": o sahneye en uygun görselin bulunduğu uzun video sahne numarası.
 - "title": en fazla 70 karakter, merak uyandıran dürüst Türkçe başlık (hashtag yazma).
@@ -151,7 +156,7 @@ Sadece şu JSON'u döndür:
             except (TypeError, ValueError):
                 sc["src"] = min(n - 1, k)
         s["scenes"] = scenes
-        s["hedef"] = LENGTHS[min(len(out), len(LENGTHS) - 1)][2]
+        s["hedef"] = _lengths(cfg)[min(len(out), len(LENGTHS) - 1)][2]
         out.append(s)
     return out
 
