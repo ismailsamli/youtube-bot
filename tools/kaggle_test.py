@@ -21,7 +21,24 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     ref = next(iter(sorted((ROOT / "assets" / "ses").glob("referans.*"))))
     t0 = time.time()
-    wavs = kaggle_ses.seslendir([cevir(t) for t in METIN], ref, out, 60)
+    try:
+        wavs = kaggle_ses.seslendir([cevir(t) for t in METIN], ref, out, 60)
+    except Exception as e:
+        print(f"HATA: {e}")
+        # Teşhis: küçük bir betik gönderilebiliyor mu? (hesap/izin sorunu mu, boyut sorunu mu)
+        import json
+        d = out / "_mini"
+        d.mkdir(exist_ok=True)
+        (d / "mini.py").write_text("import torch\nprint('GPU:', torch.cuda.is_available())\n")
+        (d / "kernel-metadata.json").write_text(json.dumps({
+            "id": f"{kaggle_ses.KULLANICI}/kirmizi-kravat-deneme", "title": "kirmizi-kravat-deneme",
+            "code_file": "mini.py", "language": "python", "kernel_type": "script", "is_private": "true",
+            "enable_gpu": "true", "enable_internet": "true"}))
+        try:
+            print("Mini betik:", kaggle_ses._kaggle("kernels", "push", "-p", str(d)))
+        except Exception as e2:
+            print(f"Mini betik de olmadı: {e2}")
+        raise
     liste = out / "liste.txt"
     liste.write_text("".join(f"file '{w.resolve()}'\n" for w in wavs))
     hedef = ROOT / "ses_ornekleri" / "kaggle_klon_deneme.mp3"
