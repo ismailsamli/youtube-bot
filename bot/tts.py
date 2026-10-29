@@ -13,6 +13,8 @@ import time
 import wave
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parent.parent
+
 import edge_tts
 import requests
 
