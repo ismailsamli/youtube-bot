@@ -19,7 +19,8 @@ KULLANICI = "krmzkravat"       # Kaggle kullanıcı adı (gizli değil)
 BETIK = r'''
 import base64, json, os, re, subprocess, sys, time
 t0 = time.time()
-subprocess.run([sys.executable, "-m", "pip", "install", "-q", "chatterbox-tts"], check=True)
+# chatterbox torch 2.6 istiyor; Kaggle'ın hazır torchvision'ı yeni torch'a göre → uyumlu sürüm de kurulur
+subprocess.run([sys.executable, "-m", "pip", "install", "-q", "chatterbox-tts", "torchvision==0.21.0"], check=True)
 import torch, torchaudio as ta
 from chatterbox.mtl_tts import ChatterboxMultilingualTTS
 METINLER = json.loads(base64.b64decode("__METIN__").decode("utf-8"))
