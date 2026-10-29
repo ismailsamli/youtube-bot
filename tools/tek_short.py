@@ -42,7 +42,8 @@ Sadece JSON: {{"title": "...", "headline": "...", "comment": "...", "scenes": [{
     for i, sc in enumerate(s["scenes"]):
         raw = folder / "visuals" / f"visual_{i:03d}_ham.png"
         if not raw.exists():
-            if not finder.ai_image(sc.get("prompt") or konu, raw):
+            # deneme modunda Cloudflare çizim kotası harcanmaz (günlük video için saklanır)
+            if deneme or not finder.ai_image(sc.get("prompt") or konu, raw):
                 finder.commons_image(" ".join((sc.get("prompt") or konu).split()[:3]), raw)
         sc["src"] = i
     video = shorts.build_short(cfg, folder, s, 0)
