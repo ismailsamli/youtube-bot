@@ -20,8 +20,8 @@ jobs:
       - name: Kurulum (CPU)
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
-          pip install -q torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-          pip install -q chatterbox-tts
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install chatterbox-tts > pip.txt 2>&1 || { msg=$(tail -25 pip.txt | cut -c1-250 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g'); echo "::notice title=Kurulum hatası::${msg}"; exit 1; }
       - name: Test
         run: |
           set -o pipefail
