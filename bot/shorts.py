@@ -121,19 +121,50 @@ def _lengths(cfg: dict) -> list:
     return KLON_LENGTHS if cfg.get("shorts", {}).get("voice_engine") == "klon" else LENGTHS
 
 
+_SAAT_DE = {"bir": "birde", "iki": "ikide", "üç": "üçte", "dört": "dörtte", "beş": "beşte", "altı": "altıda",
+            "yedi": "yedide", "sekiz": "sekizde", "dokuz": "dokuzda", "on": "onda", "yirmi": "yirmide"}
+
+
+def _saatte(hhmm: str) -> str:
+    """'15:00' → 'saat on beşte' (klon ses rakam okumasın diye yazıyla)."""
+    from .sayilar import oku
+    w = oku(int(hhmm.split(":")[0])).split()
+    return "saat " + " ".join(w[:-1] + [_SAAT_DE.get(w[-1], w[-1] + "'de")])
+
+
+def _bolum_kurali(cfg: dict, count: int) -> str:
+    """Günün Short'ları tek hikâyenin bölümleri: 1. bölümü izleyen devamı için kanala gelir (abone dönüşümü)."""
+    t = cfg.get("shorts", {}).get("publish_times", ["12:00", "15:00", "21:00"])
+    sonlar = []
+    for k in range(count):
+        if k < count - 1 and k + 1 < len(t):
+            sonlar.append(f'{k + 1}. Short son sahne tam olarak: "Devamı {k + 2}. bölümde, bugün {_saatte(t[k + 1])}. '
+                          'Kaçırmamak için abone ol."')
+        else:
+            sonlar.append(f'{k + 1}. Short son sahne tam olarak: "Hikâyenin tamamı kanalda. Her gün yeni bir gerçek '
+                          'hikâye için abone ol."')
+    return f"""- Bu {count} Short, videonun hikâyesini {count} BÖLÜM halinde, sırayla anlatsın: 1. bölüm en çarpıcı
+  an ve hikâyenin başlangıcı, 2. bölüm olayın nasıl geliştiği, son bölüm dönüm noktası ve sonuç.
+  Her bölüm yine de tek başına anlaşılsın: ilk cümle doğrudan kanca (izleyici 1 saniyede kaydırmasın),
+  önceki bölümü bilmeyen izleyici de takip edebilsin. Bölümler arası tekrar YOK.
+- {chr(10).join("  " + x for x in sonlar).strip()}"""
+
+
 def write_shorts(llm, cfg: dict, script: dict, count: int) -> list:
     from .script_writer import _ask_json, _system
     lines = "\n".join(f"[{i}] {s['text']}" for i, s in enumerate(script["scenes"]))[:14000]
+    bolumlu = cfg.get("shorts", {}).get("bolumlu", False) and count >= 2
+    kural = _bolum_kurali(cfg, count) if bolumlu else """- Videonun FARKLI bir çarpıcı anını anlatsın (biri en gerilimli an, biri en şaşırtıcı bilgi, biri dönüm noktası).
+- KENDİ BAŞINA anlaşılsın: ilk cümle doğrudan kanca (izleyici 1 saniyede kaydırmasın), sonra 3-5 cümlede
+  mini hikâye, sonunda merak bırakan bir cümle. Sonucu/sırrın cevabını tamamen VERME.
+- Son sahne tam olarak şu olsun: "Hikâyenin tamamı kanalda. Her gün yeni bir gerçek hikâye için abone ol."
+  (Short izleyicisi abone olmuyor; bu çağrı net ve kısa kalmalı.)"""
     prompt = f"""Uzun video: "{script['title']}"
 Sahneler (numaralı):
 {lines}
 
 Bu videodan {count} adet YouTube Shorts senaryosu çıkar. Her Short:
-- Videonun FARKLI bir çarpıcı anını anlatsın (biri en gerilimli an, biri en şaşırtıcı bilgi, biri dönüm noktası).
-- KENDİ BAŞINA anlaşılsın: ilk cümle doğrudan kanca (izleyici 1 saniyede kaydırmasın), sonra 3-5 cümlede
-  mini hikâye, sonunda merak bırakan bir cümle. Sonucu/sırrın cevabını tamamen VERME.
-- Son sahne tam olarak şu olsun: "Hikâyenin tamamı kanalda. Her gün yeni bir gerçek hikâye için abone ol."
-  (Short izleyicisi abone olmuyor; bu çağrı net ve kısa kalmalı.)
+{kural}
 - UZUNLUK (sırayla, her Short için farklı): {"; ".join(f"{i + 1}. Short toplam {a}-{b} kelime ({t})" for i, (a, b, t) in enumerate(_lengths(cfg)[:count]))}.
   Sahne başına 12-18 kelime. Sadece videodaki doğru bilgileri kullan.
 - Her sahne için "src": o sahneye en uygun görselin bulunduğu uzun video sahne numarası.
@@ -157,6 +188,8 @@ Sadece şu JSON'u döndür:
                 sc["src"] = min(n - 1, k)
         s["scenes"] = scenes
         s["hedef"] = _lengths(cfg)[min(len(out), len(LENGTHS) - 1)][2]
+        if bolumlu:
+            s["bolum"] = f"{len(out) + 1}/{count}"
         out.append(s)
     return out
 
@@ -257,7 +290,8 @@ def make_and_upload(cfg: dict, folder: Path, script: dict, long_entry: dict, upl
         tags = (script.get("tags") or [])[:8] + ["shorts"]
         desc = (f"{s['title']}\n\nHikâyenin tamamı 👉 {link}\n\n"
                 f"Her akşam 19:00'da yeni bir gerçek hikâye: Kırmızı Kravat.\n#shorts #bilgi #ilginçbilgiler")
-        meta = {"title": (s["title"][:90] + " #shorts")[:100], "description": desc, "tags": tags}
+        baslik = s["title"][:80] + (f" ({s['bolum']})" if s.get("bolum") else "")
+        meta = {"title": (baslik + " #shorts")[:100], "description": desc, "tags": tags}
         try:
             short_id = upload_fn(video, meta, when)
         except Exception as e:
