@@ -49,7 +49,7 @@ voice:
   # "edge"   = Microsoft Edge sesi (GitHub sunucularında şu an engelli)
   engine: "klon"            # "klon" = kullanıcının klon sesi (Kaggle ekran kartı, Whisper kontrollü); olmazsa otomatik gemini → piper
   klon_yer: "kaggle"         # Klon ses nerede okunsun: "kaggle" = ücretsiz ekran kartı (KAGGLE_API_TOKEN); olmazsa işlemci
-  klon_wpm: 112              # klon sesin okuma hızı (kelime/dk) — senaryo uzunluğu buna göre hesaplanır
+  klon_wpm: 125              # klon sesin gerçek okuma hızı (30 Eki ölçümü: 736 kelime ≈ 5,9 dk) — senaryo uzunluğu buna göre
   klon_min_benzerlik: 0.6    # Klon ses Whisper ile kontrol edilir; metne bu orandan az benzeyen parça yeniden okunur
   gemini_voice: "Sadaltager" # Diğer erkek sesler: Charon, Orus, Algenib, Iapetus, Rasalgethi, Alnilam
   gemini_model: "gemini-3.8-flash-tts"

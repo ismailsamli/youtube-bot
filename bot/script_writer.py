@@ -313,18 +313,25 @@ def write_section(llm, cfg: dict, outline: dict, idx: int, scene_count: int,
     plan = "\n".join(f"{i + 1}. {s.get('heading', '')}: {s.get('goal', '')}" for i, s in enumerate(sections))
     position = ("Bu videonun İLK bölümü; kısa bir soğuk açılış ve kanal jeneriğinden hemen sonra gelir. "
                 "'Merhaba arkadaşlar', 'bu videoda' gibi boş girişler kullanma; hikâyeyi başından, hızlı ve "
-                "merak uyandırarak anlatmaya başla; ilk iki sahne içinde videonun sonunda neyin "
-                "açıklanacağını vaat et ve izleyiciyi sonuna kadar kalmaya teşvik et."
+                "merak uyandırarak anlatmaya başla; ilk iki sahne içinde izleyicinin aklına cevabını merak "
+                "edeceği tek bir SOMUT soru koy (ör. 'Peki 27 bin kuponla nasıl milyonlar toplandı?'). "
+                "'Videonun sonunda öğreneceksiniz', 'birazdan anlatacağımız', 'masaya yatırıyoruz', "
+                "'inceleyeceğiz' gibi videodan söz eden cümleler YASAK: sadece hikâye anlat."
                 if idx == 0 else
                 "Bu videonun SON bölümü: konuyu bağla; son sahnede izleyiciye yorumlarda cevaplayacağı "
                 "kısa, merak uyandıran bir soru sor. Abone çağrısı ve vedalaşma YAPMA (kapanış jeneriğinde var)."
                 if idx == len(sections) - 1 else
-                "Bu bir ara bölüm: bir önceki bölümden doğal bir geçişle başla, selamlama veya kapanış yapma. "
+                "Bu bir ara bölüm: bir önceki bölümden doğal bir geçişle başla (önceki bölümün son sorusunu "
+                "TEKRAR ETME, doğrudan cevabıyla ya da yeni olayla başla), selamlama veya kapanış yapma. "
                 "Bölümün son sahnesi bir sonraki bölüme merak bırakan kısa bir köprü cümlesiyle bitsin."
                 + (" ABONE ÇAĞRISI: bu bölümün son sahnesinde, köprü cümlesinden hemen ÖNCE, hikâyeyi bölmeden "
                    "tek cümlelik doğal bir abone çağrısı yap; izleyiciye neden abone olması gerektiğini söyle "
-                   "(ör. 'Bu tür gerçek hikâyeleri seviyorsan, her akşam 19:00'da yenisi geliyor; abone olursan "
-                   "kaçırmazsın.'). Kelime sınırına dahildir; yalvarma, abartma."
+                   + (f"(ör. '{(outline.get('_extra') or {}).get('series')} dosyalarının yenisi her hafta geliyor; "
+                      "kaçırmamak için abone ol.')" if (outline.get('_extra') or {}).get('series') else
+                      "(ör. 'Bu tür gerçek hikâyeleri seviyorsan, her akşam 19:00'da yenisi geliyor; abone olursan "
+                      "kaçırmazsın.')")
+                   + ". Abone çağrısı KENDİ CÜMLESİ olsun, noktayla bitsin; hikâye cümlesine yapıştırma. "
+                   "Kelime sınırına dahildir; yalvarma, abartma."
                    if idx == max(1, round(len(sections) * 0.4)) else ""))
     extra = outline.get("_extra") or {}
     if idx == len(sections) - 1 and extra.get("next"):
@@ -343,8 +350,10 @@ Anlatılacak bilgiler: {'; '.join(sec.get('facts', []))}
 
 Bir önceki bölümün son cümleleri (devamlılık için, tekrar etme): {previous_text[-400:] or '(yok)'}
 
-UZUNLUK: tam olarak {scene_count} sahne, her sahnede {words_per_scene - 5}-{words_per_scene + 5} kelime
-seslendirme metni. Metinler sesli okunacak: kısaltma, parantez, emoji, madde işareti kullanma.
+UZUNLUK: tam olarak {scene_count} sahne, her sahnede {words_per_scene - 2}-{words_per_scene + 6} kelime
+seslendirme metni (kısa yazma: video süresi bu kelime sayısına göre hesaplanıyor).
+Metinler sesli okunacak: kısaltma, parantez, emoji, madde işareti kullanma. Noktalama ve kesme işaretlerini
+doğru kullan (Boston'a, ABD'de, Kanada'nın); virgülleri atlama.
 DOĞRULUK: Sadece iyi bilinen, güvenilir kaynaklarla doğrulanabilir bilgiler kullan. Emin olmadığın
 sayı, tarih, isim veya alıntıyı YAZMA; tartışmalı bilgileri "bir görüşe göre" diye belirt. Yazdıktan sonra
 her cümleyi bir bilgi editörü gibi kontrol et ve şüpheli olanı düzelt.
@@ -398,8 +407,10 @@ Videonun metni:
 {body}
 
 Bu videonun EN BAŞINA, kanal jeneriğinden ÖNCE oynayacak 20-25 saniyelik bir "soğuk açılış" yaz.
-- Metindeki EN çarpıcı, en gerilimli ya da en şaşırtıcı anı seç (genelde hikâyenin doruk noktası) ve izleyiciyi
-  doğrudan o anın içine at: şimdiki zaman, kısa ve vurucu cümleler, somut detaylar.
+- Metindeki EN çarpıcı, en gerilimli ya da en şaşırtıcı anı seç (hikâyenin doruk noktası; metnin İLK
+  sahnelerinden SEÇME, çünkü video jenerikten hemen sonra zaten onlarla başlıyor) ve izleyiciyi doğrudan o anın
+  içine at: şimdiki zaman, kısa ve vurucu cümleler, somut detaylar.
+- Metindeki cümleleri KOPYALAMA; aynı anı yeni cümlelerle anlat.
 - Sonucu ya da sırrın cevabını AÇIKLAMA; merakı doruğa çıkar.
 - Son sahne izleyiciyi hikâyenin başına götüren bir köprü cümlesiyle bitsin
   (ör. "Peki buraya nasıl gelindi? Her şey ... başladı.").
@@ -415,6 +426,12 @@ Sadece şu JSON'u döndür:
     scenes = [s for s in data.get("scenes", []) if (s.get("text") or "").strip()][:5]
     if len(scenes) < 2:
         raise ValueError("soğuk açılış çok kısa")
+    # Videonun ilk sahneleriyle neredeyse aynıysa izleyici aynı cümleleri iki kez duyar → kullanılmaz
+    import difflib
+    bas = " ".join(s["text"] for s in script["scenes"][:6]).lower()
+    soguk = " ".join(s["text"] for s in scenes).lower()
+    if difflib.SequenceMatcher(None, soguk, bas).find_longest_match(0, len(soguk), 0, len(bas)).size > 60:
+        raise ValueError("soğuk açılış videonun girişini tekrar ediyor")
     for s in scenes:
         s["section"] = -1
         s["cold"] = True
@@ -510,13 +527,17 @@ def generate(cfg: dict, past_titles: list, forced_topic: str = None, extra: dict
         except Exception as e:
             log(f"  Doğruluk kontrolü yapılamadı, ilk senaryoyla devam ediliyor: {e}")
     if cfg["video"].get("cold_open", True):
-        try:
-            cold = write_cold_open(llm, cfg, script)
-            script["scenes"] = cold + [s for s in script["scenes"] if not s.get("cold")]
-            script = validate(script)
-        except Exception as e:
-            log(f"  Soğuk açılış yazılamadı, video normal başlayacak: {e}")
+        for deneme in range(2):
+            try:
+                cold = write_cold_open(llm, cfg, script)
+                script["scenes"] = cold + [s for s in script["scenes"] if not s.get("cold")]
+                script = validate(script)
+                break
+            except Exception as e:
+                log(f"  Soğuk açılış yazılamadı ({e})" + (", yeniden deneniyor" if deneme == 0 else
+                                                           ", video normal başlayacak"))
     words = sum(len(s["text"].split()) for s in script["scenes"])
+    wpm = cfg["voice"].get("klon_wpm", 112) if cfg["voice"].get("engine") == "klon" else WORDS_PER_MINUTE
     log(f"Senaryo hazır: {len(script['scenes'])} sahne, {words} kelime "
-        f"(~{words / WORDS_PER_MINUTE:.1f} dk)")
+        f"(~{words / wpm:.1f} dk anlatım)")
     return script
