@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from bot import uploader  # noqa: E402
 
-SERILER = ["Vurgun Dosyaları", "Vücudun Sırları", "Gizemli Dosyalar"]   # kanal sayfasında bu sırayla
+SERILER = ["Vurgun Dosyaları", "İnsan Vücudu ve Beynin Tuhaflıkları", "Çözülemeyen Gizemler"]   # kanal sayfasında bu sırayla
 
 
 def main():
