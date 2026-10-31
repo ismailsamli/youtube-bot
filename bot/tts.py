@@ -553,22 +553,32 @@ def klon_voice_scenes(scenes: list, cfg: dict, out_dir: Path, extra: list = None
         raise RuntimeError("assets/ses/referans.* bulunamadı")
     texts = [cevir(t) for _, t in eksik]
     wavs = _klon_uret(texts, ref, out_dir, cfg)
+    kabul = float(cfg.get("voice", {}).get("klon_kabul_benzerlik", 0.4))
+    durum = [_klon_iyi(w, t, cfg) for w, t in zip(wavs, texts)]      # (iyi, benzerlik, süre)
     for tur in range(1, 3):
-        bozuk = []
-        for k, (w, t) in enumerate(zip(wavs, texts)):
-            iyi, oran, sure = _klon_iyi(w, t, cfg)
-            if not iyi:
-                bozuk.append(k)
-                log(f"  klon ses bozuk parça {k + 1}: benzerlik {oran:.2f}, {sure:.1f} sn — yeniden okunacak")
+        bozuk = [k for k, d in enumerate(durum) if not d[0]]
         if not bozuk:
             break
+        for k in bozuk:
+            log(f"  klon ses bozuk parça {k + 1}: benzerlik {durum[k][1]:.2f}, {durum[k][2]:.1f} sn — yeniden okunacak")
         yeni = _klon_uret([texts[k] for k in bozuk], ref, out_dir, cfg, f"_t{tur}")
         for k, w in zip(bozuk, yeni):
-            wavs[k] = w
-    else:
-        kalan = [k for k, (w, t) in enumerate(zip(wavs, texts)) if not _klon_iyi(w, t, cfg)[0]]
-        if kalan:
-            raise RuntimeError(f"klon ses {len(kalan)} parçada düzgün okunamadı")
+            d = _klon_iyi(w, texts[k], cfg)
+            if d[0] or d[1] > durum[k][1]:          # en iyi deneme tutulur
+                wavs[k], durum[k] = w, d
+    # Whisper özel isimleri (Tham Luang, Ponzi...) yanlış duyabiliyor: 3 denemenin en iyisi makul benzerlikte ve
+    # süresi normalse kabul edilir; sadece gerçekten bozuk (hırıltı/sessizlik) parça tüm videoyu Gemini'ye düşürür
+    cok_kotu = []
+    for k, d in enumerate(durum):
+        if d[0]:
+            continue
+        kelime = len(texts[k].split())
+        if d[1] >= kabul and d[2] <= kelime * 0.75 + 2.0:
+            log(f"  klon ses parça {k + 1} en iyi denemesiyle kabul edildi (benzerlik {d[1]:.2f})")
+        else:
+            cok_kotu.append(k)
+    if cok_kotu:
+        raise RuntimeError(f"klon ses {len(cok_kotu)} parçada düzgün okunamadı")
     for (mp3, _), wav in zip(eksik, wavs):
         _klon_mp3(wav, mp3)
     log(f"  klon ses kontrolü tamam: {len(eksik)} parça")
