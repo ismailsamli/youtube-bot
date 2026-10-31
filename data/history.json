@@ -432,17 +432,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261028-1510_acik-denizde-438-gun-okyanusta-nasil-sag-kaldi#short3",
-    "title": "Zihni Sağlam Tutma Yolu",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "_5MwugKAhtA",
-    "publish_at": "2026-10-30T21:00:00+03:00",
-    "comment": "Yalnızlığa ne kadar dayanırdınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/r9v1REYPnb0",
-    "long_video": "r9v1REYPnb0",
-    "hedef": "yaklaşık 40 sn"
-  },
-  {
     "folder": "20261026-1531_dijital-vurgun-ciftlik-bank-oyunu-neden-coktu#short3",
     "title": "Dijital Vurgunun Kaçınılmaz Sonu",
     "type": "short",
@@ -488,28 +477,6 @@
     "playlist": "Tarihin Karanlık Sırları",
     "playlist_done": true,
     "comment_done": true
-  },
-  {
-    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short1",
-    "title": "Kapıya Dayanan Kalabalığa Kahve Dağıtan Adam",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "Oiar4uIDwnc",
-    "publish_at": "2026-10-31T12:00:00+03:00",
-    "comment": "Sizce Ponzi kaçmak yerine neden kalabalığa kahve ikram etti?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
-    "long_video": "t5qnMgDCARg",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
-    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short2",
-    "title": "Dünyada Olmayan Kuponlarla Milyonlar Kazandı",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "UuJiv05FvCE",
-    "publish_at": "2026-10-31T15:00:00+03:00",
-    "comment": "Sizce insanlar neden bu matematiksel imkansızlığı aylarca fark etmedi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
-    "long_video": "t5qnMgDCARg",
-    "hedef": "yaklaşık 50 sn"
   },
   {
     "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short3",
@@ -603,16 +570,6 @@
     "hedef": "yaklaşık 55 sn"
   },
   {
-    "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila",
-    "title": "Mağarada 18 Gün: Çocukları Neden UYUTARAK Çıkardılar?",
-    "status": "yüklendi",
-    "video_id": "xRdDZqmYfMQ",
-    "publish_at": "2026-10-31T19:00:00+03:00",
-    "comment": "Sen olsan yerin kilometrelerce altında oksijen biterken böyle bir riski göze alabilir miydin? 👇",
-    "playlist": "Hayatta Kalma Hikâyeleri",
-    "playlist_done": true
-  },
-  {
     "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam",
     "title": "45 Günde %50 Kazanç Vaadi: Dünyayı KANDIRAN Adam",
     "status": "yüklendi",
@@ -620,6 +577,95 @@
     "publish_at": "2026-10-30T19:00:00+03:00",
     "comment": "Sizce bir insanın 'imkânsız' kazanç vaatlerine inanmasındaki ana sebep açgözlülük mü, yoksa çaresizlik mi? Yorumlarda tartışalım. 👇",
     "playlist": "Vurgun Dosyaları",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261028-1510_acik-denizde-438-gun-okyanusta-nasil-sag-kaldi#short3",
+    "title": "Zihni Sağlam Tutma Yolu",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "_5MwugKAhtA",
+    "publish_at": "2026-10-30T21:00:00+03:00",
+    "comment": "Yalnızlığa ne kadar dayanırdınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/r9v1REYPnb0",
+    "long_video": "r9v1REYPnb0",
+    "hedef": "yaklaşık 40 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short1",
+    "title": "Kapıya Dayanan Kalabalığa Kahve Dağıtan Adam",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "Oiar4uIDwnc",
+    "publish_at": "2026-10-31T12:00:00+03:00",
+    "comment": "Sizce Ponzi kaçmak yerine neden kalabalığa kahve ikram etti?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
+    "long_video": "t5qnMgDCARg",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short2",
+    "title": "Dünyada Olmayan Kuponlarla Milyonlar Kazandı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "UuJiv05FvCE",
+    "publish_at": "2026-10-31T15:00:00+03:00",
+    "comment": "Sizce insanlar neden bu matematiksel imkansızlığı aylarca fark etmedi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
+    "long_video": "t5qnMgDCARg",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618",
+    "title": "Güneş'i Yutan O DEV: TON 618",
+    "status": "yüklendi",
+    "video_id": "aWuXGsIKlfo",
+    "publish_at": "2026-11-01T19:00:00+03:00",
+    "comment": "Sence evrende bundan daha büyük bir şey keşfedilebilir mi? 👇",
+    "playlist": "Uzayın ve Bilimin Gizemleri"
+  },
+  {
+    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short1",
+    "title": "Güneş'i Yutan O Dev: TON 618",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "JOy86A27E8U",
+    "publish_at": "2026-11-02T12:00:00+03:00",
+    "comment": "Sizce böyle bir devin içinde ne var?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
+    "long_video": "aWuXGsIKlfo",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short2",
+    "title": "Evrenin En Büyük Sırrı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "y5iRmEv_-iA",
+    "publish_at": "2026-11-02T15:00:00+03:00",
+    "comment": "Evrende bundan daha büyüğü olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
+    "long_video": "aWuXGsIKlfo",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short3",
+    "title": "Kozmik Devlerin Sırrı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "vv8ocX_ITyI",
+    "publish_at": "2026-11-02T21:00:00+03:00",
+    "comment": "Bu büyüklüğü zihninizde canlandırabiliyor musunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
+    "long_video": "aWuXGsIKlfo",
+    "hedef": "yaklaşık 55 sn"
+  },
+  {
+    "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila",
+    "title": "Mağarada 18 Gün: Çocukları Neden UYUTARAK Çıkardılar?",
+    "status": "yüklendi",
+    "video_id": "xRdDZqmYfMQ",
+    "publish_at": "2026-10-31T19:00:00+03:00",
+    "comment": "Sen olsan yerin kilometrelerce altında oksijen biterken böyle bir riski göze alabilir miydin? 👇",
+    "playlist": "Hayatta Kalma Hikâyeleri",
     "playlist_done": true,
     "comment_done": true
   }
