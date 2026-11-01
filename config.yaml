@@ -8,6 +8,8 @@ channel:
   audience: "Meraklı, 18-45 yaş arası Türk izleyici"
   tone: "Merak uyandıran, samimi, akıcı ama ciddi; abartısız ve doğru bilgi veren"
   # Kanalın odaklanacağı alt konular (bot bunlardan seçer, boş bırakırsan serbest seçer)
+  # 1 Kas: hayatta kalma hikâyeleri kullanıcı onayıyla askıya alındı (438 gün 7 izlenme, mağara 2 izlenme)
+  askida_konular: ["hayatta kal", "mahsur", "kurtarıl", "kurtarma", "sağ çık", "sağ kal", "survival"]
   topic_pool:
     - insan vücudunun şaşırtıcı gerçekleri
     - izleyicinin kendi vücudu/beyni hakkında sezgiye ters gerçekler ("vücudun sana bunu söylemiyor" tarzı; kanalda en çok izlenenlerden)
@@ -16,10 +18,9 @@ channel:
     - tarihin karanlık sırları ve az bilinen olayları
     - çözülememiş gizemler
     - doğal afetler ve felaketler
-    - olağanüstü hayatta kalma hikâyeleri
-    - olağanüstü hayatta kalma hikâyeleri (kanalda en çok izlenen tür)
-    - gerçek kaza, mahsur kalma ve kurtarma hikâyeleri
-    - doğa karşısında insan: mahsur kalma ve hayatta kalma mücadeleleri
+    - tarihin en büyük vurgunları ve dolandırıcılıkları (Vurgun Dosyaları dışındaki günlerde de tutuyor)
+    - çözülememiş gizemler ve kaybolma vakaları (D.B. Cooper tarzı; Short'larda çok tutuyor)
+    - Çernobil gibi felaketlerin bilinmeyen tarafları
     - dünya rekorları ve uç noktalar
     - ya olsaydı türünden bilimsel senaryolar
     - tehlikeli ve tuhaf hayvanlar

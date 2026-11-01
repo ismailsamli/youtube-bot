@@ -10,6 +10,7 @@ Kullanım:
   python run.py --upload-only output/KLASÖR  -> hazır bir videoyu yükler
 """
 import argparse
+import re
 import shutil
 import sys
 import traceback
@@ -388,8 +389,20 @@ def scout_topic(cfg: dict):
         return None
     path = ROOT / "data" / "konu_onerileri.json"
     data = load_json(path, {})
+    askida = [k.lower() for k in cfg.get("channel", {}).get("askida_konular", [])]
+
+    def koklar(t: str) -> set:
+        return {w[:5] for w in re.findall(r"[a-zçğıöşü0-9]+", t.lower().replace("i̇", "i")) if len(w) >= 5}
+
+    # daha önce işlenmiş konular: kullanılan öneriler + kanalda yayınlanan başlıklar (aynı konu iki kez gelmesin)
+    eskiler = [koklar(o["konu"]) for o in data.get("oneriler", []) if o.get("kullanildi")]
+    eskiler += [koklar(h.get("title") or "") for h in load_json(ROOT / "data" / "history.json", [])
+                if h.get("type") != "short"]
     for o in data.get("oneriler", []):
         if not o.get("kullanildi") and o.get("konu"):
+            metin = (o["konu"] + " " + o.get("kaynak_baslik", "")).lower()
+            if any(k in metin for k in askida) or any(len(koklar(o["konu"]) & e) >= 2 for e in eskiler):
+                continue
             o["kullanildi"] = True
             save_json(path, data)
             log(f"Konu avcısından kanıtlanmış konu: {o['konu']} (ilham: {o.get('kaynak_baslik', '')})")

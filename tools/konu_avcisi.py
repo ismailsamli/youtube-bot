@@ -18,7 +18,7 @@ from bot.script_writer import LLM, _ask_json, _system  # noqa: E402
 from bot.utils import load_config, load_json, log, save_json  # noqa: E402
 
 ARAMALAR = [
-    "survival story documentary", "unsolved mystery explained", "history dark secret documentary",
+    "unsolved mystery explained", "history dark secret documentary",
     "human body facts you didn't know", "brain tricks psychology explained", "biggest fraud scam story",
     "disaster what happened documentary", "strangest place on earth", "space scary facts",
     "ancient civilization mystery", "engineering failure disaster", "deadliest animal facts",
@@ -89,7 +89,8 @@ Sadece JSON: {{"oneriler": [{{"konu": "...", "aci": "...", "kaynak_baslik": "...
     old = load_json(OUT, {"oneriler": []})
     kullanilan = {o["konu"] for o in old.get("oneriler", []) if o.get("kullanildi")}
     yeni = []
-    yasak = ("11 eylül", "terör", "saldırı", "bomba", "işid", "pkk", "el kaide", "seçim", "parti")
+    yasak = ("11 eylül", "terör", "saldırı", "bomba", "işid", "pkk", "el kaide", "seçim", "parti",
+             *[k.lower() for k in cfg.get("channel", {}).get("askida_konular", [])])
     for o in data.get("oneriler", [])[:12]:
         if any(k in (o.get("konu", "") + " " + o.get("kaynak_baslik", "")).lower() for k in yasak):
             continue
