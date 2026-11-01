@@ -479,17 +479,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short3",
-    "title": "Ponzi Düzeninin Doğduğu Karanlık Banka",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "pNEiQ94ppj8",
-    "publish_at": "2026-10-31T21:00:00+03:00",
-    "comment": "Kolay yoldan yüksek kazanç vaatlerine bugün hala inanılmasının sebebi ne?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
-    "long_video": "t5qnMgDCARg",
-    "hedef": "yaklaşık 55 sn"
-  },
-  {
     "folder": "20261028-1510_acik-denizde-438-gun-okyanusta-nasil-sag-kaldi",
     "title": "Açık Denizde 438 Gün: Okyanusta Nasıl SAĞ Kaldı?",
     "status": "yüklendi",
@@ -535,28 +524,6 @@
     "long_video": "r9v1REYPnb0",
     "hedef": "yaklaşık 50 sn",
     "comment_done": true
-  },
-  {
-    "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila#short1",
-    "title": "Mağarada 18 Gün: Çocukları Neden Uyutarak Çıkardılar?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "ftG-GFc3_G0",
-    "publish_at": "2026-11-01T12:00:00+03:00",
-    "comment": "Sizce bu karanlıkta 18 gün hayatta kalmak mümkün mü?\n\nHikâyenin tamamı burada 👉 https://youtu.be/xRdDZqmYfMQ",
-    "long_video": "xRdDZqmYfMQ",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
-    "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila#short2",
-    "title": "Mağarada Mahsur Kalan Çocuklar Nasıl Bulundu?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "r_g7KurBTcw",
-    "publish_at": "2026-11-01T15:00:00+03:00",
-    "comment": "İngiliz dalgıçların yerinde olsaydınız ne hissederdiniz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/xRdDZqmYfMQ",
-    "long_video": "xRdDZqmYfMQ",
-    "hedef": "yaklaşık 50 sn"
   },
   {
     "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila#short3",
@@ -617,15 +584,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618",
-    "title": "Güneş'i Yutan O DEV: TON 618",
-    "status": "yüklendi",
-    "video_id": "aWuXGsIKlfo",
-    "publish_at": "2026-11-01T19:00:00+03:00",
-    "comment": "Sence evrende bundan daha büyük bir şey keşfedilebilir mi? 👇",
-    "playlist": "Uzayın ve Bilimin Gizemleri"
-  },
-  {
     "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short1",
     "title": "Güneş'i Yutan O Dev: TON 618",
     "type": "short",
@@ -666,6 +624,96 @@
     "publish_at": "2026-10-31T19:00:00+03:00",
     "comment": "Sen olsan yerin kilometrelerce altında oksijen biterken böyle bir riski göze alabilir miydin? 👇",
     "playlist": "Hayatta Kalma Hikâyeleri",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam#short3",
+    "title": "Ponzi Düzeninin Doğduğu Karanlık Banka",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "pNEiQ94ppj8",
+    "publish_at": "2026-10-31T21:00:00+03:00",
+    "comment": "Kolay yoldan yüksek kazanç vaatlerine bugün hala inanılmasının sebebi ne?\n\nHikâyenin tamamı burada 👉 https://youtu.be/t5qnMgDCARg",
+    "long_video": "t5qnMgDCARg",
+    "hedef": "yaklaşık 55 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila#short1",
+    "title": "Mağarada 18 Gün: Çocukları Neden Uyutarak Çıkardılar?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "ftG-GFc3_G0",
+    "publish_at": "2026-11-01T12:00:00+03:00",
+    "comment": "Sizce bu karanlıkta 18 gün hayatta kalmak mümkün mü?\n\nHikâyenin tamamı burada 👉 https://youtu.be/xRdDZqmYfMQ",
+    "long_video": "xRdDZqmYfMQ",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila#short2",
+    "title": "Mağarada Mahsur Kalan Çocuklar Nasıl Bulundu?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "r_g7KurBTcw",
+    "publish_at": "2026-11-01T15:00:00+03:00",
+    "comment": "İngiliz dalgıçların yerinde olsaydınız ne hissederdiniz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/xRdDZqmYfMQ",
+    "long_video": "xRdDZqmYfMQ",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti#short1",
+    "title": "Haritada Olmayan Ülkeyi Londra'ya Satan Adam",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "wiZ3xhDBg3w",
+    "publish_at": "2026-11-03T12:00:00+03:00",
+    "comment": "Sizce koskoca bir imparatorluk tek bir kitaba nasıl kandı?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aL3azqG7SQo",
+    "long_video": "aL3azqG7SQo",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti#short2",
+    "title": "Olmayan Ülkenin Parasıyla Milyonlar Topladı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "7G-bwPDAe8A",
+    "publish_at": "2026-11-03T15:00:00+03:00",
+    "comment": "Yatırımcılar sizce neden haritayı bile kontrol etmedi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aL3azqG7SQo",
+    "long_video": "aL3azqG7SQo",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti#short3",
+    "title": "Olmayan Ülke Yalanı Yüzlerce Can Aldı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "dhV2Qy9SvcY",
+    "publish_at": "2026-11-03T21:00:00+03:00",
+    "comment": "Sahtekarın ceza almadan maaşa bağlanması hakkında ne düşünüyorsunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aL3azqG7SQo",
+    "long_video": "aL3azqG7SQo",
+    "hedef": "yaklaşık 55 sn"
+  },
+  {
+    "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti",
+    "title": "Haritada OLMAYAN Ülkeyi Londra'ya Nasıl Sattı?",
+    "status": "yüklendi",
+    "video_id": "aL3azqG7SQo",
+    "publish_at": "2026-11-02T19:00:00+03:00",
+    "comment": "Sizce bir insanın haritada var olmayan bir ülkeye yüzlerce kişiyi inandırabilmesinin asıl sebebi neydi? 👇",
+    "playlist": "Vurgun Dosyaları",
+    "playlist_done": true
+  },
+  {
+    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618",
+    "title": "Güneş'i Yutan O DEV: TON 618",
+    "status": "yüklendi",
+    "video_id": "aWuXGsIKlfo",
+    "publish_at": "2026-11-01T19:00:00+03:00",
+    "comment": "Sence evrende bundan daha büyük bir şey keşfedilebilir mi? 👇",
+    "playlist": "Uzayın ve Bilimin Gizemleri",
     "playlist_done": true,
     "comment_done": true
   }
