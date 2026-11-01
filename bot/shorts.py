@@ -114,7 +114,7 @@ def _paste(bg, card, x, y, seed, ang):
 # Short başına farklı uzunluk: hangi sürenin daha iyi tuttuğunu istatistikten görmek için (test)
 # 28 Eki testi: ~50 sn Short'lar ort. 971 izlenme / 10 beğeni; ~30 sn 382 / 2,2; ~40 sn 437 / 3,7 → hepsi ~50 sn
 LENGTHS = [(110, 125, "yaklaşık 50 sn"), (110, 125, "yaklaşık 50 sn"), (115, 130, "yaklaşık 55 sn")]
-KLON_LENGTHS = [(90, 100, "yaklaşık 50 sn"), (90, 100, "yaklaşık 50 sn"), (95, 105, "yaklaşık 55 sn")]  # klon ses daha yavaş
+KLON_LENGTHS = [(105, 115, "yaklaşık 50 sn"), (105, 115, "yaklaşık 50 sn"), (110, 120, "yaklaşık 55 sn")]  # 1 Kas: 90-100 kelime 34-40 sn çıktı
 
 
 def _lengths(cfg: dict) -> list:
@@ -260,6 +260,37 @@ def publish_times(cfg: dict, long_publish_iso: str, count: int) -> list:
     return out
 
 
+def _toplu_klon(cfg: dict, folder: Path, shorts: list) -> None:
+    """Günün tüm Short'larının sesini TEK Kaggle işinde okutur (her iş ~5 dk kurulum + bazen uzun GPU kuyruğu;
+    1 Kas'ta Short başına 35-48 dk bekledi). Olmazsa her Short kendi sesini ayrı okur."""
+    if cfg.get("shorts", {}).get("voice_engine") != "klon":
+        return
+    import shutil
+    try:
+        hepsi, yer, dirs = [], [], []
+        for n, s in enumerate(shorts):
+            work = folder / "shorts" / f"s{n}"
+            if (work / "short.mp4").exists() or (work / "audio" / "motor.txt").exists():
+                continue
+            dirs.append(work / "audio")
+            for i, sc in enumerate(s["scenes"]):
+                hepsi.append({"text": sc["text"]})
+                yer.append(work / "audio" / f"audio_{i:03d}.mp3")
+        if not hepsi:
+            return
+        tmp = folder / "shorts" / "_toplu_ses"
+        tmp.mkdir(parents=True, exist_ok=True)
+        tts.klon_voice_scenes(hepsi, cfg, tmp)
+        for i, hedef in enumerate(yer):
+            hedef.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy(tmp / f"audio_{i:03d}.mp3", hedef)
+        for d in dirs:
+            (d / "motor.txt").write_text("klon")
+        log(f"  Short sesleri tek seferde okundu ({len(hepsi)} sahne)")
+    except Exception as e:
+        log(f"  Short sesleri toplu okunamadı, her Short ayrı okunacak: {str(e)[:200]}")
+
+
 def make_and_upload(cfg: dict, folder: Path, script: dict, long_entry: dict, upload_fn) -> list:
     """Short'ları üretir ve (upload_fn verilirse) planlı olarak yükler. Geçmiş kayıtlarını döndürür."""
     from .script_writer import LLM
@@ -275,6 +306,7 @@ def make_and_upload(cfg: dict, folder: Path, script: dict, long_entry: dict, upl
         shorts = write_shorts(LLM(cfg), cfg, script, count)
         store.parent.mkdir(parents=True, exist_ok=True)
         store.write_text(json.dumps(shorts, ensure_ascii=False, indent=2), encoding="utf-8")
+    _toplu_klon(cfg, folder, shorts)
     vid = long_entry.get("video_id")
     link = f"https://youtu.be/{vid}" if vid else ""
     times = publish_times(cfg, long_entry.get("publish_at"), len(shorts))

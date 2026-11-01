@@ -28,7 +28,7 @@ channel:
     - beynin ve psikolojinin tuhaflıkları
 
 video:
-  target_minutes: 7.8        # anlatım süresi; soğuk açılış + giriş + bitiş ekranıyla toplam ~8,5 dk (8 dk üstü = ara reklam açılır)
+  target_minutes: 8.2        # anlatım süresi; soğuk açılış + giriş + bitiş ekranıyla toplam ~8,5 dk (8 dk üstü = ara reklam açılır)
   width: 1920
   height: 1080
   fps: 30
