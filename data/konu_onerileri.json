@@ -1,27 +1,137 @@
 {
-  "guncelleme": "2026-10-26",
+  "guncelleme": "2026-11-02",
   "oneriler": [
     {
-      "konu": "Heredot'un bahsettiği Mısır'ın kayıp 3.000 odalı dev yeraltı labirentinin gizemi.",
-      "aci": "Piramitlerden bile daha görkemli olduğu iddia edilen bu yapının efsane mi yoksa kumların altına gömülü gerçek bir mühendislik harikası mı olduğunu yer altı tarama bulgularıyla incelemek.",
-      "kaynak_baslik": "Herodotus Said It Was More Impressive Than The Pyramids. But Egypt Said A Labyrinth Didn't Exist.",
-      "neden": "Antik Mısır ve piramitlerin gizemi Türk izleyicisinde her zaman yüksek tıklama alır; 'kayıp yeraltı şehri' teması merak uyandırır.",
+      "konu": "Disiplin Psikolojisi ve Beynin Ödül Mekanizmasını Yönetme Yolları",
+      "aci": "İrade gücünün sınırlı bir kaynak olduğu ve beyni zorlamak yerine dopamin döngüsünü yeniden kodlayarak kalıcı disiplin inşa etmenin nörolojik arka planı.",
+      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
+      "neden": "Kişisel gelişim ve beyin mekanizmalarını bilimsel temelle anlatan videolar Türk izleyicisi tarafından yoğun ilgi görüyor.",
+      "izlenme": 4561176,
+      "kat": 23.9,
+      "kaynak": "CkP_8bkjf1E",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Amazon Yağmur Ormanlarında Kaybolan Kaşif Percy Fawcett ve Kayıp Z Şehri",
+      "aci": "Modern haritalama teknolojilerine ve yerli anlatılarına dayanarak El Dorado efsanesinin arkasındaki gerçek orman kentlerinin ve Fawcett'ın gizemli kayboluşunun incelenmesi.",
+      "kaynak_baslik": "The Lost City of Z | (Real story) Amazon Jungle's Greatest Mystery",
+      "neden": "Tarihi keşif faciaları ve çözülmemiş orman gizemleri kanalda her zaman yüksek izlenme potansiyeline sahip.",
       "izlenme": null,
       "kat": null,
       "kaynak": null,
-      "kullanildi": true,
-      "tarih": "2026-10-26"
+      "kullanildi": false,
+      "tarih": "2026-11-02"
     },
     {
-      "konu": "Evrenin bilinen en devasa ultra kütleli kara deliği TON 618 ve akılalmaz boyutları.",
-      "aci": "Güneş sistemini bütünüyle yutabilecek 66 milyar Güneş kütlesindeki bir kozmik devin varlığını insan aklının kavrayabileceği ölçeklerle anlatmak.",
-      "kaynak_baslik": "Why TON 618 is The Scariest Black Hole in the Universe",
-      "neden": "Uzay ve kozmik dehşet (kozmik ölçek) konuları bilgi kanallarında en sadık ve yüksek izlenme oranına sahip temalardandır.",
-      "izlenme": 1543692,
-      "kat": 10.6,
-      "kaynak": "Em3HCTeTlQg",
-      "kullanildi": true,
-      "tarih": "2026-10-26"
+      "konu": "Büyük Kanyon Oluşmadan Önce Bölgenin Jeolojik Geçmişi ve Kayıp Milyar Yıl",
+      "aci": "Jeolojide 'Büyük Uyumsuzluk' olarak bilinen ve Büyük Kanyon katmanları arasında eksik olan 1 milyar yıllık zaman diliminin yarattığı bilimsel bilmece.",
+      "kaynak_baslik": "What Was Here Before the Grand Canyon?",
+      "neden": "Dünyanın en ikonik doğa yapısının ardındaki şaşırtıcı ve az bilinen jeolojik anomali merak uyandırır.",
+      "izlenme": 542966,
+      "kat": 11.2,
+      "kaynak": "EjzcltNIiHk",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Tarihin En Ölümcül Havacılık Kazası: Tenerife Faciası",
+      "aci": "İki dev Boeing 747'nin sisli bir pistte çarpışmasına yol açan iletişim karmaşası ve insan faktörünün havacılık güvenlik kurallarını nasıl kökten değiştirdiği.",
+      "kaynak_baslik": "The DEADLIEST Aviation Disasters Explained",
+      "neden": "Büyük kaza belgeselleri ve adım adım felaket analizleri Türk izleyicisinin en çok tıkladığı türlerdendir.",
+      "izlenme": 151897,
+      "kat": 7.9,
+      "kaynak": "4Neh0NMh9Dk",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Zaman Kavramının Fiziksel ve Bilişsel Şaşırtıcı Gerçekleri",
+      "aci": "Zamanın aslında akmadığına dair görelilik kanıtları ve beynimizin süreyi algılarken yarattığı yanılsamaların derinlemesine anlatımı.",
+      "kaynak_baslik": "8 Terrifying Facts About Time",
+      "neden": "Varoluşsal fizik ve beyin algısı konuları yüksek etkileşim ve yorum üretir.",
+      "izlenme": 2240629,
+      "kat": 5.8,
+      "kaynak": "IlVzMF2A8C0",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Evrendeki En Nadir Görülen Maddeler ve Kozmik Olaylar",
+      "aci": "Gezegenimizde milyarlarca ton bulunan suyun evrendeki sıradışılığından yalnızca nötron yıldızı çarpışmalarında oluşan elementlere kadar kozmik nadirlikler.",
+      "kaynak_baslik": "The Rarest Things in the Universe",
+      "neden": "Uzay ve evren meraklıları için tonlarca çarpıcı bilgi içeren güçlü bir liste içeriği formatı sunar.",
+      "izlenme": 3789159,
+      "kat": 4.5,
+      "kaynak": "GGmVPLldvXY",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "1975 Chasnala Maden Faciası ve Yeraltı Sularının Çöküşü",
+      "aci": "Eski bir maden galerisinde biriken milyonlarca metreküp suyun aniden aktif ocağı basmasıyla yaşanan tarihin en dramatik maden kurtarma çabası.",
+      "kaynak_baslik": "भारत का सबसे भयावह खदान हादसा | Chasnala Mine Disaster 1975 में 375 खनिक कैसे मारे गए?",
+      "neden": "Maden kazaları ve insan dayanıklılığı öyküleri Türk izleyicisinde derin bir duygusal ve merak odaklı karşılık bulur.",
+      "izlenme": 255704,
+      "kat": 5.7,
+      "kaynak": "2DMBVbdnvFE",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Tarihteki En Gizemli Uçak Korsanı: D.B. Cooper Vakası",
+      "aci": "Bir yolcu uçağını kaçırıp 200 bin dolar fidyeyle fırtınalı gecede paraşütle atlayan ve ardında neredeyse hiç iz bırakmayan tek korsanın çözülemeyen hikayesi.",
+      "kaynak_baslik": "The D.B. Cooper Mystery Finally Solved — After 54 Years",
+      "neden": "Gerçek suç ve çözülmemiş gizem kategorisinin küresel çapta en popüler ve sürükleyici vakasıdır.",
+      "izlenme": 844093,
+      "kat": 4.0,
+      "kaynak": "wic9CnF7vro",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Venüs'ün Cehennem Yüzeyine İnen Sovyet Venera Görevleri",
+      "aci": "460 derece sıcaklık ve Dünya'nın 90 katı atmosfer basıncında erimeden önce sadece dakikalarca hayatta kalıp ilk yüzey fotoğraflarını gönderen sondaların inanılmaz mühendisliği.",
+      "kaynak_baslik": "The Soviet space Mission That Took Photos From Hell",
+      "neden": "Soğuk Savaş uzay yarışının az anlatılan ve mühendislik sınırlarını zorlayan en epik başarılarından biridir.",
+      "izlenme": 3092256,
+      "kat": 3.5,
+      "kaynak": "0RMFYativbA",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Kriminal Tarihteki En Ürpertici ve Şaşırtıcı Robot Resimlerin Hikayesi",
+      "aci": "Görgü tanıklarının tarifleriyle çizilen, bazen gerçeğe korkutucu derecede benzeyen bazen ise şaşırtıcı şekilde hatalı olan robot resimlerin davaları nasıl etkilediği.",
+      "kaynak_baslik": "The Creepiest Police Sketches Explained",
+      "neden": "Görsel merak unsuru çok yüksek olan ve gerçek polisiye vakalarla desteklenen güçlü bir gizem konusu.",
+      "izlenme": 1132680,
+      "kat": 3.1,
+      "kaynak": "kzDH2prCozk",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Amatör Bir Kuaförün Roma Askeri Teknolojisine Dair Çözdüğü Tarihi Sır",
+      "aci": "Profesyonel arkeologların yüzlerce yıldır çözemediği antik Roma heykellerindeki saç modelleri ve miğfer bağlantılarının bir kuaför tarafından pratik zekayla aydınlatılması.",
+      "kaynak_baslik": "A hairdresser with no archaeology training solved a Roman mystery | Sam Kean",
+      "neden": "Sıradan bir insanın uzmanları şaşırtan keşfi teması izleyicide hayranlık ve güçlü sempati uyandırır.",
+      "izlenme": 1156049,
+      "kat": 3.0,
+      "kaynak": "L7xcpUYJgOQ",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
+    },
+    {
+      "konu": "Sibirya Kaplanının Sert Kış Koşullarındaki Kusursuz Avlanma Stratejisi",
+      "aci": "Dünyanın en büyük kedisinin eksi 40 derece dondurucu taygada hayatta kalmasını ve devasa ayı türlerini bile avlayabilmesini sağlayan eşsiz biyolojik adaptasyonları.",
+      "kaynak_baslik": "Why the Siberian Tiger Is the Deadliest Apex Predator in the World",
+      "neden": "Vahşi doğanın sınırları ve süper yırtıcıların taktikleri belgesel sever Türk izleyicisi için her zaman garantili izlenme getirir.",
+      "izlenme": 132329,
+      "kat": 16.6,
+      "kaynak": "3mq60b5xa6o",
+      "kullanildi": false,
+      "tarih": "2026-11-02"
     },
     {
       "konu": "Yakutistan'ın eksi 50 derecelik ölüm yollarında kamyon şoförlerinin hayatta kalma mücadelesi.",
@@ -220,116 +330,6 @@
       "kaynak": "wR2hmAa61HQ",
       "kullanildi": false,
       "tarih": "2026-10-26"
-    },
-    {
-      "konu": "Kanada'daki Oak Island adasında 200 yılı aşkın süredir çözülemeyen 'Para Çukuru' tuzakları.",
-      "aci": "Kimin kazdığı bilinmeyen ve kazıldıkça su basmasını sağlayan zekice tasarlanmış mühendislik tuzaklarının hazine avcılarını nasıl 2 asırdır durdurduğu.",
-      "kaynak_baslik": "Oak Island का रहस्य: 200 साल से जमीन के नीचे क्या छिपा है? | Money Pit Mystery",
-      "neden": "Eski mühendislik dehası ve ulaşılamayan yeraltı gizemleri Türk YouTube izleyicisinin en çok tükettiği formatlardandır.",
-      "izlenme": 496496,
-      "kat": 9.0,
-      "kaynak": "los6an3g_7E",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
-    },
-    {
-      "konu": "Dağ keçilerinin neredeyse 90 derecelik dimdik uçurumlarda düşmeden tırmanabilmesini sağlayan biyomekanik yapı.",
-      "aci": "Kauçuk benzeri elastik toynaklar ve kusursuz ağırlık merkezi kontrolü sayesinde yerçekimine meydan okuyan dikey yaşam stratejisi.",
-      "kaynak_baslik": "Spectacula Escape A Mountain Goat Jumps 4.5 Meters to Survive | FULL EPISODE | Wildlife Documentary",
-      "neden": "Fizik kurallarına aykırı gibi görünen sıra dışı hayvan yetenekleri kısa sürede yüksek etkileşim alır.",
-      "izlenme": 403612,
-      "kat": 7.2,
-      "kaynak": "cFfVzJQfC8Y",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
-    },
-    {
-      "konu": "1876-1878 yılları arasında tarihin en şiddetli Süper El Niño olayının tetiklediği küresel kıtlık felaketi.",
-      "aci": "Pasifik Okyanusu'ndaki sıcaklık değişimlerinin binlerce kilometre ötedeki kıtaların yağış rejimini altüst ederek dünyayı nasıl sarstığı.",
-      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
-      "neden": "Görünmez doğa olaylarının küresel sonuçları ve insanlık tarihine etkisi yüksek merak uyandıran bir felaket bilimi konusudur.",
-      "izlenme": 2331484,
-      "kat": 5.0,
-      "kaynak": "69o-8Mtd3Kc",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
-    },
-    {
-      "konu": "Yerin Altında 200 Yıldır Çözülemeyen Gizem: Oak Island Para Çukuru",
-      "aci": "Kanada'daki küçük bir adada yüzyıllardır süren kazıların ve nesiller boyu insanları peşinden sürükleyen bu gizemin arkasındaki gerçekleri araştırıyoruz.",
-      "kaynak_baslik": "Oak Island का रहस्य: 200 साल से जमीन के नीचे क्या छिपा है? | Money Pit Mystery",
-      "neden": "Klasik bir hazine ve tarih gizemi barındırması, izleyicinin sonuna kadar merakla izlemesini sağlar.",
-      "izlenme": 466054,
-      "kat": 8.9,
-      "kaynak": "los6an3g_7E",
-      "kullanildi": false,
-      "tarih": "2026-10-22"
-    },
-    {
-      "konu": "Kutup Şartlarında -50 Derecede Hayatta Kalma Mücadelesi",
-      "aci": "Sibirya ve kutup bölgelerinde donma tehlikesine karşı kamyon şoförlerinin ve gezginlerin kullandığı hayatta kalma taktiklerini inceliyoruz.",
-      "kaynak_baslik": "How Can a Truck Driver Drive All Night at −50°C and Survive?",
-      "neden": "Ekstrem çevre koşulları ve insan iradesi her zaman popüler ve ilgi çekici bir konudur.",
-      "izlenme": 438452,
-      "kat": 8.8,
-      "kaynak": "nEEGwmuGbBI",
-      "kullanildi": false,
-      "tarih": "2026-10-22"
-    },
-    {
-      "konu": "Evrendeki En Korkunç ve Gizemli Kara Delik: TON 618",
-      "aci": "Güneş sistemimizin katbekat ötesinde yer alan, devasa kütlesiyle bilinen evrenin en uç yapılarından TON 618'in gerçeğini anlatıyoruz.",
-      "kaynak_baslik": "Why TON 618 is The Scariest Black Hole in the Universe",
-      "neden": "Uzay ve kainat temalı videolar her yaş grubundan Türk izleyicinin ilgisini çekmektedir.",
-      "izlenme": 1492341,
-      "kat": 9.7,
-      "kaynak": "Em3HCTeTlQg",
-      "kullanildi": false,
-      "tarih": "2026-10-22"
-    },
-    {
-      "konu": "Eski Mısır'ın Kayıp Labirenti Gerçekten Var mıydı?",
-      "aci": "Antik tarihçi Herodot'un piramitlerden bile daha etkileyici olduğunu söylediği efsanevi labirentin arkeolojik izlerini sürüyoruz.",
-      "kaynak_baslik": "Herodotus Said It Was More Impressive Than The Pyramids. But Egypt Said A Labyrinth Didn't Exist.",
-      "neden": "Antik dünya sırları ve kayıp yapılar popüler tarih meraklılarının favori konularındandır.",
-      "izlenme": null,
-      "kat": null,
-      "kaynak": null,
-      "kullanildi": false,
-      "tarih": "2026-10-22"
-    },
-    {
-      "konu": "Yeraltında Kurulan Şehirler: Matmata'nın Sırrı",
-      "aci": "Tunus'ta çölün kavurucu sıcaklığından korunmak için kayaların oyulmasıyla oluşturulan yeraltı evlerinde insan yaşamının nasıl sürdüğünü inceliyoruz.",
-      "kaynak_baslik": "यहाँ लोग ज़मीन के नीचे क्यों रहते हे? | Matmata Tunisia Mystery | Hindi Documentary",
-      "neden": "Farklı kültürlerin coğrafi koşullara uyum sağlama biçimleri izleyicide keşif duygusu uyandırır.",
-      "izlenme": 1075929,
-      "kat": 5.6,
-      "kaynak": "kxITdp2uKw8",
-      "kullanildi": false,
-      "tarih": "2026-10-22"
-    },
-    {
-      "konu": "Tarihin En Büyük Denizaltı Faciası: Titan Olayının Bilinmeyenleri",
-      "aci": "Okyanusun binlerce metre derinliğine inen Titan denizaltısının tasarım ve basınç açısından beklenen dayanıklılığı neden gösteremediğini mühendislik hatalarıyla inceliyoruz.",
-      "kaynak_baslik": "Oceangate Titan: It was WORSE Than We Thought",
-      "neden": "Yakın geçmişte küresel yankı uyandıran trajik ve teknolojik bir olayın teknik arka planını sunar.",
-      "izlenme": 1424641,
-      "kat": 5.8,
-      "kaynak": "JGRjhfttZGg",
-      "kullanildi": false,
-      "tarih": "2026-10-22"
-    },
-    {
-      "konu": "Sibirya Kaplanı Neden Dünyanın En Tehlikeli Yırtıcısı?",
-      "aci": "Asya'nın sert doğasında yaşayan bu devasa kedinin avlanma stratejilerini ve ekosistemdeki baskın rolünü doğa kanunları çerçevesinde anlatıyoruz.",
-      "kaynak_baslik": "Why the Siberian Tiger Is the Deadliest Apex Predator in the World",
-      "neden": "Vahşi yaşam ve yırtıcı hayvan dinamikleri YouTube izleyicisinin her zaman beğenerek tükettiği bir türdür.",
-      "izlenme": 125382,
-      "kat": 16.9,
-      "kaynak": "3mq60b5xa6o",
-      "kullanildi": false,
-      "tarih": "2026-10-22"
     }
   ]
 }
