@@ -526,17 +526,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila#short3",
-    "title": "Çocuklar Mağaradan Nasıl Kurtarıldı?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "d4FH-lH9JeU",
-    "publish_at": "2026-11-01T21:00:00+03:00",
-    "comment": "Bu kurtarma operasyonu sizce insanlık tarihinin en büyüğü mü?\n\nHikâyenin tamamı burada 👉 https://youtu.be/xRdDZqmYfMQ",
-    "long_video": "xRdDZqmYfMQ",
-    "hedef": "yaklaşık 55 sn"
-  },
-  {
     "folder": "20261029-1542_45-gunde-50-kazanc-vaadi-dunyayi-kandiran-adam",
     "title": "45 Günde %50 Kazanç Vaadi: Dünyayı KANDIRAN Adam",
     "status": "yüklendi",
@@ -582,39 +571,6 @@
     "long_video": "t5qnMgDCARg",
     "hedef": "yaklaşık 50 sn",
     "comment_done": true
-  },
-  {
-    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short1",
-    "title": "Güneş'i Yutan O Dev: TON 618",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "JOy86A27E8U",
-    "publish_at": "2026-11-02T12:00:00+03:00",
-    "comment": "Sizce böyle bir devin içinde ne var?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
-    "long_video": "aWuXGsIKlfo",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
-    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short2",
-    "title": "Evrenin En Büyük Sırrı",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "y5iRmEv_-iA",
-    "publish_at": "2026-11-02T15:00:00+03:00",
-    "comment": "Evrende bundan daha büyüğü olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
-    "long_video": "aWuXGsIKlfo",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
-    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short3",
-    "title": "Kozmik Devlerin Sırrı",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "vv8ocX_ITyI",
-    "publish_at": "2026-11-02T21:00:00+03:00",
-    "comment": "Bu büyüklüğü zihninizde canlandırabiliyor musunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
-    "long_video": "aWuXGsIKlfo",
-    "hedef": "yaklaşık 55 sn"
   },
   {
     "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila",
@@ -697,16 +653,6 @@
     "hedef": "yaklaşık 55 sn"
   },
   {
-    "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti",
-    "title": "Haritada OLMAYAN Ülkeyi Londra'ya Nasıl Sattı?",
-    "status": "yüklendi",
-    "video_id": "aL3azqG7SQo",
-    "publish_at": "2026-11-02T19:00:00+03:00",
-    "comment": "Sizce bir insanın haritada var olmayan bir ülkeye yüzlerce kişiyi inandırabilmesinin asıl sebebi neydi? 👇",
-    "playlist": "Vurgun Dosyaları",
-    "playlist_done": true
-  },
-  {
     "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618",
     "title": "Güneş'i Yutan O DEV: TON 618",
     "status": "yüklendi",
@@ -716,5 +662,107 @@
     "playlist": "Uzayın ve Bilimin Gizemleri",
     "playlist_done": true,
     "comment_done": true
+  },
+  {
+    "folder": "20261030-1554_magarada-18-gun-cocuklari-neden-uyutarak-cikardila#short3",
+    "title": "Çocuklar Mağaradan Nasıl Kurtarıldı?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "d4FH-lH9JeU",
+    "publish_at": "2026-11-01T21:00:00+03:00",
+    "comment": "Bu kurtarma operasyonu sizce insanlık tarihinin en büyüğü mü?\n\nHikâyenin tamamı burada 👉 https://youtu.be/xRdDZqmYfMQ",
+    "long_video": "xRdDZqmYfMQ",
+    "hedef": "yaklaşık 55 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short1",
+    "title": "Güneş'i Yutan O Dev: TON 618",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "JOy86A27E8U",
+    "publish_at": "2026-11-02T12:00:00+03:00",
+    "comment": "Sizce böyle bir devin içinde ne var?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
+    "long_video": "aWuXGsIKlfo",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short2",
+    "title": "Evrenin En Büyük Sırrı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "y5iRmEv_-iA",
+    "publish_at": "2026-11-02T15:00:00+03:00",
+    "comment": "Evrende bundan daha büyüğü olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
+    "long_video": "aWuXGsIKlfo",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618#short3",
+    "title": "Kozmik Devlerin Sırrı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "vv8ocX_ITyI",
+    "publish_at": "2026-11-02T21:00:00+03:00",
+    "comment": "Bu büyüklüğü zihninizde canlandırabiliyor musunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aWuXGsIKlfo",
+    "long_video": "aWuXGsIKlfo",
+    "hedef": "yaklaşık 55 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti",
+    "title": "Haritada OLMAYAN Ülkeyi Londra'ya Nasıl Sattı?",
+    "status": "yüklendi",
+    "video_id": "aL3azqG7SQo",
+    "publish_at": "2026-11-02T19:00:00+03:00",
+    "comment": "Sizce bir insanın haritada var olmayan bir ülkeye yüzlerce kişiyi inandırabilmesinin asıl sebebi neydi? 👇",
+    "playlist": "Vurgun Dosyaları",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short1",
+    "title": "32 Milyar Dolar 72 Saatte Nasıl Yok Oldu?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "151J9MCRs0M",
+    "publish_at": "2026-11-04T12:00:00+03:00",
+    "comment": "Sizce bu kadar paranın buharlaşması fark edilmeden nasıl mümkün olabilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ALhh3Q1I--4",
+    "long_video": "ALhh3Q1I--4",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short2",
+    "title": "Gizli Fon Transferleri ve Dev Sponsorluklar",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "f9C1P2A26Sc",
+    "publish_at": "2026-11-04T15:00:00+03:00",
+    "comment": "Reklam yüzlerine kanıp yatırım yapar mısınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ALhh3Q1I--4",
+    "long_video": "ALhh3Q1I--4",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short3",
+    "title": "72 Saatte Gelen Tarihi İflas",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "A3ODwDOmofk",
+    "publish_at": "2026-11-04T21:00:00+03:00",
+    "comment": "Kripto paralara güveniniz sarsıldı mı?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ALhh3Q1I--4",
+    "long_video": "ALhh3Q1I--4",
+    "hedef": "yaklaşık 55 sn"
+  },
+  {
+    "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi",
+    "title": "32 Milyar Dolar Nasıl 72 Saatte SIFIRLANDI?",
+    "status": "yüklendi",
+    "video_id": "ALhh3Q1I--4",
+    "publish_at": "2026-11-03T19:00:00+03:00",
+    "comment": "Sizce FTX çöküşü kripto dünyasında bir dönüm noktası mı oldu, yoksa benzer olaylar tekrarlanabilir mi? 👇",
+    "playlist": "Vurgun Dosyaları",
+    "playlist_done": true
   }
 ]
