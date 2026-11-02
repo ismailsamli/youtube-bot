@@ -43,7 +43,7 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
         log(f"Video zaten hazır: {folder}")
         return folder
     if folder is None:
-        past = [h["title"] for h in load_history()]
+        past = [h["title"] for h in load_history()] + _planli_konular()   # ileride planlı konular da "yapıldı" sayılır
         extra = None
         if isinstance(topic, dict):
             topic, extra = topic["konu"], topic["extra"]
@@ -353,6 +353,19 @@ def publish_shorts(cfg: dict, folder: Path, script: dict, entry: dict) -> None:
         log(f"Shorts atlandı: {e}")
 
 
+def _planli_konular() -> list:
+    """konular.yaml'daki bugünden sonraki konular (Gemini/konu avcısı bunları başka güne kapmasın;
+    2 Kas'ta 27 Kas'a planlı Poyais konusu kendiliğinden seçilmişti)."""
+    try:
+        import yaml
+        plan = yaml.safe_load((ROOT / "konular.yaml").read_text(encoding="utf-8")) or {}
+        bugun = datetime.now().date().isoformat()
+        return [str(v.get("konu") if isinstance(v, dict) else v) for k, v in plan.items()
+                if str(k) > bugun and v]
+    except Exception:
+        return []
+
+
 def planned_topic(cfg: dict):
     """konular.yaml'da, sıradaki yayın gününe yazılmış bir konu varsa onu döndürür."""
     path = ROOT / "konular.yaml"
@@ -398,6 +411,7 @@ def scout_topic(cfg: dict):
     eskiler = [koklar(o["konu"]) for o in data.get("oneriler", []) if o.get("kullanildi")]
     eskiler += [koklar(h.get("title") or "") for h in load_json(ROOT / "data" / "history.json", [])
                 if h.get("type") != "short"]
+    eskiler += [koklar(k) for k in _planli_konular()]
     for o in data.get("oneriler", []):
         if not o.get("kullanildi") and o.get("konu"):
             metin = (o["konu"] + " " + o.get("kaynak_baslik", "")).lower()
