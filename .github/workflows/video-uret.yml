@@ -71,7 +71,7 @@ jobs:
       - name: Python paketlerini kur
         run: |
           pip install -q -r requirements.txt
-          pip install -q -U kaggle || true
+          pip install -q "kaggle==2.2.5" six || true
 
       - name: Klon ses ortamını kur (Short'lar için; olmazsa Gemini sesi kullanılır)
         continue-on-error: true

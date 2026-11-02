@@ -25,7 +25,7 @@ jobs:
         run: |
           bash tools/ffmpeg_kur.sh
           pip install -q -r requirements.txt
-          pip install -q -U kaggle
+          pip install -q "kaggle==2.2.5" six
       - name: Test
         run: |
           set -o pipefail
