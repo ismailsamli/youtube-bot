@@ -109,7 +109,7 @@ shorts:
   per_video: 3               # Her uzun videodan kaç Short (Short'lar izlenmenin %74'ünü getirdi; 23 Eki'de 3'e çıktı)
   day_offset: 1              # Uzun video yayına girdikten kaç gün sonra
   publish_times: ["12:00", "15:00", "21:00"]
-  bolumlu: true              # Günün 3 Short'u tek hikâyenin 1/3, 2/3, 3/3 bölümleri ("Devamı saat 15'te") — abone dönüşümü için
+  bolumlu: false             # 1-3 Kas denendi: bölümlü Short başına ort. ~22 izlenme (öncesi 200-900) → kapatıldı
   voice_engine: "klon"       # Short'lar kullanıcının klon sesiyle (Chatterbox, CPU). Kurulu değilse Gemini sesi
 
 upload:
