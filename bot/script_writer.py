@@ -412,8 +412,8 @@ Bu videonun EN BAŞINA, kanal jeneriğinden ÖNCE oynayacak 20-25 saniyelik bir 
   içine at: şimdiki zaman, kısa ve vurucu cümleler, somut detaylar.
 - Metindeki cümleleri KOPYALAMA; aynı anı yeni cümlelerle anlat.
 - Sonucu ya da sırrın cevabını AÇIKLAMA; merakı doruğa çıkar.
-- Son sahne izleyiciyi hikâyenin başına götüren bir köprü cümlesiyle bitsin
-  (ör. "Peki buraya nasıl gelindi? Her şey ... başladı.").
+- Son sahne izleyiciyi hikâyenin başına götüren kısa bir köprü cümlesiyle bitsin (ör. "Her şey ... başladı.").
+  Köprü SORU olmasın: video jenerikten sonra zaten merak sorusuyla başlıyor, aynı soru iki kez duyulmasın.
 - Selamlama, kanal adı, "bu videoda" gibi ifadeler YOK. Sadece metindeki doğru bilgileri kullan, yeni bilgi uydurma.
 - Tam olarak 4 sahne, her sahnede 10-16 kelime (her sahne yaklaşık 5-6 saniye sürecek).
 
