@@ -23,9 +23,12 @@ for arg in sys.argv[1:]:
         print(f"{vid}: bulunamadı")
         continue
     st = items[0]["status"]
+    print(f"{vid}: şu an {st.get('privacyStatus')} / yayın {st.get('publishAt')}")
     yeni = {k: st[k] for k in YAZILABILIR if k in st}
     yeni["privacyStatus"] = "private"
     yeni["publishAt"] = when.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     yt.videos().update(part="status", body={"id": vid, "status": yeni}).execute()
+    import time
+    time.sleep(5)
     st2 = yt.videos().list(part="status", id=vid).execute()["items"][0]["status"]
     print(f"{vid} ({items[0]['snippet']['title'][:45]}): {st2.get('privacyStatus')} / yayın {st2.get('publishAt')}")
