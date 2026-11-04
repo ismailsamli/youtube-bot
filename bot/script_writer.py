@@ -176,11 +176,17 @@ def pick_topic(llm, cfg: dict, past_titles: list) -> dict:
         "- Türk izleyicinin YouTube'da arayabileceği, merak uyandıran, zamansız (evergreen) bir konu\n"
         "- 8-10 dakikada derinlemesine anlatılacak kadar zengin\n"
         "- Görsel olarak anlatılabilir (stok video ve çizimlerle desteklenebilir)\n"
-        "- Gerçek ve doğrulanabilir bilgilere dayanan\n\n"
+        "- Gerçek ve doğrulanabilir bilgilere dayanan\n"
+        "- Olay/vaka anlatıyorsa: ADI KONMUŞ, belgelenmiş GERÇEK bir olay olmalı (ör. 'Flying Tiger 739 uçağının "
+        "1962'de Pasifik'te kayboluşu'). Uydurma, isimsiz, 'bir uçak / bir adam' türünden genel hikâye YASAK.\n\n"
         'JSON döndür: {"topic": "konu", "angle": "videonun özgün bakış açısı / ana sorusu", '
+        '"olay": "konu gerçek bir olaysa resmî adı (ör. uçuş numarası, kişi adı, gemi adı), değilse boş", '
+        '"tarih": "olayın yılı, yoksa boş", "yer": "olayın yeri, yoksa boş", '
         '"search_terms": ["insanların arayabileceği 3-5 Türkçe arama ifadesi"]}'
     )
     data = _parse_json(llm.ask(_system(cfg), prompt, 2000))
+    if data.get("olay"):
+        data["topic"] = f"{data['topic']} ({data['olay']}, {data.get('tarih', '')} {data.get('yer', '')})".strip()
     log(f"Konu seçildi: {data['topic']}")
     return data
 
@@ -536,6 +542,9 @@ def generate(cfg: dict, past_titles: list, forced_topic: str = None, extra: dict
             except Exception as e:
                 log(f"  Soğuk açılış yazılamadı ({e})" + (", yeniden deneniyor" if deneme == 0 else
                                                            ", video normal başlayacak"))
+    tum = " ".join(s["text"] for s in script["scenes"])
+    if not re.search(r"\b(1[0-9]{3}|20[0-9]{2})\b|\b(bin|iki bin)\s+(dokuz|sekiz|yedi|altı)?\s*yüz|\biki bin\b", tum):
+        log("  UYARI: senaryoda hiç yıl/tarih yok — isimsiz/uydurma hikâye olabilir, yayından önce kontrol edilmeli")
     words = sum(len(s["text"].split()) for s in script["scenes"])
     wpm = cfg["voice"].get("klon_wpm", 112) if cfg["voice"].get("engine") == "klon" else WORDS_PER_MINUTE
     log(f"Senaryo hazır: {len(script['scenes'])} sahne, {words} kelime "
