@@ -18,7 +18,15 @@ for vid in sys.argv[1:]:
     st = items[0]["status"]
     print(f"{vid} ({items[0]['snippet']['title'][:50]}): önce {st.get('privacyStatus')} / plan {st.get('publishAt')}")
     yeni = {k: st[k] for k in YAZILABILIR if k in st}
-    yeni["privacyStatus"] = "private"          # publishAt gönderilmez → planlı yayın iptal olur
+    yeni["privacyStatus"] = "private"
+    yeni["publishAt"] = None                   # planlı yayını açıkça iptal et (alanı göndermemek yetmiyor)
     yt.videos().update(part="status", body={"id": vid, "status": yeni}).execute()
     st2 = yt.videos().list(part="status", id=vid).execute()["items"][0]["status"]
-    print(f"{vid}: şimdi {st2.get('privacyStatus')} / plan {st2.get('publishAt')}")
+    if st2.get("publishAt"):
+        # Hâlâ planlıysa: "liste dışı" yapılınca plan silinir (plan sadece özel videoda olabilir), hemen geri özel yapılır
+        print(f"{vid}: plan hâlâ duruyor, liste dışı → özel ile siliniyor")
+        yeni.pop("publishAt", None)
+        yt.videos().update(part="status", body={"id": vid, "status": {**yeni, "privacyStatus": "unlisted"}}).execute()
+        yt.videos().update(part="status", body={"id": vid, "status": {**yeni, "privacyStatus": "private"}}).execute()
+        st2 = yt.videos().list(part="status", id=vid).execute()["items"][0]["status"]
+    print(f"{vid}: şimdi {st2.get('privacyStatus')} / plan {st2.get('publishAt') or 'YOK (yayına girmeyecek)'}")
