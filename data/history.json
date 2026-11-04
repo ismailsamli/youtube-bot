@@ -620,17 +620,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti#short3",
-    "title": "Olmayan Ülke Yalanı Yüzlerce Can Aldı",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "dhV2Qy9SvcY",
-    "publish_at": "2026-11-03T21:00:00+03:00",
-    "comment": "Sahtekarın ceza almadan maaşa bağlanması hakkında ne düşünüyorsunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aL3azqG7SQo",
-    "long_video": "aL3azqG7SQo",
-    "hedef": "yaklaşık 55 sn"
-  },
-  {
     "folder": "20261031-1436_gunes-i-yutan-o-dev-ton-618",
     "title": "Güneş'i Yutan O DEV: TON 618",
     "status": "yüklendi",
@@ -699,17 +688,6 @@
     "playlist": "Vurgun Dosyaları",
     "playlist_done": true,
     "comment_done": true
-  },
-  {
-    "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short1",
-    "title": "32 Milyar Dolar 72 Saatte Nasıl Yok Oldu?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "151J9MCRs0M",
-    "publish_at": "2026-11-04T12:00:00+03:00",
-    "comment": "Sizce bu kadar paranın buharlaşması fark edilmeden nasıl mümkün olabilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ALhh3Q1I--4",
-    "long_video": "ALhh3Q1I--4",
-    "hedef": "yaklaşık 50 sn"
   },
   {
     "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short2",
@@ -809,6 +787,62 @@
     "publish_at": "2026-11-04T19:00:00+03:00",
     "comment": "Sence bu tür büyük kayıplarda en büyük zorluk okyanusun derinliği mi, yoksa ellerindeki teknolojinin yetersizliği mi? 👇",
     "playlist": "Çözülemeyen Gizemler",
+    "playlist_done": true
+  },
+  {
+    "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti#short3",
+    "title": "Olmayan Ülke Yalanı Yüzlerce Can Aldı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "dhV2Qy9SvcY",
+    "publish_at": "2026-11-03T21:00:00+03:00",
+    "comment": "Sahtekarın ceza almadan maaşa bağlanması hakkında ne düşünüyorsunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/aL3azqG7SQo",
+    "long_video": "aL3azqG7SQo",
+    "hedef": "yaklaşık 55 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short1",
+    "title": "32 Milyar Dolar 72 Saatte Nasıl Yok Oldu?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "151J9MCRs0M",
+    "publish_at": "2026-11-04T12:00:00+03:00",
+    "comment": "Sizce bu kadar paranın buharlaşması fark edilmeden nasıl mümkün olabilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ALhh3Q1I--4",
+    "long_video": "ALhh3Q1I--4",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261104-0958_venus-te-eriyen-araclar-sovyetler-in-imk-nsiz-foto#short1",
+    "title": "Venüs'te Saniyeler İçinde Eriyip Giden Sonda",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "wsi1eM_tTTo",
+    "publish_at": "2026-11-06T12:00:00+03:00",
+    "comment": "Sizce dayanıklı bir malzeme bu cehennemde kaç dakika kalabilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/SegyNOnJPZ0",
+    "long_video": "SegyNOnJPZ0",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261104-0958_venus-te-eriyen-araclar-sovyetler-in-imk-nsiz-foto#short2",
+    "title": "Dünya'nın İkizindeki Saklı Cehennem",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "yU82H6LFe04",
+    "publish_at": "2026-11-06T21:00:00+03:00",
+    "comment": "Sizce Venüs'te kolonileşmek mümkün olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/SegyNOnJPZ0",
+    "long_video": "SegyNOnJPZ0",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261104-0958_venus-te-eriyen-araclar-sovyetler-in-imk-nsiz-foto",
+    "title": "Venüs'te ERİYEN Araçlar: Sovyetler'in İmkânsız Fotoğrafı",
+    "status": "yüklendi",
+    "video_id": "SegyNOnJPZ0",
+    "publish_at": "2026-11-05T19:00:00+03:00",
+    "comment": "Sizce insanlık bir gün Venüs'ün yüzeyinde kalıcı bir üs kurabilir mi? 👇",
+    "playlist": "Uzayın ve Bilimin Gizemleri",
     "playlist_done": true
   }
 ]
