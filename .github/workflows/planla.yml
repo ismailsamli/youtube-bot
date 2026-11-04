@@ -1,0 +1,29 @@
+name: Videoyu planla (gizli videoyu yeniden yayına al)
+
+on:
+  workflow_dispatch:
+    inputs:
+      videolar:
+        description: "VIDEO_ID=YYYY-AA-GG SS:DD (TR saati), birden fazlaysa noktalı virgülle ayır"
+        required: true
+
+jobs:
+  planla:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      PYTHONIOENCODING: "utf-8"
+      VIDEOLAR: ${{ inputs.videolar }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -q -r requirements.txt
+      - name: Planla
+        run: |
+          IFS=";" read -ra P <<< "$VIDEOLAR"; python tools/planla.py "${P[@]}" 2>&1 | tee log.txt
+          msg=$(tail -12 log.txt | cut -c1-400 | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')
+          echo "::notice title=Planla::${msg}"
