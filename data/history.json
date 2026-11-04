@@ -690,17 +690,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short2",
-    "title": "Gizli Fon Transferleri ve Dev Sponsorluklar",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "f9C1P2A26Sc",
-    "publish_at": "2026-11-04T15:00:00+03:00",
-    "comment": "Reklam yüzlerine kanıp yatırım yapar mısınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ALhh3Q1I--4",
-    "long_video": "ALhh3Q1I--4",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short3",
     "title": "72 Saatte Gelen Tarihi İflas",
     "type": "short",
@@ -780,16 +769,6 @@
     "hedef": "yaklaşık 55 sn"
   },
   {
-    "folder": "20261103-1630_atlantik-te-kaybolan-ucak-41-yil-sonra-bulunan-o-s",
-    "title": "Atlantik'te Kaybolan Uçak: 41 Yıl Sonra Bulunan O Sır",
-    "status": "yüklendi",
-    "video_id": "fxDHkXSo20c",
-    "publish_at": "2026-11-04T19:00:00+03:00",
-    "comment": "Sence bu tür büyük kayıplarda en büyük zorluk okyanusun derinliği mi, yoksa ellerindeki teknolojinin yetersizliği mi? 👇",
-    "playlist": "Çözülemeyen Gizemler",
-    "playlist_done": true
-  },
-  {
     "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti#short3",
     "title": "Olmayan Ülke Yalanı Yüzlerce Can Aldı",
     "type": "short",
@@ -843,6 +822,61 @@
     "publish_at": "2026-11-05T19:00:00+03:00",
     "comment": "Sizce insanlık bir gün Venüs'ün yüzeyinde kalıcı bir üs kurabilir mi? 👇",
     "playlist": "Uzayın ve Bilimin Gizemleri",
+    "playlist_done": true
+  },
+  {
+    "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short2",
+    "title": "Gizli Fon Transferleri ve Dev Sponsorluklar",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "f9C1P2A26Sc",
+    "publish_at": "2026-11-04T15:00:00+03:00",
+    "comment": "Reklam yüzlerine kanıp yatırım yapar mısınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/ALhh3Q1I--4",
+    "long_video": "ALhh3Q1I--4",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261103-1630_atlantik-te-kaybolan-ucak-41-yil-sonra-bulunan-o-s",
+    "title": "Atlantik'te Kaybolan Uçak: 41 Yıl Sonra Bulunan O Sır",
+    "status": "yüklendi",
+    "video_id": "fxDHkXSo20c",
+    "publish_at": "2026-11-04T19:00:00+03:00",
+    "comment": "Sence bu tür büyük kayıplarda en büyük zorluk okyanusun derinliği mi, yoksa ellerindeki teknolojinin yetersizliği mi? 👇",
+    "playlist": "Çözülemeyen Gizemler",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261104-1634_thodex-vurgunu-bir-gecede-nasil-buharlasti#short1",
+    "title": "Thodex Vurgunu: Ekran Karardığında Kadıköy'de Ne Oldu?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "WvfINZMuzdk",
+    "publish_at": "2026-11-07T12:00:00+03:00",
+    "comment": "Sizce bu kaçış planı ne zaman hazırlanmıştı?\n\nHikâyenin tamamı burada 👉 https://youtu.be/RvQDMfowTYM",
+    "long_video": "RvQDMfowTYM",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261104-1634_thodex-vurgunu-bir-gecede-nasil-buharlasti#short2",
+    "title": "Thodex Nasıl Büyüdü: Lüks Araba ve Reklamların Sırrı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "8eogX4YMXzg",
+    "publish_at": "2026-11-07T21:00:00+03:00",
+    "comment": "Sizce bu tarz reklamlara ne kadar güvenilmeli?\n\nHikâyenin tamamı burada 👉 https://youtu.be/RvQDMfowTYM",
+    "long_video": "RvQDMfowTYM",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261104-1634_thodex-vurgunu-bir-gecede-nasil-buharlasti",
+    "title": "Thodex Vurgunu: Bir Gecede Nasıl BUHARLAŞTI?",
+    "status": "yüklendi",
+    "video_id": "RvQDMfowTYM",
+    "publish_at": "2026-11-06T19:00:00+03:00",
+    "comment": "Kripto varlıklarınızı borsalarda mı tutuyorsunuz yoksa soğuk cüzdanda mı? Güvenlik için sizce en etkili yöntem hangisi? 👇",
+    "playlist": "Vurgun Dosyaları",
     "playlist_done": true
   }
 ]
