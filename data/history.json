@@ -725,17 +725,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261103-1630_atlantik-te-kaybolan-ucak-41-yil-sonra-bulunan-o-s#short3",
-    "title": "Kara Kutu Çözülen O Büyük Sır",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "-PfpHUgidVU",
-    "publish_at": "2026-11-05T21:00:00+03:00",
-    "comment": "Sizce havacılıkta güvenlik teknolojileri yeterince gelişti mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/fxDHkXSo20c",
-    "long_video": "fxDHkXSo20c",
-    "hedef": "yaklaşık 55 sn"
-  },
-  {
     "folder": "20261101-1519_haritada-olmayan-ulkeyi-londra-ya-nasil-satti#short3",
     "title": "Olmayan Ülke Yalanı Yüzlerce Can Aldı",
     "type": "short",
@@ -758,17 +747,6 @@
     "long_video": "ALhh3Q1I--4",
     "hedef": "yaklaşık 50 sn",
     "comment_done": true
-  },
-  {
-    "folder": "20261104-0958_venus-te-eriyen-araclar-sovyetler-in-imk-nsiz-foto#short1",
-    "title": "Venüs'te Saniyeler İçinde Eriyip Giden Sonda",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "wsi1eM_tTTo",
-    "publish_at": "2026-11-06T12:00:00+03:00",
-    "comment": "Sizce dayanıklı bir malzeme bu cehennemde kaç dakika kalabilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/SegyNOnJPZ0",
-    "long_video": "SegyNOnJPZ0",
-    "hedef": "yaklaşık 50 sn"
   },
   {
     "folder": "20261104-0958_venus-te-eriyen-araclar-sovyetler-in-imk-nsiz-foto#short2",
@@ -881,6 +859,30 @@
     "comment": "Sizce insanlık bir gün Venüs'ün yüzeyinde kalıcı bir üs kurabilir mi? 👇",
     "playlist": "Uzayın ve Bilimin Gizemleri",
     "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261103-1630_atlantik-te-kaybolan-ucak-41-yil-sonra-bulunan-o-s#short3",
+    "title": "Kara Kutu Çözülen O Büyük Sır",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "-PfpHUgidVU",
+    "publish_at": "2026-11-05T21:00:00+03:00",
+    "comment": "Sizce havacılıkta güvenlik teknolojileri yeterince gelişti mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/fxDHkXSo20c",
+    "long_video": "fxDHkXSo20c",
+    "hedef": "yaklaşık 55 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261104-0958_venus-te-eriyen-araclar-sovyetler-in-imk-nsiz-foto#short1",
+    "title": "Venüs'te Saniyeler İçinde Eriyip Giden Sonda",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "wsi1eM_tTTo",
+    "publish_at": "2026-11-06T12:00:00+03:00",
+    "comment": "Sizce dayanıklı bir malzeme bu cehennemde kaç dakika kalabilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/SegyNOnJPZ0",
+    "long_video": "SegyNOnJPZ0",
+    "hedef": "yaklaşık 50 sn",
     "comment_done": true
   }
 ]
