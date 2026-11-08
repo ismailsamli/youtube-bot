@@ -772,17 +772,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261104-1634_thodex-vurgunu-bir-gecede-nasil-buharlasti#short2",
-    "title": "Thodex Nasıl Büyüdü: Lüks Araba ve Reklamların Sırrı",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "8eogX4YMXzg",
-    "publish_at": "2026-11-07T21:00:00+03:00",
-    "comment": "Sizce bu tarz reklamlara ne kadar güvenilmeli?\n\nHikâyenin tamamı burada 👉 https://youtu.be/RvQDMfowTYM",
-    "long_video": "RvQDMfowTYM",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261102-1848_32-milyar-dolar-nasil-72-saatte-sifirlandi#short3",
     "title": "72 Saatte Gelen Tarihi İflas",
     "type": "short",
@@ -919,5 +908,17 @@
     "comment": "Sizce Brian Shaffer o gece planlı bir şekilde kimliğini silip kaçtı mı, yoksa içeride kimsenin göremediği bir cinayete mi kurban gitti? 👇",
     "playlist": "Çözülemeyen Gizemler",
     "playlist_done": true
+  },
+  {
+    "folder": "20261104-1634_thodex-vurgunu-bir-gecede-nasil-buharlasti#short2",
+    "title": "Thodex Nasıl Büyüdü: Lüks Araba ve Reklamların Sırrı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "8eogX4YMXzg",
+    "publish_at": "2026-11-07T21:00:00+03:00",
+    "comment": "Sizce bu tarz reklamlara ne kadar güvenilmeli?\n\nHikâyenin tamamı burada 👉 https://youtu.be/RvQDMfowTYM",
+    "long_video": "RvQDMfowTYM",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
   }
 ]
