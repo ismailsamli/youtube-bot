@@ -1,16 +1,137 @@
 {
-  "guncelleme": "2026-11-02",
+  "guncelleme": "2026-11-09",
   "oneriler": [
     {
-      "konu": "Sovyetler Birliği'nin cehennemi andıran Venüs yüzeyine inip tarihin ilk fotoğraflarını çeken Venera uzay araçlarının inanılmaz mühendislik mücadelesi.",
-      "aci": "475 derece sıcaklık ve Dünya'nın 90 katı atmosfer basıncında metallerin dakikalar içinde ezildiği bir cehennemde Sovyet mühendislerinin kamera lenslerini nasıl sağlam tuttuğu.",
-      "kaynak_baslik": "The Soviet space Mission That Took Photos From Hell",
-      "neden": "Aşırı koşullarda insan yapımı mühendisliğin sınırları ve Venüs yüzeyinin ürkütücü gerçek fotoğrafları uzay meraklılarında büyük heyecan yaratır.",
-      "izlenme": 3093880,
-      "kat": 3.5,
-      "kaynak": "0RMFYativbA",
-      "kullanildi": true,
-      "tarih": "2026-11-02"
+      "konu": "Percy Fawcett'ın Amazon'da Kayboluşu ve Kayıp Z Şehri Efsanesi",
+      "aci": "Efsanevi bir uygarlığı bulmak için haritasız yağmur ormanlarına dalan ve geride hiçbir iz bırakmadan yok olan bir kâşifin trajik saplantısı.",
+      "kaynak_baslik": "The Lost City of Z | (Real story) Amazon Jungle's Greatest Mystery",
+      "neden": "Keşif tarihi, çözülmemiş gizemler ve Amazon'un tekinsiz doğası Türk izleyicisinin her zaman en çok merak ettiği temalardandır.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "Kozmetiğin Ölümcül Tarihi: Zehirli Güzellik Trendleri",
+      "aci": "Tarih boyunca kadınların ve erkeklerin beyaz bir ten veya parlak gözler uğruna kurşun, arsenik ve radyumla kendilerini nasıl yavaş yavaş zehirledikleri.",
+      "kaynak_baslik": "The Brutal History of Makeup | Beauty's Dark Secrets",
+      "neden": "Gündelik bir alışkanlığın arkasındaki şaşırtıcı ve ürpertici tarihsel gerçekler yüksek izlenme potansiyeline sahiptir.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "D.B. Cooper Gizemi: Gökyüzünde Sırra Kadem Basan Tek Korsan",
+      "aci": "Fidye parasını alıp hareket halindeki yolcu uçağından fırtınalı geceye paraşütle atlayan ve yarım asırdır kimliği çözülemeyen adamın anatomisi.",
+      "kaynak_baslik": "The D.B. Cooper Mystery Finally Solved — After 54 Years",
+      "neden": "Havacılık tarihinin tek çözülmemiş korsanlık vakası; kusursuz plan ve gizem unsuru izleyiciyi ekrana kilitler.",
+      "izlenme": 919026,
+      "kat": 4.3,
+      "kaynak": "wic9CnF7vro",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "Zamanın Fiziği ve Görelilik Üzerine Şaşırtıcı Gerçekler",
+      "aci": "Zamanın sabit bir akış değil; hız, kütleçekim ve evrenin dokusuyla bükülen yanılsamalı bir boyut olduğu gerçeği.",
+      "kaynak_baslik": "8 Terrifying Facts About Time",
+      "neden": "Zaman algısı ve astrofizik gibi zihin açıcı konular popüler bilim meraklıları arasında çok hızlı yayılır.",
+      "izlenme": 2326736,
+      "kat": 6.3,
+      "kaynak": "IlVzMF2A8C0",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "Janet Stephens Vakası: Roma Tarihini Değiştiren Kuaför",
+      "aci": "Akademisyenlerin 'peruk' deyip geçtiği 2000 yıllık Roma saç modellerini, evindeki iğne iplikle deneyerek tarihin akışını değiştiren amatör bir kadının zaferi.",
+      "kaynak_baslik": "A hairdresser with no archaeology training solved a Roman mystery | Sam Kean",
+      "neden": "Resmi uzmanları alt eden sıradan insanların zekâ dolu başarı hikâyeleri Türk izleyicisinde büyük sempati ve merak uyandırır.",
+      "izlenme": 1214051,
+      "kat": 3.2,
+      "kaynak": "L7xcpUYJgOQ",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "Evrendeki En Nadir Elementler ve Kozmik Maddeler",
+      "aci": "Dünya'nın tüm kabuğunda sadece birkaç gram bulunan astatin gibi elementlerden evrenin en kıymetli yapı taşlarına uzanan bir arayış.",
+      "kaynak_baslik": "The Rarest Things in the Universe",
+      "neden": "Nadir bulunan nesneler, maddelerin değerleri ve kozmik istisnalar genel bilgi videolarında her dönem popülerdir.",
+      "izlenme": 3846968,
+      "kat": 4.6,
+      "kaynak": "GGmVPLldvXY",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "İradenin Biyolojisi: Beyni Disiplinli Olmaya Nasıl Alıştırırız?",
+      "aci": "Motivasyonun geçici bir duygu, disiplinin ise beynin dopamin ve ödül yollarını doğru yönetme becerisi olduğunu anlatan bilimsel mekanizma.",
+      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
+      "neden": "Pratik bilimsel açıklamalarla harmanlanan psikoloji konuları, özellikle genç kitlede çok yüksek tıklanma oranına sahiptir.",
+      "izlenme": 4949019,
+      "kat": 25.1,
+      "kaynak": "CkP_8bkjf1E",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "Tarihi Değiştiren Süper El Niño Olayları ve Küresel Yıkımlar",
+      "aci": "Pasifik Okyanusu'ndaki birkaç derecelik su sıcaklığı değişiminin kıtaları kuraklığa ve imparatorlukları çöküşe nasıl sürüklediği.",
+      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
+      "neden": "Gezegenin doğa güçleri ve küresel iklim olaylarının felaket boyutundaki gücü her zaman ilgi çeker.",
+      "izlenme": 2349434,
+      "kat": 5.0,
+      "kaynak": "69o-8Mtd3Kc",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "Sibirya Kaplanının Doğa Şartlarına Karşı Kusursuz Adaptasyonu",
+      "aci": "Eksi 40 derece soğukta devasa cüssesine rağmen ormanda neredeyse bir hayalet gibi hareket edebilen yırtıcının biyolojik dehası.",
+      "kaynak_baslik": "Why the Siberian Tiger Is the Deadliest Apex Predator in the World",
+      "neden": "Uç yırtıcıların avlanma stratejileri ve hayatta kalma mücadeleleri belgesel severlerin en çok izlediği başlıklardandır.",
+      "izlenme": 133541,
+      "kat": 16.4,
+      "kaynak": "3mq60b5xa6o",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "Abdul Karim Telgi ve Tarihin En Büyük Sahte Damga Pulu Vurgunu",
+      "aci": "Bir tren istasyonunda meyve satarak başlayıp devlet matbaasının ıskarta makineleriyle milyarlarca dolarlık sahte evrak imparatorluğu kuran adamın hikâyesi.",
+      "kaynak_baslik": "₹1.20 லட்சம் கோடி மோசடி செய்த பழ வியாபாரி | Scam 2003: The Telgi Story | Story Explained",
+      "neden": "Dahi seviyesindeki sahtecilik ve bürokrasi açıklarını kullanan dolandırıcı hikâyeleri izleyiciyi büyüler.",
+      "izlenme": 184412,
+      "kat": 3.3,
+      "kaynak": "Tvqtq6IjSXI",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "1975 Chasnala Maden Faciası: Su Altında Kalan 375 Madenci",
+      "aci": "Milyonlarca metreküp suyun dakikalar içinde bir maden ocağını yutması ve mühendislik ihmallerinin doğurduğu büyük dram.",
+      "kaynak_baslik": "भारत का सबसे भयावह खदान हादसा | Chasnala Mine Disaster 1975 में 375 खनिक कैसे मारे गए?",
+      "neden": "Mühendislik hataları ve yeraltı felaketleri dramatik anlatımla birleştiğinde güçlü bir duygusal bağ ve yüksek izlenme sağlar.",
+      "izlenme": 593693,
+      "kat": 7.0,
+      "kaynak": "2DMBVbdnvFE",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
+    },
+    {
+      "konu": "Kriminalistikte Robot Resimlerin Gücü ve İnsan Hafızasının Yanılgıları",
+      "aci": "Bir suçlunun yüzünü hatırlamaya çalışan insan beyninin nasıl yanılabildiği ve adli çizimlerin bazen bir dehşet figürüne dönüşme sebebi.",
+      "kaynak_baslik": "The Creepiest Police Sketches Explained",
+      "neden": "Gizem, suç bilimi ve insan psikolojisinin kesiştiği görsel içerikler izleyicinin merak duygusunu anında tetikler.",
+      "izlenme": 1164697,
+      "kat": 3.2,
+      "kaynak": "kzDH2prCozk",
+      "kullanildi": false,
+      "tarih": "2026-11-09"
     },
     {
       "konu": "1971 yılında bir yolcu uçağını kaçırıp 200 bin dolarla paraşütle gece karanlığına atlayan D.B. Cooper'ın çözülemeyen sırrı.",
@@ -21,28 +142,6 @@
       "kat": 4.0,
       "kaynak": "wic9CnF7vro",
       "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "1925'te Amazon ormanlarında kayıp bir medeniyeti ararken ekibiyle sırra kadem basan Albay Percy Fawcett'ın hikayesi ve modern LIDAR taramalarının ormanda buldukları.",
-      "aci": "Döneminde 'hayalperest delilik' olarak nitelenen Fawcett'ın iddialarının, günümüzde orman örtüsünün altını tarayan lazer teknolojisiyle haklı çıkması.",
-      "kaynak_baslik": "The Lost City of Z | (Real story) Amazon Jungle's Greatest Mystery",
-      "neden": "Gizemli keşif seferleri ve Amazon'un derinliklerindeki kayıp şehir efsanelerinin modern arkeolojiyle birleşimi çok güçlü bir çekim noktasıdır.",
-      "izlenme": null,
-      "kat": null,
-      "kaynak": null,
-      "kullanildi": true,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "1977 Tenerife faciası: İki dev Boeing 747'nin sis içinde pistte çarpışması ve bu kazanın sivil havacılık güvenlik protokollerini nasıl baştan yazdığı.",
-      "aci": "583 kişinin öldüğü facianın mekanik bir arızadan değil; telsizdeki tek bir kelimelik yanlış anlaşılma ve kokpit hiyerarşisi yüzünden gerçekleşmiş olması.",
-      "kaynak_baslik": "The DEADLIEST Aviation Disasters Explained",
-      "neden": "Uçak kazalarının arkasındaki insan psikolojisi, kokpit ses kayıtları ve kazalardan çıkarılan hayati dersler izleyiciyi ekrana kilitler.",
-      "izlenme": 151897,
-      "kat": 7.9,
-      "kaynak": "4Neh0NMh9Dk",
-      "kullanildi": true,
       "tarih": "2026-11-02"
     },
     {
@@ -231,105 +330,6 @@
       "kaynak": "0RMFYativbA",
       "kullanildi": false,
       "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Kriminal Tarihteki En Ürpertici ve Şaşırtıcı Robot Resimlerin Hikayesi",
-      "aci": "Görgü tanıklarının tarifleriyle çizilen, bazen gerçeğe korkutucu derecede benzeyen bazen ise şaşırtıcı şekilde hatalı olan robot resimlerin davaları nasıl etkilediği.",
-      "kaynak_baslik": "The Creepiest Police Sketches Explained",
-      "neden": "Görsel merak unsuru çok yüksek olan ve gerçek polisiye vakalarla desteklenen güçlü bir gizem konusu.",
-      "izlenme": 1132680,
-      "kat": 3.1,
-      "kaynak": "kzDH2prCozk",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Amatör Bir Kuaförün Roma Askeri Teknolojisine Dair Çözdüğü Tarihi Sır",
-      "aci": "Profesyonel arkeologların yüzlerce yıldır çözemediği antik Roma heykellerindeki saç modelleri ve miğfer bağlantılarının bir kuaför tarafından pratik zekayla aydınlatılması.",
-      "kaynak_baslik": "A hairdresser with no archaeology training solved a Roman mystery | Sam Kean",
-      "neden": "Sıradan bir insanın uzmanları şaşırtan keşfi teması izleyicide hayranlık ve güçlü sempati uyandırır.",
-      "izlenme": 1156049,
-      "kat": 3.0,
-      "kaynak": "L7xcpUYJgOQ",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Sibirya Kaplanının Sert Kış Koşullarındaki Kusursuz Avlanma Stratejisi",
-      "aci": "Dünyanın en büyük kedisinin eksi 40 derece dondurucu taygada hayatta kalmasını ve devasa ayı türlerini bile avlayabilmesini sağlayan eşsiz biyolojik adaptasyonları.",
-      "kaynak_baslik": "Why the Siberian Tiger Is the Deadliest Apex Predator in the World",
-      "neden": "Vahşi doğanın sınırları ve süper yırtıcıların taktikleri belgesel sever Türk izleyicisi için her zaman garantili izlenme getirir.",
-      "izlenme": 132329,
-      "kat": 16.6,
-      "kaynak": "3mq60b5xa6o",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Yakutistan'ın eksi 50 derecelik ölüm yollarında kamyon şoförlerinin hayatta kalma mücadelesi.",
-      "aci": "Motorun stop ettiği anda donarak ölüm riskinin başladığı Kolyma Yolu'nda insanların dondurucu soğuğa karşı geliştirdiği zorunlu teknikleri ve rutinleri aktarmak.",
-      "kaynak_baslik": "How Can a Truck Driver Drive All Night at −50°C and Survive?",
-      "neden": "Aşırı iklimlerde insan dayanıklılığı ve tehlikeli meslek hikayeleri izleyiciyi ekrana bağlar.",
-      "izlenme": 455687,
-      "kat": 9.0,
-      "kaynak": "nEEGwmuGbBI",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
-    },
-    {
-      "konu": "Disiplin ve erteleme döngüsünün arkasındaki nörobiyoloji ve dopamin yönetimi.",
-      "aci": "İradeyi soyut bir karakter özelliği olarak değil, beynin ödül sistemini kandırarak yönetilebilen somut bir biyolojik mekanizma olarak açıklamak.",
-      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
-      "neden": "Kişisel verimlilik ve beynin çalışma prensiplerini anlatan bilimsel psikoloji içerikleri genç yetişkin kitleden yoğun talep görür.",
-      "izlenme": 4023586,
-      "kat": 22.7,
-      "kaynak": "CkP_8bkjf1E",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
-    },
-    {
-      "konu": "Antik İndus Medeniyeti'nin kayıp kenti Harappa'nın aniden terk edilmesinin sırrı.",
-      "aci": "Dönemine göre kusursuz kanalizasyon ve ızgara sokak planına sahip gelişmiş bir kentin hiçbir savaş izi olmadan nasıl boşaldığını jeolojik kanıtlarla ele almak.",
-      "kaynak_baslik": "Why Did Harappa Disappear? The Mystery of the Lost City Beneath the Earth | Harappa History",
-      "neden": "Kayıp uygarlıklar ve aniden yok olan gelişmiş antik şehirler tarih meraklılarının en sevdiği kurgulardandır.",
-      "izlenme": 304203,
-      "kat": 28.2,
-      "kaynak": "K1ml-kC02-U",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
-    },
-    {
-      "konu": "Oak Island adasındaki 'Para Çukuru' ve 200 yılı aşkın süredir aşılamayan su tuzakları.",
-      "aci": "Korsan hazinelerinden ziyade, kazıldıkça deniz suyuyla dolacak şekilde tasarlanmış sofistike antik su kanallarının mühendislik gizemine odaklanmak.",
-      "kaynak_baslik": "Oak Island का रहस्य: 200 साल से जमीन के नीचे क्या छिपा है? | Money Pit Mystery",
-      "neden": "Gizemli kazılar, akıllı tuzaklar ve ulaşılamayan yeraltı yapıları yüksek merak ve retention sağlar.",
-      "izlenme": 497628,
-      "kat": 9.0,
-      "kaynak": "los6an3g_7E",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
-    },
-    {
-      "konu": "Donmuş tayganın zirve avcısı Sibirya kaplanının ekstrem kış taktikleri.",
-      "aci": "Eksi 40 derecede dev cüssesine rağmen sessizce yaklaşabilen bu avcının anatomik adaptasyonlarını ve doğadaki kusursuz kamuflajını incelemek.",
-      "kaynak_baslik": "Why the Siberian Tiger Is the Deadliest Apex Predator in the World",
-      "neden": "Vahşi doğanın tepe yırtıcıları ve ekstrem hayatta kalma taktikleri geniş kitlelere doğrudan hitap eder.",
-      "izlenme": 127008,
-      "kat": 16.6,
-      "kaynak": "3mq60b5xa6o",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
-    },
-    {
-      "konu": "İkiz Kuleler enkazından 27 saat sonra sağ çıkarılan son insanın kurtuluş hikayesi.",
-      "aci": "Beton yığınları altında oluşan mucizevi hava cebi ve insan bedeninin ezilme sendromuyla zamana karşı fizyolojik mücadelesi.",
-      "kaynak_baslik": "Last 9/11 survivor pulled from World Trade Center rubble recounts her survival",
-      "neden": "Enkaz altından gerçek kurtuluş hikayeleri, özellikle deprem bilinci yüksek Türk izleyicisinde derin bir duygusal ve teknik merak uyandırır.",
-      "izlenme": 898069,
-      "kat": 5.7,
-      "kaynak": "mpAkA5-rdJE",
-      "kullanildi": false,
-      "tarih": "2026-10-26"
     }
   ]
 }
