@@ -954,6 +954,7 @@
     "publish_at": "2026-11-10T19:00:00+03:00",
     "comment": "Sence daha büyük hata hangisiydi: tek kişiye sınırsız yetki vermek mi, kimsenin onu sorgulamaması mı?",
     "playlist": "Vurgun Dosyaları",
-    "playlist_done": true
+    "playlist_done": true,
+    "comment_done": true
   }
 ]
