@@ -71,6 +71,7 @@ jobs:
       - name: Python paketlerini kur
         run: |
           pip install -q -r requirements.txt
+          python -m playwright install --with-deps chromium > pw_kur.txt 2>&1 || { tail -5 pw_kur.txt; exit 1; }
           pip install -q "kaggle==2.2.5" six || true
 
       - name: Klon ses ortamını kur (Short'lar için; olmazsa Gemini sesi kullanılır)

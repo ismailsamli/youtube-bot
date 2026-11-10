@@ -68,32 +68,43 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
     extra = [("outro.mp3", branding.OUTRO_LINE)] if cfg["video"].get("branding", True) else None
     audios = tts.voice_scenes(script["scenes"], cfg, folder / "audio", extra)
 
-    log("Görseller hazırlanıyor...")
-    finder = VisualFinder(cfg, folder / "visuals")
-    t = script.get("topic") or {}
-    finder.topic = (t.get("search_en") or t.get("topic") or "")[:60]
-    # Kapak çizimi önce: günlük ücretsiz çizim kotası biterse en önemli görsel kapak olsun
+    kagit = cfg["video"].get("motor") == "kagit"
+    finder = None
     thumb_bg = folder / "visuals" / "thumb_bg.png"
-    if not thumb_bg.exists():
-        finder.ai_image(script["thumbnail_prompt"], thumb_bg)
-    visuals = []
-    for i, (scene, audio) in enumerate(zip(script["scenes"], audios)):
-        visuals.append(finder.get(scene, i, media_duration(audio)))
-        if (i + 1) % 10 == 0 or i + 1 == len(audios):
-            log(f"  görsel {i + 1}/{len(audios)}")
+    thumb_bg.parent.mkdir(parents=True, exist_ok=True)
+    if kagit:
+        # Görseller dışarıdan alınmaz: kesik kâğıt motoru (motor/) her sahneyi kodla çizer
+        log("Kapak arka planı çiziliyor (kâğıt motoru)...")
+        from bot import kagit_plan
+        if not thumb_bg.exists():
+            kagit_plan.kapak_bg(script["scenes"], thumb_bg)
+        visuals = None
+    else:
+        log("Görseller hazırlanıyor...")
+        finder = VisualFinder(cfg, folder / "visuals")
+        t = script.get("topic") or {}
+        finder.topic = (t.get("search_en") or t.get("topic") or "")[:60]
+        # Kapak çizimi önce: günlük ücretsiz çizim kotası biterse en önemli görsel kapak olsun
+        if not thumb_bg.exists():
+            finder.ai_image(script["thumbnail_prompt"], thumb_bg)
+        visuals = []
+        for i, (scene, audio) in enumerate(zip(script["scenes"], audios)):
+            visuals.append(finder.get(scene, i, media_duration(audio)))
+            if (i + 1) % 10 == 0 or i + 1 == len(audios):
+                log(f"  görsel {i + 1}/{len(audios)}")
 
-    log(f"  Yapay zeka çizimi: {getattr(finder, 'cf_count', 0)}/{len(visuals)} sahne")
-    log("Kapak fotoğrafı hazırlanıyor...")
-    if not thumb_bg.exists():
-        # Yapay zeka yoksa ilk görselden bir kare kullan
-        first, kind = visuals[0]
-        ham = first.with_name(first.stem + "_ham.png")
-        if kind == "image" and ham.exists():
-            first = ham       # kapakta kolaj çerçevesi değil, görselin kendisi kullanılır
-        if kind == "video":
-            run(["ffmpeg", "-y", "-ss", "1", "-i", str(first), "-frames:v", "1", str(thumb_bg)])
-        else:
-            shutil.copy(first, thumb_bg)
+        log(f"  Yapay zeka çizimi: {getattr(finder, 'cf_count', 0)}/{len(visuals)} sahne")
+        log("Kapak fotoğrafı hazırlanıyor...")
+        if not thumb_bg.exists():
+            # Yapay zeka yoksa ilk görselden bir kare kullan
+            first, kind = visuals[0]
+            ham = first.with_name(first.stem + "_ham.png")
+            if kind == "image" and ham.exists():
+                first = ham       # kapakta kolaj çerçevesi değil, görselin kendisi kullanılır
+            if kind == "video":
+                run(["ffmpeg", "-y", "-ss", "1", "-i", str(first), "-frames:v", "1", str(thumb_bg)])
+            else:
+                shutil.copy(first, thumb_bg)
     badge = None
     if script.get("series"):
         badge = f"{script['series']['name']} #{script['series'].get('episode')}"
@@ -117,7 +128,11 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
         except Exception as e:
             log(f"  Jenerik hazırlanamadı, jeneriksiz devam ediliyor: {e}")
             intro = outro = None
-    editor.assemble(script["scenes"], visuals, audios, folder / "scenes", final, cfg, intro, outro)
+    if kagit:
+        from bot import kagit_plan
+        kagit_plan.assemble(script, audios, folder / "scenes", final, cfg, intro, outro)
+    else:
+        editor.assemble(script["scenes"], visuals, audios, folder / "scenes", final, cfg, intro, outro)
     try:   # kontrol için önizleme: açılış, jenerik, orta, bitiş ekranı karelerinden tek görsel (depoya kaydedilir)
         pad = float(cfg["video"].get("scene_padding", 0.2))
         cold = sum(media_duration(a) + pad for s, a in zip(script["scenes"], audios) if s.get("cold"))
@@ -179,7 +194,7 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
         log(f"  Müzik kaynakları eklenemedi: {e}")
 
     # Lisanslı görsellerin kaynakları açıklamaya eklenir (CC lisansları bunu şart koşar)
-    if finder.credits and "Görsel kaynakları" not in script["description"]:
+    if finder and finder.credits and "Görsel kaynakları" not in script["description"]:
         uniq = list(dict.fromkeys(finder.credits))
         block = "\n\nGörsel kaynakları (Wikimedia Commons / Openverse):\n" + "\n".join(f"• {c}" for c in uniq)
         script["description"] = (script["description"] + block)[:4900]
@@ -205,7 +220,14 @@ def make_thumbnail_variants(cfg: dict, script: dict, folder: Path, finder, thumb
         thumbnail.make_thumbnail(thumb_bg, alts[0]["text"], out / "B.jpg", badge)
         if len(alts) > 1:
             bg_c = folder / "visuals" / "thumb_bg_c.png"
-            if not bg_c.exists() and not (alts[1].get("prompt") and finder.ai_image(alts[1]["prompt"], bg_c)):
+            if finder is None:      # kâğıt motoru: C kapağı videonun ikinci belirgin nesnesiyle
+                try:
+                    from bot import kagit_plan
+                    if not bg_c.exists():
+                        kagit_plan.kapak_bg(script["scenes"], bg_c, skip=1)
+                except Exception:
+                    bg_c = thumb_bg
+            elif not bg_c.exists() and not (alts[1].get("prompt") and finder.ai_image(alts[1]["prompt"], bg_c)):
                 bg_c = thumb_bg
             thumbnail.make_thumbnail(bg_c, alts[1]["text"], out / "C.jpg", badge)
         (out / "bilgi.txt").write_text(

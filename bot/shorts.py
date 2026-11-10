@@ -223,17 +223,31 @@ def build_short(cfg: dict, folder: Path, short: dict, n: int) -> Path:
     if cfg.get("shorts", {}).get("voice_engine"):
         scfg["voice"]["engine"] = cfg["shorts"]["voice_engine"]   # "klon" = kullanıcının klon sesi (olmazsa Gemini)
     audios = tts.voice_scenes(short["scenes"], scfg, work / "audio")
-    clips = []
-    for i, (sc, au) in enumerate(zip(short["scenes"], audios)):
-        img = work / f"kare_{i:02d}.png"
-        if not img.exists():
-            frame(_visual_for(folder, sc["src"]), short.get("headline") or short["title"], n * 100 + i).save(img)
-        clips.append(editor.build_scene(i, img, "image", au, sc["text"], work, scfg))
-    lst = work / "list.txt"
-    lst.write_text("".join(f"file '{c.name}'\n" for c in clips), encoding="utf-8")
     joined = work / "joined.mp4"
-    run(["ffmpeg", "-y", "-hide_banner", "-f", "concat", "-safe", "0", "-i", lst.name, "-c", "copy",
-         joined.name], cwd=work)
+    if cfg["video"].get("motor") == "kagit":
+        # kâğıt motoru: her Short sahnesi, uzun videodaki kaynak sahnenin kalıbıyla dikey çizilir
+        from . import kagit_plan
+        import json as _json
+        long_sc = (_json.loads((folder / "script.json").read_text(encoding="utf-8")).get("scenes") or [])
+        plan_sc = []
+        for sc in short["scenes"]:
+            src = long_sc[sc["src"]] if isinstance(sc.get("src"), int) and 0 <= sc["src"] < len(long_sc) else {}
+            plan_sc.append({"text": sc["text"], "kalip": src.get("kalip"), "p": src.get("p"), "section": 0,
+                            "dogrula": src.get("text")})
+        seg = kagit_plan.segment(plan_sc, audios, work, "dikey", scfg, w=W, h=H,
+                                 ust=short.get("headline") or short["title"])
+        seg.replace(joined)
+    else:
+        clips = []
+        for i, (sc, au) in enumerate(zip(short["scenes"], audios)):
+            img = work / f"kare_{i:02d}.png"
+            if not img.exists():
+                frame(_visual_for(folder, sc["src"]), short.get("headline") or short["title"], n * 100 + i).save(img)
+            clips.append(editor.build_scene(i, img, "image", au, sc["text"], work, scfg))
+        lst = work / "list.txt"
+        lst.write_text("".join(f"file '{c.name}'\n" for c in clips), encoding="utf-8")
+        run(["ffmpeg", "-y", "-hide_banner", "-f", "concat", "-safe", "0", "-i", lst.name, "-c", "copy",
+             joined.name], cwd=work)
     dur = media_duration(joined)
     if dur > MAX_SECONDS:       # 58 sn'yi aşarsa hafifçe hızlandır
         k = min(1.25, dur / MAX_SECONDS)

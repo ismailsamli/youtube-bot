@@ -25,6 +25,15 @@ def main():
     folder = ROOT / "output" / f"short_{when:%Y%m%d}_{slugify(konu)[:40]}"
     (folder / "visuals").mkdir(parents=True, exist_ok=True)
 
+    kagit = cfg["video"].get("motor") == "kagit"
+    if kagit:
+        from bot.kagit_plan import RULES, SCENE_JSON
+        gorsel = RULES
+        sahne_json = SCENE_JSON
+    else:
+        gorsel = """- Her sahne için "prompt": sahnenin çizilecek görüntüsünü anlatan 15-30 kelimelik İNGİLİZCE tarif
+  (somut nesne/sahne; stil kelimesi, yazı, gerçek kişi yüzü YOK)."""
+        sahne_json = '{"text": "...", "prompt": "..."}'
     kelime = "90-100" if cfg.get("shorts", {}).get("voice_engine") == "klon" else "110-125"
     prompt = f"""KONU: {konu}
 {ek}
@@ -32,14 +41,17 @@ def main():
 Bu konu için tek bir YouTube Shorts senaryosu yaz:
 - İlk cümle doğrudan kanca; 3-5 cümlede mini hikâye; sonu merak bırakan bir cümle.
 - Toplam {kelime} kelime, 7-8 sahne (her sahne 11-16 kelime). Sadece doğrulanabilir bilgiler.
-- Her sahne için "prompt": sahnenin çizilecek görüntüsünü anlatan 15-30 kelimelik İNGİLİZCE tarif
-  (somut nesne/sahne; stil kelimesi, yazı, gerçek kişi yüzü YOK).
+{gorsel}
 - "title": en fazla 70 karakter dürüst, merak uyandıran başlık; "headline": 2-5 kelimelik ekran başlığı;
   "comment": izleyiciye kısa bir soru.
-Sadece JSON: {{"title": "...", "headline": "...", "comment": "...", "scenes": [{{"text": "...", "prompt": "..."}}]}}"""
+Sadece JSON: {{"title": "...", "headline": "...", "comment": "...", "scenes": [{sahne_json}]}}"""
     s = _ask_json(LLM(cfg), _system(cfg), prompt, 4000, "scenes")
-    finder = VisualFinder(cfg, folder / "visuals")
-    for i, sc in enumerate(s["scenes"]):
+    if kagit:   # görseller kâğıt motorunda çizilir; build_short kalıpları script.json'dan okur
+        for i, sc in enumerate(s["scenes"]):
+            sc["src"] = i
+        save_json(folder / "script.json", {"title": s.get("title", konu), "scenes": s["scenes"]})
+    finder = None if kagit else VisualFinder(cfg, folder / "visuals")
+    for i, sc in enumerate([] if kagit else s["scenes"]):
         raw = folder / "visuals" / f"visual_{i:03d}_ham.png"
         if not raw.exists():
             # deneme modunda Cloudflare çizim kotası harcanmaz (günlük video için saklanır)

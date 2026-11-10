@@ -194,6 +194,24 @@ def pick_topic(llm, cfg: dict, past_titles: list) -> dict:
 SECTIONS = 6
 
 
+def _kagit(cfg: dict) -> bool:
+    return cfg["video"].get("motor") == "kagit"
+
+
+def _rules(cfg: dict) -> str:
+    if _kagit(cfg):
+        from .kagit_plan import RULES
+        return RULES
+    return _visual_rules(cfg["video"].get("ai_image_ratio", 0.35))
+
+
+def _scene_json(cfg: dict) -> str:
+    if _kagit(cfg):
+        from .kagit_plan import SCENE_JSON
+        return SCENE_JSON
+    return '{"text": "...", "visual": "stock", "query": "...", "prompt": "..."}'
+
+
 def _visual_rules(ai_ratio: float) -> str:
     return """GÖRSELLER (her sahne için):
 - "query": Wikimedia Commons'ta aranacak 2-5 kelimelik İNGİLİZCE arama. Sahnede anlatılan şeyin GERÇEK
@@ -364,10 +382,10 @@ DOĞRULUK: Sadece iyi bilinen, güvenilir kaynaklarla doğrulanabilir bilgiler k
 sayı, tarih, isim veya alıntıyı YAZMA; tartışmalı bilgileri "bir görüşe göre" diye belirt. Yazdıktan sonra
 her cümleyi bir bilgi editörü gibi kontrol et ve şüpheli olanı düzelt.
 
-{_visual_rules(cfg['video'].get('ai_image_ratio', 0.35))}
+{_rules(cfg)}
 
 Sadece şu JSON'u döndür:
-{{"scenes": [{{"text": "...", "visual": "stock", "query": "...", "prompt": "..."}}]}}"""
+{{"scenes": [{_scene_json(cfg)}]}}"""
     data = _ask_json(llm, _system(cfg), prompt, 6000, "scenes")
     return data.get("scenes", [])
 
@@ -423,11 +441,11 @@ Bu videonun EN BAŞINA, kanal jeneriğinden ÖNCE oynayacak 20-25 saniyelik bir 
 - Selamlama, kanal adı, "bu videoda" gibi ifadeler YOK. Sadece metindeki doğru bilgileri kullan, yeni bilgi uydurma.
 - Tam olarak 4 sahne, her sahnede 10-16 kelime (her sahne yaklaşık 5-6 saniye sürecek).
 
-{_visual_rules(cfg['video'].get('ai_image_ratio', 0.35))}
-  Soğuk açılışta görseller özellikle dramatik ve hareketli bir anı göstersin.
+{_rules(cfg)}
+  Soğuk açılışta görseller özellikle dramatik ve hareketli bir anı göstersin (kâğıt motorunda: ortam, kisi, gazete, yigin, sayi).
 
 Sadece şu JSON'u döndür:
-{{"scenes": [{{"text": "...", "visual": "stock", "query": "...", "prompt": "..."}}]}}"""
+{{"scenes": [{_scene_json(cfg)}]}}"""
     data = _ask_json(llm, _system(cfg), prompt, 3000, "scenes")
     scenes = [s for s in data.get("scenes", []) if (s.get("text") or "").strip()][:5]
     if len(scenes) < 2:
@@ -493,7 +511,7 @@ def validate(script: dict) -> dict:
         if not text:
             continue
         visual = s.get("visual") if s.get("visual") in ("stock", "ai") else "stock"
-        item = {k: s[k] for k in ("section", "cold") if k in s}
+        item = {k: s[k] for k in ("section", "cold", "kalip", "p") if k in s}
         clean.append({
             **item,
             "text": text,
