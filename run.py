@@ -47,7 +47,7 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
         extra = None
         if isinstance(topic, dict):
             topic, extra = topic["konu"], topic["extra"]
-        script = script_writer.generate(cfg, past, topic, extra)
+        script = hazir_senaryo(cfg) or script_writer.generate(cfg, past, topic, extra)
         folder = OUTPUT / f"{datetime.now():%Y%m%d-%H%M}_{slugify(script['title'])}"
         folder.mkdir(parents=True, exist_ok=True)
         save_json(folder / "script.json", script)
@@ -386,6 +386,26 @@ def _planli_konular() -> list:
                 if str(k) > bugun and v]
     except Exception:
         return []
+
+
+def hazir_senaryo(cfg: dict):
+    """senaryolar/<yayın günü>.json varsa (Claude'un elle yazıp kontrol ettiği senaryo) Gemini'ye hiç
+    sorulmadan o kullanılır. Gemini aşırı yoğun/kapalı olsa da o günün videosu üretilir."""
+    try:
+        taken = [h.get("publish_at") for h in load_history()]
+        day = uploader.next_publish_time(cfg, taken).date().isoformat()
+        path = ROOT / "senaryolar" / f"{day}.json"
+        if not path.exists():
+            return None
+        script = load_json(path)
+        if any(h.get("title") == script.get("title") for h in load_history()):
+            return None
+        script = script_writer.validate(script)
+        log(f"Hazır senaryo kullanılıyor ({path.name}): {script['title']} — {len(script['scenes'])} sahne")
+        return script
+    except Exception as e:
+        log(f"  Hazır senaryo okunamadı, Gemini ile yazılacak: {e}")
+        return None
 
 
 def planned_topic(cfg: dict):

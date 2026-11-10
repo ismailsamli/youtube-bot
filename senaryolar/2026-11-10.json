@@ -1,0 +1,821 @@
+{
+ "title": "Tek Bir Çalışan 233 Yıllık Bankayı Nasıl BATIRDI? | Barings Skandalı",
+ "description": "1762'den beri ayakta duran Barings Bankası, 1995'te Singapur'daki tek bir çalışanın gizli işlemleri yüzünden battı. 88888 numaralı bir hata hesabı, Kobe depremi ve yaklaşık 827 milyon sterlinlik bir zarar: Nick Leeson skandalı adım adım.\n\nBu videoda Barings'in yükselişini, gizli hesabın nasıl işlediğini, kayıpların nasıl saklandığını ve denetim eksikliğinin neden bu kadar pahalıya patladığını anlatıyoruz.\n\nKaynaklar: Singapur Ulusal Kütüphanesi (Infopedia, Collapse of Barings); İngiltere Merkez Bankası inceleme raporu (1995).\n\n📁 Vurgun Dosyaları — Dosya #6\nYeni dosyalar her Salı ve Cuma 19:00'da. Serinin tamamı oynatma listesinde.",
+ "tags": [
+  "Barings Bankası",
+  "Nick Leeson",
+  "Barings skandalı",
+  "rogue trader",
+  "88888",
+  "Kobe depremi",
+  "Nikkei 225",
+  "banka iflası",
+  "finans skandalı",
+  "dolandırıcılık",
+  "Vurgun Dosyaları",
+  "ekonomi tarihi"
+ ],
+ "thumbnail_text": "GİZLİ HESAP 88888",
+ "thumbnail_alt": [
+  {
+   "text": "BANKAYI TEK BAŞINA BATIRDI"
+  },
+  {
+   "text": "827 MİLYON NEREDE?"
+  }
+ ],
+ "thumbnail_prompt": "",
+ "playlist": "Vurgun Dosyaları",
+ "comment": "Sence daha büyük hata hangisiydi: tek kişiye sınırsız yetki vermek mi, kimsenin onu sorgulamaması mı?",
+ "series": {
+  "name": "Vurgun Dosyaları",
+  "episode": 6
+ },
+ "sections": [
+  "233 Yıllık Banka ve Genç Yıldız",
+  "88888: Uğurlu Sayının Gizli Hesabı",
+  "Kayıpları Saklama Sanatı",
+  "Kobe Depremi ve Çaresiz Kumar",
+  "Kaçış ve Çöküş",
+  "Yakalanış ve Asıl Ders"
+ ],
+ "topic": {
+  "topic": "Barings Bankası ve Nick Leeson",
+  "angle": "",
+  "search_en": "Barings Bank Nick Leeson"
+ },
+ "scenes": [
+  {
+   "text": "23 Şubat 1995 gecesi, Singapur. Yirmi sekiz yaşında bir borsacı masasına kısa bir not bırakıp ortadan kayboluyor.",
+   "kalip": "ortam",
+   "p": {
+    "ortam": "gece",
+    "ikon": "ucak",
+    "etiket": "Singapur, 23 Şubat 1995"
+   },
+   "cold": true,
+   "section": -1
+  },
+  {
+   "text": "Not tek bir kelimeden ibaret: Üzgünüm. Ekranlardaki gizli bir hesapta ise milyonlar eriyip gitmiş.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "mektup",
+    "etiketler": [
+     "\"Üzgünüm\"",
+     "Gizli hesap",
+     "Eriyen milyonlar"
+    ]
+   },
+   "cold": true,
+   "section": -1
+  },
+  {
+   "text": "Üç gün sonra, 233 yıllık bir İngiliz bankası tek bir adamın yüzünden batmış olacak.",
+   "kalip": "sayi",
+   "p": {
+    "deger": 233,
+    "birim": "yıllık banka",
+    "etiket": "Tek bir çalışan yüzünden batacak",
+    "ikon": "banka"
+   },
+   "cold": true,
+   "section": -1
+  },
+  {
+   "text": "Her şey, kimsenin dikkat etmediği beş haneli bir hesap numarasıyla başladı.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "kilit",
+    "etiketler": [
+     "Beş haneli hesap numarası"
+    ]
+   },
+   "cold": true,
+   "section": -1
+  },
+  {
+   "text": "Peki tek bir çalışan, iki yüzyılı aşkın geçmişi olan bir bankayı nasıl batırabildi? Cevap, Londra'nın en saygın bankalarından birinde başlıyor.",
+   "kalip": "soru",
+   "p": {
+    "soru": "Tek bir çalışan, köklü bir bankayı nasıl batırır?"
+   },
+   "section": 0
+  },
+  {
+   "text": "Barings Bankası 1762'de Londra'da kuruldu. İngiltere'nin en eski yatırım bankalarından biriydi ve asırlar boyunca güvenin simgesi oldu.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "banka",
+    "baslik": "Barings Bankası",
+    "etiketler": [
+     "1762, Londra",
+     "En eski yatırım bankalarından",
+     "Güvenin simgesi"
+    ]
+   },
+   "section": 0
+  },
+  {
+   "text": "Banka o kadar güçlüydü ki 1803'te Amerika Birleşik Devletleri'nin Louisiana bölgesini satın almasının finansmanında rol oynadı.",
+   "kalip": "rota",
+   "p": {
+    "nereden": "Londra",
+    "nereye": "Louisiana",
+    "arac": "gemi",
+    "baslik": "1803: Louisiana alımı"
+   },
+   "section": 0
+  },
+  {
+   "text": "1762'de kurulan, 1803'te Louisiana alımına para bulan Barings, 1990'larda Asya piyasalarında hızla büyümek istiyordu.",
+   "kalip": "zaman",
+   "p": {
+    "baslik": "Barings'in yolculuğu",
+    "olaylar": [
+     {
+      "yil": 1762,
+      "metin": "Londra'da kuruldu"
+     },
+     {
+      "yil": 1803,
+      "metin": "Louisiana alımını finanse etti"
+     },
+     {
+      "yil": 1990,
+      "metin": "Asya'da büyüme hamlesi"
+     }
+    ]
+   },
+   "section": 0
+  },
+  {
+   "text": "Tam bu sırada sahneye Nick Leeson çıktı. İşçi bir ailede büyümüş, üniversite okumamış, son derece hırslı genç bir bankacıydı.",
+   "kalip": "kisi",
+   "p": {
+    "isim": "Nick Leeson",
+    "rol": "Barings'in genç ve hırslı bankacısı",
+    "ikon": "insan"
+   },
+   "section": 0
+  },
+  {
+   "text": "Leeson daha önce bankanın Londra ve Jakarta ofislerinde operasyon tarafında çalışmış, işlemlerin arka planını çok iyi öğrenmişti.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "bilgisayar",
+    "etiketler": [
+     "Londra ve Jakarta",
+     "Operasyon deneyimi",
+     "Arka ofisi iyi tanıyor"
+    ]
+   },
+   "section": 0
+  },
+  {
+   "text": "Leeson 1992 baharında Singapur'a gönderildi. Görevi, bankanın Singapur borsasındaki vadeli işlemlerini yönetmekti.",
+   "kalip": "rota",
+   "p": {
+    "nereden": "Londra",
+    "nereye": "Singapur",
+    "arac": "ucak",
+    "baslik": "1992: Singapur'a atama"
+   },
+   "section": 0
+  },
+  {
+   "text": "Kısa sürede yıldızı parladı. Raporlara göre Japon borsası üzerine yaptığı işlemlerle bankaya büyük kârlar kazandırıyordu.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "grafik_artis",
+    "baslik": "Yükselen yıldız",
+    "etiketler": [
+     "Japon borsası işlemleri",
+     "Raporlarda büyük kâr"
+    ]
+   },
+   "section": 0
+  },
+  {
+   "text": "Ama bu parlak kârların arkasında, kimsenin görmediği bir hesap vardı.",
+   "kalip": "baslik",
+   "p": {
+    "baslik": "Görünmeyen hesap",
+    "alt": "Parlak kârların arkasında",
+    "ikon": "kilit"
+   },
+   "section": 0
+  },
+  {
+   "text": "3 Temmuz 1992'de Leeson'ın ekibinde bir hata hesabı açıldı. Numarası 88888'di; Çin kültüründe sekiz, şansın ve bereketin sayısıdır.",
+   "kalip": "sayi",
+   "p": {
+    "deger": 88888,
+    "etiket": "Hata hesabının numarası",
+    "ikon": "belge"
+   },
+   "section": 1
+  },
+  {
+   "text": "Bu tür hesaplar normalde küçük işlem hatalarını geçici olarak kaydetmek için kullanılır ve kısa sürede kapatılır.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "belge",
+    "etiketler": [
+     "Hata hesabı",
+     "Küçük işlem hataları",
+     "Kısa sürede kapanır"
+    ]
+   },
+   "section": 1
+  },
+  {
+   "text": "Ama 88888 hiç kapanmadı. Leeson, ekibin yaptığı hataları ve kendi zarar eden işlemlerini sessizce bu hesaba aktarmaya başladı.",
+   "kalip": "akis",
+   "p": {
+    "baslik": "Zarar nereye gitti?",
+    "adimlar": [
+     "Zarar eden işlem",
+     "88888 hesabına aktarılıyor",
+     "Raporlarda görünmüyor"
+    ],
+    "ikonlar": [
+     "grafik_dusus",
+     "kilit",
+     "belge"
+    ]
+   },
+   "section": 1
+  },
+  {
+   "text": "Böylece merkeze giden raporlarda sadece kâr görünüyordu; zararlar ise gizli hesapta sessizce birikiyordu.",
+   "kalip": "liste",
+   "p": {
+    "baslik": "İki ayrı tablo",
+    "maddeler": [
+     {
+      "metin": "Merkeze giden rapor: sadece kâr",
+      "ikon": "grafik_artis"
+     },
+     {
+      "metin": "Gizli hesap: biriken zarar",
+      "ikon": "grafik_dusus"
+     }
+    ]
+   },
+   "section": 1
+  },
+  {
+   "text": "Peki bunu neden kimse fark etmedi? Çünkü Leeson hem işlemleri yapan, hem de bu işlemlerin kaydını tutan kişiydi.",
+   "kalip": "kisi",
+   "p": {
+    "isim": "Nick Leeson",
+    "rol": "Hem işlemleri yapan hem kayıtları tutan",
+    "not": "Kendi işini kendisi denetliyordu",
+    "ikon": "insan",
+    "damga": "ÇİFT ROL"
+   },
+   "section": 1
+  },
+  {
+   "text": "Bankacılıkta bu iki görevin aynı kişide toplanmaması en temel kurallardan biridir. Barings bu kuralı Singapur'da uygulamamıştı.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "carpi",
+    "baslik": "Temel kural",
+    "etiketler": [
+     "İşlem ve kayıt ayrı kişilerde olmalı",
+     "Singapur'da uygulanmadı"
+    ]
+   },
+   "section": 1
+  },
+  {
+   "text": "Eylül 1992'nin sonunda gizli hesaptaki zarar şimdiden 8,8 milyon Singapur dolarıydı. Bu, yaklaşan felaketin yalnızca başlangıcıydı.",
+   "kalip": "sayi",
+   "p": {
+    "deger": "8,8",
+    "birim": "milyon Singapur doları",
+    "etiket": "Eylül 1992 sonu: gizli zarar",
+    "ikon": "banknot"
+   },
+   "section": 1
+  },
+  {
+   "text": "Leeson yıllar sonra yazdığı kitapta, zararı itiraf etmek yerine onu sessizce telafi etmeye çalıştığını anlattı. Bu karar her şeyi değiştirdi.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "kitap",
+    "etiketler": [
+     "İtiraf yerine telafi",
+     "Her şeyi değiştiren karar"
+    ]
+   },
+   "section": 1
+  },
+  {
+   "text": "Leeson zararları kapatmak için daha büyük riskler almaya başladı. Kaybettikçe işlemlerini büyüttü, büyüttükçe daha çok kaybetti.",
+   "kalip": "akis",
+   "p": {
+    "baslik": "Kısır döngü",
+    "adimlar": [
+     "Zarar",
+     "Daha büyük risk",
+     "Daha büyük zarar"
+    ],
+    "ikonlar": [
+     "grafik_dusus",
+     "ates",
+     "grafik_dusus"
+    ]
+   },
+   "section": 2
+  },
+  {
+   "text": "Pozisyonları için para gerekiyordu. Leeson, teminat ihtiyacını müşteri işlemleri gibi göstererek Londra'dan yüz milyonlarca sterlin getirtti.",
+   "kalip": "rota",
+   "p": {
+    "nereden": "Londra",
+    "nereye": "Singapur",
+    "arac": "ucak",
+    "baslik": "Londra'dan gelen para"
+   },
+   "section": 2
+  },
+  {
+   "text": "Merkezdekiler bu paranın müşterilerin işlemleri için gittiğini sanıyordu. Kimse transferlerin neden bu kadar büyüdüğünü ciddi şekilde sorgulamadı.",
+   "kalip": "liste",
+   "p": {
+    "baslik": "Londra ne sanıyordu?",
+    "maddeler": [
+     {
+      "metin": "Müşteri işlemleri için para",
+      "ikon": "kalabalik"
+     },
+     {
+      "metin": "Transferler büyüyor",
+      "ikon": "ok_yukari"
+     },
+     {
+      "metin": "Kimse sorgulamıyor",
+      "ikon": "soru"
+     }
+    ]
+   },
+   "section": 2
+  },
+  {
+   "text": "Denetçiler soru sorduğunda sahte belgelere başvurdu. Daha sonra sahtecilik suçlamasını da mahkemede kabul edecekti.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "belge",
+    "baslik": "Sahte belgeler",
+    "etiketler": [
+     "Denetçilere sahte evrak",
+     "Sahtecilik suçlaması"
+    ]
+   },
+   "section": 2
+  },
+  {
+   "text": "1994'ün sonunda gizli hesaptaki zarar 373,9 milyon Singapur dolarına ulaşmıştı. Ama Londra'ya giden raporlar hâlâ kâr gösteriyordu.",
+   "kalip": "sayi",
+   "p": {
+    "deger": "373,9",
+    "birim": "milyon Singapur doları",
+    "etiket": "1994 sonu: gizli zarar",
+    "ikon": "kasa"
+   },
+   "section": 2
+  },
+  {
+   "text": "Barings yönetimi ise Singapur'daki yıldızına güveniyordu. Leeson'ın 1994 yılı için yüklü bir ikramiye alması bekleniyordu.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "para",
+    "etiketler": [
+     "Yönetim memnun",
+     "Yüklü ikramiye beklentisi"
+    ]
+   },
+   "section": 2
+  },
+  {
+   "text": "Bu tür gerçek dolandırıcılık hikâyelerini seviyorsan, Vurgun Dosyaları'nın yenisi her hafta geliyor; kaçırmamak için abone ol.",
+   "kalip": "baslik",
+   "p": {
+    "baslik": "Vurgun Dosyaları",
+    "alt": "Her hafta yeni dosya · Abone ol",
+    "ikon": "belge"
+   },
+   "section": 2
+  },
+  {
+   "text": "Leeson'ın tek umudu, Japon borsasının sakin kalmasıydı. Ama Ocak 1995'te doğa onun yerine karar verecekti.",
+   "kalip": "ortam",
+   "p": {
+    "ortam": "sehir",
+    "baslik": "Ocak 1995",
+    "etiket": "Tek umut: sakin bir piyasa"
+   },
+   "section": 2
+  },
+  {
+   "text": "17 Ocak 1995 sabahı Japonya'nın Kobe şehrinde büyük bir deprem oldu. Binlerce insan hayatını kaybetti.",
+   "kalip": "gazete",
+   "p": {
+    "manset": "Kobe'de büyük deprem",
+    "tarih": "17 Ocak 1995",
+    "kaynak": "Dünya Basını",
+    "ikon": "bina"
+   },
+   "section": 3
+  },
+  {
+   "text": "Leeson, Japon borsasının belirli bir aralıkta sakin kalacağı üzerine büyük opsiyon işlemleri yapmıştı. Deprem bu sakinliği bir anda yok etti.",
+   "kalip": "akis",
+   "p": {
+    "baslik": "Bozulan bahis",
+    "adimlar": [
+     "Bahis: sakin piyasa",
+     "Kobe depremi",
+     "Sert dalgalanma"
+    ],
+    "ikonlar": [
+     "terazi",
+     "simsek",
+     "grafik_dusus"
+    ]
+   },
+   "section": 3
+  },
+  {
+   "text": "Deprem, Japon borsasının ana endeksi Nikkei 225'i sert bir düşüşe soktu. Leeson'ın bütün hesabı ise endeksin yüksek kalmasına dayanıyordu.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "grafik_dusus",
+    "baslik": "Nikkei 225",
+    "etiketler": [
+     "Sert düşüş",
+     "Leeson'ın bahsi: yükseliş"
+    ]
+   },
+   "section": 3
+  },
+  {
+   "text": "Leeson geri çekilmedi. Tam tersine, piyasanın toparlanacağına inanarak çok daha büyük alımlar yaptı.",
+   "kalip": "liste",
+   "p": {
+    "baslik": "Geri adım yok",
+    "maddeler": [
+     {
+      "metin": "Geri çekilmedi",
+      "ikon": "carpi"
+     },
+     {
+      "metin": "Toparlanmaya bahis",
+      "ikon": "ok_yukari"
+     },
+     {
+      "metin": "Çok daha büyük alımlar",
+      "ikon": "banknot"
+     }
+    ]
+   },
+   "section": 3
+  },
+  {
+   "text": "Pozisyonları öyle büyüdü ki, Singapur borsasındaki Japon vadeli işlemlerinin önemli bir kısmı tek başına ona aitti.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "hedef",
+    "etiketler": [
+     "Dev pozisyonlar",
+     "Piyasanın gözü üzerinde"
+    ]
+   },
+   "section": 3
+  },
+  {
+   "text": "23 Ocak'ta Nikkei 17.785 puana kadar geriledi. Leeson'ın açık pozisyonları artık bankanın kaldırabileceğinden çok daha büyüktü.",
+   "kalip": "gosterge",
+   "p": {
+    "deger": 17785,
+    "min": 15000,
+    "max": 20000,
+    "birim": "puan",
+    "etiket": "Nikkei 225, 23 Ocak 1995"
+   },
+   "section": 3
+  },
+  {
+   "text": "Kayıplar katlanarak büyüdü. 23 Şubat 1995'e gelindiğinde gizli hesaptaki zarar 1,4 milyar Singapur dolarını bulmuştu.",
+   "kalip": "sayi",
+   "p": {
+    "deger": "1,4",
+    "birim": "milyar Singapur doları",
+    "etiket": "23 Şubat 1995: gizli zarar",
+    "ikon": "grafik_dusus"
+   },
+   "section": 3
+  },
+  {
+   "text": "Bu, bankanın sermayesinin yaklaşık iki katıydı. Barings aslında çoktan batmıştı ama Londra hâlâ bunu bilmiyordu.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "kasa",
+    "etiketler": [
+     "Zarar: sermayenin ~2 katı",
+     "Londra habersiz"
+    ]
+   },
+   "section": 3
+  },
+  {
+   "text": "Sonunda Singapur'daki ekip açıkları fark etmeye başladı. Rakamlar tutmuyor, cevapsız sorular birikiyordu.",
+   "kalip": "liste",
+   "p": {
+    "maddeler": [
+     {
+      "metin": "Rakamlar tutmuyor",
+      "ikon": "unlem"
+     },
+     {
+      "metin": "Cevapsız sorular birikiyor",
+      "ikon": "soru"
+     }
+    ]
+   },
+   "section": 3
+  },
+  {
+   "text": "23 Şubat 1995 gecesi Leeson, eşi Lisa ile birlikte Singapur'dan Malezya'nın başkenti Kuala Lumpur'a kaçtı.",
+   "kalip": "rota",
+   "p": {
+    "nereden": "Singapur",
+    "nereye": "Kuala Lumpur",
+    "arac": "ucak",
+    "baslik": "23 Şubat 1995 gecesi"
+   },
+   "section": 4
+  },
+  {
+   "text": "Arkasında bıraktığı notta yalnızca tek bir kelime vardı: Üzgünüm.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "mektup",
+    "etiketler": [
+     "\"Üzgünüm\""
+    ]
+   },
+   "section": 4
+  },
+  {
+   "text": "Çift, Malezya'dan Borneo adasındaki Kota Kinabalu'ya geçti; oradan da uçakla Avrupa'ya doğru yola çıktı.",
+   "kalip": "rota",
+   "p": {
+    "nereden": "Kuala Lumpur",
+    "nereye": "Kota Kinabalu",
+    "arac": "ucak",
+    "baslik": "Kaçış rotası"
+   },
+   "section": 4
+  },
+  {
+   "text": "Londra'daki yöneticiler gerçeği öğrendiğinde şoka girdi. İngiltere Merkez Bankası, bankayı kurtarmak için hafta sonu acil toplantılar düzenledi.",
+   "kalip": "ortam",
+   "p": {
+    "ortam": "ofis",
+    "baslik": "Kurtarma toplantısı",
+    "etiket": "Londra, acil hafta sonu"
+   },
+   "section": 4
+  },
+  {
+   "text": "Ama kimse bu kadar büyük ve hâlâ açık duran bir riski üstlenmek istemedi. Kurtarma girişimi başarısız oldu.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "carpi",
+    "etiketler": [
+     "Kimse riski üstlenmedi",
+     "Kurtarma başarısız"
+    ]
+   },
+   "section": 4
+  },
+  {
+   "text": "26 Şubat 1995'te Barings Bankası batık ilan edildi. 233 yıllık tarih, tek bir çalışanın gizli işlemleri yüzünden sona ermişti.",
+   "kalip": "gazete",
+   "p": {
+    "manset": "Barings Bankası battı",
+    "tarih": "26 Şubat 1995",
+    "kaynak": "Finans Gazetesi",
+    "ikon": "banka"
+   },
+   "section": 4
+  },
+  {
+   "text": "Toplam zarar yaklaşık 827 milyon sterlindi; bu, o günkü kurla yaklaşık 1,4 milyar dolar ediyordu.",
+   "kalip": "yigin",
+   "p": {
+    "ikon": "banknot",
+    "metin": "827 milyon sterlin",
+    "etiket": "≈ 1,4 milyar dolar"
+   },
+   "section": 4
+  },
+  {
+   "text": "Birkaç gün sonra Hollandalı ING grubu Barings'i sembolik olarak yalnızca 1 sterline satın aldı ve borçları üstlendi.",
+   "kalip": "sayi",
+   "p": {
+    "deger": 1,
+    "birim": "sterlin",
+    "etiket": "ING'nin ödediği sembolik bedel",
+    "ikon": "para"
+   },
+   "section": 4
+  },
+  {
+   "text": "Barings adı bir süre ING'nin içinde yaşadı; ama bağımsız ve köklü bir banka olarak hikâyesi orada bitmişti.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "banka",
+    "etiketler": [
+     "ING bünyesine geçti",
+     "Bağımsız hikâye bitti"
+    ]
+   },
+   "section": 4
+  },
+  {
+   "text": "Leeson'ın kaçışı uzun sürmedi. 2 Mart 1995'te Frankfurt Havalimanı'nda Alman polisi tarafından yakalandı.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "kelepce",
+    "baslik": "2 Mart 1995",
+    "etiketler": [
+     "Frankfurt Havalimanı",
+     "Alman polisi"
+    ]
+   },
+   "section": 5
+  },
+  {
+   "text": "Kasım 1995'te Singapur'a iade edildi. Aralık ayında dolandırıcılık ve sahtecilik suçlamalarını kabul etti ve altı buçuk yıl hapis cezası aldı.",
+   "kalip": "kisi",
+   "p": {
+    "isim": "Nick Leeson",
+    "rol": "Dolandırıcılık ve sahtecilik suçlamalarını kabul etti",
+    "not": "Altı buçuk yıl hapis",
+    "ikon": "insan",
+    "damga": "HÜKÜM"
+   },
+   "section": 5
+  },
+  {
+   "text": "Hapisteyken kalın bağırsak kanserine yakalandı. Temmuz 1999'da cezasında indirim yapılarak serbest bırakıldı.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "hapishane",
+    "etiketler": [
+     "Temmuz 1999: tahliye"
+    ]
+   },
+   "section": 5
+  },
+  {
+   "text": "Tahliyeden sonra yaşadıklarını konferanslarda anlattı. Hikâyesi 1999'da Rogue Trader adıyla sinemaya da uyarlandı.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "kamera",
+    "etiketler": [
+     "Konferanslar",
+     "1999: Rogue Trader filmi"
+    ]
+   },
+   "section": 5
+  },
+  {
+   "text": "Resmî incelemeler asıl sorunu ortaya koydu: görevler ayrılmamış, denetim zayıf kalmış, olağanüstü kârlar ise hiç sorgulanmamıştı.",
+   "kalip": "liste",
+   "p": {
+    "baslik": "Resmî incelemenin bulguları",
+    "maddeler": [
+     {
+      "metin": "Görevler ayrılmamıştı",
+      "ikon": "carpi"
+     },
+     {
+      "metin": "Denetim zayıftı",
+      "ikon": "unlem"
+     },
+     {
+      "metin": "Olağanüstü kârlar sorgulanmadı",
+      "ikon": "soru"
+     }
+    ]
+   },
+   "section": 5
+  },
+  {
+   "text": "Bu hikâyenin bugüne kalan dersi basit: Gerçek olamayacak kadar iyi görünen kazançlar, çoğu zaman gizlenmiş bir zararın işaretidir.",
+   "kalip": "baslik",
+   "p": {
+    "baslik": "Asıl ders",
+    "alt": "Fazla iyi görünen kazancı sorgula",
+    "ikon": "unlem"
+   },
+   "section": 5
+  },
+  {
+   "text": "Vurgun Dosyaları serisinin bir sonraki dosyası Cuma günü geliyor: 1980'lerde Türkiye'yi sarsan bankerler krizi ve Banker Kastelli.",
+   "kalip": "nesne",
+   "p": {
+    "ikon": "belge",
+    "baslik": "Sıradaki dosya",
+    "etiketler": [
+     "Cuma 19:00",
+     "Banker Kastelli"
+    ]
+   },
+   "section": 5
+  },
+  {
+   "text": "Sence daha büyük hata hangisiydi: tek bir kişiye bu kadar yetki vermek mi, yoksa kimsenin onu sorgulamaması mı? Yorumlarda yaz.",
+   "kalip": "soru",
+   "p": {
+    "soru": "Daha büyük hata: sınırsız yetki mi, sorgulanmamak mı?"
+   },
+   "section": 5
+  }
+ ],
+ "hazir_shorts": [
+  {
+   "title": "88888: 233 Yıllık Bir Bankayı Batıran Gizli Hesap",
+   "headline": "GİZLİ HESAP 88888",
+   "comment": "Sence bu hesap neden yıllarca fark edilmedi?",
+   "scenes": [
+    {
+     "text": "1992'de Singapur'da açılan bir banka hesabının numarası 88888'di.",
+     "src": 13
+    },
+    {
+     "text": "Küçük işlem hataları için açılmıştı ama hiç kapanmadı.",
+     "src": 14
+    },
+    {
+     "text": "Genç borsacı Nick Leeson, zarar eden işlemlerini sessizce bu hesaba sakladı.",
+     "src": 15
+    },
+    {
+     "text": "Londra'daki merkeze ise yalnızca kâr raporları gidiyordu.",
+     "src": 16
+    },
+    {
+     "text": "1994'ün sonunda gizli zarar 373,9 milyon Singapur dolarına ulaşmıştı.",
+     "src": 25
+    },
+    {
+     "text": "Ve bu, 233 yıllık bir bankanın sonunun başlangıcıydı.",
+     "src": 2
+    },
+    {
+     "text": "Hikâyenin tamamı kanalda. Her gün yeni bir gerçek hikâye için abone ol.",
+     "src": 43
+    }
+   ]
+  },
+  {
+   "title": "Bir Deprem 233 Yıllık Bankayı Nasıl Bitirdi?",
+   "headline": "BİR DEPREM, BİR BANKA",
+   "comment": "Sen Leeson'ın yerinde olsan geri çekilir miydin?",
+   "scenes": [
+    {
+     "text": "17 Ocak 1995'te Japonya'nın Kobe şehrini büyük bir deprem vurdu.",
+     "src": 29
+    },
+    {
+     "text": "Japon borsası sert düştü ve Singapur'daki bir borsacının bütün hesabı çöktü.",
+     "src": 31
+    },
+    {
+     "text": "Nick Leeson geri çekilmek yerine çok daha büyük alımlar yaptı.",
+     "src": 32
+    },
+    {
+     "text": "Bir ay sonra gizli zarar 1,4 milyar Singapur dolarını bulmuştu.",
+     "src": 35
+    },
+    {
+     "text": "26 Şubat 1995'te 233 yıllık Barings Bankası batık ilan edildi.",
+     "src": 43
+    },
+    {
+     "text": "Hikâyenin tamamı kanalda. Her gün yeni bir gerçek hikâye için abone ol.",
+     "src": 44
+    }
+   ]
+  }
+ ],
+ "hazirlayan": "Claude (elle yazıldı ve kaynaklarla kontrol edildi)"
+}

@@ -315,6 +315,10 @@ def make_and_upload(cfg: dict, folder: Path, script: dict, long_entry: dict, upl
     store = folder / "shorts" / "shorts.json"
     if store.exists():
         shorts = json.loads(store.read_text(encoding="utf-8"))
+    elif script.get("hazir_shorts"):      # hazır senaryoyla gelen Short'lar (Gemini'ye sorulmaz)
+        shorts = script["hazir_shorts"][:count]
+        store.parent.mkdir(parents=True, exist_ok=True)
+        store.write_text(json.dumps(shorts, ensure_ascii=False, indent=2), encoding="utf-8")
     else:
         log("Shorts senaryoları yazılıyor...")
         shorts = write_shorts(LLM(cfg), cfg, script, count)

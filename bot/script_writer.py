@@ -34,6 +34,32 @@ class LLM:
             self.candidates = [m for m in dict.fromkeys([first, *fallbacks]) if m]
             self.model = self.candidates[0]
             self._last_call = 0.0
+            self._discovered = False
+
+    def _discover(self) -> None:
+        """Google'ın şu an sunduğu metin modellerini listeler ve denenmemiş flash modellerini sıraya ekler
+        (Kas 2026: '-latest' takma adları kaldırıldı, bot tek bir yoğun modele mahkûm kalmıştı)."""
+        if self._discovered:
+            return
+        self._discovered = True
+        try:
+            names = []
+            for m in self.client.models.list():
+                n = (m.name or "").split("/")[-1]
+                acts = getattr(m, "supported_actions", None) or []
+                if "gemini" not in n or "flash" not in n or (acts and "generateContent" not in acts):
+                    continue
+                if any(x in n for x in ("tts", "image", "live", "embed", "audio", "native", "exp", "thinking", "8b")):
+                    continue
+                names.append(n)
+            ver = lambda n: [int(x) for x in re.findall(r"\d+", n)[:2]] or [0]
+            names.sort(key=lambda n: (ver(n), "lite" not in n), reverse=True)
+            new = [n for n in names if n not in self.candidates][:4]
+            if new:
+                self.candidates.extend(new)
+                log(f"  Kullanılabilir yedek modeller bulundu: {', '.join(new)}")
+        except Exception as e:
+            log(f"  Model listesi alınamadı: {str(e)[:150]}")
 
     def ask(self, system: str, prompt: str, max_tokens: int = 16000) -> str:
         if self.provider == "claude":
@@ -77,6 +103,8 @@ class LLM:
                 gone = "404" in msg or "NOT_FOUND" in msg
                 daily = "PerDay" in msg or "per day" in msg.lower()
                 if gone or daily:
+                    if len(self.candidates) <= 2:
+                        self._discover()
                     if len(self.candidates) > 1:
                         old = self.candidates.pop(0)
                         self.model = self.candidates[0]
@@ -96,6 +124,8 @@ class LLM:
                 if "503" in msg or "UNAVAILABLE" in msg or "high demand" in msg:
                     overloaded += 1
                     # Model aşırı yoğunsa sıradaki modele geç (yoğun model listenin sonuna)
+                    if overloaded >= 3:
+                        self._discover()
                     if overloaded >= 3 and len(self.candidates) > 1:
                         old = self.candidates.pop(0)
                         self.candidates.append(old)
