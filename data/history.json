@@ -923,5 +923,37 @@
     "playlist": "Çözülemeyen Gizemler",
     "playlist_done": true,
     "comment_done": true
+  },
+  {
+    "folder": "20261110-0834_tek-bir-calisan-233-yillik-bankayi-nasil-batirdi-b#short1",
+    "title": "88888: 233 Yıllık Bir Bankayı Batıran Gizli Hesap",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "9PdWwb4h8J4",
+    "publish_at": "2026-11-11T12:00:00+03:00",
+    "comment": "Sence bu hesap neden yıllarca fark edilmedi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/0_s3Of1s52g",
+    "long_video": "0_s3Of1s52g",
+    "hedef": null
+  },
+  {
+    "folder": "20261110-0834_tek-bir-calisan-233-yillik-bankayi-nasil-batirdi-b#short2",
+    "title": "Bir Deprem 233 Yıllık Bankayı Nasıl Bitirdi?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "OQqRzYJJcZo",
+    "publish_at": "2026-11-11T21:00:00+03:00",
+    "comment": "Sen Leeson'ın yerinde olsan geri çekilir miydin?\n\nHikâyenin tamamı burada 👉 https://youtu.be/0_s3Of1s52g",
+    "long_video": "0_s3Of1s52g",
+    "hedef": null
+  },
+  {
+    "folder": "20261110-0834_tek-bir-calisan-233-yillik-bankayi-nasil-batirdi-b",
+    "title": "Tek Bir Çalışan 233 Yıllık Bankayı Nasıl BATIRDI? | Barings Skandalı",
+    "status": "yüklendi",
+    "video_id": "0_s3Of1s52g",
+    "publish_at": "2026-11-10T19:00:00+03:00",
+    "comment": "Sence daha büyük hata hangisiydi: tek kişiye sınırsız yetki vermek mi, kimsenin onu sorgulamaması mı?",
+    "playlist": "Vurgun Dosyaları",
+    "playlist_done": true
   }
 ]
