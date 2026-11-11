@@ -1,16 +1,137 @@
 {
-  "guncelleme": "2026-11-09",
+  "guncelleme": "2026-11-11",
   "oneriler": [
     {
-      "konu": "Percy Fawcett'ın Amazon'da Kayboluşu ve Kayıp Z Şehri Efsanesi",
-      "aci": "Efsanevi bir uygarlığı bulmak için haritasız yağmur ormanlarına dalan ve geride hiçbir iz bırakmadan yok olan bir kâşifin trajik saplantısı.",
-      "kaynak_baslik": "The Lost City of Z | (Real story) Amazon Jungle's Greatest Mystery",
-      "neden": "Keşif tarihi, çözülmemiş gizemler ve Amazon'un tekinsiz doğası Türk izleyicisinin her zaman en çok merak ettiği temalardandır.",
+      "konu": "Genç Dryas Çarpma Hipotezi ve Medeniyetin Bilinen Tarihini Sarsan Arkeolojik Keşifler",
+      "aci": "Göbeklitepe ve Karahantepe bulgularıyla doğrudan bağ kurarak, insanlığın yerleşik hayata geçişine dair bilinen ezberleri bozan kozmik felaket teorisini bilimsel kanıtlarla incelemek.",
+      "kaynak_baslik": "The Ancient Civilization Theory That Blew Joe Rogan's Mind",
+      "neden": "Göbeklitepe'nin küresel arkeolojiyi altüst etmesi Türk izleyicisinde büyük bir merak ve aidiyet uyandırıyor; bilimsel gizem videoları kanalda yüksek izlenme potansiyeline sahip.",
       "izlenme": null,
       "kat": null,
       "kaynak": null,
-      "kullanildi": true,
-      "tarih": "2026-11-09"
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "Derin Deniz Devleşmesi (Abis Devliği) ve Okyanus Tabanının Biyolojik Gizemleri",
+      "aci": "Akdeniz ve Karadeniz'in sığ sularının aksine, ışığın hiç ulaşmadığı derin çukurlardaki aşırı basınç ve soğuğun canlıları neden devasa boyutlara ulaştırdığını evrimsel biyolojiyle açıklamak.",
+      "kaynak_baslik": "Deep Sea Giants Are Everywhere. We've Been Searching Wrong",
+      "neden": "Okyanus diplerindeki bilinmeyen canlılar ve devasa yaratıklar YouTube'da evrensel bir merak unsuru olup görsel doygunluğu en yüksek temalardandır.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "Beynin Ödül Mekanizması ve İrade Yanılsaması: Disiplinin Nörobiyolojisi",
+      "aci": "Zorlama motivasyon yerine dopamin döngüsünü ve beynin enerji koruma eğilimini anlayarak alışkanlık inşa etmenin bilimsel ve pratik formülünü sunmak.",
+      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
+      "neden": "Özellikle sınavlara hazırlanan ve kariyer odaklı 18-35 yaş Türk gençliğinde erteleme hastalığı ve odaklanma sorunları sürekli yüksek arama hacmine sahiptir.",
+      "izlenme": 5069941,
+      "kat": 25.5,
+      "kaynak": "CkP_8bkjf1E",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "Bermuda Şeytan Üçgeni Efsanesinin Arkasındaki Doğa Olayları: Metan Çıkışları ve Dev Dalgalar",
+      "aci": "Komplo teorilerini bir kenara bırakıp Karadeniz tabanında da benzerleri bulunan dev metan hidrat rezervlerinin ve okyanus akıntılarının gemileri nasıl aniden batırabildiğinin fiziğini göstermek.",
+      "kaynak_baslik": "Something is Wrong With Bermuda",
+      "neden": "Popüler gizemlerin bilimsel ve mantıklı açıklamalarla çürütülmesi, tık tuzağına düşmeden kaliteli bilgi arayan izleyicide yüksek tatmin sağlar.",
+      "izlenme": 475826,
+      "kat": 5.4,
+      "kaynak": "B7LT6Fi6VQo",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "Süper El Niño Olayları ve Küresel İklim Anomalilerinin Yıkıcı Mekanizması",
+      "aci": "Pasifik'te başlayan bu devasa sıcaklık salınımının Türkiye ve Akdeniz havzasındaki ani kuraklık, orman yangınları ve sel felaketlerini nasıl doğrudan tetiklediğini haritalarla anlatmak.",
+      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
+      "neden": "Son yıllarda Türkiye'de yaşanan rekor sıcaklık dalgaları ve sıra dışı hava olayları nedeniyle izleyici kendi günlük hayatını etkileyen iklim mekanizmasını merak ediyor.",
+      "izlenme": 2350724,
+      "kat": 5.0,
+      "kaynak": "69o-8Mtd3Kc",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "8.000 Metre 'Ölüm Bölgesi'nde İnsan Bedenine ve Zihnine Ne Olur?",
+      "aci": "Zirve dağcılığında beynin oksijensiz kaldığı son metrelerde yaşanan hipoksi, halüsinasyonlar ve Türk dağcıların da tecrübe ettiği vücudun kendi kendini tüketme sürecini fizyolojik olarak açıklamak.",
+      "kaynak_baslik": "The Broad Peak Disaster: What Really Happened to Nirmal Purja",
+      "neden": "İnsan sınırlarının zorlandığı ekstrem hayatta kalma ve biyoloji anlatıları, izleyicinin videoda kalma süresini en yüksek tutan içeriklerdendir.",
+      "izlenme": 730824,
+      "kat": 4.9,
+      "kaynak": "HSryGcE6AtE",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "Amatör Bir Merakın Çözdüğü Antik Gizem: Gizemli Roma Onikiyüzlüsü (Dodekahedron)",
+      "aci": "Anadolu'daki köklü Roma kalıntılarıyla bağlantı kurarak, yüz yılı aşkın süredir hiçbir akademisyenin kullanım amacını kesinleştiremediği metal objelerin sırrına amatör bir araştırmacının nasıl yaklaştığını aktarmak.",
+      "kaynak_baslik": "A hairdresser with no archaeology training solved a Roman mystery | Sam Kean",
+      "neden": "'Sıradan bir insanın büyük bilmeceleri çözmesi' kurgusu, izleyicide merak ve güçlü bir empati hissi uyandırır.",
+      "izlenme": 1221552,
+      "kat": 3.2,
+      "kaynak": "L7xcpUYJgOQ",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "İnsan Dayanıklılığının Kırılmaz Sanılan Sınırı: 4 Dakikalık Mil ve Beynin Koruma Mekanizması",
+      "aci": "Yıllarca insan kalbinin patlayacağı sanılan bu sınırın aşılması üzerinden, beynin 'merkezi vali' hipoteziyle kasları yorulmadan önce durdurma sistemini incelemek.",
+      "kaynak_baslik": "What Running a 4-Minute Mile Does to Your Body",
+      "neden": "Fizyoloji ve zihinsel bariyerlerin yıkılışını anlatan spor bilimi hikayeleri hem ilham verici hem de bilimsel açıdan ilgi çekicidir.",
+      "izlenme": 483886,
+      "kat": 5.0,
+      "kaynak": "N7FoE6kfUs4",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "Buzul Gölü Patlama Taşkınları (GLOF): Dağ Zirvelerinde Bekleyen Sessiz Tsunamiler",
+      "aci": "Yüksek irtifa buzullarının çöküşüyle oluşan dev taşkınların mekanizmasını açıklayıp Türkiye'nin Doğu Anadolu ve Kaçkar buzullarındaki benzer erime süreçleriyle kıyaslamak.",
+      "kaynak_baslik": "Nepal Disaster Explained: Glacier टूटा और आ गई तबाही! आखिर हुआ क्या?",
+      "neden": "Görsel olarak ürkütücü doğa olaylarının ardındaki jeolojik dinamiği sade dille açıklayan felaket analizleri yüksek izlenme oranlarına ulaşır.",
+      "izlenme": 1122885,
+      "kat": 17.6,
+      "kaynak": "fh5OKlOQFFo",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "Mikro Mimikler ve İstemsiz Beden Dili: Duyguların Gizlenemeyen Bilimsel İpuçları",
+      "aci": "Popüler şehir efsanelerinden arındırılmış olarak Paul Ekman'ın yüz kası kodlama sistemi üzerinden, insanların bastırmaya çalıştığı korku ve öfke gibi temel duyguların saniyelik işaretlerini göstermek.",
+      "kaynak_baslik": "How to Read People Like a Pro (Psychology Explend)",
+      "neden": "İnsan ilişkilerini çözme, yalanı ayırt etme ve sosyal psikoloji konuları Türk izleyicisinde her zaman en çok tıklanan kategoriler arasındadır.",
+      "izlenme": 149640,
+      "kat": 3.5,
+      "kaynak": "4SWDPqWKFxc",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "İnternet Tarihinin En Garip Kayıp Vakası: Gece Yarısı Yayını ve Gizemli Portre",
+      "aci": "Analog televizyon yayıncılığı döneminde ekrana yansıtılan gizemli bir kayıp ilanının dijital dedektifler tarafından yıllar sonra nasıl aydınlatıldığını ve arşivleme kültürünü ele almak.",
+      "kaynak_baslik": "The Joanna Lopez Internet Mystery Has Been Solved",
+      "neden": "Korku sınırına yaklaşan nostaljik gizemler ve internet dedektifliği hikayeleri, özellikle genç izleyici kitlesi için güçlü bir 'tavşan deliği' etkisi yaratır.",
+      "izlenme": 665386,
+      "kat": 11.1,
+      "kaynak": "SkDfd5D2REQ",
+      "kullanildi": false,
+      "tarih": "2026-11-11"
+    },
+    {
+      "konu": "Dünyanın En Issız Noktası: Point Nemo ve Okyanusun Ortasındaki Uzay Mezarlığı",
+      "aci": "En yakın karaya binlerce kilometre uzakta bulunan ve Uluslararası Uzay İstasyonu'ndaki astronotların karadaki insanlardan daha yakın olduğu bu noktanın coğrafi izolasyonunu anlatmak.",
+      "kaynak_baslik": "প্রশান্ত মহাসাগর: পৃথিবীর সবচেয়ে বড় ও रहस्यमय समुद्रের গল্প | Pacific Ocean | Bangla Documentary",
+      "neden": "Uzay mühendisliği ile okyanus coğrafyasının kesiştiği ekstrem yalnızlık konsepti, meraklı izleyicilerin ilgisini anında çeken bir ekstrem bilgi konusudur.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-11-11"
     },
     {
       "konu": "Kozmetiğin Ölümcül Tarihi: Zehirli Güzellik Trendleri",
@@ -207,127 +328,6 @@
       "izlenme": 2342886,
       "kat": 5.0,
       "kaynak": "69o-8Mtd3Kc",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Buz Devri mağara resimlerindeki gizemli nokta ve çizgilerin 20.000 yıllık bir av takvimi olduğunu kanıtlayan amatör araştırmacının keşfi.",
-      "aci": "Arkeologların yüz yıldır süsleme zannettiği işaretlerin, son buzul çağındaki avcı-toplayıcıların hayvanların üreme döngülerini kaydettiği insanlık tarihindeki ilk proto-yazı sistemi olması.",
-      "kaynak_baslik": "A hairdresser with no archaeology training solved a Roman mystery | Sam Kean",
-      "neden": "Tarihin en eski sembollerinin sıradan bir insanın saf dikkati ve akıl yürütmesiyle çözülmesi, izleyicide çok tatmin edici bir 'Aha!' anı oluşturur.",
-      "izlenme": 1156451,
-      "kat": 3.0,
-      "kaynak": "L7xcpUYJgOQ",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Fizik yasalarının geçmiş ile gelecek arasında hiçbir fark gözetmemesine rağmen zamanın neden sadece tek bir yöne aktığı: Entropi ve Zaman Oku.",
-      "aci": "Temel fizik formüllerinde zamanın geriye doğru akmasının hiçbir kuralı çiğnememesi, ancak evrenin düzensizliğe doğru amansız yürüyüşünün bizi geleceğe hapsetmesi.",
-      "kaynak_baslik": "8 Terrifying Facts About Time",
-      "neden": "Zamanın felsefi ve fiziksel yapısını sorgulatan popüler bilim anlatıları, izleyicinin düşünme alışkanlıklarını zorladığı için yüksek izlenme sürelerine ulaşır.",
-      "izlenme": 2241554,
-      "kat": 5.8,
-      "kaynak": "IlVzMF2A8C0",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Disiplin Psikolojisi ve Beynin Ödül Mekanizmasını Yönetme Yolları",
-      "aci": "İrade gücünün sınırlı bir kaynak olduğu ve beyni zorlamak yerine dopamin döngüsünü yeniden kodlayarak kalıcı disiplin inşa etmenin nörolojik arka planı.",
-      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
-      "neden": "Kişisel gelişim ve beyin mekanizmalarını bilimsel temelle anlatan videolar Türk izleyicisi tarafından yoğun ilgi görüyor.",
-      "izlenme": 4561176,
-      "kat": 23.9,
-      "kaynak": "CkP_8bkjf1E",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Amazon Yağmur Ormanlarında Kaybolan Kaşif Percy Fawcett ve Kayıp Z Şehri",
-      "aci": "Modern haritalama teknolojilerine ve yerli anlatılarına dayanarak El Dorado efsanesinin arkasındaki gerçek orman kentlerinin ve Fawcett'ın gizemli kayboluşunun incelenmesi.",
-      "kaynak_baslik": "The Lost City of Z | (Real story) Amazon Jungle's Greatest Mystery",
-      "neden": "Tarihi keşif faciaları ve çözülmemiş orman gizemleri kanalda her zaman yüksek izlenme potansiyeline sahip.",
-      "izlenme": null,
-      "kat": null,
-      "kaynak": null,
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Büyük Kanyon Oluşmadan Önce Bölgenin Jeolojik Geçmişi ve Kayıp Milyar Yıl",
-      "aci": "Jeolojide 'Büyük Uyumsuzluk' olarak bilinen ve Büyük Kanyon katmanları arasında eksik olan 1 milyar yıllık zaman diliminin yarattığı bilimsel bilmece.",
-      "kaynak_baslik": "What Was Here Before the Grand Canyon?",
-      "neden": "Dünyanın en ikonik doğa yapısının ardındaki şaşırtıcı ve az bilinen jeolojik anomali merak uyandırır.",
-      "izlenme": 542966,
-      "kat": 11.2,
-      "kaynak": "EjzcltNIiHk",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Tarihin En Ölümcül Havacılık Kazası: Tenerife Faciası",
-      "aci": "İki dev Boeing 747'nin sisli bir pistte çarpışmasına yol açan iletişim karmaşası ve insan faktörünün havacılık güvenlik kurallarını nasıl kökten değiştirdiği.",
-      "kaynak_baslik": "The DEADLIEST Aviation Disasters Explained",
-      "neden": "Büyük kaza belgeselleri ve adım adım felaket analizleri Türk izleyicisinin en çok tıkladığı türlerdendir.",
-      "izlenme": 151897,
-      "kat": 7.9,
-      "kaynak": "4Neh0NMh9Dk",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Zaman Kavramının Fiziksel ve Bilişsel Şaşırtıcı Gerçekleri",
-      "aci": "Zamanın aslında akmadığına dair görelilik kanıtları ve beynimizin süreyi algılarken yarattığı yanılsamaların derinlemesine anlatımı.",
-      "kaynak_baslik": "8 Terrifying Facts About Time",
-      "neden": "Varoluşsal fizik ve beyin algısı konuları yüksek etkileşim ve yorum üretir.",
-      "izlenme": 2240629,
-      "kat": 5.8,
-      "kaynak": "IlVzMF2A8C0",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Evrendeki En Nadir Görülen Maddeler ve Kozmik Olaylar",
-      "aci": "Gezegenimizde milyarlarca ton bulunan suyun evrendeki sıradışılığından yalnızca nötron yıldızı çarpışmalarında oluşan elementlere kadar kozmik nadirlikler.",
-      "kaynak_baslik": "The Rarest Things in the Universe",
-      "neden": "Uzay ve evren meraklıları için tonlarca çarpıcı bilgi içeren güçlü bir liste içeriği formatı sunar.",
-      "izlenme": 3789159,
-      "kat": 4.5,
-      "kaynak": "GGmVPLldvXY",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "1975 Chasnala Maden Faciası ve Yeraltı Sularının Çöküşü",
-      "aci": "Eski bir maden galerisinde biriken milyonlarca metreküp suyun aniden aktif ocağı basmasıyla yaşanan tarihin en dramatik maden kurtarma çabası.",
-      "kaynak_baslik": "भारत का सबसे भयावह खदान हादसा | Chasnala Mine Disaster 1975 में 375 खनिक कैसे मारे गए?",
-      "neden": "Maden kazaları ve insan dayanıklılığı öyküleri Türk izleyicisinde derin bir duygusal ve merak odaklı karşılık bulur.",
-      "izlenme": 255704,
-      "kat": 5.7,
-      "kaynak": "2DMBVbdnvFE",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Tarihteki En Gizemli Uçak Korsanı: D.B. Cooper Vakası",
-      "aci": "Bir yolcu uçağını kaçırıp 200 bin dolar fidyeyle fırtınalı gecede paraşütle atlayan ve ardında neredeyse hiç iz bırakmayan tek korsanın çözülemeyen hikayesi.",
-      "kaynak_baslik": "The D.B. Cooper Mystery Finally Solved — After 54 Years",
-      "neden": "Gerçek suç ve çözülmemiş gizem kategorisinin küresel çapta en popüler ve sürükleyici vakasıdır.",
-      "izlenme": 844093,
-      "kat": 4.0,
-      "kaynak": "wic9CnF7vro",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Venüs'ün Cehennem Yüzeyine İnen Sovyet Venera Görevleri",
-      "aci": "460 derece sıcaklık ve Dünya'nın 90 katı atmosfer basıncında erimeden önce sadece dakikalarca hayatta kalıp ilk yüzey fotoğraflarını gönderen sondaların inanılmaz mühendisliği.",
-      "kaynak_baslik": "The Soviet space Mission That Took Photos From Hell",
-      "neden": "Soğuk Savaş uzay yarışının az anlatılan ve mühendislik sınırlarını zorlayan en epik başarılarından biridir.",
-      "izlenme": 3092256,
-      "kat": 3.5,
-      "kaynak": "0RMFYativbA",
       "kullanildi": false,
       "tarih": "2026-11-02"
     }
