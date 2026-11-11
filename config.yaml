@@ -10,6 +10,7 @@ channel:
   # Kanalın odaklanacağı alt konular (bot bunlardan seçer, boş bırakırsan serbest seçer)
   # 1 Kas: hayatta kalma hikâyeleri kullanıcı onayıyla askıya alındı (438 gün 7 izlenme, mağara 2 izlenme)
   askida_konular: ["hayatta kal", "mahsur", "kurtarıl", "kurtarma", "sağ çık", "sağ kal", "survival"]
+  # 11 Kas: dolandırıcılık konuları SADECE cuma Vurgun Dosyaları'nda (konular.yaml). Diğer günler bilim/gizem/beden.
   topic_pool:
     - insan vücudunun şaşırtıcı gerçekleri
     - izleyicinin kendi vücudu/beyni hakkında sezgiye ters gerçekler ("vücudun sana bunu söylemiyor" tarzı; kanalda en çok izlenenlerden)
@@ -18,7 +19,6 @@ channel:
     - tarihin karanlık sırları ve az bilinen olayları
     - çözülememiş gizemler
     - doğal afetler ve felaketler
-    - tarihin en büyük vurgunları ve dolandırıcılıkları (Vurgun Dosyaları dışındaki günlerde de tutuyor)
     - çözülememiş gizemler ve kaybolma vakaları (D.B. Cooper tarzı; Short'larda çok tutuyor)
     - Çernobil gibi felaketlerin bilinmeyen tarafları
     - dünya rekorları ve uç noktalar
@@ -103,7 +103,9 @@ images:
 
 scout:
   enabled: true              # Konu avcısı: İngilizce'de patlamış videoların KONULARINI önerir (kopyalamaz)
-  every_n_days: 2            # Takvimde konu olmayan günlerin kaçta birinde bu listeden seçilsin
+  every_n_days: 1            # 11 Kas: takvimde konu olmayan HER gün önce bu listeden seç (yabancı kanallarda kanıtlanmış konular)
+  min_subs: 20000            # "orta düzey" kanal: en az bu kadar abone
+  max_subs: 1500000          # ...en fazla bu kadar (dev kanalların izlenmesi konudan değil kanaldan gelir)
 
 shorts:
   enabled: true

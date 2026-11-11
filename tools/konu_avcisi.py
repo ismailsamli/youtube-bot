@@ -17,12 +17,16 @@ from bot import uploader  # noqa: E402
 from bot.script_writer import LLM, _ask_json, _system  # noqa: E402
 from bot.utils import load_config, load_json, log, save_json  # noqa: E402
 
+# 11 Kas: dolandırıcılık aramaları çıkarıldı (o konu sadece cuma Vurgun Dosyaları'nda). Odak: bilim, gizem, beden.
 ARAMALAR = [
-    "unsolved mystery explained", "history dark secret documentary",
-    "human body facts you didn't know", "brain tricks psychology explained", "biggest fraud scam story",
-    "disaster what happened documentary", "strangest place on earth", "space scary facts",
-    "ancient civilization mystery", "engineering failure disaster", "deadliest animal facts",
+    "unsolved mystery explained", "history dark secret documentary", "disappearance mystery case",
+    "human body facts you didn't know", "what happens to your body when", "brain tricks psychology explained",
+    "space scary facts", "universe mind blowing facts", "deep ocean mystery", "strangest place on earth",
+    "ancient civilization mystery", "science explained what if", "disaster what happened documentary",
+    "engineering failure disaster", "deadliest animal facts",
 ]
+# Cuma dışı günlerde dolandırıcılık konusu gelmesin
+VURGUN = ("fraud", "scam", "ponzi", "con man", "heist", "dolandır", "vurgun", "saadet zinciri", "sahtekâr", "sahtekar")
 OUT = ROOT / "data" / "konu_onerileri.json"
 
 
@@ -59,12 +63,18 @@ def main():
         if not c or not v.get("views"):
             continue
         ratio = v["views"] / max(1, c["avg"])
-        if v["views"] >= 100_000 and ratio >= 3:
+        # orta düzey kanal (abone aralığı config > scout) + kendi ortalamasının en az 3 katı = konusu kanıtlanmış video
+        sc = cfg.get("scout", {})
+        if not (sc.get("min_subs", 20_000) <= c["subs"] <= sc.get("max_subs", 1_500_000)):
+            continue
+        if any(k in v["title"].lower() for k in VURGUN):
+            continue
+        if v["views"] >= 50_000 and ratio >= 3:
             adaylar.append({**v, "id": vid, "ratio": round(ratio, 1), "subs": c["subs"],
                             "score": round(math.log10(v["views"]) * min(ratio, 50), 1)})
     adaylar.sort(key=lambda x: -x["score"])
     adaylar = adaylar[:60]
-    log(f"{len(adaylar)} patlamış video (ortalamanın en az 3 katı, 100 bin+)")
+    log(f"{len(adaylar)} patlamış video (orta düzey kanal, ortalamasının en az 3 katı, 50 bin+)")
     if not adaylar:
         return
 
@@ -77,7 +87,10 @@ Kurallar:
 - Videoyu değil KONUYU alıyoruz; konu evrensel ve doğrulanabilir gerçeklere dayanmalı.
 - Güncel siyaset, seçimler, partiler, terör, savaş propagandası, dini/etnik tartışma, ünlü dedikodusu, sağlık
   tavsiyesi YOK. Kanaldaki şu videolarla aynı konuyu tekrar etme: {"; ".join(gecmis[-40:])}
-- Türk izleyicinin de merak edeceği konuları öne al.
+- Türk izleyicinin de merak edeceği konuları öne al. Konular bilim, uzay, insan vücudu/beyin, gizem, kaybolma
+  vakaları, tarih sırları, doğa olayları olsun; dolandırıcılık/vurgun konusu SEÇME (o seri ayrı).
+- YERELLEŞTİR: konuyu Türk izleyiciye göre kur — mümkünse Türkiye'den bir benzer örnek, karşılaştırma ya da
+  bağlantı ("aci" alanında belirt). Ama videonun başlığını, yapısını ve metnini birebir kopyalama.
 - Her öneri için: "konu" (Türkçe, bot için net konu cümlesi), "aci" (özgün bakış açısı, 1 cümle),
   "kaynak_baslik" (ilham alınan İngilizce başlık, aynen), "neden" (neden tutar, kısa).
 Adaylar:
@@ -89,7 +102,7 @@ Sadece JSON: {{"oneriler": [{{"konu": "...", "aci": "...", "kaynak_baslik": "...
     old = load_json(OUT, {"oneriler": []})
     kullanilan = {o["konu"] for o in old.get("oneriler", []) if o.get("kullanildi")}
     yeni = []
-    yasak = ("11 eylül", "terör", "saldırı", "bomba", "işid", "pkk", "el kaide", "seçim", "parti",
+    yasak = ("11 eylül", "terör", "saldırı", "bomba", "işid", "pkk", "el kaide", "seçim", "parti", *VURGUN,
              *[k.lower() for k in cfg.get("channel", {}).get("askida_konular", [])])
     for o in data.get("oneriler", [])[:12]:
         if any(k in (o.get("konu", "") + " " + o.get("kaynak_baslik", "")).lower() for k in yasak):

@@ -457,7 +457,8 @@ def scout_topic(cfg: dict):
     for o in data.get("oneriler", []):
         if not o.get("kullanildi") and o.get("konu"):
             metin = (o["konu"] + " " + o.get("kaynak_baslik", "")).lower()
-            if any(k in metin for k in askida) or any(len(koklar(o["konu"]) & e) >= 2 for e in eskiler):
+            vurgun = ("fraud", "scam", "ponzi", "dolandır", "vurgun", "saadet zinciri", "sahtekâr")
+            if any(k in metin for k in askida) or any(k in metin for k in vurgun) or any(len(koklar(o["konu"]) & e) >= 2 for e in eskiler):
                 continue
             o["kullanildi"] = True
             save_json(path, data)

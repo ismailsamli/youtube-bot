@@ -8,7 +8,7 @@
   konu: "Beyniniz size her gün bu 5 yalanı söylüyor: algı, hafıza, zaman ve görmediğiniz şeyler"
   notlar: "Kanalın en çok izlenen 'Vücudunuz Gözlerinizin Var Olduğunu BİLMİYOR' videosunun devamı niteliğinde. Başlık izleyiciye doğrudan seslensin (ör. 'Beyniniz Size Her Gün Bu 5 YALANI Söylüyor'). Her yalan bilimsel olarak doğrulanmış bir algı/beyin olgusu olsun (kör nokta, değişim körlüğü, sahte anılar, zaman algısı, sakkadik maskeleme gibi); abartma ve sağlık tavsiyesi verme. Son bölümde göz videosuna doğal bir atıf yap ('gözlerinin var olduğunu vücudunun bile bilmediğini anlattığımız videoyu izlemediysen...')."
 
-# ===================== VURGUN DOSYALARI (Salı ve Cuma) =====================
+# ===================== VURGUN DOSYALARI (haftada bir, Cuma) — 11 Kas: Salı bölümleri kaldırıldı, diğer günler bilim/gizem/beden =====================
 "2026-10-23":
   konu: "Bernie Madoff: Wall Street'in en saygın adamı tarihin en büyük saadet zincirini onlarca yıl nasıl gizledi?"
   seri: "Vurgun Dosyaları"
@@ -48,39 +48,39 @@
   seri: "Vurgun Dosyaları"
   bolum: 7
   tr: true
-  sonraki: "Salı günü: tek damla kanla her şeyi test edeceğini söyleyen şirket — Theranos"
+  sonraki: "Gelecek cuma: tek damla kanla her şeyi test edeceğini söyleyen şirket — Theranos"
   notlar: "Konuyu ekonomik mekanizma üzerinden anlat (yüksek faiz, mevduat sertifikası, zincirleme çöküş). Dönemin hükümeti, askerî yönetim, siyasetçiler ve siyasi olaylar hakkında HİÇBİR yorum, değerlendirme ya da suçlama yapma; dönemi sadece tarih olarak an. Cevher Özden hakkında sadece kesinleşmiş ve yaygın bilinen olguları kullan; kesin olmayan toplam rakamları 'tartışmalı' diye belirt."
-"2026-11-17":
+"2026-11-20":
   konu: "Theranos: tek damla kanla yüzlerce test vaadi milyar dolarlık bir yalana nasıl dönüştü?"
   seri: "Vurgun Dosyaları"
   bolum: 8
-  sonraki: "Cuma günü: gerçek bir blokzinciri bile olmayan 'kripto para' — OneCoin"
-"2026-11-20":
+  sonraki: "Gelecek cuma: gerçek bir blokzinciri bile olmayan 'kripto para' — OneCoin"
+"2026-11-27":
   konu: "OneCoin: gerçek bir blokzinciri olmayan kripto para milyarlarca doları nasıl topladı ve 'Kripto Kraliçe' nereye kayboldu?"
   seri: "Vurgun Dosyaları"
   bolum: 9
-  sonraki: "Salı günü: Amerika'nın en yenilikçi şirketi seçilen dev nasıl iflas etti — Enron"
-"2026-11-24":
+  sonraki: "Gelecek cuma: Amerika'nın en yenilikçi şirketi seçilen dev nasıl iflas etti — Enron"
+"2026-12-04":
   konu: "Enron: Amerika'nın en yenilikçi şirketi seçilen enerji devi muhasebe hileleriyle nasıl çöktü?"
   seri: "Vurgun Dosyaları"
   bolum: 10
-  sonraki: "Cuma günü: dünyanın kibritlerinin dörtte üçünü üreten 'Kibrit Kralı'nın sahte imparatorluğu — Ivar Kreuger"
-"2026-11-27":
+  sonraki: "Gelecek cuma: dünyanın kibritlerinin dörtte üçünü üreten 'Kibrit Kralı'nın sahte imparatorluğu — Ivar Kreuger"
+"2026-12-11":
   konu: "Ivar Kreuger, 'Kibrit Kralı': dünya kibrit üretiminin büyük kısmını kontrol eden İsveçli iş adamının sahte bilançolarla kurduğu imparatorluk ve 1932'deki çöküşü"
   seri: "Vurgun Dosyaları"
   bolum: 11
-  sonraki: "Salı günü: bilançodaki 1,9 milyar euro nereye kayboldu — Wirecard"
-"2026-12-01":
+  sonraki: "Gelecek cuma: bilançodaki 1,9 milyar euro nereye kayboldu — Wirecard"
+"2026-12-18":
   konu: "Wirecard: Almanya'nın yıldız teknoloji şirketinin bilançosundaki 1,9 milyar euro nasıl 'yok' çıktı?"
   seri: "Vurgun Dosyaları"
   bolum: 12
-  sonraki: "Cuma günü: Isaac Newton'ı bile batıran borsa balonu — South Sea"
-"2026-12-04":
+  sonraki: "Gelecek cuma: Isaac Newton'ı bile batıran borsa balonu — South Sea"
+"2026-12-25":
   konu: "South Sea Balonu (1720): Isaac Newton'ı bile servetinden eden ilk büyük borsa çılgınlığı"
   seri: "Vurgun Dosyaları"
   bolum: 13
-  sonraki: "Salı günü: serinin final dosyası — bir devlet fonundan kaybolan milyarlar, 1MDB"
-"2026-12-08":
+  sonraki: "Gelecek cuma: serinin final dosyası — bir devlet fonundan kaybolan milyarlar, 1MDB"
+"2027-01-01":
   konu: "1MDB: bir kalkınma fonundan milyarlarca dolar nasıl kayboldu ve Hollywood filmlerine nasıl aktı?"
   seri: "Vurgun Dosyaları"
   bolum: 14

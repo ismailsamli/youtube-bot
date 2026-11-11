@@ -572,7 +572,7 @@ def generate(cfg: dict, past_titles: list, forced_topic: str = None, extra: dict
         script["series"] = {"name": extra["series"], "episode": extra.get("episode")}
         script["playlist"] = extra["series"]
         script["description"] = (script["description"] + f"\n\n📁 {extra['series']} — Dosya #{extra.get('episode')}"
-                                 "\nYeni dosyalar her Salı ve Cuma 19:00'da. Serinin tamamı oynatma listesinde.")
+                                 "\nYeni dosyalar her Cuma 19:00'da. Serinin tamamı oynatma listesinde.")
     if extra.get("tr"):
         script["_tr"] = True
     if cfg["llm"].get("fact_check", False) or extra.get("tr") or extra.get("series"):
