@@ -456,4 +456,58 @@ KALIP.kapak = function (ctx, S) {
   icon(ctx, p.ikon || "soru", cx, cy, 500, 1, 2, "k1");
   tape(ctx, "kt1", cx + 150, cy - 330, 0.6, 1, 160);
 };
+// kanal girişi (jenerik): kırmızı disk + kâğıt kravat + isim şeridi. ~4 sn; sonu krem zemine yumuşak çıkış
+KALIP.intro = function (ctx, S) {
+  const t = S.ts, W = S.W, H = S.H, cx = W / 2, cy = H * 0.40;
+  const out = ease.inOut(win(t, S.d - 0.75, S.d));          // çıkış: her şey hafifçe yukarı kalkıp söner
+  ctx.save(); ctx.translate(0, -30 * out);   // sönme ffmpeg'de krem renge yapılır
+  // arkada iki büyük kâğıt daire yanlardan süzülür
+  const b = ease.out(win(t, 0, 0.9));
+  piece(ctx, "in_b1", shapes.circle(330, 60), shade(P.mustard, 0.55), { x: cx - 560 - (1 - b) * 500, y: cy + 120, depth: 1, edge: false });
+  piece(ctx, "in_b2", shapes.circle(260, 60), shade(P.sage, 0.6), { x: cx + 600 + (1 - b) * 500, y: cy - 60, depth: 1, edge: false });
+  // kâğıt ışınlar
+  const rk = ease.out(win(t, 0.15, 1.0));
+  for (let i = 0; i < 16; i++) {
+    const a0 = i / 16 * Math.PI * 2 + t * 0.05, a1 = a0 + Math.PI / 16, R = 900 * rk;
+    if (i % 2) piece(ctx, "in_r" + i, [[0, 0], [Math.cos(a0) * R, Math.sin(a0) * R], [Math.cos(a1) * R, Math.sin(a1) * R]], shade(P.mustard, 0.72), { x: cx, y: cy, depth: 0, edge: false });
+  }
+  // kırmızı disk + krem iç disk
+  const d = win(t, 0.2, 0.85);
+  piece(ctx, "in_d1", shapes.circle(250, 70), P.red, { x: cx, y: cy, depth: 3, amp: 4, scale: ease.outBack(d) });
+  piece(ctx, "in_d2", shapes.circle(220, 70), P.card, { x: cx, y: cy, depth: 1, amp: 3, scale: ease.outBack(win(t, 0.3, 0.95)) });
+  // kâğıt kravat: düğüm + gövde yukarıdan düşer, sallanıp oturur
+  const k1 = ease.settle ? ease.settle(win(t, 0.55, 1.25)) : ease.outBack(win(t, 0.55, 1.25));
+  const k2 = ease.settle ? ease.settle(win(t, 0.7, 1.45)) : ease.outBack(win(t, 0.7, 1.45));
+  const sw = Math.sin(t * 5) * 0.04 * (1 - win(t, 1.2, 2.2));
+  ctx.save(); ctx.translate(cx, cy - 150); ctx.rotate(sw);
+  piece(ctx, "in_k2", [[-34, 40], [34, 40], [70, 250], [0, 330], [-70, 250]], P.red, { y: -(1 - k2) * 700, depth: 3, amp: 2.5 });
+  piece(ctx, "in_k2s", [[-20, 70], [20, 70], [8, 300], [-8, 300]], shade(P.red, 0.82), { y: -(1 - k2) * 700, depth: 0, edge: false, alpha: 0.5 });
+  piece(ctx, "in_k1", [[-48, -10], [48, -10], [34, 46], [-34, 46]], shade(P.red, 0.85), { y: -(1 - k1) * 700, depth: 3, amp: 2 });
+  ctx.restore();
+  // yaka (krem iki üçgen) kravatın üstünde
+  const y = ease.out(win(t, 1.0, 1.4));
+  piece(ctx, "in_y1", [[-110, -200], [-6, -165], [-60, -95]], P.cream, { x: cx, y: cy, depth: 2, scale: y });
+  piece(ctx, "in_y2", [[110, -200], [6, -165], [60, -95]], P.cream, { x: cx, y: cy, depth: 2, scale: y });
+  // isim şeridi soldan açılır, yazı belirir
+  const s = ease.out(win(t, 1.15, 1.85)), sw2 = 1060;
+  if (s > 0.02) {
+    piece(ctx, "in_s", shapes.rect(sw2 * s + 10, 150), P.charcoal, { x: cx - sw2 / 2, y: cy + 300, depth: 3, rot: -0.012, amp: 3 });
+    ctx.save(); ctx.beginPath(); ctx.rect(cx - sw2 / 2, cy + 290, sw2 * s, 170); ctx.clip();   // yazı şeridin açıldığı kadar görünür
+    txt(ctx, "KIRMIZI KRAVAT", cx, cy + 410, 104, P.card, "head", "center", ease.out(win(t, 1.35, 1.8)));
+    ctx.restore();
+  }
+  if (s > 0.02) { tape(ctx, "in_t1", cx - sw2 / 2 + sw2 * s - 10, cy + 290, 0.6, s, 130); tape(ctx, "in_t2", cx - sw2 / 2 - 20, cy + 440, -0.5, s, 110); }
+  // alt etiket
+  const a = win(t, 1.9, 2.5);
+  if (a > 0) label(ctx, "in_a", "BİLİM · GİZEM · TARİH", cx, cy + 495, 40, P.mustard, P.charcoal, a, { font: "bold", anchor: "tc", from: "down", depth: 2 });
+  // uçuşan küçük kâğıt parçaları
+  for (let i = 0; i < 9; i++) {
+    const q = win(t, 0.6 + i * 0.05, 2.6 + i * 0.1);
+    if (q <= 0 || q >= 1) continue;
+    const ang = i / 9 * Math.PI * 2 + 0.3, r = 260 + 420 * ease.out(q);
+    piece(ctx, "in_c" + i, shapes.rect(26, 16), i % 3 === 0 ? P.red : i % 3 === 1 ? P.mustard : P.blue,
+      { x: cx + Math.cos(ang) * r, y: cy + Math.sin(ang) * r * 0.7 + 120 * q * q, rot: q * 6 + i, depth: 1, alpha: 1 - q, edge: false });
+  }
+  ctx.restore();
+};
 const KALIP_NAMES = Object.keys(KALIP);

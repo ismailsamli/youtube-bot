@@ -165,7 +165,7 @@ def make_outro(work: Path, cfg: dict, voice: Path = None) -> Path:
     else:
         audio_in = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
         af = f"[1:a]atrim=0:{d}[a]"
-    vf = f"[0:v]scale={W}:{H},fps={fps},setsar=1,format=yuv420p,fade=t=in:st=0:d=0.4[v]"
+    vf = f"[0:v]scale={W}:{H},fps={fps},setsar=1,format=yuv420p,fade=t=in:st=0:d=0.5:color=0xF3EBDD[v]"
     run(["ffmpeg", "-y", "-hide_banner", "-loop", "1", "-i", png.name, *audio_in,
          "-filter_complex", f"{vf};{af}", "-map", "[v]", "-map", "[a]", "-t", f"{d:.2f}",
          *ENCODE, out.name], cwd=work)

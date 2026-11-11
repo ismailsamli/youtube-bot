@@ -215,9 +215,14 @@ def build_plan(scenes: list, durs: list, w: int, h: int, cfg: dict, seri: str = 
     return plan
 
 
+KREM = "0xF3EBDD"   # kâğıt zemin rengi (motor/kagit.js > P.cream)
+
+
 def segment(scenes: list, audios: list, work: Path, name: str, cfg: dict, w: int = 1920, h: int = 1080,
-            seri: str = None, ust: str = None, pad: float = None) -> Path:
-    """Sahneleri motorla çizer, sahne seslerini (aralarında boşlukla) ekler → sesli MP4."""
+            seri: str = None, ust: str = None, pad: float = None, fade_in: float = 0,
+            fade_out: float = 0) -> Path:
+    """Sahneleri motorla çizer, sahne seslerini (aralarında boşlukla) ekler → sesli MP4.
+    fade_in/fade_out: başta/sonda krem kâğıt rengine yumuşak geçiş (jenerik ve bitiş ekranı öncesi/sonrası)."""
     work.mkdir(parents=True, exist_ok=True)
     pad = float(cfg["video"].get("scene_padding", 0.2)) if pad is None else pad
     durs = [media_duration(a) + pad for a in audios]
@@ -230,10 +235,19 @@ def segment(scenes: list, audios: list, work: Path, name: str, cfg: dict, w: int
     for i, (a, d) in enumerate(zip(audios, durs)):
         inputs += ["-i", str(a)]
         flt.append(f"[{i + 1}:a]aresample=44100,aformat=channel_layouts=stereo,apad=whole_dur={d:.3f},atrim=0:{d:.3f}[a{i}]")
-    flt.append("".join(f"[a{i}]" for i in range(len(audios))) + f"concat=n={len(audios)}:v=0:a=1[aud]")
+    af = ""
+    if fade_out:
+        af = f",afade=t=out:st={plan['sure'] - min(fade_out, 0.3):.3f}:d={min(fade_out, 0.3):.3f}"
+    flt.append("".join(f"[a{i}]" for i in range(len(audios))) + f"concat=n={len(audios)}:v=0:a=1{af}[aud]")
+    vf = []
+    if fade_in:
+        vf.append(f"fade=t=in:st=0:d={fade_in:.2f}:color={KREM}")
+    if fade_out:
+        vf.append(f"fade=t=out:st={plan['sure'] - fade_out:.3f}:d={fade_out:.2f}:color={KREM}")
+    flt.append(f"[0:v]{','.join(vf) or 'null'},format=yuv420p[vid]")
     out = work / f"{name}.mp4"
     run(["ffmpeg", "-y", "-v", "error", "-i", str(silent), *inputs, "-filter_complex", ";".join(flt),
-         "-map", "0:v", "-map", "[aud]", *ENCODE, "-t", f"{plan['sure']:.3f}", str(out)])
+         "-map", "[vid]", "-map", "[aud]", *ENCODE, "-t", f"{plan['sure']:.3f}", str(out)])
     silent.unlink(missing_ok=True)
     return out
 
@@ -274,13 +288,16 @@ def assemble(script: dict, audios: list, work: Path, final: Path, cfg: dict, int
     clips, mute, t = [], [], 0.0
     if cold:
         log(f"  Soğuk açılış çiziliyor ({len(cold)} sahne)...")
-        a = segment([s for s, _ in cold], [x for _, x in cold], work, "bolum_a", cfg)
+        # kanca bitince görüntü krem zemine yumuşakça söner, jenerik oradan açılır
+        a = segment([s for s, _ in cold], [x for _, x in cold], work, "bolum_a", cfg,
+                    fade_out=0.45 if intro is not None else 0)
         clips.append(a); t += media_duration(a)
     if intro is not None:
         d = media_duration(intro)
         mute.append((t, t + d)); clips.append(intro); t += d
     log(f"  Ana bölüm çiziliyor ({len(main)} sahne)...")
-    clips.append(segment([s for s, _ in main], [x for _, x in main], work, "bolum_b", cfg, seri=seri))
+    clips.append(segment([s for s, _ in main], [x for _, x in main], work, "bolum_b", cfg, seri=seri,
+                         fade_in=0.35 if intro is not None else 0, fade_out=0.5 if outro is not None else 0))
     if outro is not None:
         clips.append(outro)
     used = concat(clips, work, final, cfg, mute)

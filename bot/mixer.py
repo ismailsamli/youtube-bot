@@ -128,8 +128,9 @@ def mix(video: Path, final: Path, cfg: dict, work: Path, mute: list = None, seed
         gain = max(0.02, min(gain, 2.0))
         env = ""
         if mute:
-            cond = "+".join(f"between(t,{a:.2f},{b:.2f})" for a, b in mute)
-            env = f",volume='if({cond},0.0,1.0)':eval=frame"
+            # her sessiz aralığın önünde/arkasında 0,6 sn'lik yumuşak iniş-çıkış (birden kesilmez)
+            R = 0.6
+            env = ",volume='" + "*".join(f"clip(max(({a:.2f}-t)/{R},(t-{b:.2f})/{R}),0,1)" for a, b in mute) + "':eval=frame"
         duck = v.get("music_duck", {}) or {}
         # eşik anlatıcının seviyesine göre: konuşma başlayınca müzik ~15 dB kısılır
         lvl_sc = min(64.0, max(0.02, 10 ** ((-20.0 - voice_i) / 20)))   # anlatıcı -20 seviyesine çekilerek ölçülür

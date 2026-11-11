@@ -61,7 +61,7 @@ Zamanlama: `video-uret.yml` her gün **11:13 TR** (08:13 UTC) çalışır. Sıra
 | `tek_short.py` | Uzun videoya bağlı olmayan tek Short |
 | `muzik_indir.py` | CC BY lisanslı müzikleri `assets/music`'e indirir, `kaynaklar.json`'a atıf yazar |
 | `ses_ornekleri.py` / `gorsel_ornekleri.py` | Ses ve çizim tarzı denemeleri |
-| `intro_animasyon.py` | `assets/intro_animasyon.mp4` giriş animasyonunu üretir |
+| `intro_kagit.py` | `assets/intro_animasyon.mp4` kâğıt tarzı girişi (4,2 sn, krem zemine yumuşak geçişli) üretir. Eski çizgi film girişi: `intro_animasyon.py` |
 | `ffmpeg_kur.sh` | GitHub sunucusunda FFmpeg ve font kurulumu |
 
 ### Diğer klasörler
