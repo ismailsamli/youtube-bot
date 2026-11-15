@@ -971,17 +971,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261113-1641_tarihi-degistiren-kaza-12-000-yil-once-ne-oldu#short1",
-    "title": "12.000 Yıl Önce Dünyayı Donduran Büyük Felaket",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "_uhR-_Zhqew",
-    "publish_at": "2026-11-15T12:00:00+03:00",
-    "comment": "Sizce bu büyük felaket yaşanmasaydı insanlık tarihi nasıl şekillenirdi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/jfTVQxx7TI8",
-    "long_video": "jfTVQxx7TI8",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261113-1641_tarihi-degistiren-kaza-12-000-yil-once-ne-oldu#short2",
     "title": "Göbeklitepe'deki Taşlara Kazınan 12 Bin Yıllık Gizem",
     "type": "short",
@@ -993,6 +982,23 @@
     "hedef": "yaklaşık 50 sn"
   },
   {
+    "folder": "20261114-1513_irade-diye-bir-sey-yok-mu-disiplinin-bilimsel-sirr",
+    "title": "İrade Diye Bir Şey YOK mu? Disiplinin Bilimsel Sırrı",
+    "status": "üretiliyor"
+  },
+  {
+    "folder": "20261113-1641_tarihi-degistiren-kaza-12-000-yil-once-ne-oldu#short1",
+    "title": "12.000 Yıl Önce Dünyayı Donduran Büyük Felaket",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "_uhR-_Zhqew",
+    "publish_at": "2026-11-15T12:00:00+03:00",
+    "comment": "Sizce bu büyük felaket yaşanmasaydı insanlık tarihi nasıl şekillenirdi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/jfTVQxx7TI8",
+    "long_video": "jfTVQxx7TI8",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
     "folder": "20261113-1641_tarihi-degistiren-kaza-12-000-yil-once-ne-oldu",
     "title": "Tarihi Değiştiren KAZA: 12.000 Yıl Önce Ne Oldu?",
     "status": "yüklendi",
@@ -1000,11 +1006,39 @@
     "publish_at": "2026-11-14T19:00:00+03:00",
     "comment": "Sizce Göbeklitepe bir felaketi anmak için mi yoksa gökyüzünü izlemek için mi inşa edildi? Yorumlarda tartışalım! 👇",
     "playlist": "Tarihin Karanlık Sırları",
-    "playlist_done": true
+    "playlist_done": true,
+    "comment_done": true
   },
   {
-    "folder": "20261114-1513_irade-diye-bir-sey-yok-mu-disiplinin-bilimsel-sirr",
-    "title": "İrade Diye Bir Şey YOK mu? Disiplinin Bilimsel Sırrı",
-    "status": "üretiliyor"
+    "folder": "20261115-1614_bermuda-seytan-ucgeni-aslinda-neden-gemi-yutuyor#short1",
+    "title": "Bermuda Şeytan Üçgeni Gemileri Nasıl Yutuyor?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "z83jd5gsGGE",
+    "publish_at": "2026-11-17T12:00:00+03:00",
+    "comment": "Sizce okyanus tabanında daha ne sırlar saklanıyor?\n\nHikâyenin tamamı burada 👉 https://youtu.be/-Q7UEZ3R8aM",
+    "long_video": "-Q7UEZ3R8aM",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261115-1614_bermuda-seytan-ucgeni-aslinda-neden-gemi-yutuyor#short2",
+    "title": "Karadeniz'deki Patlamaya Hazır Dev Saatli Bomba",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "Mu-Ch-lir3A",
+    "publish_at": "2026-11-17T21:00:00+03:00",
+    "comment": "Deniz tabanındaki gaz patlamalarını hiç duymuş muydunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/-Q7UEZ3R8aM",
+    "long_video": "-Q7UEZ3R8aM",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261115-1614_bermuda-seytan-ucgeni-aslinda-neden-gemi-yutuyor",
+    "title": "Bermuda Şeytan Üçgeni Aslında Neden GEMİ YUTUYOR?",
+    "status": "yüklendi",
+    "video_id": "-Q7UEZ3R8aM",
+    "publish_at": "2026-11-16T19:00:00+03:00",
+    "comment": "Sizce okyanusların dibinde henüz keşfedemediğimiz daha büyük tehlikeler olabilir mi? 👇",
+    "playlist": "Doğanın Gücü: Afetler ve Canlılar",
+    "playlist_done": true
   }
 ]
