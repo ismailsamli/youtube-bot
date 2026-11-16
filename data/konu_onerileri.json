@@ -1,16 +1,137 @@
 {
-  "guncelleme": "2026-11-11",
+  "guncelleme": "2026-11-16",
   "oneriler": [
     {
-      "konu": "Genç Dryas Çarpma Hipotezi ve Medeniyetin Bilinen Tarihini Sarsan Arkeolojik Keşifler",
-      "aci": "Göbeklitepe ve Karahantepe bulgularıyla doğrudan bağ kurarak, insanlığın yerleşik hayata geçişine dair bilinen ezberleri bozan kozmik felaket teorisini bilimsel kanıtlarla incelemek.",
-      "kaynak_baslik": "The Ancient Civilization Theory That Blew Joe Rogan's Mind",
-      "neden": "Göbeklitepe'nin küresel arkeolojiyi altüst etmesi Türk izleyicisinde büyük bir merak ve aidiyet uyandırıyor; bilimsel gizem videoları kanalda yüksek izlenme potansiyeline sahip.",
+      "konu": "Herodot'un Anlattığı Mısır'ın Kayıp Yeraltı Labirenti",
+      "aci": "Bodrum doğumlu antik tarihçi Herodot'un bizzat gezip Piramitlerden daha görkemli olduğunu yazdığı ancak asırlarca mit sanılan Hawara yeraltı labirentinin jeofizik taramalarla ortaya çıkan izleri.",
+      "kaynak_baslik": "Herodotus Said It Was More Impressive Than The Pyramids. But Egypt Said A Labyrinth Didn't Exist.",
+      "neden": "Antik Mısır ve kayıp arkeolojik yapılar izleyicinin en çok tıkladığı gizem temalarındandır; piramitlerin ötesinde gizli bir yeraltı şehri iddiası yüksek merak uyandırır.",
       "izlenme": null,
       "kat": null,
       "kaynak": null,
-      "kullanildi": true,
-      "tarih": "2026-11-11"
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Dünyanın En Derin ve Gizemli Su Kütlesi: Baykal Gölü",
+      "aci": "Dünyadaki sıvı tatlı suyun beşte birini barındıran 1600 metrelik bu dev yarık gölün izole ekosistemini Van Gölü'nün mikrobiyalitleri ve endemik su altı yaşamıyla kıyaslayarak incelemek.",
+      "kaynak_baslik": "Lake Baikal: What They Found in the Deepest Lake on Earth",
+      "neden": "Uç coğrafyalar, dev su kütleleri ve derinlik korkusu (talasofobi) izleyicide güçlü bir keşif duygusu tetikler.",
+      "izlenme": 372118,
+      "kat": 3.0,
+      "kaynak": "qC9wn-d1WNo",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Rüyaların Katmanları ve Karabasan Olayının Nörobiyolojisi",
+      "aci": "REM uykusunun derinliklerinde beynin simülasyon mekanizması ile Türk halk anlatılarında 'karabasan' olarak bilinen uyku felcinin beyin motor korteksindeki kilitlenme gerçeği.",
+      "kaynak_baslik": "EVERY LEVEL OF DREAMING",
+      "neden": "Kişisel deneyimle örtüşen biyolojik gizemler yüksek paylaşım ve izlenme süresi yakalar; herkes rüya görür ve uyku felci evrensel bir meraktır.",
+      "izlenme": 1058843,
+      "kat": 5.9,
+      "kaynak": "Fue130RyEfo",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Güneşsiz Uçurumlarda Devleşen Canlılar: Derin Deniz Gigantizmi",
+      "aci": "Akdeniz gibi sıcak ve dar denizlerin aksine okyanusun kilometrelerce altındaki zifiri karanlık ve yüksek basınçta canlıların minyatürleşmek yerine neden devasa boyutlara ulaştığının biyolojik açıklaması.",
+      "kaynak_baslik": "Deep Sea Giants Are Everywhere. We've Been Searching Wrong",
+      "neden": "Derin deniz yaratıkları görsel olarak büyüleyicidir; doğanın akılalmaz adaptasyonları her yaş grubunda organik merak uyandırır.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Süper El Niño: Dünyayı Kasıp Kavuran İklim Döngüsü",
+      "aci": "Pasifik Okyanusu'ndaki sıcaklık salınımının binlerce kilometre ötedeki Akdeniz çanağını, Türkiye'deki aşırı sıcak dalgalarını ve ani kuraklık-sel döngülerini nasıl doğrudan tetiklediği.",
+      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
+      "neden": "Hava olayları ve olağanüstü doğa felaketleri özellikle son yıllardaki iklim dengesizlikleri sebebiyle doğrudan günlük hayatı ilgilendiren popüler bir konudur.",
+      "izlenme": 2354335,
+      "kat": 4.9,
+      "kaynak": "69o-8Mtd3Kc",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Modern İnsandan Önce Yapı İnşa Eden Erken İnsansılar",
+      "aci": "Zambiya'da bulunan yarım milyon yıllık işlenmiş ahşap yapıların kanıtladığı gibi mimarinin Homo sapiens'ten çok önce başladığı gerçeği ve insan evriminin teknoloji tarihi.",
+      "kaynak_baslik": "Someone Was Building Before Our Species Existed",
+      "neden": "'Tarih kitaplarını yeniden yazdıran keşif' teması bilim ve antropoloji meraklılarında güçlü bir şaşkınlık ve merak oluşturur.",
+      "izlenme": 945001,
+      "kat": 3.6,
+      "kaynak": "KmmyBiTild4",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "İnsan Bedeninin Fiziksel Sınırları: 4 Dakikalık Mil Koşusu",
+      "aci": "Bir zamanlar insan kalbinin patlayacağı düşünülen 4 dakikada 1 mil koşma sınırının aşılmasıyla açığa çıkan laktik asit eşiği, oksijen transferi ve nöromüsküler dayanıklılık bilimi.",
+      "kaynak_baslik": "What Running a 4-Minute Mile Does to Your Body",
+      "neden": "'İnsan bedeni en fazla neye dayanabilir?' sorusu izleyiciyi ekrana bağlayan ve kişisel potansiyel hissini besleyen sağlam bir fizyoloji konusudur.",
+      "izlenme": 488116,
+      "kat": 5.0,
+      "kaynak": "N7FoE6kfUs4",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Zihinsel Dayanıklılık (Resilience) ve Amigdala Kontrolü",
+      "aci": "Büyük krizler, afetler ve yoğun stres anlarında beynin dağılmasını engelleyen prefrontal korteks mekanizması ve Türk insanının kriz anlarındaki psikolojik sağlamlık dinamikleri.",
+      "kaynak_baslik": "Psychology of Resilience: Build a Mind So Strong It Scares People",
+      "neden": "Zor zamanlardan geçen geniş kitlelerin zihinsel güç ve panik kontrolü konularına olan psikolojik ilgisi çok yüksektir.",
+      "izlenme": 1669543,
+      "kat": 8.3,
+      "kaynak": "TRd1kuUGazE",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Buzul Göllerinin Patlaması: Dağları Yutan Doğal Afet Fiziği",
+      "aci": "Yüksek dağ zirvelerinde biriken buzul sularının doğal setleri yırtarak vadileri saniyeler içinde silip süpürme mekanizması ve Kaçkarlar ile Ağrı Dağı'ndaki eriyen buzul hareketliliği.",
+      "kaynak_baslik": "Nepal's 2026 Disaster Explained: The Glacier That Wiped Out a Valley",
+      "neden": "Fizik motoru simülasyonları ve büyük jeolojik yıkımların bilimsel analizi YouTube bilgi izleyicisinde yüksek retention sağlar.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Yeraltında Su Baskını Faciası: Chasnala ve Maden Fiziği",
+      "aci": "Milyonlarca metreküp suyun eski bir maden galerisinden çalışan madencilerin üzerine boşalmasıyla yaşanan Chasnala felaketi üzerinden yeraltı basınç ve hidrolojik güvenlik riskleri.",
+      "kaynak_baslik": "चासनाला खदान हादसा 1975 | Chasnala Mine Disaster | भारत की भयानक Mine Tragedy",
+      "neden": "Yeraltında mahsur kalma ve endüstriyel felaketlerin anatomisi, Türkiye'nin Soma ve Ermenek hafızasıyla da örtüşen derin bir empati ve merak alanıdır.",
+      "izlenme": 694787,
+      "kat": 9.0,
+      "kaynak": "mjEQyO-co1A",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Mikro Mimikler ve Yalan Söylerken İstemsiz Çalışan Yüz Kasları",
+      "aci": "Kültürel el-kol hareketlerinin ötesinde, beynin duyguyu bastırmaya çalışırken saliseler içinde yüz kaslarına gönderdiği evrensel mikro ifadelerin bilimsel tespiti.",
+      "kaynak_baslik": "How to Read People Like a Pro (Psychology Explend)",
+      "neden": "İnsan ilişkilerinde güven ve yalan tespiti psikolojisi, pratik hayata dokunduğu için tıklama ve izlenme süresini doğrudan artıran bir başlıktır.",
+      "izlenme": 150025,
+      "kat": 3.5,
+      "kaynak": "4SWDPqWKFxc",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
+    },
+    {
+      "konu": "Gece Yarısı Yayınlanan Gizemli Ekran: Joanna Lopez Olayı",
+      "aci": "1980'lerde televizyon yayını kapandıktan sonra ekranda beliren ürpertici kayıp ilanının ardındaki çözülen gerçek ve tek kanallı dönemden internet çağına yayıncılık gizemleri.",
+      "kaynak_baslik": "The Joanna Lopez Internet Mystery Has Been Solved",
+      "neden": "Nostalji, karanlık internet gizemleri ve analog korku (analog horror) ögeleri genç-orta yaş grubunda viral etki oluşturan güçlü bir internet kültürü konusudur.",
+      "izlenme": 666640,
+      "kat": 11.0,
+      "kaynak": "SkDfd5D2REQ",
+      "kullanildi": false,
+      "tarih": "2026-11-16"
     },
     {
       "konu": "Derin Deniz Devleşmesi (Abis Devliği) ve Okyanus Tabanının Biyolojik Gizemleri",
@@ -21,28 +142,6 @@
       "kat": null,
       "kaynak": null,
       "kullanildi": false,
-      "tarih": "2026-11-11"
-    },
-    {
-      "konu": "Beynin Ödül Mekanizması ve İrade Yanılsaması: Disiplinin Nörobiyolojisi",
-      "aci": "Zorlama motivasyon yerine dopamin döngüsünü ve beynin enerji koruma eğilimini anlayarak alışkanlık inşa etmenin bilimsel ve pratik formülünü sunmak.",
-      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
-      "neden": "Özellikle sınavlara hazırlanan ve kariyer odaklı 18-35 yaş Türk gençliğinde erteleme hastalığı ve odaklanma sorunları sürekli yüksek arama hacmine sahiptir.",
-      "izlenme": 5069941,
-      "kat": 25.5,
-      "kaynak": "CkP_8bkjf1E",
-      "kullanildi": true,
-      "tarih": "2026-11-11"
-    },
-    {
-      "konu": "Bermuda Şeytan Üçgeni Efsanesinin Arkasındaki Doğa Olayları: Metan Çıkışları ve Dev Dalgalar",
-      "aci": "Komplo teorilerini bir kenara bırakıp Karadeniz tabanında da benzerleri bulunan dev metan hidrat rezervlerinin ve okyanus akıntılarının gemileri nasıl aniden batırabildiğinin fiziğini göstermek.",
-      "kaynak_baslik": "Something is Wrong With Bermuda",
-      "neden": "Popüler gizemlerin bilimsel ve mantıklı açıklamalarla çürütülmesi, tık tuzağına düşmeden kaliteli bilgi arayan izleyicide yüksek tatmin sağlar.",
-      "izlenme": 475826,
-      "kat": 5.4,
-      "kaynak": "B7LT6Fi6VQo",
-      "kullanildi": true,
       "tarih": "2026-11-11"
     },
     {
@@ -231,105 +330,6 @@
       "kaynak": "Tvqtq6IjSXI",
       "kullanildi": false,
       "tarih": "2026-11-09"
-    },
-    {
-      "konu": "1975 Chasnala Maden Faciası: Su Altında Kalan 375 Madenci",
-      "aci": "Milyonlarca metreküp suyun dakikalar içinde bir maden ocağını yutması ve mühendislik ihmallerinin doğurduğu büyük dram.",
-      "kaynak_baslik": "भारत का सबसे भयावह खदान हादसा | Chasnala Mine Disaster 1975 में 375 खनिक कैसे मारे गए?",
-      "neden": "Mühendislik hataları ve yeraltı felaketleri dramatik anlatımla birleştiğinde güçlü bir duygusal bağ ve yüksek izlenme sağlar.",
-      "izlenme": 593693,
-      "kat": 7.0,
-      "kaynak": "2DMBVbdnvFE",
-      "kullanildi": false,
-      "tarih": "2026-11-09"
-    },
-    {
-      "konu": "Kriminalistikte Robot Resimlerin Gücü ve İnsan Hafızasının Yanılgıları",
-      "aci": "Bir suçlunun yüzünü hatırlamaya çalışan insan beyninin nasıl yanılabildiği ve adli çizimlerin bazen bir dehşet figürüne dönüşme sebebi.",
-      "kaynak_baslik": "The Creepiest Police Sketches Explained",
-      "neden": "Gizem, suç bilimi ve insan psikolojisinin kesiştiği görsel içerikler izleyicinin merak duygusunu anında tetikler.",
-      "izlenme": 1164697,
-      "kat": 3.2,
-      "kaynak": "kzDH2prCozk",
-      "kullanildi": false,
-      "tarih": "2026-11-09"
-    },
-    {
-      "konu": "1971 yılında bir yolcu uçağını kaçırıp 200 bin dolarla paraşütle gece karanlığına atlayan D.B. Cooper'ın çözülemeyen sırrı.",
-      "aci": "Amerikan tarihinin tek çözülememiş korsanlık vakasında FBI'ın yarım asır boyunca takip ettiği kravattaki nadir titanyum parçacıklarının gösterdiği gizli rota.",
-      "kaynak_baslik": "The D.B. Cooper Mystery Finally Solved — After 54 Years",
-      "neden": "Gizemli kaçış hikayeleri, kusursuz firar ve çözülmemiş kriminal bilmeceler Türk YouTube kitlesinde her zaman yüksek oranda izlenir.",
-      "izlenme": 845293,
-      "kat": 4.0,
-      "kaynak": "wic9CnF7vro",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Büyük Kanyon'daki kaya tabakalarında Dünya'nın 1 milyar yılı aşkın jeolojik kaydının tamamen kayıp olması: Büyük Uyumsuzluk bilmecesi.",
-      "aci": "Gezegenimizin jeolojik tarihinin dörtte birini temsil eden devasa kaya katmanlarını yeryüzünden kazıyıp yok eden 'kartopu dünya' buzulları teorisi.",
-      "kaynak_baslik": "What Was Here Before the Grand Canyon?",
-      "neden": "Dünyanın geçmişine dair açıklanması zor devasa jeolojik bilmeceler, doğa ve bilim meraklılarında büyük bir 'nasıl yani' hissi uyandırır.",
-      "izlenme": 543105,
-      "kat": 11.2,
-      "kaynak": "EjzcltNIiHk",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "1776'da Bavyera'da kurulan gerçek İlluminati cemiyetinin doğuşu, 10 yıl içinde dağılması ve modern dünyayı yönettiği mitinin nasıl üretildiği.",
-      "aci": "Aydınlanma çağının kilise baskısına karşı kurulmuş küçük ve başarısız bir entelektüel öğrenci grubunun, 20. yüzyıl popüler kültüründe küresel bir komploya evrilme süreci.",
-      "kaynak_baslik": "क्या ILLUMINATI वापस आ गया?😳 Illuminati का असली सच | Akshat Gupta | The Fact-Tree #illuminati",
-      "neden": "Türkiye'de hakkında en çok efsane uydurulan gizli cemiyet konusunun gerçek tarihi belgelerle dürüstçe açıklanması devasa bir merak havuzuna hitap eder.",
-      "izlenme": 2111343,
-      "kat": 23.4,
-      "kaynak": "wR2hmAa61HQ",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Antik Mısırlıların demir ve çelik olmadan, sadece bakır aletler, kuvars kumu ve su kullanarak devasa granit blokları nasıl milimetrik kestiği.",
-      "aci": "Gizemcilerin 'kayıp uzaylı teknolojisi' iddialarına karşı deneysel arkeologların ve taş ustalarının antik atölye tekniklerini bizzat uygulayarak kanıtlaması.",
-      "kaynak_baslik": "Graham Hancock Reveals How Ancient Egyptians Cut Granite — With Proof",
-      "neden": "Antik Mısır'ın inşaat sırları ve piramit tartışmaları mantıklı ve bilimsel açıklamalarla sunulduğunda yüksek etkileşim alır.",
-      "izlenme": 565593,
-      "kat": 4.5,
-      "kaynak": "9vc2CiX27Lc",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "İnsan beyninin neden motivasyona değil de alışkanlık ve sürtünme eşiklerine göre çalıştığı; disiplinin nörolojik mekanizması.",
-      "aci": "İrade gücünün sınırlı bir zihinsel yakıt olduğu gerçeği ve beynin dopamin döngüsünü zor işleri arzulayacak şekilde yeniden yapılandırmanın kanıtlanmış nörolojik yolu.",
-      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
-      "neden": "Zihin, odaklanma ve üretkenliğin nörolojik temellerini anlatan bilimsel içerikler genç kitle tarafından hızla paylaşılıp kaydedilir.",
-      "izlenme": 4568843,
-      "kat": 23.9,
-      "kaynak": "CkP_8bkjf1E",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "Yerkabuğunda toplam miktarı gramlarla ölçülen Astatin'den laboratuvarda sadece birkaç atomu üretilebilen Oganesson'a kadar evrendeki en nadir maddeler.",
-      "aci": "Periyodik tablonun sınırlarında yaşayan bu maddelerin doğada neden neredeyse hiç var olamadığı ve bilim insanlarının onları saniyelerin milyonda birinde yakalama yarışı.",
-      "kaynak_baslik": "The Rarest Things in the Universe",
-      "neden": "Uç noktadaki bilimsel gerçekler ve elementlerin bilinmeyen tuhaf özellikleri bilgi videoları arasında yüksek tıklama oranına sahiptir.",
-      "izlenme": 3790959,
-      "kat": 4.5,
-      "kaynak": "GGmVPLldvXY",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
-    },
-    {
-      "konu": "1876-1878 yıllarında okyanus akıntılarının kırılmasıyla ortaya çıkan Süper El Niño'nun kıtalararası yol açtığı devasa kuraklık felaketi.",
-      "aci": "Pasifik Okyanusu'ndaki birkaç derecelik su sıcaklığı artışının muson rüzgarlarını kilitleyerek Çin'den Brezilya'ya on milyonlarca insanı etkileyen bir zincirleme felakete dönüşmesi.",
-      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
-      "neden": "İklim sistemlerinin küresel gücünü ve tarihin en yıkıcı ama az bilinen doğa olaylarını anlatan hikayeler güçlü bir merak uyandırır.",
-      "izlenme": 2342886,
-      "kat": 5.0,
-      "kaynak": "69o-8Mtd3Kc",
-      "kullanildi": false,
-      "tarih": "2026-11-02"
     }
   ]
 }
