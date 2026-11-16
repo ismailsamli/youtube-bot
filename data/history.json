@@ -971,17 +971,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261113-1641_tarihi-degistiren-kaza-12-000-yil-once-ne-oldu#short2",
-    "title": "Göbeklitepe'deki Taşlara Kazınan 12 Bin Yıllık Gizem",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "wJ-vwqAD7wE",
-    "publish_at": "2026-11-15T21:00:00+03:00",
-    "comment": "Sizce Göbeklitepe devasa bir astronomi gözlemevi olarak kullanılmış olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/jfTVQxx7TI8",
-    "long_video": "jfTVQxx7TI8",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261114-1513_irade-diye-bir-sey-yok-mu-disiplinin-bilimsel-sirr",
     "title": "İrade Diye Bir Şey YOK mu? Disiplinin Bilimsel Sırrı",
     "status": "üretiliyor"
@@ -1032,6 +1021,18 @@
     "hedef": "yaklaşık 50 sn"
   },
   {
+    "folder": "20261113-1641_tarihi-degistiren-kaza-12-000-yil-once-ne-oldu#short2",
+    "title": "Göbeklitepe'deki Taşlara Kazınan 12 Bin Yıllık Gizem",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "wJ-vwqAD7wE",
+    "publish_at": "2026-11-15T21:00:00+03:00",
+    "comment": "Sizce Göbeklitepe devasa bir astronomi gözlemevi olarak kullanılmış olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/jfTVQxx7TI8",
+    "long_video": "jfTVQxx7TI8",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
     "folder": "20261115-1614_bermuda-seytan-ucgeni-aslinda-neden-gemi-yutuyor",
     "title": "Bermuda Şeytan Üçgeni Aslında Neden GEMİ YUTUYOR?",
     "status": "yüklendi",
@@ -1039,6 +1040,39 @@
     "publish_at": "2026-11-16T19:00:00+03:00",
     "comment": "Sizce okyanusların dibinde henüz keşfedemediğimiz daha büyük tehlikeler olabilir mi? 👇",
     "playlist": "Doğanın Gücü: Afetler ve Canlılar",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261116-1846_herodot-un-bahsettigi-yeralti-labirenti-bulundu-mu#short1",
+    "title": "Yüzyıllardır Gizlenen Yeraltı Labirenti Neden Saklanıyor?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "CGXrz4JhRzg",
+    "publish_at": "2026-11-18T12:00:00+03:00",
+    "comment": "Sizce Petrie bu devasa tavanı nasıl fark edemedi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/k1SG6EdTCKI",
+    "long_video": "k1SG6EdTCKI",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261116-1846_herodot-un-bahsettigi-yeralti-labirenti-bulundu-mu#short2",
+    "title": "Mısır'daki Gizemli Yeraltı Labirenti Neden Yasaklandı?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "PYUlzZZ3nU4",
+    "publish_at": "2026-11-18T21:00:00+03:00",
+    "comment": "Sizce Mısır yetkilileri bu yeraltı labirentinin verilerini neden yayınlamadı?\n\nHikâyenin tamamı burada 👉 https://youtu.be/k1SG6EdTCKI",
+    "long_video": "k1SG6EdTCKI",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261116-1846_herodot-un-bahsettigi-yeralti-labirenti-bulundu-mu",
+    "title": "Herodot’un Bahsettiği YERALTI Labirenti Bulundu mu?",
+    "status": "yüklendi",
+    "video_id": "k1SG6EdTCKI",
+    "publish_at": "2026-11-17T19:00:00+03:00",
+    "comment": "Sizce Mısır yönetimi bu devasa yeraltı labirentinin kazılmasını neden engelliyor olabilir? 👇",
+    "playlist": "Tarihin Karanlık Sırları",
     "playlist_done": true
   }
 ]
