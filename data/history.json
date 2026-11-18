@@ -1022,17 +1022,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261116-1846_herodot-un-bahsettigi-yeralti-labirenti-bulundu-mu#short1",
-    "title": "Yüzyıllardır Gizlenen Yeraltı Labirenti Neden Saklanıyor?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "CGXrz4JhRzg",
-    "publish_at": "2026-11-18T12:00:00+03:00",
-    "comment": "Sizce Petrie bu devasa tavanı nasıl fark edemedi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/k1SG6EdTCKI",
-    "long_video": "k1SG6EdTCKI",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261116-1846_herodot-un-bahsettigi-yeralti-labirenti-bulundu-mu#short2",
     "title": "Mısır'daki Gizemli Yeraltı Labirenti Neden Yasaklandı?",
     "type": "short",
@@ -1089,16 +1078,6 @@
     "hedef": "yaklaşık 50 sn"
   },
   {
-    "folder": "20261117-1810_karabasan-aslinda-nedir-beyninizin-uykudaki-tehlik",
-    "title": "Karabasan Aslında Nedir? Beyninizin Uykudaki Tehlikeli KİLİDİ",
-    "status": "yüklendi",
-    "video_id": "cPtNkIWZeRQ",
-    "publish_at": "2026-11-18T19:00:00+03:00",
-    "comment": "Siz daha önce hiç uyku felci (karabasan) tecrübesi yaşadınız mı, o an tam olarak ne hissettiniz? 👇",
-    "playlist": "İnsan Vücudu ve Beynin Tuhaflıkları",
-    "playlist_done": true
-  },
-  {
     "folder": "20261115-1614_bermuda-seytan-ucgeni-aslinda-neden-gemi-yutuyor#short2",
     "title": "Karadeniz'deki Patlamaya Hazır Dev Saatli Bomba",
     "type": "short",
@@ -1108,6 +1087,29 @@
     "comment": "Deniz tabanındaki gaz patlamalarını hiç duymuş muydunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/-Q7UEZ3R8aM",
     "long_video": "-Q7UEZ3R8aM",
     "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261116-1846_herodot-un-bahsettigi-yeralti-labirenti-bulundu-mu#short1",
+    "title": "Yüzyıllardır Gizlenen Yeraltı Labirenti Neden Saklanıyor?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "CGXrz4JhRzg",
+    "publish_at": "2026-11-18T12:00:00+03:00",
+    "comment": "Sizce Petrie bu devasa tavanı nasıl fark edemedi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/k1SG6EdTCKI",
+    "long_video": "k1SG6EdTCKI",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261117-1810_karabasan-aslinda-nedir-beyninizin-uykudaki-tehlik",
+    "title": "Karabasan Aslında Nedir? Beyninizin Uykudaki Tehlikeli KİLİDİ",
+    "status": "yüklendi",
+    "video_id": "cPtNkIWZeRQ",
+    "publish_at": "2026-11-18T19:00:00+03:00",
+    "comment": "Siz daha önce hiç uyku felci (karabasan) tecrübesi yaşadınız mı, o an tam olarak ne hissettiniz? 👇",
+    "playlist": "İnsan Vücudu ve Beynin Tuhaflıkları",
+    "playlist_done": true,
     "comment_done": true
   }
 ]
