@@ -5,7 +5,13 @@ on:
     # Her gün Türkiye saatiyle 11:13'te çalışır (GitHub saati UTC: 08:13).
     # Gemini ücretsiz kotası ABD Pasifik gece yarısı (TR 10:00-11:00) yenilendiği için bundan sonra çalışır.
     # Video, config.yaml'daki yayın saatine (varsayılan 19:00) planlanır.
-    - cron: "13 8 * * *"
+    # 19 Kas: GitHub zamanlayıcısı işi her gün 8-9 saat geç (akşam ~20:00 TR) başlatıyordu; o saatte Gemini dolu.
+    # Çözüm: sabah birkaç deneme saati + dışarıdan (Claude zamanlanmış görevi) 11:13'te tetikleme.
+    # Gün içinde video zaten üretildiyse sonraki denemeler "kontrol" adımında hiçbir şey yapmadan biter.
+    - cron: "13 8 * * *"     # 11:13 TR
+    - cron: "43 8 * * *"     # 11:43 TR
+    - cron: "17 9 * * *"     # 12:17 TR
+    - cron: "47 9 * * *"     # 12:47 TR
   workflow_dispatch:
     inputs:
       adet:
@@ -20,6 +26,10 @@ on:
         description: "YouTube'a yüklensin mi?"
         type: boolean
         default: true
+      otomatik:
+        description: "Otomatik tetikleme (bugün video zaten üretildiyse atla)"
+        type: boolean
+        default: false
       devam_run:
         description: "Yarıda kalan bir işlemin numarası (senaryosu hazırsa oradan devam eder; boş bırak)"
         default: ""
@@ -34,7 +44,25 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  kontrol:
+    runs-on: ubuntu-latest
+    outputs:
+      atla: ${{ steps.k.outputs.atla }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bugün video zaten üretildi mi?
+        id: k
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.otomatik }}" = "true" ]; then
+            BUGUN=$(date -u +%Y%m%d)
+            if python3 -c "import json,sys;h=json.load(open('data/history.json'));sys.exit(0 if any(str(e.get('folder','')).startswith('$BUGUN') and e.get('type')!='short' for e in h) else 1)"; then
+              echo "atla=1" >> "$GITHUB_OUTPUT"; echo "::notice::Bugünün videosu zaten üretilmiş, bu deneme atlandı."
+            fi
+          fi
+
   uret:
+    needs: kontrol
+    if: needs.kontrol.outputs.atla != '1'
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
