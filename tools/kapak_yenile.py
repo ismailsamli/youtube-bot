@@ -1,5 +1,6 @@
 """Yüklenmiş videoların kapaklarını kanal tarzında yeniden üretir ve YouTube'da değiştirir.
-Liste: data/kapak_yenile.json  ->  [{"video_id", "text", "prompt"}]"""
+Liste: data/kapak_yenile.json  ->  [{"video_id", "text", "prompt"}]
+"hazir": "<jpg yolu>" verilirse çizim yapılmaz, o dosya doğrudan yüklenir (kâğıt motoru kapakları)."""
 import json
 import sys
 from pathlib import Path
@@ -19,6 +20,13 @@ finder = VisualFinder(cfg, out / "_tmp")
 yt = uploader.get_service()
 for it in items:
     vid = it["video_id"]
+    if it.get("hazir"):
+        try:
+            yt.thumbnails().set(videoId=vid, media_body=MediaFileUpload(it["hazir"], mimetype="image/jpeg")).execute()
+            print(f"OK {vid}: kapak değiştirildi ({it['hazir']})")
+        except Exception as e:
+            print(f"HATA {vid}: {str(e)[:200]}")
+        continue
     bg = out / "_tmp" / f"{vid}_{len(it['text'])}.png"
     if not finder.cloudflare_image(it["prompt"], bg):
         print(f"HATA {vid}: çizim üretilemedi")
