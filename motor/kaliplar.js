@@ -444,17 +444,60 @@ const KALIP = {
   },
 };
 // kapak: nesne sağda büyük (solda yazı kartı olacak), arkasında kâğıt ışın patlaması
+// KAPAK: başlığa göre sahne zemini (uzay/gece/deniz/dağ/buz/çöl/beden/düz) + konuya özgü büyük nesne sağda.
+// Sol ~%55 kapak yazısına kalır. p.duzen 0: krem spot disk arkada; 1: disksiz, daha büyük ve eğik nesne.
 KALIP.kapak = function (ctx, S) {
-  const p = S.p, cx = S.W * 0.79, cy = S.H * 0.52;
-  for (let i = 0; i < 14; i++) {
-    const a0 = i / 14 * Math.PI * 2, a1 = a0 + Math.PI / 14;
-    piece(ctx, "ray" + i, [[0, 0], [Math.cos(a0) * 1400, Math.sin(a0) * 1400], [Math.cos(a1) * 1400, Math.sin(a1) * 1400]], i % 2 ? shade(P.mustard, 0.45) : shade(P.mustard, 0.62), { x: cx, y: cy, depth: 0, edge: false });
+  const p = S.p, W = S.W, H = S.H, z = p.zemin || "duz", renk = p.renk || P.blue;
+  const full = (id, c) => piece(ctx, id, shapes.rect(W + 80, H + 80), c, { x: -40, y: -40, depth: 0, edge: false });
+  const yildizlar = (n, c) => { for (let i = 0; i < n; i++) { const x = rnd(11, i) * W, y = rnd(23, i) * H * 0.9, r = 6 + rnd(37, i) * 10;
+    piece(ctx, "ky" + i, shapes.star(r, r * 0.45, 5), c, { x, y, depth: 0, edge: false, alpha: 0.85 }); } };
+  if (z === "uzay") {
+    full("kz", P.charcoal); yildizlar(70, P.card);
+    piece(ctx, "kp", shapes.circle(300, 70), shade(P.terra, 0.8), { x: W * 1.0, y: H * 0.02, depth: 2, amp: 5 });
+    piece(ctx, "kp2", shapes.circle(90, 40), P.terra, { x: W * 0.60, y: H * 0.86, depth: 2 });
+  } else if (z === "gece") {
+    full("kz", "#2E3F55"); yildizlar(55, P.mustard);
+    piece(ctx, "km", shapes.circle(150, 60), P.card, { x: W * 0.93, y: H * 0.16, depth: 2 });
+    piece(ctx, "km2", shapes.circle(130, 60), "#2E3F55", { x: W * 0.96, y: H * 0.12, depth: 0, edge: false });
+  } else if (z === "deniz") {
+    full("kz", shade(P.blue, 0.55));
+    for (let i = 0; i < 4; i++) {
+      const y = H * (0.52 + i * 0.13), pts = [[-60, 0]];
+      for (let x = 0; x <= W + 120; x += 120) pts.push([x, Math.sin(x / 140 + i) * 18]);
+      pts.push([W + 120, H], [-60, H]);
+      piece(ctx, "kw" + i, pts, shade("#3F6B7F", 1 - i * 0.12), { y, depth: 2, amp: 3 });
+    }
+  } else if (z === "dag" || z === "buz") {
+    full("kz", z === "buz" ? "#DCE7EA" : shade(P.sage, 0.6));
+    const c = z === "buz" ? "#9FC3CF" : P.sage;
+    piece(ctx, "kd1", [[W * 0.35, H], [W * 0.62, H * 0.38], [W * 0.9, H]], c, { depth: 2, amp: 4 });
+    piece(ctx, "kd2", [[W * 0.62, H], [W * 0.86, H * 0.30], [W * 1.1, H]], shade(c, 0.8), { depth: 2, amp: 4 });
+    piece(ctx, "kd3", [[W * 0.81, H * 0.40], [W * 0.86, H * 0.30], [W * 0.91, H * 0.40]], P.card, { depth: 1 });
+  } else if (z === "col") {
+    full("kz", shade(P.mustard, 0.7));
+    piece(ctx, "kg", shapes.circle(170, 60), P.terra, { x: W * 0.9, y: H * 0.2, depth: 1 });
+    for (let i = 0; i < 3; i++) piece(ctx, "kc" + i, shapes.ellipse(900, 260, 50), shade(P.terra, 0.55 + i * 0.15), { x: W * (0.45 + i * 0.25), y: H * (0.92 + i * 0.03), depth: 2 });
+  } else {
+    full("kz", z === "beden" ? shade(P.terra, 0.55) : shade(renk, 0.55));
+    const cx0 = W * 0.76, cy0 = H * 0.54;
+    for (let i = 0; i < 14; i++) {
+      const a0 = i / 14 * Math.PI * 2, a1 = a0 + Math.PI / 14;
+      if (i % 2) piece(ctx, "ray" + i, [[0, 0], [Math.cos(a0) * 1500, Math.sin(a0) * 1500], [Math.cos(a1) * 1500, Math.sin(a1) * 1500]], shade(z === "beden" ? P.terra : renk, 0.75), { x: cx0, y: cy0, depth: 0, edge: false });
+    }
   }
-  piece(ctx, "disk", shapes.circle(330, 70), p.renk || P.red, { x: cx, y: cy, depth: 2, amp: 4 });
-  piece(ctx, "disk2", shapes.circle(296, 70), P.card, { x: cx, y: cy, depth: 1, amp: 3 });
-  if (p.ikon2) icon(ctx, p.ikon2, cx + 210, cy + 280, 230, 1, 2, "k2");
-  icon(ctx, p.ikon || "soru", cx, cy, 500, 1, 2, "k1");
-  tape(ctx, "kt1", cx + 150, cy - 330, 0.6, 1, 160);
+  // nesne yazı kartının (sol ~%60) sağında kalır, üstüne binmez
+  const d1 = p.duzen === 1, cx = W * 0.805, cy = H * 0.53;
+  if (!d1) {
+    piece(ctx, "disk", shapes.circle(330, 80), P.red, { x: cx, y: cy, depth: 3, amp: 5 });
+    piece(ctx, "disk2", shapes.circle(302, 80), P.card, { x: cx, y: cy, depth: 1, amp: 4 });
+    if (p.ikon2) icon(ctx, p.ikon2, cx + 250, cy + 300, 190, 1, 2, "k2");
+  } else {
+    piece(ctx, "spot", shapes.ellipse(330, 70, 60), "rgba(0,0,0,0.18)", { x: cx, y: cy + 300, depth: 0, edge: false });
+  }
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(d1 ? -0.06 : 0);
+  icon(ctx, p.ikon || "soru", 0, 0, d1 ? 540 : 500, 1, 2, "k1");
+  ctx.restore();
+  tape(ctx, "kt1", cx + 200, cy - 320, 0.6, 1, 150);
 };
 // kanal girişi (jenerik): kırmızı disk + kâğıt kravat + isim şeridi. ~4 sn; sonu krem zemine yumuşak çıkış
 KALIP.intro = function (ctx, S) {

@@ -77,7 +77,7 @@ def produce(cfg: dict, folder: Path = None, topic: str = None) -> Path:
         log("Kapak arka planı çiziliyor (kâğıt motoru)...")
         from bot import kagit_plan
         if not thumb_bg.exists():
-            kagit_plan.kapak_bg(script["scenes"], thumb_bg)
+            kagit_plan.kapak_bg(script["scenes"], thumb_bg, title=script.get("title", ""))
         visuals = None
     else:
         log("Görseller hazırlanıyor...")
@@ -224,7 +224,7 @@ def make_thumbnail_variants(cfg: dict, script: dict, folder: Path, finder, thumb
                 try:
                     from bot import kagit_plan
                     if not bg_c.exists():
-                        kagit_plan.kapak_bg(script["scenes"], bg_c, skip=1)
+                        kagit_plan.kapak_bg(script["scenes"], bg_c, skip=1, title=script.get("title", ""))
                 except Exception:
                     bg_c = thumb_bg
             elif not bg_c.exists() and not (alts[1].get("prompt") and finder.ai_image(alts[1]["prompt"], bg_c)):

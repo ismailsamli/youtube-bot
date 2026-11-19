@@ -252,23 +252,46 @@ def segment(scenes: list, audios: list, work: Path, name: str, cfg: dict, w: int
     return out
 
 
-def kapak_bg(scenes: list, out: Path, w: int = 1920, h: int = 1080, skip: int = 0) -> Path:
-    """Kapak arka planı: videonun en belirgin nesnesi sağda büyük (sol tarafa kapak yazısı gelir)."""
+# kapakta tek başına anlamsız kalan genel ikonlar (her videoda çıkıp kapakları aynılaştırıyordu)
+GENEL = {"insan", "kadin", "kalabalik", "bilim_insani", "polis", "asker", "belge", "takvim", "saat", "kum_saati",
+         "soru", "unlem", "tik", "carpi", "ok_yukari", "ok_asagi", "hedef", "gazete", "kitap"}
+# başlıktaki kelimeye göre kapak zemini (sahne ortamı)
+ZEMINLER = [(r"uzay|gezegen|galaksi|y[ıi]ld[ıi]z|kara delik|ay'?[ıi]n|mars|ven[uü]s|g[uü]ne[sş]", "uzay"),
+            (r"gece|uyku|karabasan|r[uü]ya|kabus|karanl[ıi]k", "gece"),
+            (r"okyanus|deniz|bermuda|gemi|denizalt[ıi]|tsunami|dalga|titanik|ada", "deniz"),
+            (r"da[gğ]|everest|himalaya|zirve|volkan|yanarda[gğ]", "dag"),
+            (r"buz|kutup|antarktika|kar\b|donmu[sş]", "buz"),
+            (r"[cç][oö]l|m[ıi]s[ıi]r|piramit|firavun|kum", "col"),
+            (r"beyin|v[uü]cut|kalp|g[oö]z|h[uü]cre|dna|hastal[ıi]k|vir[uü]s", "beden")]
+ZEMIN_RENK = ["#7C9DA5", "#8A9B7C", "#C56B50", "#E8B65C"]   # mavi, adaçayı, kiremit, hardal
+
+
+def kapak_bg(scenes: list, out: Path, w: int = 1920, h: int = 1080, skip: int = 0, title: str = "") -> Path:
+    """Kapak arka planı: videonun KONUSUNA özgü nesne sağda büyük, başlığa göre sahne zemini (uzay, gece, deniz…).
+    skip=1 → C kapağı: ikinci nesne + farklı düzen. Sol taraf kapak yazısına kalır."""
     from collections import Counter
+    import hashlib
     icons = []
     prev = None
     for sc in scenes:
         k, p = normalize(sc, prev)
         prev = k
-        for key in ("ikon",):
-            if p.get(key) in ICONS and p[key] not in ("soru", "unlem", "tik", "carpi", "ok_yukari", "ok_asagi"):
-                icons.append(p[key])
-        if k == "kisi":
-            icons.append(p.get("ikon") or "insan")
-    ranked = [i for i, _ in Counter(icons).most_common()] or [guess_icon(" ".join(s.get("text", "") for s in scenes[:5]))]
+        if p.get("ikon") in ICONS:
+            icons.append(p["ikon"])
+    sayim = Counter(icons)
+    ozel = [i for i, _ in sayim.most_common() if i not in GENEL]
+    bas = guess_icon(title) if title else None
+    if bas and bas in sayim and bas not in GENEL:      # başlıktaki nesne videoda da varsa önce o
+        ozel = [bas] + [i for i in ozel if i != bas]
+    ranked = ozel or [i for i, _ in sayim.most_common()] or [guess_icon(" ".join(s.get("text", "") for s in scenes[:5]))]
     main = ranked[min(skip, len(ranked) - 1)]
     second = next((i for i in ranked if i != main), None)
-    plan = {"w": w, "h": h, "sahneler": [{"kalip": "kapak", "p": {"ikon": main, "ikon2": second}, "sure": 6, "bas": 0}],
+    t = (title or " ".join(s.get("text", "") for s in scenes[:3])).lower()
+    zemin = next((z for pat, z in ZEMINLER if re.search(pat, t)), "duz")
+    hsh = int(hashlib.md5((title or main).encode()).hexdigest(), 16)
+    renk = ZEMIN_RENK[(hsh + skip) % len(ZEMIN_RENK)]
+    plan = {"w": w, "h": h, "sahneler": [{"kalip": "kapak", "sure": 6, "bas": 0,
+            "p": {"ikon": main, "ikon2": second, "zemin": zemin, "renk": renk, "duzen": (hsh + skip) % 2}}],
             "altyazi": [], "sure": 6}
     return kagit_motor.still(plan, out, 0, 1.0)
 
