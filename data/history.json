@@ -1126,16 +1126,6 @@
     "hedef": "yaklaşık 50 sn"
   },
   {
-    "folder": "20261119-1823_tek-damla-kanla-dunyayi-nasil-kandirdi",
-    "title": "Tek Damla Kanla Dünyayı Nasıl KANDIRDI?",
-    "status": "yüklendi",
-    "video_id": "IN2QXdB4J8w",
-    "publish_at": "2026-11-20T19:00:00+03:00",
-    "comment": "Sizce yatırımcılar bu kadar açık bir yalana nasıl yıllarca inandı? Yorumlarda tartışalım! 👇",
-    "playlist": "Vurgun Dosyaları",
-    "playlist_done": true
-  },
-  {
     "folder": "20261117-1810_karabasan-aslinda-nedir-beyninizin-uykudaki-tehlik#short2",
     "title": "Uykudaki Görünmez Kilit: Beyin Sizi Nasıl Koruyor?",
     "type": "short",
@@ -1146,5 +1136,48 @@
     "long_video": "cPtNkIWZeRQ",
     "hedef": "yaklaşık 50 sn",
     "comment_done": true
+  },
+  {
+    "folder": "20261119-1823_tek-damla-kanla-dunyayi-nasil-kandirdi",
+    "title": "Tek Damla Kanla Dünyayı Nasıl KANDIRDI?",
+    "status": "yüklendi",
+    "video_id": "IN2QXdB4J8w",
+    "publish_at": "2026-11-20T19:00:00+03:00",
+    "comment": "Sizce yatırımcılar bu kadar açık bir yalana nasıl yıllarca inandı? Yorumlarda tartışalım! 👇",
+    "playlist": "Vurgun Dosyaları",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261120-1711_insan-bedeninin-gizli-siniri-4-dakika#short1",
+    "title": "Bacaklardaki Yanma Hissinin Gerçek Nedeni Laktik Asit Değil mi?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "Xv9OW2sP4m0",
+    "publish_at": "2026-11-22T12:00:00+03:00",
+    "comment": "Koşarken bacaklarınızda o şiddetli yanmayı kaçıncı dakikada hissediyorsunuz?\n\nHikâyenin tamamı burada 👉 https://youtu.be/bf8Cnq3VZMo",
+    "long_video": "bf8Cnq3VZMo",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261120-1711_insan-bedeninin-gizli-siniri-4-dakika#short2",
+    "title": "4 Dakika Sınırı: İnsan Bedeninin En Büyük Psikolojik Barajı",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "84z04leIyIg",
+    "publish_at": "2026-11-22T21:00:00+03:00",
+    "comment": "Sizce zihnimiz bedenimizin fizyolojik sınırlarını kısıtlıyor olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/bf8Cnq3VZMo",
+    "long_video": "bf8Cnq3VZMo",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261120-1711_insan-bedeninin-gizli-siniri-4-dakika",
+    "title": "İnsan Bedeninin Gizli SINIRI: 4 Dakika",
+    "status": "yüklendi",
+    "video_id": "bf8Cnq3VZMo",
+    "publish_at": "2026-11-21T19:00:00+03:00",
+    "comment": "Sizce insan bedeninin aşamayacağı mutlak bir biyolojik sınır var mı, yoksa engel her zaman zihinde mi başlar? 👇",
+    "playlist": "İnsan Vücudu ve Beynin Tuhaflıkları",
+    "playlist_done": true
   }
 ]
