@@ -1104,28 +1104,6 @@
     "comment_done": true
   },
   {
-    "folder": "20261119-1823_tek-damla-kanla-dunyayi-nasil-kandirdi#short1",
-    "title": "Tek Damla Kanla Gelen 9 Milyar Dolarlık Yalan",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "TJEY4mOYHmo",
-    "publish_at": "2026-11-21T12:00:00+03:00",
-    "comment": "Sizce böylesi büyük bir tıp sahtekarlığı yıllarca nasıl gizli kalabildi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/IN2QXdB4J8w",
-    "long_video": "IN2QXdB4J8w",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
-    "folder": "20261119-1823_tek-damla-kanla-dunyayi-nasil-kandirdi#short2",
-    "title": "Silikon Vadisi'nin En Büyük Skandalı Nasıl Çöktü?",
-    "type": "short",
-    "status": "yüklendi",
-    "video_id": "5XRl1QEul2c",
-    "publish_at": "2026-11-21T21:00:00+03:00",
-    "comment": "Böyle bir baskı altında kalsaydınız siz gerçeği açıklar mıydınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/IN2QXdB4J8w",
-    "long_video": "IN2QXdB4J8w",
-    "hedef": "yaklaşık 50 sn"
-  },
-  {
     "folder": "20261117-1810_karabasan-aslinda-nedir-beyninizin-uykudaki-tehlik#short2",
     "title": "Uykudaki Görünmez Kilit: Beyin Sizi Nasıl Koruyor?",
     "type": "short",
@@ -1171,6 +1149,30 @@
     "hedef": "yaklaşık 50 sn"
   },
   {
+    "folder": "20261119-1823_tek-damla-kanla-dunyayi-nasil-kandirdi#short1",
+    "title": "Tek Damla Kanla Gelen 9 Milyar Dolarlık Yalan",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "TJEY4mOYHmo",
+    "publish_at": "2026-11-21T12:00:00+03:00",
+    "comment": "Sizce böylesi büyük bir tıp sahtekarlığı yıllarca nasıl gizli kalabildi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/IN2QXdB4J8w",
+    "long_video": "IN2QXdB4J8w",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
+    "folder": "20261119-1823_tek-damla-kanla-dunyayi-nasil-kandirdi#short2",
+    "title": "Silikon Vadisi'nin En Büyük Skandalı Nasıl Çöktü?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "5XRl1QEul2c",
+    "publish_at": "2026-11-21T21:00:00+03:00",
+    "comment": "Böyle bir baskı altında kalsaydınız siz gerçeği açıklar mıydınız?\n\nHikâyenin tamamı burada 👉 https://youtu.be/IN2QXdB4J8w",
+    "long_video": "IN2QXdB4J8w",
+    "hedef": "yaklaşık 50 sn",
+    "comment_done": true
+  },
+  {
     "folder": "20261120-1711_insan-bedeninin-gizli-siniri-4-dakika",
     "title": "İnsan Bedeninin Gizli SINIRI: 4 Dakika",
     "status": "yüklendi",
@@ -1178,6 +1180,16 @@
     "publish_at": "2026-11-21T19:00:00+03:00",
     "comment": "Sizce insan bedeninin aşamayacağı mutlak bir biyolojik sınır var mı, yoksa engel her zaman zihinde mi başlar? 👇",
     "playlist": "İnsan Vücudu ve Beynin Tuhaflıkları",
-    "playlist_done": true
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261122-0849_kriz-aninda-beyniniz-neden-kilitlenir",
+    "title": "Kriz Anında Beyniniz Neden KİLİTLENİR?",
+    "status": "yüklendi",
+    "video_id": "MG7mxFnnTDM",
+    "publish_at": "2026-11-22T19:00:00+03:00",
+    "comment": "Yoğun stres veya tehlike anında genellikle donup kalır mısın yoksa hemen harekete mi geçersin? 👇",
+    "playlist": "İnsan Vücudu ve Beynin Tuhaflıkları"
   }
 ]
