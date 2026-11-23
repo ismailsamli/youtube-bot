@@ -1,16 +1,137 @@
 {
-  "guncelleme": "2026-11-16",
+  "guncelleme": "2026-11-23",
   "oneriler": [
     {
-      "konu": "Herodot'un Anlattığı Mısır'ın Kayıp Yeraltı Labirenti",
-      "aci": "Bodrum doğumlu antik tarihçi Herodot'un bizzat gezip Piramitlerden daha görkemli olduğunu yazdığı ancak asırlarca mit sanılan Hawara yeraltı labirentinin jeofizik taramalarla ortaya çıkan izleri.",
-      "kaynak_baslik": "Herodotus Said It Was More Impressive Than The Pyramids. But Egypt Said A Labyrinth Didn't Exist.",
-      "neden": "Antik Mısır ve kayıp arkeolojik yapılar izleyicinin en çok tıkladığı gizem temalarındandır; piramitlerin ötesinde gizli bir yeraltı şehri iddiası yüksek merak uyandırır.",
+      "konu": "Sivrisineklerin insan derisini ısırma mekanizması, mikroskobik iğne anatomisi ve anestezi salgılama biyolojisi.",
+      "aci": "Türkiye'de özellikle yaz aylarında yaşanan sivrisinek kâbusu ve Aedes türünün yayılması üzerinden bu mikroskobik biyomühendisliği anlatmak.",
+      "kaynak_baslik": "The Mosquito Like You've Never Seen It – 3D Animation",
+      "neden": "Gündelik ve sinir bozucu bir durumun şaşırtıcı mikroskobik bilimi yüksek merak uyandırır.",
       "izlenme": null,
       "kat": null,
       "kaynak": null,
-      "kullanildi": true,
-      "tarih": "2026-11-16"
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "Okyanus tabanındaki zifiri karanlık ekosistem, dev leşçil canlılar ve derin deniz beslenme zinciri.",
+      "aci": "Karadeniz'in dipteki oksijensiz katmanları ile okyanusların abyssal bölgesindeki bu biyolojik vaha fenomenini kıyaslamak.",
+      "kaynak_baslik": "Scientists Sunk a Cow To Find This Rare Deep-Sea Predator",
+      "neden": "Görsel ve deneysel içeriği güçlü derin deniz gizemleri bilim meraklılarını hızla çeker.",
+      "izlenme": 4073769,
+      "kat": 16.4,
+      "kaynak": "N6UPb63cTwU",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "Buzul gölü patlamaları (GLOF) ve dağlık bölgelerdeki ani buzul çökmelerinin jeolojik mekanizması.",
+      "aci": "Doğu Karadeniz ve Toroslar'daki çekilen buzul kalıntıları ile küresel ısınmanın dağlık bölgelerimizdeki potansiyel etkilerine bağ kurmak.",
+      "kaynak_baslik": "Nepal's 2026 Disaster Explained: The Glacier That Wiped Out a Valley",
+      "neden": "Doğal afetlerin arkasındaki fiziksel ve jeolojik süreçler yüksek farkındalık ve izlenme getirir.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "Beynin rüya görürken geçtiği nörolojik evreler, REM uykusu fizyolojisi ve lüsid rüya bilimi.",
+      "aci": "Türk kültüründeki rüya tabiri merakını bilimsel nöro-görüntüleme verileri ve beyin dalgası araştırmalarıyla açıklamak.",
+      "kaynak_baslik": "EVERY LEVEL OF DREAMING",
+      "neden": "Uyku ve rüya mekanizması her yaştan izleyici için zamansız ve popüler bir zihin konusudur.",
+      "izlenme": 3439112,
+      "kat": 15.4,
+      "kaynak": "Fue130RyEfo",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "Tarihteki devasa kuraklık ve kıtlıklara yol açan Süper El Niño okyanus akıntı döngüleri ve iklim tarihi.",
+      "aci": "El Niño salınımlarının Türkiye'deki aşırı sıcaklar, kuraklık ve Akdeniz iklim kuşağı üzerindeki doğrudan etkilerini incelemek.",
+      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
+      "neden": "Küresel iklim olayları ve tarihteki büyük felaketler geniş kitlelerin dikkatini çeker.",
+      "izlenme": 2360405,
+      "kat": 4.9,
+      "kaynak": "69o-8Mtd3Kc",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "8000 metre üzeri 'ölüm bölgesinde' insan bedeninin oksijensizliğe verdiği biyolojik tepkiler ve beyin ödemi riski.",
+      "aci": "Ağrı Dağı veya Everest'e tırmanan Türk dağcıların tecrübeleri ve yüksek irtifadaki ekstrem biyolojik sınırlarla örneklendirmek.",
+      "kaynak_baslik": "The Broad Peak Disaster: What Really Happened to Nirmal Purja",
+      "neden": "Ekstrem koşullardaki insan biyolojisi ve hayatta kalma mücadelesi yüksek sürükleyiciliğe sahiptir.",
+      "izlenme": 761078,
+      "kat": 5.0,
+      "kaynak": "HSryGcE6AtE",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "1971'de uçaktan paraşütle atlayarak kaybolan D.B. Cooper vakasının adli tıp ve modern teknolojiyle incelenmesi.",
+      "aci": "Havacılık tarihinin tek çözülemeyen soygun eylemini günümüz DNA ve izotop analizi teknolojileriyle yeniden değerlendirmek.",
+      "kaynak_baslik": "The D.B. Cooper Mystery Finally Solved — After 54 Years",
+      "neden": "Kusursuz firar ve gizemli kaybolma hikayeleri Türk izleyicisinin en çok ilgi gösterdiği içeriklerdendir.",
+      "izlenme": 972524,
+      "kat": 4.6,
+      "kaynak": "wic9CnF7vro",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "Kıtaları tehdit edebilecek mega fay hatları, Cascadia dalma-batan zonu ve jeolojik kıyamet senaryoları.",
+      "aci": "Türkiye'nin fay hattı gerçekliği üzerinden küresel ölçekteki mega jeolojik kırılmaların mekanizmasını kıyaslamalı anlatmak.",
+      "kaynak_baslik": "The Worst Possible US Disaster Just Got EVEN WORSE?!?",
+      "neden": "Jeoloji ve gezegensel risk konuları yüksek merak ve etkileşim oluşturur.",
+      "izlenme": 1724253,
+      "kat": 4.5,
+      "kaynak": "4UdV7GKsr6U",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "Ağır stres ve kriz anlarında beynin geliştirdiği nörolojik direnç (resilience) ve nöroplastisite süreci.",
+      "aci": "Zorlu yaşam koşullarıyla mücadele eden insanların psikolojik dayanıklılık kodlarını nörobilimsel araştırmalarla açıklamak.",
+      "kaynak_baslik": "Psychology of Resilience: Build a Mind So Strong It Scares People",
+      "neden": "Zihinsel güç ve psikoloji odaklı içerikler meraklı izleyici kitlesinde çok yüksek etkileşim alır.",
+      "izlenme": 1751950,
+      "kat": 8.6,
+      "kaynak": "TRd1kuUGazE",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "Okyanusların Hadal bölgesinde, aşırı basınç altında evrimleşen sıradışı canlılar ve biyolojik adaptasyonları.",
+      "aci": "Marmara Çukuru gibi derin çukurlar ile okyanus uçurumlarındaki yaşam koşullarını ve basınç dayanıklılığını karşılaştırmak.",
+      "kaynak_baslik": "Creepiest Deep Sea Monsters Explained in 8 Minutes",
+      "neden": "Derin deniz ve bilinmeyen canlılar görsel açıdan en ilgi çekici doğa konuları arasındadır.",
+      "izlenme": 1750930,
+      "kat": 3.6,
+      "kaynak": "z6Aw3vlHe2Y",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "Geçmişte televizyon yayınlarında yaşanan gizemli anormallikler, kayıp medya (lost media) ve dijital adli inceleme.",
+      "aci": "TRT'nin eski gece yayını kapanış ekranları ve Türkiye'deki kayıp televizyon arşivleri üzerinden dijital arşiv merakına bağlamak.",
+      "kaynak_baslik": "The Joanna Lopez Internet Mystery Has Been Solved",
+      "neden": "Nostalji ve internet dedektifliği birleştiğinde genç ve orta yaş kitle için sürükleyici bir içerik sunar.",
+      "izlenme": 668458,
+      "kat": 10.8,
+      "kaynak": "SkDfd5D2REQ",
+      "kullanildi": false,
+      "tarih": "2026-11-23"
+    },
+    {
+      "konu": "İnsan beyninin korku hikayelerine ve şehir efsanelerine olan evrimsel yatkınlığı ve korku psikolojisi.",
+      "aci": "Anadolu korku kültüründeki efsanelerin ve mahalle hikayelerinin insan beyninde uyandırdığı nörolojik tepkileri incelemek.",
+      "kaynak_baslik": "The History of Scary Stories To Tell in the Dark: Banned & Beloved",
+      "neden": "Korku olgusunun arkasındaki bilimsel ve psikolojik nedenler izleyicinin her zaman ilgisini çeker.",
+      "izlenme": null,
+      "kat": null,
+      "kaynak": null,
+      "kullanildi": false,
+      "tarih": "2026-11-23"
     },
     {
       "konu": "Dünyanın En Derin ve Gizemli Su Kütlesi: Baykal Gölü",
@@ -24,17 +145,6 @@
       "tarih": "2026-11-16"
     },
     {
-      "konu": "Rüyaların Katmanları ve Karabasan Olayının Nörobiyolojisi",
-      "aci": "REM uykusunun derinliklerinde beynin simülasyon mekanizması ile Türk halk anlatılarında 'karabasan' olarak bilinen uyku felcinin beyin motor korteksindeki kilitlenme gerçeği.",
-      "kaynak_baslik": "EVERY LEVEL OF DREAMING",
-      "neden": "Kişisel deneyimle örtüşen biyolojik gizemler yüksek paylaşım ve izlenme süresi yakalar; herkes rüya görür ve uyku felci evrensel bir meraktır.",
-      "izlenme": 1058843,
-      "kat": 5.9,
-      "kaynak": "Fue130RyEfo",
-      "kullanildi": true,
-      "tarih": "2026-11-16"
-    },
-    {
       "konu": "Güneşsiz Uçurumlarda Devleşen Canlılar: Derin Deniz Gigantizmi",
       "aci": "Akdeniz gibi sıcak ve dar denizlerin aksine okyanusun kilometrelerce altındaki zifiri karanlık ve yüksek basınçta canlıların minyatürleşmek yerine neden devasa boyutlara ulaştığının biyolojik açıklaması.",
       "kaynak_baslik": "Deep Sea Giants Are Everywhere. We've Been Searching Wrong",
@@ -43,72 +153,6 @@
       "kat": null,
       "kaynak": null,
       "kullanildi": false,
-      "tarih": "2026-11-16"
-    },
-    {
-      "konu": "Süper El Niño: Dünyayı Kasıp Kavuran İklim Döngüsü",
-      "aci": "Pasifik Okyanusu'ndaki sıcaklık salınımının binlerce kilometre ötedeki Akdeniz çanağını, Türkiye'deki aşırı sıcak dalgalarını ve ani kuraklık-sel döngülerini nasıl doğrudan tetiklediği.",
-      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
-      "neden": "Hava olayları ve olağanüstü doğa felaketleri özellikle son yıllardaki iklim dengesizlikleri sebebiyle doğrudan günlük hayatı ilgilendiren popüler bir konudur.",
-      "izlenme": 2354335,
-      "kat": 4.9,
-      "kaynak": "69o-8Mtd3Kc",
-      "kullanildi": true,
-      "tarih": "2026-11-16"
-    },
-    {
-      "konu": "Modern İnsandan Önce Yapı İnşa Eden Erken İnsansılar",
-      "aci": "Zambiya'da bulunan yarım milyon yıllık işlenmiş ahşap yapıların kanıtladığı gibi mimarinin Homo sapiens'ten çok önce başladığı gerçeği ve insan evriminin teknoloji tarihi.",
-      "kaynak_baslik": "Someone Was Building Before Our Species Existed",
-      "neden": "'Tarih kitaplarını yeniden yazdıran keşif' teması bilim ve antropoloji meraklılarında güçlü bir şaşkınlık ve merak oluşturur.",
-      "izlenme": 945001,
-      "kat": 3.6,
-      "kaynak": "KmmyBiTild4",
-      "kullanildi": true,
-      "tarih": "2026-11-16"
-    },
-    {
-      "konu": "İnsan Bedeninin Fiziksel Sınırları: 4 Dakikalık Mil Koşusu",
-      "aci": "Bir zamanlar insan kalbinin patlayacağı düşünülen 4 dakikada 1 mil koşma sınırının aşılmasıyla açığa çıkan laktik asit eşiği, oksijen transferi ve nöromüsküler dayanıklılık bilimi.",
-      "kaynak_baslik": "What Running a 4-Minute Mile Does to Your Body",
-      "neden": "'İnsan bedeni en fazla neye dayanabilir?' sorusu izleyiciyi ekrana bağlayan ve kişisel potansiyel hissini besleyen sağlam bir fizyoloji konusudur.",
-      "izlenme": 488116,
-      "kat": 5.0,
-      "kaynak": "N7FoE6kfUs4",
-      "kullanildi": true,
-      "tarih": "2026-11-16"
-    },
-    {
-      "konu": "Zihinsel Dayanıklılık (Resilience) ve Amigdala Kontrolü",
-      "aci": "Büyük krizler, afetler ve yoğun stres anlarında beynin dağılmasını engelleyen prefrontal korteks mekanizması ve Türk insanının kriz anlarındaki psikolojik sağlamlık dinamikleri.",
-      "kaynak_baslik": "Psychology of Resilience: Build a Mind So Strong It Scares People",
-      "neden": "Zor zamanlardan geçen geniş kitlelerin zihinsel güç ve panik kontrolü konularına olan psikolojik ilgisi çok yüksektir.",
-      "izlenme": 1669543,
-      "kat": 8.3,
-      "kaynak": "TRd1kuUGazE",
-      "kullanildi": true,
-      "tarih": "2026-11-16"
-    },
-    {
-      "konu": "Buzul Göllerinin Patlaması: Dağları Yutan Doğal Afet Fiziği",
-      "aci": "Yüksek dağ zirvelerinde biriken buzul sularının doğal setleri yırtarak vadileri saniyeler içinde silip süpürme mekanizması ve Kaçkarlar ile Ağrı Dağı'ndaki eriyen buzul hareketliliği.",
-      "kaynak_baslik": "Nepal's 2026 Disaster Explained: The Glacier That Wiped Out a Valley",
-      "neden": "Fizik motoru simülasyonları ve büyük jeolojik yıkımların bilimsel analizi YouTube bilgi izleyicisinde yüksek retention sağlar.",
-      "izlenme": null,
-      "kat": null,
-      "kaynak": null,
-      "kullanildi": true,
-      "tarih": "2026-11-16"
-    },
-    {
-      "konu": "Yeraltında Su Baskını Faciası: Chasnala ve Maden Fiziği",
-      "aci": "Milyonlarca metreküp suyun eski bir maden galerisinden çalışan madencilerin üzerine boşalmasıyla yaşanan Chasnala felaketi üzerinden yeraltı basınç ve hidrolojik güvenlik riskleri.",
-      "kaynak_baslik": "चासनाला खदान हादसा 1975 | Chasnala Mine Disaster | भारत की भयानक Mine Tragedy",
-      "neden": "Yeraltında mahsur kalma ve endüstriyel felaketlerin anatomisi, Türkiye'nin Soma ve Ermenek hafızasıyla da örtüşen derin bir empati ve merak alanıdır.",
-      "izlenme": 694787,
-      "kat": 9.0,
-      "kaynak": "mjEQyO-co1A",
-      "kullanildi": true,
       "tarih": "2026-11-16"
     },
     {
@@ -284,50 +328,6 @@
       "izlenme": 3846968,
       "kat": 4.6,
       "kaynak": "GGmVPLldvXY",
-      "kullanildi": false,
-      "tarih": "2026-11-09"
-    },
-    {
-      "konu": "İradenin Biyolojisi: Beyni Disiplinli Olmaya Nasıl Alıştırırız?",
-      "aci": "Motivasyonun geçici bir duygu, disiplinin ise beynin dopamin ve ödül yollarını doğru yönetme becerisi olduğunu anlatan bilimsel mekanizma.",
-      "kaynak_baslik": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
-      "neden": "Pratik bilimsel açıklamalarla harmanlanan psikoloji konuları, özellikle genç kitlede çok yüksek tıklanma oranına sahiptir.",
-      "izlenme": 4949019,
-      "kat": 25.1,
-      "kaynak": "CkP_8bkjf1E",
-      "kullanildi": false,
-      "tarih": "2026-11-09"
-    },
-    {
-      "konu": "Tarihi Değiştiren Süper El Niño Olayları ve Küresel Yıkımlar",
-      "aci": "Pasifik Okyanusu'ndaki birkaç derecelik su sıcaklığı değişiminin kıtaları kuraklığa ve imparatorlukları çöküşe nasıl sürüklediği.",
-      "kaynak_baslik": "A SUPER El Niño Triggered History’s DEADLIEST Disaster. THIS One Might Be Worse.",
-      "neden": "Gezegenin doğa güçleri ve küresel iklim olaylarının felaket boyutundaki gücü her zaman ilgi çeker.",
-      "izlenme": 2349434,
-      "kat": 5.0,
-      "kaynak": "69o-8Mtd3Kc",
-      "kullanildi": false,
-      "tarih": "2026-11-09"
-    },
-    {
-      "konu": "Sibirya Kaplanının Doğa Şartlarına Karşı Kusursuz Adaptasyonu",
-      "aci": "Eksi 40 derece soğukta devasa cüssesine rağmen ormanda neredeyse bir hayalet gibi hareket edebilen yırtıcının biyolojik dehası.",
-      "kaynak_baslik": "Why the Siberian Tiger Is the Deadliest Apex Predator in the World",
-      "neden": "Uç yırtıcıların avlanma stratejileri ve hayatta kalma mücadeleleri belgesel severlerin en çok izlediği başlıklardandır.",
-      "izlenme": 133541,
-      "kat": 16.4,
-      "kaynak": "3mq60b5xa6o",
-      "kullanildi": false,
-      "tarih": "2026-11-09"
-    },
-    {
-      "konu": "Abdul Karim Telgi ve Tarihin En Büyük Sahte Damga Pulu Vurgunu",
-      "aci": "Bir tren istasyonunda meyve satarak başlayıp devlet matbaasının ıskarta makineleriyle milyarlarca dolarlık sahte evrak imparatorluğu kuran adamın hikâyesi.",
-      "kaynak_baslik": "₹1.20 லட்சம் கோடி மோசடி செய்த பழ வியாபாரி | Scam 2003: The Telgi Story | Story Explained",
-      "neden": "Dahi seviyesindeki sahtecilik ve bürokrasi açıklarını kullanan dolandırıcı hikâyeleri izleyiciyi büyüler.",
-      "izlenme": 184412,
-      "kat": 3.3,
-      "kaynak": "Tvqtq6IjSXI",
       "kullanildi": false,
       "tarih": "2026-11-09"
     }
