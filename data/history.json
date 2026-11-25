@@ -1214,6 +1214,40 @@
     "video_id": "DZQ9qARAwdk",
     "publish_at": "2026-11-24T19:00:00+03:00",
     "comment": "Sivrisinek ısırığı sizde de büyük şişlik ve şiddetli kaşıntıya yol açıyor mu? Yorumlarda buluşalım! 👇",
-    "playlist": "Doğanın Gücü: Afetler ve Canlılar"
+    "playlist": "Doğanın Gücü: Afetler ve Canlılar",
+    "playlist_done": true,
+    "comment_done": true
+  },
+  {
+    "folder": "20261125-0830_daglarin-tepesindeki-gizli-tsunami-buzul-golleri#short1",
+    "title": "Dağların Zirvesinde Tsunami Olursa Ne Olur?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "wm7I72r7eyU",
+    "publish_at": "2026-11-26T12:00:00+03:00",
+    "comment": "Sizce doğanın en tehlikeli gizli gücü buzul gölleri olabilir mi?\n\nHikâyenin tamamı burada 👉 https://youtu.be/4ZQyfn-sVGA",
+    "long_video": "4ZQyfn-sVGA",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261125-0830_daglarin-tepesindeki-gizli-tsunami-buzul-golleri#short2",
+    "title": "Buzul Göllerini Tutan Barajlar Nasıl Kendi Kendine Eriyor?",
+    "type": "short",
+    "status": "yüklendi",
+    "video_id": "8tCml0U5zJ0",
+    "publish_at": "2026-11-26T21:00:00+03:00",
+    "comment": "Sizce iklim değişimi dağlarımızdaki dengeleri ne kadar çabuk değiştirebilir?\n\nHikâyenin tamamı burada 👉 https://youtu.be/4ZQyfn-sVGA",
+    "long_video": "4ZQyfn-sVGA",
+    "hedef": "yaklaşık 50 sn"
+  },
+  {
+    "folder": "20261125-0830_daglarin-tepesindeki-gizli-tsunami-buzul-golleri",
+    "title": "Dağların Tepesindeki Gizli TSUNAMİ: Buzul Gölleri",
+    "status": "yüklendi",
+    "video_id": "4ZQyfn-sVGA",
+    "publish_at": "2026-11-25T19:00:00+03:00",
+    "comment": "Sizce Türkiye'nin zirvelerindeki buzulların erimesi sadece bir iklim kaybı mı, yoksa yeni bir afet tehlikesi mi? 👇",
+    "playlist": "Doğanın Gücü: Afetler ve Canlılar",
+    "playlist_done": true
   }
 ]
